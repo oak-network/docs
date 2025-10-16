@@ -1,0 +1,34 @@
+announcement:
+  label: Announcement
+  permalink: /announcement
+  description: Important announcements and updates
+
+roadmap:
+  label: Roadmap
+  permalink: /roadmap
+  description: Development roadmap and future plans
+
+protocol:
+  label: Protocol
+  permalink: /protocol
+  description: Protocol updates and technical developments
+
+security:
+  label: Security
+  permalink: /security
+  description: Security updates and best practices
+
+celo:
+  label: Celo
+  permalink: /celo
+  description: Celo blockchain integration and updates
+
+crowdfunding:
+  label: Crowdfunding
+  permalink: /crowdfunding
+  description: Crowdfunding features and improvements
+
+development:
+  label: Development
+  permalink: /development
+  description: Development updates and technical insights

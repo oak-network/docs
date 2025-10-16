@@ -1,0 +1,213 @@
+import {themes as prismThemes} from 'prism-react-renderer';
+import type {Config} from '@docusaurus/types';
+import type * as Preset from '@docusaurus/preset-classic';
+
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+const config: Config = {
+  title: 'Oak Network',
+  tagline: 'Decentralized Crowdfunding Infrastructure on Celo',
+  favicon: 'img/favicon.ico',
+
+  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  future: {
+    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+  },
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
+  // Set the production url of your site here
+  url: 'https://docs.oaknetwork.org',
+  // Set the /<baseUrl>/ pathname under which your site is served
+  // For GitHub pages deployment, it is often '/<projectName>/'
+  baseUrl: '/',
+
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
+  organizationName: 'oaknetwork', // Usually your GitHub org/user name.
+  projectName: 'oak-docs', // Usually your repo name.
+
+  onBrokenLinks: 'warn',
+
+  // Even if you don't use internationalization, you can use this field to set
+  // useful metadata like html lang. For example, if your site is Chinese,
+  // you may want to replace "en" with "zh-Hans".
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+
+  presets: [
+    [
+      'classic',
+      {
+        docs: {
+          sidebarPath: './sidebars.ts',
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/oaknetwork/oak-docs/tree/main/',
+        },
+        blog: {
+          showReadingTime: true,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/oaknetwork/oak-docs/tree/main/',
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
+        },
+        theme: {
+          customCss: './src/css/custom.css',
+        },
+      } satisfies Preset.Options,
+    ],
+  ],
+
+  themeConfig: {
+    // Replace with your project's social card
+    image: 'img/oak-social-card.jpg',
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
+    navbar: {
+      title: 'Oak Network',
+      logo: {
+        alt: 'Oak Network Logo',
+        src: 'img/logo.svg',
+      },
+      items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Documentation',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'contractsSidebar',
+          position: 'left',
+          label: 'Smart Contracts',
+        },
+        {to: '/docs/roadmap', label: 'Roadmap', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          href: 'https://github.com/oaknetwork/ccprotocol-contracts',
+          label: 'GitHub',
+          position: 'right',
+        },
+        {
+          href: 'https://discord.gg/oaknetwork',
+          label: 'Discord',
+          position: 'right',
+        },
+      ],
+    },
+    footer: {
+      style: 'dark',
+      links: [
+        {
+          title: 'Documentation',
+          items: [
+            {
+              label: 'Getting Started',
+              to: '/docs/intro',
+            },
+            {
+              label: 'Core Concepts',
+              to: '/docs/concepts/overview',
+            },
+            {
+              label: 'Smart Contracts',
+              to: '/docs/contracts/overview',
+            },
+          ],
+        },
+        {
+          title: 'Integration',
+          items: [
+            {
+              label: 'Quick Start',
+              to: '/docs/guides/quick-start',
+            },
+            {
+              label: 'Create Campaign',
+              to: '/docs/guides/create-campaign',
+            },
+            {
+              label: 'Platform Integration',
+              to: '/docs/guides/platform-integration',
+            },
+          ],
+        },
+        {
+          title: 'Community',
+          items: [
+            {
+              label: 'Discord',
+              href: 'https://discord.gg/oaknetwork',
+            },
+            {
+              label: 'Twitter',
+              href: 'https://twitter.com/oaknetwork',
+            },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/oaknetwork',
+            },
+          ],
+        },
+        {
+          title: 'Protocol',
+          items: [
+            {
+              label: 'Audit Reports',
+              to: '/docs/security/audits',
+            },
+            {
+              label: 'Deployment Addresses',
+              to: '/docs/contracts/deployment',
+            },
+            {
+              label: 'Governance',
+              to: '/docs/governance/overview',
+            },
+          ],
+        },
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} Oak Network. Built with Docusaurus.`,
+    },
+    prism: {
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
+      additionalLanguages: ['solidity', 'javascript', 'typescript'],
+    },
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'YOUR_APP_ID',
+      // Public API key: it is safe to commit it
+      apiKey: 'YOUR_SEARCH_API_KEY',
+      indexName: 'oaknetwork',
+      // Optional: see doc section below
+      contextualSearch: true,
+      // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to the other docs.
+      externalUrlRegex: 'external\\.com|domain\\.com',
+      // Optional: Algolia search parameters
+      searchParameters: {},
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: 'search',
+    },
+  } satisfies Preset.ThemeConfig,
+};
+
+export default config;

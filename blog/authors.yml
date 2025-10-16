@@ -1,0 +1,22 @@
+oak-team:
+  name: Oak Network Team
+  title: Core Development Team
+  url: https://oaknetwork.org
+  image_url: https://github.com/oaknetwork.png
+  page: true
+  socials:
+    x: oaknetwork
+    linkedin: oaknetwork
+    github: oaknetwork
+    discord: https://discord.gg/oaknetwork
+
+maradrash:
+  name: Marad Rash
+  title: Protocol Architect
+  url: https://github.com/maradrash
+  image_url: https://github.com/maradrash.png
+  page: true
+  socials:
+    x: maradrash
+    linkedin: maradrash
+    github: maradrash
