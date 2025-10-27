@@ -35,7 +35,7 @@ This repository contains the documentation for Oak Network, a decentralized crow
 
 ## 🔧 Prerequisites
 
-- **Node.js** 18+ and npm/yarn
+- **Node.js** 18+ and pnpm
 - **Git** for version control
 - **Basic knowledge** of Markdown and React (for contributions)
 
@@ -47,9 +47,7 @@ git clone https://github.com/oaknetwork/oak-docs.git
 cd oak-docs/oaknetwork
 
 # Install dependencies
-npm install
-# or
-yarn install
+pnpm install
 ```
 
 ## 💻 Development
@@ -58,9 +56,7 @@ yarn install
 
 ```bash
 # Start the development server
-npm start
-# or
-yarn start
+pnpm start
 
 # The site will be available at http://localhost:3000
 ```
@@ -69,9 +65,7 @@ yarn start
 
 ```bash
 # Build the documentation for production
-npm run build
-# or
-yarn build
+pnpm build
 
 # The built files will be in the 'build' directory
 ```
@@ -80,9 +74,7 @@ yarn build
 
 ```bash
 # Serve the production build locally
-npm run serve
-# or
-yarn serve
+pnpm serve
 
 # The site will be available at http://localhost:3000
 ```
