@@ -19,7 +19,6 @@ graph TB
     
     subgraph "Treasury Contracts"
         AON[AllOrNothing]
-        KWR[KeepWhatsRaised]
         BT[BaseTreasury]
     end
     
@@ -95,11 +94,6 @@ These contracts handle fund collection and distribution:
 - **Purpose**: Implements "all or nothing" funding model
 - **Key Functions**: `pledgeForAReward()`, `withdraw()`, `claimRefund()`
 - **Dependencies**: BaseTreasury, IReward, ItemRegistry
-
-#### KeepWhatsRaised
-- **Purpose**: Implements "keep what's raised" funding model
-- **Key Functions**: `pledge()`, `withdraw()`
-- **Dependencies**: BaseTreasury
 
 #### BaseTreasury
 - **Purpose**: Abstract base contract for all treasury implementations

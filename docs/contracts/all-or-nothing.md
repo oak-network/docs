@@ -696,7 +696,6 @@ treasury.on('RefundClaimed', (tokenId, refundAmount, claimer, event) => {
 
 ## Next Steps
 
-- [KeepWhatsRaised](./keep-whats-raised.md) - Alternative funding model
 - [BaseTreasury](./base-treasury.md) - Treasury base contract
 - [TreasuryFactory](./treasury-factory.md) - Treasury deployment
 - [Reward System](../concepts/rewards.md) - Reward design guide

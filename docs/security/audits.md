@@ -7,7 +7,7 @@ Oak Network has undergone comprehensive security audits to ensure the safety and
 ### PeckShield Audit
 
 **Status**: ✅ Completed  
-**Date**: December 2024  
+**Date**: May 2025 
 **Report**: [PeckShield Audit Report](/ccprotocol-contracts/audits/PeckShield-Audit-Report-CreativeCrowdfunding_v1.0.pdf)
 
 #### Key Findings

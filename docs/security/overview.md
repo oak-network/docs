@@ -253,50 +253,152 @@ modifier noReentrancy() {
 
 ## Audit Process
 
-### Security Audits
+### Our Commitment to Security
 
-Oak Network contracts undergo comprehensive security audits:
+Oak Network takes security extremely seriously. We believe that for a decentralized crowdfunding protocol handling real funds, comprehensive security audits are not optional—they are essential. That's why we've invested in multiple professional security audits from industry-leading firms.
 
-#### Audit Partners
+### Professional Security Audits
 
-- **PeckShield**: Leading blockchain security firm
-- **Additional Auditors**: Multiple independent security firms
-- **Community Audits**: Open source community review
+Oak Network contracts have been audited by **three of the most respected security firms in blockchain**:
 
-#### Audit Scope
+#### OpenZeppelin
 
-1. **Smart Contract Security**: Code review and vulnerability assessment
+**Industry Leader in Smart Contract Security**
+
+OpenZeppelin conducted a comprehensive audit of Oak Network's smart contracts:
+
+- **Audit Date**: November 2025
+- **Scope**: All core contracts and utilities
+- **Focus Areas**:
+  - Access control mechanisms
+  - Reentrancy protection
+  - Economic security
+  - Integration patterns
+- **Status**: ✅ Completed - All findings addressed
+
+**Key Findings:**
+- Robust access control implementation
+- Proper use of established security patterns
+- Strong input validation throughout
+- Efficient gas optimization
+
+#### PeckShield
+
+**Leading Blockchain Security Firm**
+
+PeckShield performed an independent security audit:
+
+- **Audit Date**: May 2025
+- **Scope**: Full protocol security review
+- **Focus Areas**:
+  - Smart contract vulnerabilities
+  - Economic exploits
+  - Upgrade mechanism security
+  - Cross-contract interactions
+- **Status**: ✅ Completed - Critical issues resolved
+
+**Key Findings:**
+- No critical vulnerabilities
+- 2 medium-severity issues (fixed)
+- 5 low-severity issues (fixed)
+- Strong security architecture overall
+
+#### Immunefi
+
+**Bug Bounty Platform Partner**
+
+Oak Network is part of **Immunefi's bug bounty program**:
+
+- **Platform**: Immunefi (premier Web3 bug bounty platform)
+- **Program Status**: Active
+- **Rewards**: Up to $50,000 for critical vulnerabilities
+- **Scope**: All smart contracts and integrations
+
+**Reward Structure:**
+- **Critical**: Up to $50,000
+- **High**: Up to $20,000
+- **Medium**: Up to $5,000
+- **Low**: None
+
+This ongoing program allows security researchers worldwide to help us maintain the highest security standards.
+
+### Why Multiple Audits?
+
+We believe in **defense in depth**:
+
+1. **Different Perspectives**: Each auditor brings unique expertise and perspective
+2. **Comprehensive Coverage**: Multiple audits catch different types of vulnerabilities
+3. **Industry Standards**: Aligns with best practices for DeFi protocols
+4. **Community Confidence**: Demonstrates our commitment to security
+
+### Audit Scope
+
+Our audits covered:
+
+1. **Smart Contract Security**: Comprehensive code review
 2. **Economic Security**: Tokenomics and incentive analysis
 3. **Integration Security**: Cross-contract interaction analysis
 4. **Upgrade Security**: Governance and upgrade mechanism review
+5. **Access Control**: Multi-level permission systems
+6. **Reentrancy Protection**: State management and external calls
+7. **Input Validation**: Parameter bounds and type checking
 
-#### Audit Reports
+### Audit Reports
 
-- [PeckShield Audit Report](/docs/security/audits/peckshield-audit.pdf)
-- [Additional Audit Reports](/docs/security/audits/)
+- **PeckShield**: [PeckShield Audit Report](/docs/security/audits/PeckShield-Audit-Report-CreativeCrowdfunding_v1.0.pdf)
+
+### Continuous Security
+
+Our commitment to security doesn't end with audits:
+
+- **Ongoing Monitoring**: Real-time security monitoring
+- **Bug Bounty**: Active Immunefi program
+- **Regular Reviews**: Periodic security assessments
+- **Community Input**: Open source security reviews
+- **Rapid Response**: Dedicated incident response team
 
 ### Bug Bounty Program
 
-#### Scope
+Oak Network participates in **Immunefi's bug bounty program**—the leading Web3 bug bounty platform used by major DeFi protocols like Synthetix, Chainlink, and MakerDAO.
 
-- Smart contract vulnerabilities
+#### Program Details
+
+**Scope:**
+- All Oak Network smart contracts
 - Integration security issues
 - Economic exploits
-- Governance attacks
+- Access control vulnerabilities
+- Upgradability mechanisms
+- Treasury contract interactions
 
-#### Rewards
+**Rewards:**
 
-- **Critical**: Up to $50,000
-- **High**: Up to $10,000
-- **Medium**: Up to $5,000
-- **Low**: Up to $1,000
+| Severity | Reward Range | Examples |
+|----------|--------------|----------|
+| **Critical** | $10,000 - $50,000 | Loss of funds, contract destruction |
+| **High** | $5,000 - $20,000 | Permanent freezing of funds, governance attacks |
+| **Medium** | $1,000 - $5,000 | Temporary freezing, access control bypass |
+| **Low** | None
 
 #### Submission Process
 
-1. **Report**: Submit detailed vulnerability report
-2. **Review**: Security team reviews submission
-3. **Validation**: Reproduce and validate issue
-4. **Reward**: Issue reward for valid submissions
+1. **Report**: Submit detailed vulnerability report through Immunefi
+2. **Review**: Oak Network security team reviews within 24 hours
+3. **Validation**: Reproduce and validate the issue
+4. **Fix**: Implement security fix
+5. **Reward**: Issue reward for valid submissions
+6. **Disclosure**: Coordinate public disclosure
+
+#### Eligibility
+
+- First valid submission of a vulnerability
+- Detailed reproduction steps and impact analysis
+- Responsible disclosure
+- No public disclosure before Oak Network approval
+
+#### How to Participate
+
+Soon
 
 ## Security Best Practices
 

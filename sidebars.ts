@@ -45,7 +45,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'contracts/base-treasury',
             'contracts/all-or-nothing',
-            'contracts/keep-whats-raised',
           ],
         },
         {
@@ -56,6 +55,15 @@ const sidebars: SidebarsConfig = {
             'contracts/campaign-access-checker',
             'contracts/pausable-cancellable',
             'contracts/timestamp-checker',
+            'contracts/item-registry',
+            'contracts/fiat-enabled',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Interfaces',
+          items: [
+            'contracts/interfaces-overview',
           ],
         },
       ],
@@ -81,19 +89,20 @@ const sidebars: SidebarsConfig = {
       items: [
         'contracts/base-treasury',
         'contracts/all-or-nothing',
-        'contracts/keep-whats-raised',
       ],
     },
-    {
-      type: 'category',
-      label: 'Utility Contracts',
-      items: [
-        'contracts/admin-access-checker',
-        'contracts/campaign-access-checker',
-        'contracts/pausable-cancellable',
-        'contracts/timestamp-checker',
-      ],
-    },
+        {
+          type: 'category',
+          label: 'Utility Contracts',
+          items: [
+            'contracts/admin-access-checker',
+            'contracts/campaign-access-checker',
+            'contracts/pausable-cancellable',
+            'contracts/timestamp-checker',
+            'contracts/item-registry',
+            'contracts/fiat-enabled',
+          ],
+        },
   ],
 
   // Integration guides sidebar

@@ -541,7 +541,7 @@ treasuryFactory.on('TreasuryDeployed',
 
 ### Platform Configuration
 
-- Use one implementation per funding model (AllOrNothing, KeepWhatsRaised)
+- Use one implementation per funding model (AllOrNothing)
 - Reserve implementation ID 1 for default implementation
 - Use higher IDs for experimental or platform-specific models
 

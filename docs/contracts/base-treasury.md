@@ -27,7 +27,7 @@ abstract contract BaseTreasury is
 
 ## Key Features
 
-- **Abstract Base Contract**: Extended by AllOrNothing, KeepWhatsRaised, and other treasury types
+- **Abstract Base Contract**: Extended by AllOrNothing and other treasury types
 - **Fee Distribution**: Standard fee disbursement logic
 - **Access Control**: Inherits campaign-specific access control
 - **State Management**: Pausable and cancellable functionality
@@ -160,7 +160,6 @@ function _checkSuccessCondition() internal view virtual returns (bool);
 
 **Note:** Must be overridden by implementing contracts
 - **AllOrNothing**: Returns `totalRaised >= goal`
-- **KeepWhatsRaised**: Always returns `true`
 
 ### Withdrawal
 
@@ -482,7 +481,6 @@ function _checkSuccessCondition()
 **Purpose:** Define funding model success criteria
 **Examples:**
 - AllOrNothing: Checks if total >= goal
-- KeepWhatsRaised: Always returns true
 
 ### Optional Override
 
@@ -500,7 +498,6 @@ function withdraw() public virtual override;
 ## Next Steps
 
 - [AllOrNothing](./all-or-nothing.md) - Implementation example
-- [KeepWhatsRaised](./keep-whats-raised.md) - Alternative funding model
 - [CampaignAccessChecker](./campaign-access-checker.md) - Access control utilities
 - [PausableCancellable](./pausable-cancellable.md) - State management utilities
 
