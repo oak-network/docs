@@ -411,3 +411,4 @@ class BackerManager {
 - [All or Nothing Treasury](/docs/contracts/all-or-nothing) - Detailed implementation
 - [Keep What's Raised Treasury](/docs/contracts/keep-whats-raised) - Alternative model
 - [Integration Examples](/docs/guides/treasury-integration) - Practical implementation
+

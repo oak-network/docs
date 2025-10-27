@@ -488,3 +488,4 @@ class SocialMediaPlatform {
 - [Platform Integration Guide](/docs/guides/platform-integration) - Step-by-step integration
 - [Platform SDK](/docs/guides/platform-sdk) - Using the platform SDK
 - [Platform Examples](/docs/guides/platform-examples) - Real-world examples
+

@@ -492,3 +492,4 @@ We run a bug bounty program to identify security vulnerabilities in our smart co
 **Security is our top priority.** If you discover a security vulnerability, please report it responsibly through our [bug bounty program](bug-bounty.md) or email security@oak.network.
 
 **Need help?** Join our [Discord community](https://discord.gg/oaknetwork) or check our [troubleshooting guide](troubleshooting.md).
+

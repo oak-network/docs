@@ -307,3 +307,4 @@ contract CampaignMonitor {
 - [Platform Integration](/docs/concepts/platforms) - Learn about platform roles
 - [Treasury Models](/docs/concepts/treasuries) - Understand funding mechanisms
 - [Integration Guides](/docs/guides/create-campaign) - Practical implementation
+

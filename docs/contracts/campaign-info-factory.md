@@ -446,3 +446,4 @@ describe('CampaignInfoFactory', () => {
 - [CampaignInfo Contract](/docs/contracts/campaign-info) - Campaign instance contract
 - [GlobalParams Contract](/docs/contracts/global-params) - Global parameters management
 - [TreasuryFactory Contract](/docs/contracts/treasury-factory) - Treasury creation
+

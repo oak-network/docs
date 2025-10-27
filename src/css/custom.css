@@ -103,39 +103,39 @@
   --ifm-z-index-overlay: 2000;
 }
 
-/* Dark mode overrides */
+/* Dark mode overrides - Modern subtle dark theme */
 [data-theme='dark'] {
-  --ifm-background-color: #0a0f0a;
-  --ifm-background-surface-color: #111811;
-  --ifm-color-content: #f0fdf4;
+  --ifm-background-color: #0f0f0f;
+  --ifm-background-surface-color: #1a1a1a;
+  --ifm-color-content: #e5e5e5;
   --ifm-color-content-secondary: #d1fae5;
   --ifm-color-content-tertiary: #a7f3d0;
   --ifm-color-content-quaternary: #6ee7b7;
   
-  --ifm-code-background: #1a1f1a;
-  --ifm-code-color: #f0fdf4;
+  --ifm-code-background: #1a1a1a;
+  --ifm-code-color: #e5e5e5;
   
-  --ifm-navbar-background-color: #0a0f0a;
-  --ifm-navbar-link-color: #f0fdf4;
+  --ifm-navbar-background-color: #0f0f0f;
+  --ifm-navbar-link-color: #e5e5e5;
   --ifm-navbar-link-hover-color: #22c55e;
   
-  --ifm-footer-background-color: #0a0f0a;
+  --ifm-footer-background-color: #0f0f0f;
   --ifm-footer-color: #a7f3d0;
   --ifm-footer-link-color: #d1fae5;
   --ifm-footer-link-hover-color: #22c55e;
   
-  --ifm-sidebar-background-color: #111811;
+  --ifm-sidebar-background-color: #1a1a1a;
   --ifm-menu-link-color: #a7f3d0;
   --ifm-menu-link-hover-color: #22c55e;
   --ifm-menu-link-active-color: #22c55e;
   
-  --ifm-card-background-color: #111811;
-  --ifm-card-hover-background-color: #1a1f1a;
+  --ifm-card-background-color: #1a1a1a;
+  --ifm-card-hover-background-color: #2a2a2a;
 }
 
 /* Global Styles */
 html[data-theme='dark'] {
-  background: linear-gradient(135deg, #0a0f0a 0%, #0f1410 50%, #0a0f0a 100%);
+  background: #0f0f0f;
   color: var(--ifm-color-content);
 }
 
@@ -178,7 +178,7 @@ h4 {
 
 /* Navigation */
 .navbar {
-  background: linear-gradient(135deg, #0a0f0a 0%, #111811 100%);
+  background: #0f0f0f;
   border-bottom: 1px solid rgba(34, 197, 94, 0.2);
   box-shadow: var(--ifm-navbar-shadow);
   backdrop-filter: blur(10px);
@@ -336,12 +336,13 @@ h4 {
 .button--primary {
   background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
   border: none;
-  color: white;
+  color: white !important;
   box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
 }
 
 .button--primary:hover {
   background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
+  color: white !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
 }
@@ -349,12 +350,12 @@ h4 {
 .button--secondary {
   background: transparent;
   border: 2px solid #22c55e;
-  color: #22c55e;
+  color: #22c55e !important;
 }
 
 .button--secondary:hover {
   background: #22c55e;
-  color: white;
+  color: white !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
 }
@@ -655,9 +656,21 @@ tr:hover {
   background: rgba(34, 197, 94, 0.1);
 }
 
+/* CTA Card Button Fixes */
+.ctaCard .button--primary {
+  background: linear-gradient(135deg, #22c55e 0%, #10b981 100%) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.ctaCard .button--primary:hover {
+  background: linear-gradient(135deg, #16a34a 0%, #059669 100%) !important;
+  color: white !important;
+}
+
 /* Custom Components */
 .hero {
-  background: linear-gradient(135deg, #0a0f0a 0%, #0f1410 50%, #1a1f1a 100%);
+  background: #000000;
   padding: 6rem 0 8rem;
   position: relative;
   overflow: hidden;
@@ -670,38 +683,42 @@ tr:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+  background: transparent;
   pointer-events: none;
 }
 
 .hero__title {
   font-size: 4rem;
   font-weight: 900;
-  background: linear-gradient(135deg, #22c55e 0%, #10b981 50%, #059669 100%);
+  background: linear-gradient(135deg, #86efac 0%, #4ade80 50%, #22c55e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.1;
+  text-align: center;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+  text-shadow: 0 0 25px rgba(34, 197, 94, 0.4);
 }
 
 .hero__subtitle {
   font-size: 1.5rem;
-  color: #d1fae5;
+  color: #ffffff;
+  text-align: center;
   margin-bottom: 2rem;
   font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .hero__description {
   font-size: 1.125rem;
-  color: #a7f3d0;
+  color: #ffffff;
   margin-bottom: 3rem;
   line-height: 1.7;
   max-width: 700px;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 .feature-grid {
