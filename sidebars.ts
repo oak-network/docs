@@ -29,7 +29,35 @@ const sidebars: SidebarsConfig = {
       label: 'Smart Contracts',
       items: [
         'contracts/overview',
-        'contracts/campaign-info-factory',
+        {
+          type: 'category',
+          label: 'Core Contracts',
+          items: [
+            'contracts/campaign-info-factory',
+            'contracts/campaign-info',
+            'contracts/global-params',
+            'contracts/treasury-factory',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Treasury Contracts',
+          items: [
+            'contracts/base-treasury',
+            'contracts/all-or-nothing',
+            'contracts/keep-whats-raised',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Utility Contracts',
+          items: [
+            'contracts/admin-access-checker',
+            'contracts/campaign-access-checker',
+            'contracts/pausable-cancellable',
+            'contracts/timestamp-checker',
+          ],
+        },
       ],
     },
   ],
@@ -42,6 +70,28 @@ const sidebars: SidebarsConfig = {
       label: 'Core Contracts',
       items: [
         'contracts/campaign-info-factory',
+        'contracts/campaign-info',
+        'contracts/global-params',
+        'contracts/treasury-factory',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Treasury Contracts',
+      items: [
+        'contracts/base-treasury',
+        'contracts/all-or-nothing',
+        'contracts/keep-whats-raised',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Utility Contracts',
+      items: [
+        'contracts/admin-access-checker',
+        'contracts/campaign-access-checker',
+        'contracts/pausable-cancellable',
+        'contracts/timestamp-checker',
       ],
     },
   ],
