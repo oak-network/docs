@@ -347,3 +347,4 @@ treasury.on('FiatTransactionUpdated', (txId, amount, event) => {
 - [ItemRegistry](./item-registry.md) - Item management
 - [BaseTreasury](./base-treasury.md) - Treasury base contract
 
+

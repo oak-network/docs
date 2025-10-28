@@ -276,3 +276,4 @@ await itemRegistry.addItemsBatch(
 - [FiatEnabled](./fiat-enabled.md) - Fiat transaction tracking
 - [Interfaces](./interfaces.md) - IItem interface reference
 
+

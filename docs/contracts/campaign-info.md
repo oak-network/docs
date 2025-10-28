@@ -720,3 +720,4 @@ if (isPaused || isCancelled) {
 - [TreasuryFactory](./treasury-factory.md) - Treasury creation contract
 - [Platform Integration](../guides/platform-integration.md) - How to integrate platforms
 
+
