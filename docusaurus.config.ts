@@ -77,7 +77,7 @@ const config: Config = {
     image: 'img/oak-social-card.jpg',
     colorMode: {
       defaultMode: 'dark',
-      disableSwitch: false,
+      disableSwitch: true,
       respectPrefersColorScheme: false,
     },
     navbar: {
@@ -185,8 +185,8 @@ const config: Config = {
               to: '/docs/contracts/deployment',
             },
             {
-              label: 'Governance',
-              to: '/docs/governance/overview',
+              label: 'Open Source Philosophy',
+              to: '/docs/concepts/open-source-philosophy',
             },
           ],
         },
@@ -198,21 +198,15 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['solidity', 'javascript', 'typescript'],
     },
-    algolia: {
-      // The application ID provided by Algolia
-      appId: 'YOUR_APP_ID',
-      // Public API key: it is safe to commit it
-      apiKey: 'YOUR_SEARCH_API_KEY',
-      indexName: 'oaknetwork',
-      // Optional: see doc section below
-      contextualSearch: true,
-      // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to the other docs.
-      externalUrlRegex: 'external\\.com|domain\\.com',
-      // Optional: Algolia search parameters
-      searchParameters: {},
-      // Optional: path for search page that enabled by default (`false` to disable it)
-      searchPagePath: 'search',
-    },
+    // Algolia search configuration - disabled until properly configured
+    // algolia: {
+    //   appId: 'YOUR_APP_ID',
+    //   apiKey: 'YOUR_SEARCH_API_KEY',
+    //   indexName: 'oaknetwork',
+    //   contextualSearch: true,
+    //   searchParameters: {},
+    //   searchPagePath: 'search',
+    // },
   } satisfies Preset.ThemeConfig,
 };
 

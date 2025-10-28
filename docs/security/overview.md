@@ -338,7 +338,7 @@ Our audits covered:
 1. **Smart Contract Security**: Comprehensive code review
 2. **Economic Security**: Tokenomics and incentive analysis
 3. **Integration Security**: Cross-contract interaction analysis
-4. **Upgrade Security**: Governance and upgrade mechanism review
+4. **Upgrade Security**: Upgrade mechanism review
 5. **Access Control**: Multi-level permission systems
 6. **Reentrancy Protection**: State management and external calls
 7. **Input Validation**: Parameter bounds and type checking
@@ -376,7 +376,7 @@ Oak Network participates in **Immunefi's bug bounty program**—the leading Web3
 | Severity | Reward Range | Examples |
 |----------|--------------|----------|
 | **Critical** | $10,000 - $50,000 | Loss of funds, contract destruction |
-| **High** | $5,000 - $20,000 | Permanent freezing of funds, governance attacks |
+| **High** | $5,000 - $20,000 | Permanent freezing of funds |
 | **Medium** | $1,000 - $5,000 | Temporary freezing, access control bypass |
 | **Low** | None
 

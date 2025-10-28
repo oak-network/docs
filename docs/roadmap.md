@@ -241,13 +241,6 @@ function App() {
 
 ## 🌟 Long-term Vision (2026+)
 
-### Decentralized Governance
-
-- **Token-based Voting**: Community-driven protocol decisions
-- **Proposal System**: Transparent governance process
-- **Treasury Management**: Community-controlled protocol funds
-- **Upgrade Mechanisms**: Decentralized protocol upgrades
-
 ### Cross-Chain Expansion
 
 - **Multi-Chain Support**: Ethereum, Polygon, Arbitrum, and more

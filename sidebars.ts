@@ -13,6 +13,7 @@ const sidebars: SidebarsConfig = {
         'concepts/campaigns',
         'concepts/platforms',
         'concepts/treasuries',
+        'concepts/open-source-philosophy',
       ],
     },
     {
@@ -22,6 +23,7 @@ const sidebars: SidebarsConfig = {
         'guides/quick-start',
         'guides/create-campaign',
         'guides/platform-integration',
+        'guides/platform-journey',
         'guides/platform-sdk',
       ],
     },
@@ -86,7 +88,6 @@ const sidebars: SidebarsConfig = {
       label: 'Operations',
       items: [
         'deployment/README',
-        'governance/overview',
         'api/README',
       ],
     },

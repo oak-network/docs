@@ -68,7 +68,7 @@ Oak Network implements a transparent, multi-layered fee structure:
 ### Protocol Fee (1%)
 - **Fixed Rate**: Always 1% of total contributions
 - **Destination**: Oak Network ecosystem fund
-- **Purpose**: Protocol maintenance, development, and governance
+- **Purpose**: Protocol maintenance and development
 
 ### Platform Fee
 - **Configurable**: Set by each platform

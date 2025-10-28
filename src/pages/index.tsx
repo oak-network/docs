@@ -83,7 +83,15 @@ function HomepageFeatures() {
           <div className="col col--12">
             <h2 className={styles.featuresTitle}>Why Choose Oak Network?</h2>
             <p className={styles.featuresSubtitle}>
-              Built for developers, designed for scale, powered by community
+              The infrastructure you need to build the future of crowdfunding
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col col--12">
+            <h3 className={styles.featuresSectionSubtitle}>Built for Everyone</h3>
+            <p className={styles.featuresSectionDescription}>
+              From individual developers to enterprise platforms
             </p>
           </div>
         </div>
@@ -135,6 +143,65 @@ function HomepageFeatures() {
               Modular design allows for easy customization and extension. 
               Build exactly what you need without unnecessary complexity.
             </p>
+          </div>
+        </div>
+        
+        <div className="row" style={{ marginTop: '3rem' }}>
+          <div className="col col--12">
+            <h3 className={styles.featuresSectionSubtitle}>Platform Advantages</h3>
+            <p className={styles.featuresSectionDescription}>
+              Unlock new revenue streams and expand your reach
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col col--3">
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>
+                <i className="fas fa-share-alt"></i>
+              </div>
+              <h3>Cross-Platform Campaign Sharing</h3>
+              <p>
+                Enable your creators to launch campaigns on your platform while automatically sharing them across 
+                other platforms worldwide. Expand reach without additional effort.
+              </p>
+            </div>
+          </div>
+          <div className="col col--3">
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>
+                <i className="fas fa-coins"></i>
+              </div>
+              <h3>Access Crypto Communities</h3>
+              <p>
+                Tap into the growing crypto ecosystem and reach users who prefer digital currencies. 
+                Accept crypto pledges alongside traditional payments.
+              </p>
+            </div>
+          </div>
+          <div className="col col--3">
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>
+                <i className="fas fa-eye"></i>
+              </div>
+              <h3>Complete Transparency</h3>
+              <p>
+                Build trust with creators and backers through blockchain-powered transparency. 
+                Every transaction and fund flow is publicly verifiable.
+              </p>
+            </div>
+          </div>
+          <div className="col col--3">
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>
+                <i className="fas fa-magic"></i>
+              </div>
+              <h3>Simplified Crypto Experience</h3>
+              <p>
+                Offer blockchain benefits without the complexity. Our integration with Privy and other 
+                technologies provides seamless crypto experiences.
+              </p>
+            </div>
           </div>
         </div>
       </div>
