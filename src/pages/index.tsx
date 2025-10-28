@@ -65,7 +65,7 @@ function HomepageStats() {
           </div>
           <div className="col col--3">
             <div className={styles.statItem}>
-              <div className={styles.statNumber}>🌍</div>
+              <div className={styles.statNumber}><i className="fas fa-globe"></i></div>
               <div className={styles.statLabel}>Celo Network</div>
             </div>
           </div>
