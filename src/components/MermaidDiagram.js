@@ -206,20 +206,20 @@ const MermaidDiagram = ({ children, title = "Diagram" }) => {
   return (
     <>
       <div style={{ 
-        border: '2px solid #22c55e', 
+        border: '2px solid #FBA244', 
         padding: '1rem', 
         margin: '1rem 0',
         borderRadius: '8px',
-        background: '#1a1f1a'
+        background: '#2E2F4A'
       }}>
-        <h3 style={{ color: '#22c55e', marginBottom: '1rem' }}>{title}</h3>
-        <div style={{ background: '#0a0f0a', padding: '1rem', borderRadius: '4px' }}>
+        <h3 style={{ color: '#FBA244', marginBottom: '1rem' }}>{title}</h3>
+        <div style={{ background: '#1a1a1f', padding: '1rem', borderRadius: '4px' }}>
           {children}
         </div>
         <button 
           onClick={openFullscreen}
           style={{
-            background: '#22c55e',
+            background: '#FBA244',
             color: 'white',
             border: 'none',
             padding: '0.5rem 1rem',
@@ -228,7 +228,7 @@ const MermaidDiagram = ({ children, title = "Diagram" }) => {
             marginTop: '1rem'
           }}
         >
-          🔍 Fullscreen
+          <i className="fas fa-expand"></i> Fullscreen
         </button>
       </div>
 
@@ -251,8 +251,8 @@ const MermaidDiagram = ({ children, title = "Diagram" }) => {
         }}
       >
                 <div style={{
-                  background: 'linear-gradient(135deg, #0a0f0a 0%, #111811 100%)',
-                  border: '2px solid rgba(34, 197, 94, 0.3)',
+                  background: 'linear-gradient(135deg, #1a1a1f 0%, #2E2F4A 100%)',
+                  border: '2px solid rgba(251, 162, 68, 0.3)',
                   borderRadius: '20px',
                   padding: '2rem', // Back to normal padding
                   width: '95vw',
@@ -284,11 +284,11 @@ const MermaidDiagram = ({ children, title = "Diagram" }) => {
             }}
             title="Close fullscreen"
           >
-            ×
+            <i className="fas fa-times"></i>
           </button>
           
                   <h3 style={{ 
-                    color: '#22c55e', 
+                    color: '#FBA244', 
                     marginTop: '0',
                     marginBottom: '2rem', 
                     textAlign: 'center',
@@ -304,7 +304,7 @@ const MermaidDiagram = ({ children, title = "Diagram" }) => {
             justifyContent: 'center',
             alignItems: 'flex-start', // Always start from top
             overflow: 'auto',
-            background: 'rgba(34, 197, 94, 0.05)',
+            background: 'rgba(251, 162, 68, 0.05)',
             borderRadius: '12px',
             padding: '2rem',
             minHeight: '80vh', // Ensure minimum height for scrolling

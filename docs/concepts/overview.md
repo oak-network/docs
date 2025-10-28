@@ -147,17 +147,20 @@ function createCampaignForUser(
 }
 ```
 
-### SDK Integration
-Use our SDKs for simplified integration:
+### Frontend Integration
+Use ethers.js or web3.js for direct contract interaction:
 
 ```javascript
-// JavaScript SDK example
-const campaign = await oakNetwork.createCampaign({
-  creator: userAddress,
-  goalAmount: ethers.utils.parseEther("10000"),
-  deadline: Math.floor(Date.now() / 1000) + 86400 * 30, // 30 days
-  platforms: ["platform1", "platform2"]
-});
+// JavaScript integration example
+const campaignFactory = new ethers.Contract(factoryAddress, factoryABI, signer);
+const tx = await campaignFactory.createCampaign(
+  creator,
+  identifier,
+  platforms,
+  platformData,
+  campaignData
+);
+const receipt = await tx.wait();
 ```
 
 ## Next Steps

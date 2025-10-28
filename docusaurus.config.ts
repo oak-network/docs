@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Oak Network',
-  tagline: 'Decentralized Crowdfunding Infrastructure on Celo',
+  tagline: 'From Roots to Routes.',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -81,10 +81,10 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: 'Oak Network',
       logo: {
         alt: 'Oak Network Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
+        srcDark: 'img/logo.png',
       },
       items: [
         {
@@ -115,6 +115,12 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
+      logo: {
+        alt: 'Oak Network Logo',
+        src: 'img/logo.png',
+        href: 'https://www.oaknetwork.com',
+        width: 160,
+      },
       links: [
         {
           title: 'Documentation',
@@ -158,8 +164,8 @@ const config: Config = {
               href: 'https://discord.gg/oaknetwork',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/oaknetwork',
+              label: 'X',
+              href: 'https://x.com/oaknetwork',
             },
             {
               label: 'GitHub',
@@ -185,7 +191,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Oak Network. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Oak Network.`,
     },
     prism: {
       theme: prismThemes.github,

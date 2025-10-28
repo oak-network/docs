@@ -13,7 +13,6 @@ const sidebars: SidebarsConfig = {
         'concepts/campaigns',
         'concepts/platforms',
         'concepts/treasuries',
-        'security/overview',
       ],
     },
     {
@@ -22,6 +21,8 @@ const sidebars: SidebarsConfig = {
       items: [
         'guides/quick-start',
         'guides/create-campaign',
+        'guides/platform-integration',
+        'guides/platform-sdk',
       ],
     },
     {
@@ -45,6 +46,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'contracts/base-treasury',
             'contracts/all-or-nothing',
+            'contracts/deployment',
           ],
         },
         {
@@ -68,6 +70,26 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Security & Audits',
+      items: [
+        'security/overview',
+        'security/audits',
+        'security/bug-bounty',
+        'security/best-practices',
+        'security/checklist',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Operations',
+      items: [
+        'deployment/README',
+        'governance/overview',
+        'api/README',
+      ],
+    },
   ],
 
   // Smart contracts sidebar
@@ -89,20 +111,28 @@ const sidebars: SidebarsConfig = {
       items: [
         'contracts/base-treasury',
         'contracts/all-or-nothing',
+        'contracts/deployment',
       ],
     },
-        {
-          type: 'category',
-          label: 'Utility Contracts',
-          items: [
-            'contracts/admin-access-checker',
-            'contracts/campaign-access-checker',
-            'contracts/pausable-cancellable',
-            'contracts/timestamp-checker',
-            'contracts/item-registry',
-            'contracts/fiat-enabled',
-          ],
-        },
+    {
+      type: 'category',
+      label: 'Utility Contracts',
+      items: [
+        'contracts/admin-access-checker',
+        'contracts/campaign-access-checker',
+        'contracts/pausable-cancellable',
+        'contracts/timestamp-checker',
+        'contracts/item-registry',
+        'contracts/fiat-enabled',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Interfaces',
+      items: [
+        'contracts/interfaces-overview',
+      ],
+    },
   ],
 
   // Integration guides sidebar
@@ -113,6 +143,14 @@ const sidebars: SidebarsConfig = {
       label: 'Basic Integration',
       items: [
         'guides/create-campaign',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Platform Integration',
+      items: [
+        'guides/platform-integration',
+        'guides/platform-sdk',
       ],
     },
   ],

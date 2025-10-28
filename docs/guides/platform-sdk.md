@@ -1,16 +1,23 @@
 # Platform SDK
 
-The Oak Network Platform SDK provides tools and libraries for integrating crowdfunding capabilities into your platform.
+> **Note**: The Oak Network Platform SDK is currently under development and not yet available. This documentation outlines the planned SDK features and will be updated when the SDK is released.
 
 ## Overview
 
-The Platform SDK simplifies the integration process by providing:
+The Platform SDK will provide tools and libraries for integrating crowdfunding capabilities into your platform, simplifying the integration process by providing:
+
 - Pre-built components and hooks
 - TypeScript definitions
 - Error handling utilities
 - Testing helpers
 
-## Installation
+## Current Status
+
+The SDK is planned for future release. For now, please use our [Smart Contract Integration Guide](/docs/guides/create-campaign) for direct contract integration.
+
+## Planned Features
+
+### Installation
 
 ```bash
 npm install @oaknetwork/platform-sdk
@@ -20,9 +27,7 @@ yarn add @oaknetwork/platform-sdk
 pnpm add @oaknetwork/platform-sdk
 ```
 
-## Quick Start
-
-### Basic Setup
+### Quick Start
 
 ```typescript
 import { OakPlatform } from '@oaknetwork/platform-sdk';
@@ -188,10 +193,25 @@ test('should create campaign', async () => {
 });
 ```
 
+## Alternative: Direct Smart Contract Integration
+
+Since the SDK is not yet available, you can integrate directly with our smart contracts:
+
+- [Create Your First Campaign](/docs/guides/create-campaign) - Direct contract integration guide
+- [Smart Contract Reference](/docs/contracts/overview) - Complete contract documentation
+- [Platform Integration](/docs/guides/platform-integration) - Platform integration patterns
+
+## Roadmap
+
+The SDK development is planned for Q2 2024. Key milestones include:
+
+- **Q1 2024**: Core contract functionality and testing
+- **Q2 2024**: SDK development and testing
+- **Q3 2024**: SDK release and documentation
+- **Q4 2024**: Advanced SDK features and optimizations
+
 ## Next Steps
 
+- [Smart Contract Integration](/docs/guides/create-campaign) - Use direct contract integration
 - [Platform Integration](/docs/guides/platform-integration) - Complete integration guide
-- [Platform Examples](/docs/guides/platform-examples) - Real-world examples
-- [API Reference](/docs/api/overview) - Complete API documentation
-
-
+- [Smart Contract Reference](/docs/contracts/overview) - Complete contract documentation

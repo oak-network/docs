@@ -1,14 +1,6 @@
 # Welcome to Oak Network
 
-This is a test of the intro page.
-
-## Test Section
-
-This should work.
-
-## Testing MermaidDiagram
-
-Let's test the MermaidDiagram component:
+Oak Network is a decentralized, censorship-resistant crowdfunding protocol built on Celo. We provide infrastructure that any platform can integrate to enable secure, transparent, and accessible fundraising for creators, entrepreneurs, and communities.
 
 import MermaidDiagram from '@site/src/components/MermaidDiagram';
 
@@ -19,8 +11,8 @@ graph TB
     A[Campaign Creator] --> B[CampaignInfoFactory]
     B --> C[CampaignInfo Contract]
     C --> D[TreasuryFactory]
-    D --> E[Treasury Contract]
-    E --> F[Platform Integration]
+    D --> Beyond[Treasury Contract]
+    Beyond --> F[Platform Integration]
     F --> G[Backers]
     
     H[GlobalParams] --> B
@@ -31,3 +23,32 @@ graph TB
 ```
 
 </MermaidDiagram>
+
+## Why Oak Network?
+
+### 🎯 Decentralized & Censorship-Resistant
+Campaigns live on-chain, ensuring they cannot be removed or altered by any central authority.
+
+### 🔐 Security First
+Our smart contracts are audited by **OpenZeppelin**, **PeckShield**, and are part of **Immunefi's bug bounty program** with rewards up to $50,000.
+
+### 🌍 Multi-Platform
+Oak Network is infrastructure - integrate it into your existing platform to add crowdfunding capabilities.
+
+### 💰 Flexible Treasuries
+Choose from different treasury models like "All-or-Nothing" to suit your funding needs.
+
+### 🚀 Developer-Friendly
+Comprehensive documentation, SDKs, and integration guides to get you started quickly.
+
+## Quick Links
+
+- [Quick Start Guide](/docs/guides/quick-start) - Get started in minutes
+- [Core Concepts](/docs/concepts/overview) - Understand the protocol
+- [Integration Guides](/docs/guides/create-campaign) - Integrate Oak Network
+- [Smart Contracts](/docs/contracts/overview) - Technical reference
+- [Security](/docs/security/overview) - Security architecture and audits
+
+## Get Started
+
+Ready to build? Check out our [Quick Start Guide](/docs/guides/quick-start) or explore our [Integration Guides](/docs/guides/create-campaign).

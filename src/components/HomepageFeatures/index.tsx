@@ -11,32 +11,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Decentralized Infrastructure',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Oak Network provides decentralized crowdfunding infrastructure that any platform 
+        can integrate. No single point of failure, fully transparent, and censorship-resistant.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Security First',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Audited by OpenZeppelin, PeckShield, and part of Immunefi's bug bounty program. 
+        Your funds are protected by industry-leading security standards.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Easy Integration',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Comprehensive SDKs, detailed documentation, and developer-friendly APIs make 
+        integration simple. Get started in minutes, not days.
       </>
     ),
   },

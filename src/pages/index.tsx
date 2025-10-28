@@ -15,12 +15,12 @@ function HomepageHeader() {
             Oak Network
           </h1>
           <p className="hero__subtitle">
-            Decentralized Crowdfunding Infrastructure on Celo
+            From Roots to Routes.
           </p>
           <p className="hero__description">
-            Build the future of crowdfunding with our comprehensive suite of smart contracts. 
-            Enable any application to leverage blockchain technology for fundraising with 
-            transparent 1% fees that support the ecosystem.
+            Decentralized crowdfunding infrastructure on Celo. Build the future of fundraising 
+            with our comprehensive suite of smart contracts. Enable any application to leverage 
+            blockchain technology with transparent fees and secure infrastructure.
           </p>
           <div className={styles.buttons}>
             <Link
@@ -89,7 +89,7 @@ function HomepageFeatures() {
         </div>
         <div className="feature-grid">
           <div className="feature-card">
-            <div className="feature-card__icon">🏗️</div>
+            <div className="feature-card__icon"><i className="fas fa-cogs"></i></div>
             <h3 className="feature-card__title">Infrastructure-First</h3>
             <p className="feature-card__description">
               Oak Network is designed as infrastructure, not just another platform. 
@@ -97,7 +97,7 @@ function HomepageFeatures() {
             </p>
           </div>
           <div className="feature-card">
-            <div className="feature-card__icon">💰</div>
+            <div className="feature-card__icon"><i className="fas fa-coins"></i></div>
             <h3 className="feature-card__title">Transparent Fees</h3>
             <p className="feature-card__description">
               Clear, predictable fee structure with 1% protocol fee going directly 
@@ -105,7 +105,7 @@ function HomepageFeatures() {
             </p>
           </div>
           <div className="feature-card">
-            <div className="feature-card__icon">🔒</div>
+            <div className="feature-card__icon"><i className="fas fa-shield-alt"></i></div>
             <h3 className="feature-card__title">Security & Trust</h3>
             <p className="feature-card__description">
               Audited smart contracts, open source development, and decentralized 
@@ -113,7 +113,7 @@ function HomepageFeatures() {
             </p>
           </div>
           <div className="feature-card">
-            <div className="feature-card__icon">🌍</div>
+            <div className="feature-card__icon"><i className="fas fa-globe"></i></div>
             <h3 className="feature-card__title">Celo Benefits</h3>
             <p className="feature-card__description">
               Low fees, fast settlement, mobile-first design, and carbon-negative 
@@ -121,7 +121,7 @@ function HomepageFeatures() {
             </p>
           </div>
           <div className="feature-card">
-            <div className="feature-card__icon">⚡</div>
+            <div className="feature-card__icon"><i className="fas fa-bolt"></i></div>
             <h3 className="feature-card__title">Easy Integration</h3>
             <p className="feature-card__description">
               Comprehensive SDKs, detailed documentation, and developer-friendly 
@@ -129,7 +129,7 @@ function HomepageFeatures() {
             </p>
           </div>
           <div className="feature-card">
-            <div className="feature-card__icon">🚀</div>
+            <div className="feature-card__icon"><i className="fas fa-rocket"></i></div>
             <h3 className="feature-card__title">Scalable Architecture</h3>
             <p className="feature-card__description">
               Modular design allows for easy customization and extension. 
@@ -149,7 +149,7 @@ function HomepageCTAs() {
         <div className="row">
           <div className="col col--6">
             <div className={styles.ctaCard}>
-              <h3>🚀 For Developers</h3>
+              <h3><i className="fas fa-code"></i> For Developers</h3>
               <p>Integrate Oak Network into your application and start building the future of crowdfunding.</p>
               <ul>
                 <li><Link to="/docs/guides/quick-start">Quick Start Guide</Link></li>
@@ -163,7 +163,7 @@ function HomepageCTAs() {
           </div>
           <div className="col col--6">
             <div className={styles.ctaCard}>
-              <h3>🏢 For Platforms</h3>
+              <h3><i className="fas fa-building"></i> For Platforms</h3>
               <p>Add crowdfunding capabilities to your existing platform with our comprehensive integration tools.</p>
               <ul>
                 <li><Link to="/docs/guides/platform-integration">Platform Integration</Link></li>
@@ -196,17 +196,17 @@ function HomepageCommunity() {
               <Link
                 className="button button--secondary"
                 href="https://discord.gg/oaknetwork">
-                💬 Discord
+                <i className="fab fa-discord"></i> Discord
               </Link>
               <Link
                 className="button button--secondary"
                 href="https://github.com/oaknetwork">
-                🐙 GitHub
+                <i className="fab fa-github"></i> GitHub
               </Link>
               <Link
                 className="button button--secondary"
-                href="https://twitter.com/oaknetwork">
-                🐦 Twitter
+                href="https://x.com/oaknetwork">
+                <i className="fab fa-x-twitter"></i> X
               </Link>
             </div>
           </div>
