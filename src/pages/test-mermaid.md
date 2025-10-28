@@ -27,3 +27,4 @@ graph TB
 2. Check the browser console for debug logs
 3. Verify the diagram scales properly in fullscreen mode
 
+

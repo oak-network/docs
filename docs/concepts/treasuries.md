@@ -412,3 +412,4 @@ class BackerManager {
 - [Keep What's Raised Treasury](/docs/contracts/keep-whats-raised) - Alternative model
 - [Integration Examples](/docs/guides/treasury-integration) - Practical implementation
 
+

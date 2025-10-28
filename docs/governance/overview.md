@@ -81,3 +81,4 @@ Oak Network implements a decentralized governance system that allows the communi
 - [Proposal Process](/docs/governance/proposals) - Creating and submitting proposals
 - [Community Guidelines](/docs/governance/community) - Community participation guidelines
 
+
