@@ -88,6 +88,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'deployment/README',
         'api/README',
+        'operations/bounty-program',
       ],
     },
   ],
