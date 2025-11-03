@@ -698,5 +698,5 @@ treasury.on('RefundClaimed', (tokenId, refundAmount, claimer, event) => {
 
 - [BaseTreasury](./base-treasury.md) - Treasury base contract
 - [TreasuryFactory](./treasury-factory.md) - Treasury deployment
-- [Reward System](../concepts/rewards.md) - Reward design guide
+- [CampaignInfo](./campaign-info.md) - Campaign contract reference
 

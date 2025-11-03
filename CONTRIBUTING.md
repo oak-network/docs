@@ -31,8 +31,8 @@ We welcome various types of contributions:
 1. **Fork the repository**
    ```bash
    # Fork on GitHub, then clone your fork
-   git clone https://github.com/your-username/ccprotocol-contracts.git
-   cd ccprotocol-contracts
+   git clone https://github.com/your-username/oaknetwork-contracts.git
+   cd oaknetwork-contracts
    ```
 
 2. **Install dependencies**
@@ -207,7 +207,7 @@ When adding new features:
 **DO NOT** create public GitHub issues for security vulnerabilities.
 
 Instead:
-1. Email security@oak.network
+1. Email security@oaknetwork.org
 2. Use our [bug bounty program](https://hackerone.com/oaknetwork)
 3. Follow responsible disclosure practices
 
@@ -297,6 +297,7 @@ Thank you for contributing to Oak Network! Your contributions help us build a be
 
 ---
 
-**Questions?** Reach out to us on [Discord](https://discord.gg/oaknetwork) or [GitHub Discussions](https://github.com/oaknetwork/ccprotocol-contracts/discussions).
+**Questions?** Reach out to us on [Discord](https://discord.gg/oaknetwork) or [GitHub Discussions](https://github.com/oaknetwork/oaknetwork-contracts/discussions).
+
 
 

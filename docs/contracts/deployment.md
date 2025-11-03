@@ -14,8 +14,8 @@ This guide covers how to deploy Oak Network smart contracts to the Celo blockcha
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/oaknetwork/ccprotocol-contracts
-cd ccprotocol-contracts
+git clone https://github.com/oaknetwork/oaknetwork-contracts
+cd oaknetwork-contracts
 ```
 
 ### 2. Install Dependencies
@@ -84,7 +84,8 @@ forge verify-contract <CONTRACT_ADDRESS> <CONTRACT_NAME> --etherscan-api-key $ET
 ## Next Steps
 
 - [Smart Contract Reference](/docs/contracts/overview) - Complete contract documentation
-- [Integration Guides](/docs/guides/quick-start) - Start building with deployed contracts
+- [Create Your First Campaign](/docs/guides/create-campaign) - Start building with deployed contracts
 - [Security Overview](/docs/security/overview) - Security best practices
+
 
 

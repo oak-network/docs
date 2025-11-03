@@ -43,8 +43,8 @@ This repository contains the documentation for Oak Network, a decentralized crow
 
 ```bash
 # Clone the repository
-git clone https://github.com/oaknetwork/oak-docs.git
-cd oak-docs/oaknetwork
+git clone https://github.com/oaknetwork/docs.git
+cd docs/oaknetwork
 
 # Install dependencies
 pnpm install
@@ -131,8 +131,8 @@ We welcome contributions to improve the documentation! Please read our [Contribu
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/your-username/oak-docs.git
-cd oak-docs/oaknetwork
+git clone https://github.com/your-username/docs.git
+cd docs/oaknetwork
 
 # Install dependencies
 npm install
@@ -266,10 +266,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Documentation**: [docs.oak.network](https://docs.oak.network)
+- **Documentation**: [docs.oaknetwork.org](https://docs.oaknetwork.org)
 - **Discord**: [Join our community](https://discord.gg/oaknetwork)
-- **GitHub Issues**: [Report issues](https://github.com/oaknetwork/oak-docs/issues)
-- **Email**: docs@oak.network
+- **GitHub Issues**: [Report issues](https://github.com/oaknetwork/docs/issues)
+- **Email**: docs@oaknetwork.org
 
 ## 🙏 Acknowledgments
 

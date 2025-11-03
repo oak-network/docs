@@ -34,8 +34,8 @@ This guide covers deploying Oak Network smart contracts to various networks and 
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/oaknetwork/ccprotocol-contracts.git
-cd ccprotocol-contracts
+git clone https://github.com/oaknetwork/oaknetwork-contracts.git
+cd oaknetwork-contracts
 ```
 
 ### 2. Install Dependencies
@@ -418,6 +418,7 @@ main()
 
 ---
 
-**Need help?** Check our [troubleshooting guide](troubleshooting.md) or join our [Discord community](https://discord.gg/oaknetwork).
+**Need help?** Check our [Smart Contract Reference](/docs/contracts/overview) or join our [Discord community](https://discord.gg/oaknetwork).
+
 
 

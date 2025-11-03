@@ -20,7 +20,6 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Integration Guides',
       items: [
-        'guides/quick-start',
         'guides/create-campaign',
         'guides/platform-integration',
         'guides/platform-journey',
@@ -138,7 +137,6 @@ const sidebars: SidebarsConfig = {
 
   // Integration guides sidebar
   guidesSidebar: [
-    'guides/quick-start',
     {
       type: 'category',
       label: 'Basic Integration',

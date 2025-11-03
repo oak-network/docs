@@ -353,7 +353,7 @@ We run a bug bounty program to identify security vulnerabilities in our smart co
 
 ### How to Report
 
-1. **Email**: security@oak.network
+1. **Email**: security@oaknetwork.org
 2. **HackerOne**: [hackerone.com/oaknetwork](https://hackerone.com/oaknetwork)
 3. **Discord**: #security channel
 
@@ -368,7 +368,7 @@ We run a bug bounty program to identify security vulnerabilities in our smart co
 
 ### Emergency Contacts
 
-- **Security Team**: security@oak.network
+- **Security Team**: security@oaknetwork.org
 - **Emergency Hotline**: +1-XXX-XXX-XXXX
 - **Discord**: #emergency channel
 
@@ -489,8 +489,9 @@ We run a bug bounty program to identify security vulnerabilities in our smart co
 
 ---
 
-**Security is our top priority.** If you discover a security vulnerability, please report it responsibly through our [bug bounty program](bug-bounty.md) or email security@oak.network.
+**Security is our top priority.** If you discover a security vulnerability, please report it responsibly through our [bug bounty program](bug-bounty.md) or email security@oaknetwork.org.
 
-**Need help?** Join our [Discord community](https://discord.gg/oaknetwork) or check our [troubleshooting guide](troubleshooting.md).
+**Need help?** Join our [Discord community](https://discord.gg/oaknetwork) or check our [Security Best Practices](best-practices.md).
+
 
 

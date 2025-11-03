@@ -28,3 +28,5 @@ graph TB
 3. Verify the diagram scales properly in fullscreen mode
 
 
+
+

@@ -51,7 +51,7 @@ Our core smart contracts are now live on Celo:
 Ready to start building with Oak Network? Here's how:
 
 ### For Developers
-1. **Read the Documentation**: Start with our [Quick Start Guide](/docs/guides/quick-start)
+1. **Read the Documentation**: Start with our [Create Your First Campaign](/docs/guides/create-campaign) guide
 2. **Explore Smart Contracts**: Check out our [Contract Reference](/docs/contracts/overview)
 3. **Create Your First Campaign**: Follow our [Campaign Creation Guide](/docs/guides/create-campaign)
 

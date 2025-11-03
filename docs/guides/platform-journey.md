@@ -248,7 +248,7 @@ Offer the advantages of blockchain technology while maintaining a user-friendly 
 ### Support and Resources
 
 **Documentation:**
-- [Quick Start Guide](/docs/guides/quick-start)
+- [Create Your First Campaign](/docs/guides/create-campaign)
 - [Platform Integration Guide](/docs/guides/platform-integration)
 - [Smart Contract Reference](/docs/contracts/overview)
 - [API Documentation](/docs/api/overview)
@@ -256,7 +256,7 @@ Offer the advantages of blockchain technology while maintaining a user-friendly 
 **Community:**
 - [Discord Community](https://discord.gg/oaknetwork)
 - [GitHub Repository](https://github.com/oaknetwork)
-- [Developer Forum](https://forum.oaknetwork.com)
+- [Developer Forum](https://forum.oaknetwork.org)
 
 **Professional Services:**
 - Platform integration consulting
@@ -271,3 +271,4 @@ Oak Network provides the infrastructure and tools needed to transform any platfo
 The benefits are clear: expanded reach through cross-platform sharing, access to crypto communities, complete transparency, and simplified user experiences. The question isn't whether to integrate with Oak Network, but how quickly you can start building the future of crowdfunding.
 
 Ready to begin your platform journey? [Start with our Platform Integration Guide](/docs/guides/platform-integration) or [join our community](https://discord.gg/oaknetwork) to connect with other platform builders.
+

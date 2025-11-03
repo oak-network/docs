@@ -595,5 +595,5 @@ await treasuryFactory.disapproveTreasuryImplementation(
 - [GlobalParams](./global-params.md) - Protocol configuration
 - [AllOrNothing](./all-or-nothing.md) - Treasury implementation
 - [BaseTreasury](./base-treasury.md) - Treasury base contract
-- [Treasury Integration](../guides/treasury-integration.md) - Treasury setup guide
+- [Platform Integration](../guides/platform-integration.md) - Integration guide
 

@@ -13,7 +13,7 @@ We believe that transparency is the foundation of trust. By building in public, 
 Our goal is to open-source our entire product suite eventually. We are taking a responsible, phased approach to ensure that any code released to the public meets the highest standards of security and quality.
 
 ### Immediate Open Source (MIT License)
-The foundational layers of our protocol are already open source. This includes trust-sensitive components like our smart contracts (ccprotocol-smart-contracts), the developer SDK (catalyst-sdk), and our core API (catalyst-api). These are the building blocks of the ecosystem and are available for anyone to use, audit, and build upon.
+The foundational layers of our protocol are already open source. This includes trust-sensitive components like our smart contracts (oaknetwork-contracts), the developer SDK (catalyst-sdk), and our core API (catalyst-api). These are the building blocks of the ecosystem and are available for anyone to use, audit, and build upon.
 
 ### Future Open Source
 Other components will be open-sourced over time. We temporarily keep specific repositories private, not to hide them, but to ensure they are fully hardened, audited, and aligned with best practices before a public release. After careful validation and code quality assurance, we will make it public.
@@ -106,7 +106,7 @@ We welcome and encourage community contributions. Our workflow is designed to be
 
 - **For Technical Issues & Code Discussion**: Please use the GitHub Issues section of the relevant repository.
 - **For Community Discussion & General Support**: Join our official Discord Server (link to be provided). This is the best place for real-time conversation with the core team and community.
-- **For Guides & API Reference**: Our official developer documentation can be found soon at docs.oak.network.
+- **For Guides & API Reference**: Our official developer documentation can be found at [docs.oaknetwork.org](https://docs.oaknetwork.org).
 
 ## Conclusion: Our Commitment to a Lasting Partnership
 
@@ -125,3 +125,4 @@ We view our partners as essential architects of the Oak Network's future. By est
 We are excited to build the future of this ecosystem with you.
 
 **Welcome to the Oak Network.**
+

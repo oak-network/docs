@@ -8,7 +8,7 @@ Oak Network has undergone comprehensive security audits to ensure the safety and
 
 **Status**: ✅ Completed  
 **Date**: May 2025 
-**Report**: [PeckShield Audit Report](/ccprotocol-contracts/audits/PeckShield-Audit-Report-CreativeCrowdfunding_v1.0.pdf)
+**Report**: [PeckShield Audit Report](/oaknetwork-contracts/audits/PeckShield-Audit-Report-CreativeCrowdfunding_v1.0.pdf)
 
 #### Key Findings
 - No critical vulnerabilities found
@@ -47,6 +47,7 @@ Oak Network has undergone comprehensive security audits to ensure the safety and
 
 - [Security Overview](/docs/security/overview) - Complete security documentation
 - [Smart Contract Reference](/docs/contracts/overview) - Contract security features
-- [Integration Guides](/docs/guides/quick-start) - Secure integration practices
+- [Create Your First Campaign](/docs/guides/create-campaign) - Secure integration practices
+
 
 

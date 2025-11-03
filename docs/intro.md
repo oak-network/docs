@@ -43,7 +43,7 @@ Comprehensive documentation, SDKs, and integration guides to get you started qui
 
 ## Quick Links
 
-- [Quick Start Guide](/docs/guides/quick-start) - Get started in minutes
+- [Create Your First Campaign](/docs/guides/create-campaign) - Get started in minutes
 - [Core Concepts](/docs/concepts/overview) - Understand the protocol
 - [Integration Guides](/docs/guides/create-campaign) - Integrate Oak Network
 - [Smart Contracts](/docs/contracts/overview) - Technical reference
@@ -51,4 +51,4 @@ Comprehensive documentation, SDKs, and integration guides to get you started qui
 
 ## Get Started
 
-Ready to build? Check out our [Quick Start Guide](/docs/guides/quick-start) or explore our [Integration Guides](/docs/guides/create-campaign).
+Ready to build? Check out our [Create Your First Campaign](/docs/guides/create-campaign) guide or explore our [Platform Integration](/docs/guides/platform-integration) documentation.

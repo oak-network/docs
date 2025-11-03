@@ -27,7 +27,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'oaknetwork', // Usually your GitHub org/user name.
-  projectName: 'oak-docs', // Usually your repo name.
+  projectName: 'docs', // Usually your repo name.
 
   onBrokenLinks: 'warn',
 
@@ -48,7 +48,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/oaknetwork/oak-docs/tree/main/',
+            'https://github.com/oaknetwork/docs/tree/main/',
         },
         blog: {
           showReadingTime: true,
@@ -59,7 +59,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/oaknetwork/oak-docs/tree/main/',
+            'https://github.com/oaknetwork/docs/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -102,7 +102,7 @@ const config: Config = {
         {to: '/docs/roadmap', label: 'Roadmap', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/oaknetwork/ccprotocol-contracts',
+          href: 'https://github.com/oaknetwork/oaknetwork-contracts',
           label: 'GitHub',
           position: 'right',
         },
@@ -118,7 +118,7 @@ const config: Config = {
       logo: {
         alt: 'Oak Network Logo',
         src: 'img/logo.png',
-        href: 'https://www.oaknetwork.com',
+        href: 'https://oaknetwork.org',
         width: 160,
       },
       links: [
@@ -142,10 +142,6 @@ const config: Config = {
         {
           title: 'Integration',
           items: [
-            {
-              label: 'Quick Start',
-              to: '/docs/guides/quick-start',
-            },
             {
               label: 'Create Campaign',
               to: '/docs/guides/create-campaign',

@@ -219,11 +219,11 @@ function HomepageCTAs() {
               <h3><i className="fas fa-code"></i> For Developers</h3>
               <p>Integrate Oak Network into your application and start building the future of crowdfunding.</p>
               <ul>
-                <li><Link to="/docs/guides/quick-start">Quick Start Guide</Link></li>
                 <li><Link to="/docs/guides/create-campaign">Create Your First Campaign</Link></li>
+                <li><Link to="/docs/guides/platform-integration">Platform Integration</Link></li>
                 <li><Link to="/docs/contracts/overview">Smart Contract Reference</Link></li>
               </ul>
-              <Link className="button button--primary" to="/docs/guides/quick-start">
+              <Link className="button button--primary" to="/docs/guides/create-campaign">
                 Start Building
               </Link>
             </div>
