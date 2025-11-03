@@ -4,17 +4,10 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'oaknetwork/**'
-      - '.github/workflows/vercel-deploy.yml'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
-    defaults:
-      run:
-        working-directory: ./oaknetwork
     
     steps:
       - name: Checkout code
@@ -30,13 +23,13 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
-          cache-dependency-path: oaknetwork/pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build project
-        run: npm run build
+        run: pnpm run build
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest

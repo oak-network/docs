@@ -28,7 +28,6 @@ To enable automatic deployments, you need to add the following secrets to your G
 ### How It Works
 
 - **Trigger**: Automatically runs on push to `main` branch
-- **Path Filter**: Only runs if files in `oaknetwork/` directory are changed
 - **Process**:
   1. Checks out the code
   2. Sets up Node.js 20
