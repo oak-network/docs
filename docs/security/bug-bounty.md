@@ -33,7 +33,7 @@ Oak Network runs a bug bounty program to encourage security researchers to find 
 - Information disclosure
 - Denial of service
 
-### Low (Up to $500)
+### Low (N/A, but appreciated)
 - Minor issues
 - UI/UX problems
 - Documentation issues
