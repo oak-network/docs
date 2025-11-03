@@ -25,10 +25,10 @@ We invite you to build with us, leverage our open-source stack, and help define 
 The bounty program is structured to reward both core development contributions and innovative new products. All bounties are managed and paid through the **Opire platform**, ensuring transparency and automated payouts.
 
 **Bounty Distribution**:
-- **Core Development**: $25,000 USD
-- **Smart Contract Extensions**: $15,000 USD
-- **Integrations**: $10,000 USD
-- **Final Products**: $10,000 USD
+- **Final Products**: $18,000 USD (30%)
+- **Integrations**: $18,000 USD (30%)
+- **Core Development**: $18,000 USD (30%)
+- **Smart Contract Extensions**: $6,000 USD (10%)
 
 Rewards will be distributed based on:
 
@@ -116,7 +116,9 @@ We have structured bounties across four key categories. Whether you want to cont
 ## 1. Core Development
 
 **Status**: Building v1.0 | **Model**: Assisted Open Source  
-**Total Bounty Pool**: $25,000 USD
+**Total Bounty Pool**: $18,000 USD (30%)
+
+**Note**: Individual bounty amounts will be agreed upon in meetings or based on delivery quality. The amounts listed are flexible and will be determined during project discussions.
 
 This category is not about building on our tools—it's about building the tools themselves. Catalyst (our API layer) and Signet (our key management layer) are currently in active pre-v1.0 development.
 
@@ -195,7 +197,9 @@ We are currently focused on three major workstreams to reach Catalyst & Signet v
 
 ## 2. Smart Contract Extensions (Protocol Level)
 
-**Total Bounty Pool**: $15,000 USD
+**Total Bounty Pool**: $6,000 USD (10%)
+
+**Note**: Individual bounty amounts will be agreed upon in meetings or based on delivery quality. The amounts listed are flexible and will be determined during project discussions.
 
 Expand the fundamental capabilities of the Oak protocol. These bounties are for developers who want to design and build new on-chain funding mechanisms.
 
@@ -210,8 +214,6 @@ Expand the fundamental capabilities of the Oak protocol. These bounties are for 
 - Security audit considerations
 - Comprehensive documentation
 
-**Bounty**: $3,000 - $5,000 USD
-
 ### Bounty: Retroactive Public Goods Funding (Retro-PGF) Module
 
 **Challenge**: Design a contract module that allows the community to fund projects that have already delivered value. The contract must manage a results pool and a voting/distribution mechanism.
@@ -222,8 +224,6 @@ Expand the fundamental capabilities of the Oak protocol. These bounties are for 
 - Distribution algorithms
 - Integration with Oak protocol
 - Documentation and examples
-
-**Bounty**: $2,500 - $4,000 USD
 
 ### Bounty: Yield-Generating Treasury (DeFi-Native)
 
@@ -236,8 +236,6 @@ Expand the fundamental capabilities of the Oak protocol. These bounties are for 
 - Gas optimization
 - Documentation
 
-**Bounty**: $3,000 - $5,000 USD
-
 ### Bounty: Multi-Currency Treasury
 
 **Challenge**: Design a treasury that can accept donations in multiple tokens (e.g., USDC, WETH, ARB) and use a price oracle (e.g., Chainlink) to track the total value raised against a single USD-denominated goal.
@@ -248,8 +246,6 @@ Expand the fundamental capabilities of the Oak protocol. These bounties are for 
 - Value aggregation logic
 - Handling of token decimals
 - Security best practices
-
-**Bounty**: $2,000 - $3,500 USD
 
 ### Bounty: Conviction Voting Module
 
@@ -262,8 +258,6 @@ Expand the fundamental capabilities of the Oak protocol. These bounties are for 
 - Integration with Oak protocol
 - Documentation
 
-**Bounty**: $2,500 - $4,000 USD
-
 ### Bounty: Donor-Voted Payouts
 
 **Challenge**: An alternative to the multisig milestone. Create a module where the donors themselves (token-weighted or 1-person-1-vote via an identity system) vote to approve or reject the release of the next milestone's funds.
@@ -274,8 +268,6 @@ Expand the fundamental capabilities of the Oak protocol. These bounties are for 
 - Integration with identity systems (if applicable)
 - Gas-efficient voting
 - Documentation
-
-**Bounty**: $2,000 - $3,500 USD
 
 ### Bounty: Failsafe / Dead Man's Switch
 
@@ -288,8 +280,6 @@ Expand the fundamental capabilities of the Oak protocol. These bounties are for 
 - Security considerations
 - Documentation
 
-**Bounty**: $1,500 - $2,500 USD
-
 ### Bounty: Milestone-Based Payouts
 
 **Challenge**: Create a treasury extension module where funds are unlocked based on verifiable milestones, not all at once.
@@ -299,8 +289,6 @@ Expand the fundamental capabilities of the Oak protocol. These bounties are for 
 - A minimal UI for "milestone verifiers" (e.g., a multisig) to approve payouts
 - Integration with Oak protocol
 - Documentation
-
-**Bounty**: $2,500 - $4,000 USD
 
 ### Bounty: Streaming Treasury (Superfluid Integration)
 
@@ -314,13 +302,15 @@ Expand the fundamental capabilities of the Oak protocol. These bounties are for 
 - Real-time fund distribution
 - Documentation and examples
 
-**Bounty**: $3,000 - $5,000 USD
+**Bounty Amount**: To be agreed upon in meetings or based on delivery quality
 
 ---
 
 ## 3. Integrations (Bridging Web2 & Web3)
 
-**Total Bounty Pool**: $10,000 USD
+**Total Bounty Pool**: $18,000 USD (30%)
+
+**Note**: Individual bounty amounts will be agreed upon in meetings or based on delivery quality. The amounts listed are flexible and will be determined during project discussions.
 
 Use Catalyst and Signet to bring the power of the Oak protocol to the platforms and tools users already love.
 
@@ -334,8 +324,6 @@ Use Catalyst and Signet to bring the power of the Oak protocol to the platforms 
 - Order management logic
 - User-friendly interface
 - Documentation
-
-**Bounty**: $2,000 - $3,500 USD
 
 ### Bounty: Discord Crowdfunding Bot
 
@@ -355,8 +343,6 @@ Use Catalyst and Signet to bring the power of the Oak protocol to the platforms 
 - Error handling
 - Documentation
 
-**Bounty**: $1,500 - $2,500 USD
-
 ### Bounty: "Fund My Event" (Ticketing Integration)
 
 **Challenge**: Integrate Oak with a ticketing system (e.g., Eventbrite API, Luma, Pretix). An event organizer can crowdfund their event, and successful contributors receive an NFT ticket automatically.
@@ -367,8 +353,6 @@ Use Catalyst and Signet to bring the power of the Oak protocol to the platforms 
 - Campaign integration
 - Automatic ticket distribution
 - Documentation
-
-**Bounty**: $2,000 - $3,500 USD
 
 ### Bounty: Webflow/WordPress "Donate" Widget
 
@@ -381,13 +365,15 @@ Use Catalyst and Signet to bring the power of the Oak protocol to the platforms 
 - Integration with Catalyst
 - Documentation
 
-**Bounty**: $1,500 - $2,500 USD
+**Bounty Amount**: To be agreed upon in meetings or based on delivery quality
 
 ---
 
 ## 4. Final Products (Ecosystem Showcase)
 
-**Total Bounty Pool**: $10,000 USD
+**Total Bounty Pool**: $18,000 USD (30%)
+
+**Note**: Individual bounty amounts will be agreed upon in meetings or based on delivery quality. The amounts listed are flexible and will be determined during project discussions.
 
 Build a full-fledged product on top of the Oak stack. Show the world what is now possible.
 
@@ -404,8 +390,6 @@ Build a full-fledged product on top of the Oak stack. Show the world what is now
 - Natural language interface
 - Documentation
 
-**Bounty**: $3,000 - $5,000 USD
-
 ### Bounty: The Streamer "Goal" Overlay
 
 **Challenge**: Create an OBS/Streamlabs overlay (as a browser source) for Twitch/YouTube streamers. The overlay would pull real-time data from a campaign (via Catalyst) to show a funding goal. It must generate a simple link/QR code that lets viewers donate via a Protocol page without leaving the stream.
@@ -416,8 +400,6 @@ Build a full-fledged product on top of the Oak stack. Show the world what is now
 - Beautiful, customizable overlay
 - QR code generation
 - Documentation
-
-**Bounty**: $2,000 - $3,500 USD
 
 ### Bounty: The "Collab.Land for Crowdfunding" Bot
 
@@ -430,8 +412,6 @@ Build a full-fledged product on top of the Oak stack. Show the world what is now
 - In-chat campaign management
 - Documentation
 
-**Bounty**: $2,500 - $4,000 USD
-
 ### Bounty: "DAO Grant-Starter" (Snapshot Integration)
 
 **Challenge**: A tool that links Snapshot (or another on-chain governance tool) to Oak. If a "funding proposal" passes on Snapshot, this tool must automatically parse the vote and use Catalyst to create a new, public-facing crowdfunding campaign on Oak to raise the approved funds.
@@ -443,8 +423,6 @@ Build a full-fledged product on top of the Oak stack. Show the world what is now
 - Catalyst API integration
 - Documentation
 
-**Bounty**: $2,000 - $3,500 USD
-
 ### Bounty: Protocol Data Dashboard (Dune/Flipside)
 
 **Challenge**: Create the most comprehensive Dune Analytics or Flipside Crypto dashboard. Build trust by visualizing key protocol metrics: TVL, total funds raised, campaign success rates, donation volume, top creators, etc.
@@ -455,8 +433,6 @@ Build a full-fledged product on top of the Oak stack. Show the world what is now
 - Real-time data updates
 - Beautiful, interactive charts
 - Documentation
-
-**Bounty**: $1,500 - $2,500 USD
 
 ### Bounty: "Tap-to-Fund" Event POS
 
@@ -470,7 +446,7 @@ Build a full-fledged product on top of the Oak stack. Show the world what is now
 - Real-time transaction processing
 - Documentation
 
-**Bounty**: $2,000 - $3,500 USD
+**Bounty Amount**: To be agreed upon in meetings or based on delivery quality
 
 ---
 
