@@ -5,13 +5,13 @@
  */
 
 /* Import Google Fonts and Font Awesome */
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@400;500;700&family=Lexend:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 /* Font Variables */
 :root {
-  --ifm-font-family-base: 'Lexend', sans-serif;
-  --ifm-heading-font-family: 'Jura', sans-serif;
+  --ifm-font-family-base: 'Albert Sans', sans-serif;
+  --ifm-heading-font-family: 'Albert Sans', sans-serif;
 }
 
 /* --- LIGHT THEME --- */
@@ -67,18 +67,18 @@
   --ifm-color-primary-lighter: #fdb05e;
   --ifm-color-primary-lightest: #fdc382;
 
-  /* Background Colors (Dark Blue Base) */
-  --ifm-background-color: #1a1a1f;
-  --ifm-background-surface-color: #2E2F4A;
+  /* Background Colors (Dark Base) */
+  --ifm-background-color: #1A1A1A;
+  --ifm-background-surface-color: #2A2A3A;
   --ifm-font-color-base: #ffffff;
   
   /* Code color */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   
   /* Navigation */
-  --ifm-navbar-background-color: #2E2F4A;
-  --ifm-navbar-link-color: #ffffff;
-  --ifm-navbar-link-hover-color: #FBA244;
+  --ifm-navbar-background-color: #1A1A1A;
+  --ifm-navbar-link-color: #CCCCCC;
+  --ifm-navbar-link-hover-color: #FFFFFF;
   
   /* Footer */
   --ifm-footer-background-color: #2E2F4A;
@@ -99,15 +99,15 @@
 
 /* Fine-tuning */
 
-/* Ensure headings use the 'Jura' font */
+/* Ensure headings use the 'Albert Sans' font */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--ifm-heading-font-family);
+  font-family: 'Albert Sans', sans-serif;
   font-weight: 700;
 }
 
 /* Adjust dark navbar to use the brand color */
 [data-theme='dark'] .navbar {
-  background-color: var(--ifm-background-surface-color);
+  background-color: #1A1A1A;
 }
 
 /* Adjust dark footer to use the brand color */
@@ -117,8 +117,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Global Styles */
 html[data-theme='dark'] {
-  background: #1a1a1f;
+  background: #1A1A1A;
   color: var(--ifm-color-content);
+}
+
+/* Apply Albert Sans to all text */
+body {
+  font-family: 'Albert Sans', sans-serif;
 }
 
 /* Typography */
@@ -158,15 +163,110 @@ h4 {
 /* Navigation */
 .navbar {
   background: var(--ifm-navbar-background-color);
-  border-bottom: 1px solid rgba(251, 162, 68, 0.2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.8);
+  backdrop-filter: none;
 }
 
+/* Navbar wrapper and container for better control */
+.navbar-wrapper {
+  width: 100%;
+}
+
+.navbar-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Max width container for entire site */
+.navbar__inner,
+.main-wrapper {
+  max-width: 1920px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.navbar__inner {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Navbar layout spacing */
+.navbar__items {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* ============================================
+   LOGO SECTION - Separate container
+   Style the logo independently here
+   ============================================ */
 .navbar__brand {
+  position: absolute;
+  left: 2rem;
   font-weight: 800;
   font-size: 1.5rem;
   color: #FBA244;
+  flex: 0 0 auto;
+  z-index: 1;
+  padding: 0.5rem 0;
+  order: -1;
+}
+
+/* ============================================
+   MENU SECTION - Separate container  
+   Style the menu items independently here
+   ============================================ */
+.navbar__items--left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 0;
+  order: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================
+   RIGHT ITEMS SECTION - Separate container
+   Style GitHub/Discord independently here
+   ============================================ */
+.navbar__items--right {
+  position: absolute;
+  right: 2rem;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 1;
+  order: 1;
+}
+
+/* Add extra space to first and last menu items */
+.navbar__items--left .navbar__item:first-child .navbar__link {
+  margin-left: 0;
+}
+
+.navbar__items--left .navbar__item:last-child .navbar__link {
+  margin-right: 0;
+}
+
+/* Add extra space to GitHub and Discord */
+.navbar__items--right .navbar__item:first-child .navbar__link {
+  margin-left: 2rem;
+}
+
+.navbar__items--right .navbar__item:last-child .navbar__link {
+  margin-right: 2rem;
 }
 
 .navbar__link {
@@ -174,13 +274,30 @@ h4 {
   transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 8px;
   padding: 0.5rem 1rem;
-  margin: 0 0.25rem;
+  margin: 0 0.5rem;
+  font-family: 'Albert Sans', sans-serif;
 }
 
 .navbar__link:hover {
   color: var(--ifm-navbar-link-hover-color);
   background: rgba(251, 162, 68, 0.1);
   transform: translateY(-1px);
+}
+
+/* GitHub and Discord links - white color */
+.navbar__items--right .navbar__link,
+.navbar__item--right .navbar__link,
+a[href*="github"]:not(.button),
+a[href*="discord"]:not(.button) {
+  color: #FFFFFF !important;
+}
+
+.navbar__items--right .navbar__link:hover,
+.navbar__item--right .navbar__link:hover,
+a[href*="github"]:not(.button):hover,
+a[href*="discord"]:not(.button):hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .navbar__toggle {
@@ -515,7 +632,7 @@ tr:hover {
 
 /* Hero Section */
 .hero {
-  background: #000000;
+  background: #1A1A1A;
   padding: 6rem 0 8rem;
   position: relative;
   overflow: hidden;
@@ -539,7 +656,6 @@ tr:hover {
   line-height: 1.1;
   text-align: center;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 25px rgba(251, 162, 68, 0.4);
 }
 
 .hero__subtitle {
@@ -548,7 +664,6 @@ tr:hover {
   text-align: center;
   margin-bottom: 2rem;
   font-weight: 600;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .hero__description {
@@ -560,7 +675,6 @@ tr:hover {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 /* Feature Cards */

@@ -24,12 +24,12 @@ function HomepageHeader() {
           </p>
           <div className={styles.buttons}>
             <Link
-              className="button button--primary button--lg"
+              className={styles.buttonPrimary}
               to="/docs/intro">
               Get Started
             </Link>
             <Link
-              className="button button--secondary button--lg"
+              className={styles.buttonSecondary}
               to="/docs/roadmap">
               View Roadmap
             </Link>
@@ -43,32 +43,22 @@ function HomepageHeader() {
 function HomepageStats() {
   return (
     <section className={styles.stats}>
-      <div className="container">
-        <div className="row">
-          <div className="col col--3">
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>1%</div>
-              <div className={styles.statLabel}>Protocol Fee</div>
-            </div>
-          </div>
-          <div className="col col--3">
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>100%</div>
-              <div className={styles.statLabel}>Transparent</div>
-            </div>
-          </div>
-          <div className="col col--3">
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>∞</div>
-              <div className={styles.statLabel}>Possibilities</div>
-            </div>
-          </div>
-          <div className="col col--3">
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}><i className="fas fa-globe"></i></div>
-              <div className={styles.statLabel}>Celo Network</div>
-            </div>
-          </div>
+      <div className={styles.statsContainer}>
+        <div className={styles.statItem}>
+          <div className={styles.statNumber}>1%</div>
+          <div className={styles.statLabel}>PROTOCOL FEE</div>
+        </div>
+        <div className={styles.statItem}>
+          <div className={styles.statNumber}>100%</div>
+          <div className={styles.statLabel}>TRANSPARENT</div>
+        </div>
+        <div className={styles.statItem}>
+          <div className={styles.statNumber}>∞</div>
+          <div className={styles.statLabel}>POSSIBILITIES</div>
+        </div>
+        <div className={styles.statItem}>
+          <div className={styles.statNumber}><i className="fas fa-globe"></i></div>
+          <div className={styles.statLabel}>CELO NETWORK</div>
         </div>
       </div>
     </section>
@@ -79,129 +69,82 @@ function HomepageFeatures() {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="row">
-          <div className="col col--12">
-            <h2 className={styles.featuresTitle}>Why Choose Oak Network?</h2>
-            <p className={styles.featuresSubtitle}>
-              The infrastructure you need to build the future of crowdfunding
-            </p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col col--12">
-            <h3 className={styles.featuresSectionSubtitle}>Built for Everyone</h3>
-            <p className={styles.featuresSectionDescription}>
-              From individual developers to enterprise platforms
-            </p>
-          </div>
-        </div>
-        <div className="feature-grid">
-          <div className="feature-card">
-            <div className="feature-card__icon"><i className="fas fa-cogs"></i></div>
-            <h3 className="feature-card__title">Infrastructure-First</h3>
-            <p className="feature-card__description">
-              Oak Network is designed as infrastructure, not just another platform. 
-              Any application can integrate our smart contracts to add crowdfunding capabilities.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon"><i className="fas fa-coins"></i></div>
-            <h3 className="feature-card__title">Transparent Fees</h3>
-            <p className="feature-card__description">
-              Clear, predictable fee structure with 1% protocol fee going directly 
-              to the ecosystem. No hidden costs, all fees are transparent and on-chain.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon"><i className="fas fa-shield-alt"></i></div>
-            <h3 className="feature-card__title">Security & Trust</h3>
-            <p className="feature-card__description">
-              Audited smart contracts, open source development, and decentralized 
-              governance ensure the highest security standards for your campaigns.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon"><i className="fas fa-globe"></i></div>
-            <h3 className="feature-card__title">Celo Benefits</h3>
-            <p className="feature-card__description">
-              Low fees, fast settlement, mobile-first design, and carbon-negative 
-              blockchain make Celo the perfect home for Oak Network.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon"><i className="fas fa-bolt"></i></div>
-            <h3 className="feature-card__title">Easy Integration</h3>
-            <p className="feature-card__description">
-              Comprehensive SDKs, detailed documentation, and developer-friendly 
-              APIs make integration simple and straightforward.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon"><i className="fas fa-rocket"></i></div>
-            <h3 className="feature-card__title">Scalable Architecture</h3>
-            <p className="feature-card__description">
-              Modular design allows for easy customization and extension. 
-              Build exactly what you need without unnecessary complexity.
-            </p>
-          </div>
-        </div>
-        
-        <div className="row" style={{ marginTop: '3rem' }}>
-          <div className="col col--12">
-            <h3 className={styles.featuresSectionSubtitle}>Platform Advantages</h3>
-            <p className={styles.featuresSectionDescription}>
-              Unlock new revenue streams and expand your reach
-            </p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col col--3">
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <i className="fas fa-share-alt"></i>
-              </div>
-              <h3>Cross-Platform Campaign Sharing</h3>
-              <p>
-                Enable your creators to launch campaigns on your platform while automatically sharing them across 
-                other platforms worldwide. Expand reach without additional effort.
-              </p>
+        <h2 className={styles.featuresTitle}>Built for Everyone</h2>
+        <p className={styles.featuresSubtitle}>
+          From Individual Developers to Enterprise Platforms
+        </p>
+        <div className={styles.featureGrid}>
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-hexagon"></i>
             </div>
-          </div>
-          <div className="col col--3">
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <i className="fas fa-coins"></i>
-              </div>
-              <h3>Access Crypto Communities</h3>
-              <p>
-                Tap into the growing crypto ecosystem and reach users who prefer digital currencies. 
-                Accept crypto pledges alongside traditional payments.
-              </p>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-hexagon"></i>
             </div>
+            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <p className={styles.featureCard__description}>
+              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+            </p>
           </div>
-          <div className="col col--3">
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <i className="fas fa-eye"></i>
-              </div>
-              <h3>Complete Transparency</h3>
-              <p>
-                Build trust with creators and backers through blockchain-powered transparency. 
-                Every transaction and fund flow is publicly verifiable.
-              </p>
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-shield-check"></i>
             </div>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-shield-check"></i>
+            </div>
+            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <p className={styles.featureCard__description}>
+              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+            </p>
           </div>
-          <div className="col col--3">
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <i className="fas fa-magic"></i>
-              </div>
-              <h3>Simplified Crypto Experience</h3>
-              <p>
-                Offer blockchain benefits without the complexity. Our integration with Privy and other 
-                technologies provides seamless crypto experiences.
-              </p>
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-database"></i>
             </div>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-database"></i>
+            </div>
+            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <p className={styles.featureCard__description}>
+              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+            </p>
+          </div>
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-hexagon"></i>
+            </div>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-hexagon"></i>
+            </div>
+            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <p className={styles.featureCard__description}>
+              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+            </p>
+          </div>
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-shield-check"></i>
+            </div>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-shield-check"></i>
+            </div>
+            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <p className={styles.featureCard__description}>
+              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+            </p>
+          </div>
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-database"></i>
+            </div>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-database"></i>
+            </div>
+            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <p className={styles.featureCard__description}>
+              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+            </p>
           </div>
         </div>
       </div>
@@ -283,7 +226,7 @@ function HomepageCommunity() {
   );
 }
 
-export default function Home(): JSX.Element {
+export default function Home(): React.ReactElement {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
@@ -293,8 +236,6 @@ export default function Home(): JSX.Element {
       <main>
         <HomepageStats />
         <HomepageFeatures />
-        <HomepageCTAs />
-        <HomepageCommunity />
       </main>
     </Layout>
   );

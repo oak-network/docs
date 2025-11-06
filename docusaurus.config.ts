@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Oak Network',
   tagline: 'From Roots to Routes.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -38,6 +38,10 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  plugins: [
+    './src/plugins/favicon-head-tags.ts',
+  ],
 
   presets: [
     [
@@ -83,8 +87,10 @@ const config: Config = {
     navbar: {
       logo: {
         alt: 'Oak Network Logo',
-        src: 'img/logo.png',
-        srcDark: 'img/logo.png',
+        src: 'img/logo.svg',
+        srcDark: 'img/logo.svg',
+        width: 160,
+        height: 35,
       },
       items: [
         {
@@ -118,9 +124,10 @@ const config: Config = {
       style: 'dark',
       logo: {
         alt: 'Oak Network Logo',
-        src: 'img/logo.png',
+        src: 'img/logo.svg',
         href: 'https://oaknetwork.org',
         width: 160,
+        height: 35,
       },
       links: [
         {
