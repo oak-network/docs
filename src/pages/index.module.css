@@ -401,6 +401,19 @@
   fill: #1F2338 !important;
 }
 
+/* Platform Advantages Section - Hover effects */
+.features:nth-of-type(2) .featureCard:hover .featureCard__icon {
+  color: #1B1F30 !important;
+}
+
+.features:nth-of-type(2) .featureCard:hover .featureCard__watermark {
+  color: #1B1F30 !important;
+}
+
+.features:nth-of-type(2) .featureCard:hover .featureCard__watermark i {
+  color: #1B1F30 !important;
+}
+
 /* Built for Everyone Section - EXACT copy of Platform Advantages styling */
 .features:first-of-type .featureGrid {
   grid-template-columns: repeat(3, 1fr) !important;
@@ -474,6 +487,19 @@
 
 .features:first-of-type .featureCard:nth-child(6) .featureCard__icon {
   color: #00e5ff !important; /* Cyan for expand-arrows-alt */
+}
+
+/* Built for Everyone Section - Hover effects (matching Platform Advantages) */
+.features:first-of-type .featureCard:hover .featureCard__icon {
+  color: #1B1F30 !important;
+}
+
+.features:first-of-type .featureCard:hover .featureCard__watermark {
+  color: #1B1F30 !important;
+}
+
+.features:first-of-type .featureCard:hover .featureCard__watermark i {
+  color: #1B1F30 !important;
 }
 
 
