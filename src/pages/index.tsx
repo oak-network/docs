@@ -74,76 +74,149 @@ function HomepageFeatures() {
           From Individual Developers to Enterprise Platforms
         </p>
         <div className={styles.featureGrid}>
+          {/* Card 1 - Infrastructure-First - Pink layer-group */}
           <div className={styles.featureCard}>
             <div className={styles.featureCard__watermark}>
-              <i className="fas fa-hexagon"></i>
+              <i className="fas fa-layer-group"></i>
             </div>
             <div className={styles.featureCard__icon}>
-              <i className="fas fa-hexagon"></i>
+              <i className="fas fa-layer-group"></i>
             </div>
-            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <h3 className={styles.featureCard__title}>Infrastructure-First</h3>
             <p className={styles.featureCard__description}>
               Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
             </p>
           </div>
+          {/* Card 2 - Transparent Fees - Light blue coins */}
           <div className={styles.featureCard}>
             <div className={styles.featureCard__watermark}>
-              <i className="fas fa-shield-check"></i>
+              <i className="fas fa-coins"></i>
             </div>
             <div className={styles.featureCard__icon}>
-              <i className="fas fa-shield-check"></i>
+              <i className="fas fa-coins"></i>
             </div>
-            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <h3 className={styles.featureCard__title}>Transparent Fees</h3>
             <p className={styles.featureCard__description}>
-              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+              Clear, predictable fee structure with 1% protocol fee going directly to the ecosystem. No hidden costs, all fees are transparent and on-chain.
             </p>
           </div>
+          {/* Card 3 - Security & Trust - Teal shield */}
           <div className={styles.featureCard}>
             <div className={styles.featureCard__watermark}>
-              <i className="fas fa-database"></i>
+              <i className="fas fa-shield"></i>
             </div>
             <div className={styles.featureCard__icon}>
-              <i className="fas fa-database"></i>
+              <i className="fas fa-shield"></i>
             </div>
-            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <h3 className={styles.featureCard__title}>Security & Trust</h3>
             <p className={styles.featureCard__description}>
-              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+              Audited smart contracts, open source development, and decentralized governance ensure the highest security standards for your campaigns.
             </p>
           </div>
+          {/* Card 4 - Celo Benefits - Purple bolt */}
           <div className={styles.featureCard}>
             <div className={styles.featureCard__watermark}>
-              <i className="fas fa-hexagon"></i>
+              <i className="fas fa-bolt"></i>
             </div>
             <div className={styles.featureCard__icon}>
-              <i className="fas fa-hexagon"></i>
+              <i className="fas fa-bolt"></i>
             </div>
-            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <h3 className={styles.featureCard__title}>Celo Benefits</h3>
             <p className={styles.featureCard__description}>
-              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+              Low fees, fast settlement, mobile-first design, and carbon-negative blockchain make Celo the perfect home for Oak Network.
             </p>
           </div>
+          {/* Card 5 - Easy Integration - Lime green plug */}
           <div className={styles.featureCard}>
             <div className={styles.featureCard__watermark}>
-              <i className="fas fa-shield-check"></i>
+              <i className="fas fa-plug"></i>
             </div>
             <div className={styles.featureCard__icon}>
-              <i className="fas fa-shield-check"></i>
+              <i className="fas fa-plug"></i>
             </div>
-            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <h3 className={styles.featureCard__title}>Easy Integration</h3>
             <p className={styles.featureCard__description}>
-              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+              Comprehensive SDKs, detailed documentation, and developer-friendly APIs make integration simple and straightforward.
             </p>
           </div>
+          {/* Card 6 - Scalable Architecture - Cyan expand-arrows-alt */}
           <div className={styles.featureCard}>
             <div className={styles.featureCard__watermark}>
-              <i className="fas fa-database"></i>
+              <i className="fas fa-expand-arrows-alt"></i>
             </div>
             <div className={styles.featureCard__icon}>
-              <i className="fas fa-database"></i>
+              <i className="fas fa-expand-arrows-alt"></i>
             </div>
-            <h3 className={styles.featureCard__title}>Infrastructure First</h3>
+            <h3 className={styles.featureCard__title}>Scalable Architecture</h3>
             <p className={styles.featureCard__description}>
-              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+              Modular design allows for easy customization and extension. Build exactly what you need without unnecessary complexity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomepagePlatformAdvantages() {
+  return (
+    <section className={styles.features}>
+      <div className="container">
+        <h2 className={styles.featuresTitle}>Platform Advantages</h2>
+        <p className={styles.featuresSubtitle}>
+          Unlock new revenue streams and expand your reach
+        </p>
+        <div className={styles.featureGrid}>
+          {/* Card 1 - Cross-Platform Campaign Sharing */}
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-share-alt"></i>
+            </div>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-share-alt"></i>
+            </div>
+            <h3 className={styles.featureCard__title}>Cross-Platform Campaign Sharing</h3>
+            <p className={styles.featureCard__description}>
+              Enable your creators to launch campaigns on your platform while automatically sharing them across other platforms worldwide. Expand reach without additional effort.
+            </p>
+          </div>
+          {/* Card 2 - Access Crypto Communities */}
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-users"></i>
+            </div>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-users"></i>
+            </div>
+            <h3 className={styles.featureCard__title}>Access Crypto Communities</h3>
+            <p className={styles.featureCard__description}>
+              Tap into the growing crypto ecosystem and reach users who prefer digital currencies. Accept crypto pledges alongside traditional payments.
+            </p>
+          </div>
+          {/* Card 3 - Complete Transparency */}
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-eye"></i>
+            </div>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-eye"></i>
+            </div>
+            <h3 className={styles.featureCard__title}>Complete Transparency</h3>
+            <p className={styles.featureCard__description}>
+              Build trust with creators and backers through blockchain-powered transparency. Every transaction and fund flow is publicly verifiable.
+            </p>
+          </div>
+          {/* Card 4 - Simplified Crypto Experience */}
+          <div className={styles.featureCard}>
+            <div className={styles.featureCard__watermark}>
+              <i className="fas fa-magic"></i>
+            </div>
+            <div className={styles.featureCard__icon}>
+              <i className="fas fa-magic"></i>
+            </div>
+            <h3 className={styles.featureCard__title}>Simplified Crypto Experience</h3>
+            <p className={styles.featureCard__description}>
+              Offer blockchain benefits without the complexity. Our integration with Privy and other technologies provides seamless crypto experiences.
             </p>
           </div>
         </div>
@@ -236,6 +309,7 @@ export default function Home(): React.ReactElement {
       <main>
         <HomepageStats />
         <HomepageFeatures />
+        <HomepagePlatformAdvantages />
       </main>
     </Layout>
   );

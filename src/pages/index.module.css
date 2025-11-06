@@ -100,7 +100,7 @@
 }
 
 .stats {
-  background: #2A2A3A;
+  background: #1B1F30;
   padding: 4rem 0;
   position: relative;
 }
@@ -190,7 +190,7 @@
 }
 
 .featureCard {
-  background: #21212d !important;
+  background: #1B1F30 !important;
   border-radius: 8px !important;
   padding: 2rem !important;
   text-align: left !important;
@@ -200,29 +200,33 @@
   display: block !important;
 }
 
-.featureCard:hover {
-  background: #252532 !important;
-}
-
 .featureCard__watermark {
   position: absolute !important;
   top: 1rem !important;
   right: 1rem !important;
-  font-size: 4rem !important;
-  opacity: 0.15 !important;
-  color: #21212d !important;
+  width: 6rem !important;
+  height: 6rem !important;
+  color: #1F2338 !important;
   pointer-events: none !important;
   z-index: 0 !important;
-  line-height: 1 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  overflow: visible !important;
 }
 
 .featureCard__watermark i {
-  font-size: inherit !important;
-  color: inherit !important;
+  font-size: 6rem !important;
+  color: #1F2338 !important;
   display: block !important;
+  line-height: 1 !important;
+}
+
+.featureCard__watermark svg {
+  width: 100% !important;
+  height: 100% !important;
+  color: #1F2338 !important;
+  fill: currentColor !important;
 }
 
 .featureCard__icon {
@@ -239,8 +243,29 @@
 }
 
 .featureCard__icon i {
+  font-size: 2.5rem !important;
+  color: inherit !important;
   display: block !important;
-  font-size: inherit !important;
+}
+
+.featureCard__icon svg {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+.featureCard:hover {
+  background: #1F2338 !important;
+}
+
+.featureCard:hover .featureCard__watermark {
+  color: #1B1F30 !important;
+}
+
+.featureCard:hover .featureCard__icon {
+  color: #1B1F30 !important;
 }
 
 /* Card 1 - Pink hexagon */
@@ -248,74 +273,209 @@
   color: #f06292 !important;
 }
 
-.featureCard:nth-child(1) .featureCard__watermark {
-  color: #21212d !important;
+/* All watermarks use the same background color */
+.featureCard:nth-child(1) .featureCard__watermark,
+.featureCard:nth-child(1) .featureCard__watermark i,
+.featureCard:nth-child(2) .featureCard__watermark,
+.featureCard:nth-child(2) .featureCard__watermark i,
+.featureCard:nth-child(3) .featureCard__watermark,
+.featureCard:nth-child(3) .featureCard__watermark i,
+.featureCard:nth-child(4) .featureCard__watermark,
+.featureCard:nth-child(4) .featureCard__watermark i,
+.featureCard:nth-child(5) .featureCard__watermark,
+.featureCard:nth-child(5) .featureCard__watermark i,
+.featureCard:nth-child(6) .featureCard__watermark,
+.featureCard:nth-child(6) .featureCard__watermark i {
+  color: #1F2338 !important;
 }
 
-/* Card 2 - Light blue shield */
+.featureCard:nth-child(1) .featureCard__watermark svg,
+.featureCard:nth-child(2) .featureCard__watermark svg,
+.featureCard:nth-child(3) .featureCard__watermark svg,
+.featureCard:nth-child(4) .featureCard__watermark svg,
+.featureCard:nth-child(5) .featureCard__watermark svg,
+.featureCard:nth-child(6) .featureCard__watermark svg {
+  fill: #1F2338 !important;
+}
+
+.featureCard:hover .featureCard__watermark i {
+  color: #1B1F30 !important;
+}
+
+/* Card 2 - Light blue coins */
 .featureCard:nth-child(2) .featureCard__icon {
   color: #4fc3f7 !important;
 }
 
-.featureCard:nth-child(2) .featureCard__watermark {
-  color: #21212d !important;
-}
-
-/* Card 3 - Teal database */
+/* Card 3 - Teal shield */
 .featureCard:nth-child(3) .featureCard__icon {
   color: #69f0ae !important;
 }
 
-.featureCard:nth-child(3) .featureCard__watermark {
-  color: #21212d !important;
-}
-
-/* Card 4 - Purple hexagon */
+/* Card 4 - Purple bolt */
 .featureCard:nth-child(4) .featureCard__icon {
   color: #9575cd !important;
 }
 
-.featureCard:nth-child(4) .featureCard__watermark {
-  color: #21212d !important;
-}
-
-/* Card 5 - Lime green shield */
+/* Card 5 - Lime green plug */
 .featureCard:nth-child(5) .featureCard__icon {
   color: #c6ff00 !important;
 }
 
-.featureCard:nth-child(5) .featureCard__watermark {
-  color: #21212d !important;
-}
-
-/* Card 6 - Cyan database */
+/* Card 6 - Cyan expand-arrows-alt */
 .featureCard:nth-child(6) .featureCard__icon {
   color: #00e5ff !important;
 }
 
-.featureCard:nth-child(6) .featureCard__watermark {
-  color: #21212d !important;
+/* Platform Advantages Section - 3x1 Grid */
+.features:nth-of-type(2) .featureGrid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  max-width: 1200px !important;
+  gap: 2rem !important;
+  padding: 0 2rem !important;
+  margin: 0 auto !important;
 }
 
-.featureCard__title {
-  font-family: 'Albert Sans', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 24px !important;
+/* Platform Advantages Section - Cards */
+.features:nth-of-type(2) .featureCard {
+  padding: 2rem !important;
+}
+
+.features:nth-of-type(2) .featureCard__title {
+  margin-bottom: 0.75rem !important;
+}
+
+.features:nth-of-type(2) .featureCard__description {
+  line-height: 1.5 !important;
+}
+
+/* Platform Advantages Section - Title Orange */
+.features:nth-of-type(2) .featuresTitle {
+  color: #FBA244 !important;
+}
+
+/* Platform Advantages Section - Colorful Icons */
+.features:nth-of-type(2) .featureCard:nth-child(1) .featureCard__icon {
+  color: #f06292 !important; /* Pink/Magenta for share-alt */
+}
+
+.features:nth-of-type(2) .featureCard:nth-child(2) .featureCard__icon {
+  color: #4fc3f7 !important; /* Light blue for users */
+}
+
+.features:nth-of-type(2) .featureCard:nth-child(3) .featureCard__icon {
+  color: #69f0ae !important; /* Green for eye */
+}
+
+.features:nth-of-type(2) .featureCard:nth-child(4) .featureCard__icon {
+  color: #9575cd !important; /* Purple for magic */
+}
+
+/* Platform Advantages Section - Orange Card Titles */
+.features:nth-of-type(2) .featureCard__title {
+  color: #FBA244 !important;
+}
+
+/* Platform Advantages Section - White Descriptions */
+.features:nth-of-type(2) .featureCard__description {
   color: #FFFFFF !important;
-  margin-bottom: 1rem !important;
-  position: relative !important;
-  z-index: 1 !important;
 }
 
-.featureCard__description {
-  font-family: 'Albert Sans', sans-serif !important;
-  font-weight: 400 !important;
-  font-size: 16px !important;
-  color: #AAAAAA !important;
-  line-height: 1.6 !important;
-  position: relative !important;
-  z-index: 1 !important;
+/* Platform Advantages Section - Watermarks (using base size) */
+.features:nth-of-type(2) .featureCard__watermark {
+  width: 6rem !important;
+  height: 6rem !important;
 }
+
+.features:nth-of-type(2) .featureCard__watermark i {
+  font-size: 6rem !important;
+}
+
+/* Platform Advantages Section - All watermarks */
+.features:nth-of-type(2) .featureCard__watermark,
+.features:nth-of-type(2) .featureCard__watermark i {
+  color: #1F2338 !important;
+}
+
+.features:nth-of-type(2) .featureCard__watermark svg {
+  fill: #1F2338 !important;
+}
+
+/* Built for Everyone Section - EXACT copy of Platform Advantages styling */
+.features:first-of-type .featureGrid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  max-width: 1200px !important;
+  gap: 2rem !important;
+  padding: 0 2rem !important;
+  margin: 0 auto !important;
+}
+
+.features:first-of-type .featureCard {
+  padding: 2rem !important;
+}
+
+/* Built for Everyone Section - Title Orange */
+.features:first-of-type .featuresTitle {
+  color: #FBA244 !important;
+}
+
+/* Built for Everyone Section - Orange Card Titles */
+.features:first-of-type .featureCard__title {
+  color: #FBA244 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* Built for Everyone Section - White Descriptions */
+.features:first-of-type .featureCard__description {
+  color: #FFFFFF !important;
+  line-height: 1.5 !important;
+}
+
+/* Built for Everyone Section - Watermarks (matching Platform Advantages) */
+.features:first-of-type .featureCard__watermark {
+  width: 6rem !important;
+  height: 6rem !important;
+}
+
+.features:first-of-type .featureCard__watermark i {
+  font-size: 6rem !important;
+}
+
+/* Built for Everyone Section - All watermarks */
+.features:first-of-type .featureCard__watermark,
+.features:first-of-type .featureCard__watermark i {
+  color: #1F2338 !important;
+}
+
+.features:first-of-type .featureCard__watermark svg {
+  fill: #1F2338 !important;
+}
+
+/* Built for Everyone Section - Colorful Icons (matching Platform Advantages) */
+.features:first-of-type .featureCard:nth-child(1) .featureCard__icon {
+  color: #f06292 !important; /* Pink for layer-group */
+}
+
+.features:first-of-type .featureCard:nth-child(2) .featureCard__icon {
+  color: #4fc3f7 !important; /* Light blue for coins */
+}
+
+.features:first-of-type .featureCard:nth-child(3) .featureCard__icon {
+  color: #69f0ae !important; /* Green for shield */
+}
+
+.features:first-of-type .featureCard:nth-child(4) .featureCard__icon {
+  color: #9575cd !important; /* Purple for bolt */
+}
+
+.features:first-of-type .featureCard:nth-child(5) .featureCard__icon {
+  color: #c6ff00 !important; /* Lime green for plug */
+}
+
+.features:first-of-type .featureCard:nth-child(6) .featureCard__icon {
+  color: #00e5ff !important; /* Cyan for expand-arrows-alt */
+}
+
 
 .ctas {
   padding: 8rem 0;
