@@ -900,6 +900,23 @@ a.footerLogoLink:hover,
   color: #FFFFFF !important;
 }
 
+/* MermaidDiagram fullscreen modal title - white */
+.mermaid-modal-title {
+  color: #FFFFFF !important;
+}
+
+/* MermaidDiagram fullscreen modal close button - discrete white */
+.mermaid-close-button {
+  background: transparent !important;
+  color: #FFFFFF !important;
+  border: none !important;
+}
+
+.mermaid-close-button:hover {
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
 .mermaid::before {
   content: '';
   position: absolute;
@@ -1030,10 +1047,80 @@ a.footerLogoLink:hover,
   background: #e0903c;
 }
 
+/* Table of Contents (Right Sidebar) */
+.theme-doc-toc,
+.table-of-contents {
+  color: #CCCCCC;
+}
+
+.theme-doc-toc a,
+.table-of-contents a,
+.theme-doc-toc-mobile a {
+  color: #CCCCCC !important;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.theme-doc-toc a:hover,
+.table-of-contents a:hover,
+.theme-doc-toc-mobile a:hover {
+  color: #FFFFFF !important;
+  text-decoration: underline;
+  background: none !important;
+}
+
+.theme-doc-toc a.table-of-contents__link--active,
+.table-of-contents__link--active,
+.theme-doc-toc-mobile a.table-of-contents__link--active {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+}
+
+/* TOC list items */
+.theme-doc-toc ul,
+.table-of-contents ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.theme-doc-toc li,
+.table-of-contents li {
+  margin: 0.5rem 0;
+}
+
 /* Selection */
 ::selection {
   background-color: rgba(251, 162, 68, 0.3);
   color: var(--ifm-color-content);
+}
+
+/* Pagination Navigation (Next/Previous links) */
+.pagination-nav,
+.pagination-nav__item,
+.pagination-nav__link {
+  color: #CCCCCC;
+  border-color: rgba(204, 204, 204, 0.3);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.pagination-nav__link {
+  color: #CCCCCC !important;
+  border: 1px solid rgba(204, 204, 204, 0.3) !important;
+}
+
+.pagination-nav__link:hover {
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  background: none !important;
+}
+
+.pagination-nav__label {
+  color: inherit;
+}
+
+.pagination-nav__sublabel {
+  color: inherit;
 }
 
 /* Focus */
