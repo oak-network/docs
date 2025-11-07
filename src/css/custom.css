@@ -37,19 +37,19 @@
   /* Navigation */
   --ifm-navbar-background-color: #ffffff;
   --ifm-navbar-link-color: #2E2F4A;
-  --ifm-navbar-link-hover-color: #FBA244;
+  --ifm-navbar-link-hover-color: #ffffff;
   
   /* Footer */
   --ifm-footer-background-color: #2E2F4A;
   --ifm-footer-color: #ffffff;
   --ifm-footer-link-color: #ffffff;
-  --ifm-footer-link-hover-color: #FBA244;
+  --ifm-footer-link-hover-color: #ffffff;
   
   /* Sidebar */
   --ifm-sidebar-background-color: #f8f9fa;
   --ifm-menu-link-color: #2E2F4A;
-  --ifm-menu-link-hover-color: #FBA244;
-  --ifm-menu-link-active-color: #FBA244;
+  --ifm-menu-link-hover-color: #ffffff;
+  --ifm-menu-link-active-color: #ffffff;
   
   /* Cards */
   --ifm-card-background-color: #ffffff;
@@ -89,8 +89,8 @@
   /* Sidebar */
   --ifm-sidebar-background-color: #2E2F4A;
   --ifm-menu-link-color: #ffffff;
-  --ifm-menu-link-hover-color: #FBA244;
-  --ifm-menu-link-active-color: #FBA244;
+  --ifm-menu-link-hover-color: #ffffff;
+  --ifm-menu-link-active-color: #ffffff;
   
   /* Cards */
   --ifm-card-background-color: #2E2F4A;
@@ -279,9 +279,9 @@ h4 {
 }
 
 .navbar__link:hover {
-  color: var(--ifm-navbar-link-hover-color);
-  background: rgba(251, 162, 68, 0.1);
-  transform: translateY(-1px);
+  color: #FFFFFF !important;
+  background: none !important;
+  transform: none !important;
 }
 
 /* GitHub and Discord links - white color */
@@ -297,7 +297,7 @@ a[href*="discord"]:not(.button) {
 a[href*="github"]:not(.button):hover,
 a[href*="discord"]:not(.button):hover {
   color: #FFFFFF !important;
-  background: rgba(255, 255, 255, 0.1);
+  background: none !important;
 }
 
 .navbar__toggle {
@@ -654,22 +654,16 @@ tr:hover {
 /* Footer */
 .footer {
   background: #2E2F4A;
-  border-top: 1px solid rgba(251, 162, 68, 0.2);
+  border-top: none;
   position: relative;
 }
 
 .footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #FBA244, #fca951, #fdb05e);
+  display: none;
 }
 
 .footer__title {
-  color: #FBA244;
+  color: #FFFFFF;
   font-weight: 700;
   font-size: 1.125rem;
 }
@@ -678,23 +672,48 @@ tr:hover {
   color: var(--ifm-footer-link-color);
   transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 6px;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0rem;
   margin: 0.125rem 0;
 }
 
 .footer__link-item:hover {
-  color: var(--ifm-footer-link-hover-color);
-  background: rgba(251, 162, 68, 0.1);
-  transform: translateX(4px);
+  color: #FFFFFF !important;
+  background: none !important;
+  transform: none !important;
 }
 
-/* Footer Logo */
+/* Footer Logo - Match header logo styling */
 .footer__logo {
   opacity: 1 !important;
 }
 
 .footer__logo img {
   opacity: 1 !important;
+  width: 160px;
+  height: 35px;
+  filter: brightness(1);
+  transition: filter 0.3s ease;
+}
+
+/* Override Docusaurus layer opacity for footer logo link */
+.footerLogoLink,
+.footer__logo a,
+a.footerLogoLink,
+[class*="footerLogoLink"] {
+  opacity: 1 !important;
+  transition: filter 0.3s ease !important;
+}
+
+.footerLogoLink:hover,
+.footer__logo a:hover,
+a.footerLogoLink:hover,
+[class*="footerLogoLink"]:hover {
+  opacity: 1 !important;
+}
+
+.footer__logo:hover img {
+  opacity: 1 !important;
+  filter: brightness(1.2);
 }
 
 /* Hero Section */
