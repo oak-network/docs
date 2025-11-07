@@ -75,7 +75,7 @@ export default function faviconHeadTagsPlugin(): Plugin {
             tagName: 'meta',
             attributes: {
               name: 'theme-color',
-              content: '#1A1A1A',
+              content: '#13171C',
             },
           },
         ],

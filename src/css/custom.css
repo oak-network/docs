@@ -37,19 +37,19 @@
   /* Navigation */
   --ifm-navbar-background-color: #ffffff;
   --ifm-navbar-link-color: #2E2F4A;
-  --ifm-navbar-link-hover-color: #ffffff;
+  --ifm-navbar-link-hover-color: #FBA244;
   
   /* Footer */
   --ifm-footer-background-color: #2E2F4A;
   --ifm-footer-color: #ffffff;
   --ifm-footer-link-color: #ffffff;
-  --ifm-footer-link-hover-color: #ffffff;
+  --ifm-footer-link-hover-color: #FBA244;
   
   /* Sidebar */
   --ifm-sidebar-background-color: #f8f9fa;
   --ifm-menu-link-color: #2E2F4A;
-  --ifm-menu-link-hover-color: #ffffff;
-  --ifm-menu-link-active-color: #ffffff;
+  --ifm-menu-link-hover-color: #FBA244;
+  --ifm-menu-link-active-color: #FBA244;
   
   /* Cards */
   --ifm-card-background-color: #ffffff;
@@ -68,7 +68,7 @@
   --ifm-color-primary-lightest: #fdc382;
 
   /* Background Colors (Dark Base) */
-  --ifm-background-color: #1A1A1A;
+  --ifm-background-color: #13171C;
   --ifm-background-surface-color: #1B1F30;
   --ifm-font-color-base: #ffffff;
   
@@ -76,7 +76,7 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   
   /* Navigation */
-  --ifm-navbar-background-color: #1A1A1A;
+  --ifm-navbar-background-color: #13171C;
   --ifm-navbar-link-color: #CCCCCC;
   --ifm-navbar-link-hover-color: #FFFFFF;
   
@@ -89,8 +89,8 @@
   /* Sidebar */
   --ifm-sidebar-background-color: #2E2F4A;
   --ifm-menu-link-color: #ffffff;
-  --ifm-menu-link-hover-color: #ffffff;
-  --ifm-menu-link-active-color: #ffffff;
+  --ifm-menu-link-hover-color: #FBA244;
+  --ifm-menu-link-active-color: #FBA244;
   
   /* Cards */
   --ifm-card-background-color: #2E2F4A;
@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Adjust dark navbar to use the brand color */
 [data-theme='dark'] .navbar {
-  background-color: #1A1A1A;
+  background-color: #13171C;
 }
 
 /* Adjust dark footer to use the brand color */
@@ -117,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Global Styles */
 html[data-theme='dark'] {
-  background: #1A1A1A;
+  background: #13171C;
   color: var(--ifm-color-content);
 }
 
@@ -136,26 +136,26 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
-  color: #FFFFFF;
+  color: #FBA244;
 }
 
 h2 {
   font-size: 2rem;
-  color: #FFFFFF;
+  color: #FBA244;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
 h3 {
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color: #fca951;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
 
 h4 {
   font-size: 1.25rem;
-  color: #FFFFFF;
+  color: #fdb05e;
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
 }
@@ -170,7 +170,7 @@ h4 {
 
 .navbar {
   background: var(--ifm-navbar-background-color);
-  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.8);
+  box-shadow: 0 2px 8px rgba(19, 23, 28, 0.8);
   backdrop-filter: none;
 }
 
@@ -197,8 +197,6 @@ h4 {
 }
 
 .navbar__inner {
-  padding-left: 2rem;
-  padding-right: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -219,7 +217,7 @@ h4 {
    ============================================ */
 .navbar__brand {
   position: absolute;
-  left: 2rem;
+  left: 0;
   font-weight: 800;
   font-size: 1.5rem;
   color: #FBA244;
@@ -251,7 +249,7 @@ h4 {
    ============================================ */
 .navbar__items--right {
   position: absolute;
-  right: 2rem;
+  right: 0;
   flex: 0 0 auto;
   display: flex;
   justify-content: flex-end;
@@ -325,22 +323,22 @@ a[href*="discord"]:not(.button):hover {
 /* Mobile navbar - hamburger on the right */
 @media (max-width: 996px) {
   .navbar__inner {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0;
+    padding-right: 0;
   }
   
   .navbar__brand {
-    left: 1rem;
+    left: 0;
   }
   
   .navbar__toggle {
     position: absolute;
-    right: 1rem;
+    right: 0;
     order: 2;
   }
   
   .navbar__items--right {
-    right: 1rem;
+    right: 0;
   }
   
   /* Adjust navbar brand z-index when mobile menu is open to keep both logos visible */
@@ -357,6 +355,27 @@ a[href*="discord"]:not(.button):hover {
   }
 }
 
+/* Mobile only - match homepage spacing */
+@media (max-width: 768px) {
+  .navbar__inner {
+    padding-left: var(--ifm-spacing-horizontal);
+    padding-right: var(--ifm-spacing-horizontal);
+  }
+  
+  .navbar__brand {
+    left: 0;
+  }
+  
+  .navbar__toggle {
+    right: -.5rem;
+    margin-right: 0;
+  }
+  
+  .navbar__items--right {
+    right: 0;
+  }
+}
+
 /* Sidebar */
 .menu {
   background: transparent !important;
@@ -365,6 +384,14 @@ a[href*="discord"]:not(.button):hover {
   margin: 1rem 0;
   border: none !important;
   box-shadow: none !important;
+}
+
+/* Remove borders from sidebar */
+.theme-doc-sidebar-container,
+.theme-doc-sidebar-menu,
+[class*="theme-doc-sidebar"] {
+  border: none !important;
+  border-right: none !important;
 }
 
 .menu__link {
@@ -444,6 +471,28 @@ article a:hover,
   color: #FFFFFF !important;
   text-decoration: underline;
   background: none !important;
+}
+
+/* Headings in internal pages - white */
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6,
+.theme-doc-markdown h1,
+.theme-doc-markdown h2,
+.theme-doc-markdown h3,
+.theme-doc-markdown h4,
+.theme-doc-markdown h5,
+.theme-doc-markdown h6,
+[class*="theme-doc-markdown"] h1,
+[class*="theme-doc-markdown"] h2,
+[class*="theme-doc-markdown"] h3,
+[class*="theme-doc-markdown"] h4,
+[class*="theme-doc-markdown"] h5,
+[class*="theme-doc-markdown"] h6 {
+  color: #FFFFFF !important;
 }
 
 /* Cards */
@@ -527,6 +576,19 @@ article a:hover,
   box-shadow: 0 8px 24px rgba(251, 162, 68, 0.4);
 }
 
+.button--secondary {
+  background: transparent;
+  border: 2px solid #FBA244;
+  color: #FBA244 !important;
+}
+
+.button--secondary:hover {
+  background: #FBA244;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(251, 162, 68, 0.3);
+}
+
 /* CTA Section Buttons - Override with buttonPrimary style */
 section[class*="ctas"] .button--primary,
 section[class*="ctas"] a.button--primary,
@@ -558,19 +620,6 @@ section[class*="ctas"] .button--primary::before,
 section[class*="ctas"] a.button--primary::before {
   display: none !important;
   content: none !important;
-}
-
-.button--secondary {
-  background: transparent;
-  border: 2px solid #FBA244;
-  color: #FBA244 !important;
-}
-
-.button--secondary:hover {
-  background: #FBA244;
-  color: white !important;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(251, 162, 68, 0.3);
 }
 
 /* Community Social Buttons - Match buttonSecondary style (smaller size like CTA) */
@@ -610,7 +659,7 @@ section[class*="community"] a.button--secondary::before {
 /* Code Blocks */
 .prism-code {
   background: #1a1a1f;
-  border: 1px solid rgba(251, 162, 68, 0.2);
+  border: 1px solid rgba(204, 204, 204, 0.3);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
@@ -740,9 +789,7 @@ tr:hover {
 
 /* Footer */
 .footer {
-  background: #2E2F4A;
   border-top: none;
-  position: relative;
 }
 
 .footer::before {
@@ -751,16 +798,10 @@ tr:hover {
 
 .footer__title {
   color: #FFFFFF;
-  font-weight: 700;
-  font-size: 1.125rem;
 }
 
 .footer__link-item {
-  color: var(--ifm-footer-link-color);
-  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 6px;
   padding: 0.25rem 0rem;
-  margin: 0.125rem 0;
 }
 
 .footer__link-item:hover {
@@ -770,16 +811,15 @@ tr:hover {
 }
 
 /* Footer Logo - Match header logo styling */
-.footer__logo {
-  opacity: 1 !important;
-}
-
 .footer__logo img {
-  opacity: 1 !important;
   width: 160px;
   height: 35px;
   filter: brightness(1);
   transition: filter 0.3s ease;
+}
+
+.footer__logo:hover img {
+  filter: brightness(1.2);
 }
 
 /* Override Docusaurus layer opacity for footer logo link */
@@ -798,14 +838,9 @@ a.footerLogoLink:hover,
   opacity: 1 !important;
 }
 
-.footer__logo:hover img {
-  opacity: 1 !important;
-  filter: brightness(1.2);
-}
-
 /* Hero Section */
 .hero {
-  background: #1A1A1A;
+  background: #13171C;
   padding: 6rem 0 8rem;
   position: relative;
   overflow: hidden;
@@ -914,7 +949,7 @@ a.footerLogoLink:hover,
 /* Mermaid Diagram Enhancements */
 .mermaid {
   background: #1B1F30 !important;
-  border: 1px solid rgba(251, 162, 68, 0.2) !important;
+  border: 1px solid rgba(204, 204, 204, 0.3) !important;
   border-radius: 16px;
   padding: 2rem;
   margin: 2rem 0;
@@ -928,7 +963,7 @@ a.footerLogoLink:hover,
 /* MermaidDiagram component container - match homepage card background */
 .mermaid-diagram-container {
   background: #1B1F30 !important;
-  border: 1px solid rgba(251, 162, 68, 0.2) !important;
+  border: 1px solid rgba(204, 204, 204, 0.3) !important;
   border-width: 1px !important;
 }
 
@@ -1072,7 +1107,7 @@ a.footerLogoLink:hover,
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1f;
+  background: #13171C;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -1088,6 +1123,15 @@ a.footerLogoLink:hover,
 .theme-doc-toc,
 .table-of-contents {
   color: #CCCCCC;
+  border: none !important;
+  border-left: none !important;
+}
+
+/* Remove borders from TOC container */
+.theme-doc-toc-desktop,
+[class*="theme-doc-toc"] {
+  border: none !important;
+  border-left: none !important;
 }
 
 .theme-doc-toc a,
@@ -1126,12 +1170,6 @@ a.footerLogoLink:hover,
   margin: 0.5rem 0;
 }
 
-/* Selection */
-::selection {
-  background-color: rgba(251, 162, 68, 0.3);
-  color: var(--ifm-color-content);
-}
-
 /* Pagination Navigation (Next/Previous links) */
 .pagination-nav,
 .pagination-nav__item,
@@ -1160,11 +1198,141 @@ a.footerLogoLink:hover,
   color: inherit;
 }
 
+/* Selection */
+::selection {
+  background-color: rgba(251, 162, 68, 0.3);
+  color: var(--ifm-color-content);
+}
+
 /* Focus */
 :focus {
   outline: 2px solid #FBA244;
   outline-offset: 2px;
 }
+
+/* ============================================
+   INTERNAL PAGES ONLY - Fluid Layout
+   Sidebar and main content are both inside .main-wrapper
+   ============================================ */
+
+/* Main wrapper - allow fluid layout for content (contains sidebar + main content) */
+/* Only apply flex layout when theme-doc-wrapper exists (internal pages) */
+.main-wrapper:has(.theme-doc-wrapper) {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+/* Internal pages layout - sidebar and content together */
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Main content wrapper - fluid and closer to sidebar (part of main-wrapper with sidebar) */
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper,
+.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-wrapper"] {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  flex: 1 1 auto !important;
+}
+
+/* Main content area - background color and fluid layout (INTERNAL PAGES ONLY) */
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-markdown,
+.main-wrapper:has(.theme-doc-wrapper) article,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-markdown > div,
+.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-markdown"] {
+  background: #1B1F30 !important;
+  padding: 2rem !important;
+  border-radius: 8px;
+  max-width: 1290px !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Main content container/row - reduce spacing from sidebar and ensure fluidity (INTERNAL PAGES ONLY) */
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .container,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .row,
+.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-wrapper"] .container,
+.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-wrapper"] .row {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Row container - ensure it allows fluid layout (INTERNAL PAGES ONLY) */
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .row,
+.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-wrapper"] .row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Main content column - fluid with max-width (INTERNAL PAGES ONLY) */
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--8,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--9,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--10,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--12,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper [class*="col--"]:not([class*="col--3"]):not([class*="col--2"]):not([class*="col--1"]) {
+  flex: 1 1 auto !important;
+  max-width: 1290px !important;
+  width: 100% !important;
+  padding-left: 1.5rem !important;
+  margin-left: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* When TOC column is not present, main content should still be fluid (INTERNAL PAGES ONLY) */
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--12,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper:not(:has(.col--2)) .col--8,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper:not(:has(.col--2)) .col--9,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper:not(:has(.col--2)) .col--10 {
+  flex: 1 1 auto !important;
+  max-width: 1290px !important;
+  width: 100% !important;
+  padding-left: 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+/* Override any Docusaurus container max-width constraints (INTERNAL PAGES ONLY) */
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .container,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .container-fluid {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Ensure all column variations use box-sizing (GLOBAL) */
+[class*="col"] {
+  box-sizing: border-box !important;
+}
+
+/* Specific override for when TOC is missing - make content take full available width (INTERNAL PAGES ONLY) */
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .row > [class*="col--"]:only-child,
+.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .row > [class*="col--"]:last-child:not([class*="col--2"]):not([class*="col--3"]) {
+  flex: 1 1 auto !important;
+  max-width: 1290px !important;
+  width: 100% !important;
+}
+
+/* ============================================
+   HOMEPAGE - Independent Styles (No fluid layout interference)
+   ============================================ */
+/* Homepage uses default Docusaurus grid behavior - no overrides needed */
 
 /* Print Styles */
 @media print {

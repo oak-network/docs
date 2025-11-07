@@ -4,7 +4,7 @@
  */
 
 .heroBanner {
-  background: #1A1A1A;
+  background: #13171C;
   padding: 6rem 0 8rem;
   position: relative;
   overflow: hidden;
@@ -115,9 +115,16 @@
   padding: 0 2rem;
 }
 
+
 .statItem {
   text-align: center;
   padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .statItem {
+    padding: 1rem;
+  }
 }
 
 .statNumber {
@@ -149,7 +156,7 @@
 
 .features {
   padding: 2rem 0;
-  background: #1A1A1A;
+  background: #13171C;
   position: relative;
 }
 
@@ -289,6 +296,24 @@
 /* Built for Everyone Section - Title Orange */
 .features:first-of-type > .featuresTitle {
   font-size: 48px !important;
+}
+
+@media (max-width: 996px) {
+  .features:first-of-type > .featuresTitle {
+    font-size: 26px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .features:first-of-type > .featuresTitle {
+    font-size: 26px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .features:first-of-type > .featuresTitle {
+    font-size: 26px !important;
+  }
 }
 
 .features:first-of-type > .featuresSubtitle {
@@ -501,7 +526,7 @@
 
 .ctas {
   padding: 4rem 0;
-  background: #1A1A1A;
+  background: #13171C;
   position: relative;
 }
 
@@ -557,7 +582,7 @@
 
 .community {
   padding: 4rem 0 8rem 0;
-  background: #1A1A1A;
+  background: #13171C;
   text-align: center;
   position: relative;
 }
@@ -644,35 +669,136 @@
     font-size: 16px;
   }
   
+  .stats {
+    padding: 1.5rem 0;
+    margin: 0 var(--ifm-spacing-horizontal);
+  }
+  
   .statsContainer {
     grid-template-columns: repeat(2, 1fr);
-    padding: 0 1.5rem;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  .statNumber {
+    font-size: 32px;
+  }
+  
+  .statLabel {
+    font-size: 14px;
+  }
+  
+  .statItem {
+    padding: 1rem;
+  }
+  
+  .features {
+    padding: 1.5rem 0;
+  }
+  
+  .features:first-of-type > .featuresTitle {
+    font-size: 26px !important;
+    margin-bottom: 0.5rem !important;
+    padding: 0 var(--ifm-spacing-horizontal);
+  }
+  
+  .features:first-of-type > .featuresSubtitle {
+    margin-bottom: 1.5rem !important;
+    padding: 0 var(--ifm-spacing-horizontal);
+  }
+  
+  .featuresTitle {
+    font-size: 22px;
+  }
+  
+  .featuresSubtitle {
+    font-size: 17px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .ctas {
+    padding: 1.5rem 0;
+  }
+  
+  .community {
+    padding: 1.5rem 0 3rem 0;
   }
   
   .featureGrid {
     grid-template-columns: 1fr !important;
-    padding: 0 1.5rem !important;
+    padding: 0 !important;
   }
   
   /* Override all feature grid variations on tablet and below */
   .features .featureGrid,
   .features:first-of-type .featureGrid {
     grid-template-columns: 1fr !important;
-    padding: 0 1.5rem !important;
+    padding: 0 !important;
+  }
+  
+  .features .container {
+    padding-left: var(--ifm-spacing-horizontal) !important;
+    padding-right: var(--ifm-spacing-horizontal) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
   
   /* Platform Advantages - Stack vertically on tablet and below */
   .platformAdvantages .featureGrid {
     grid-template-columns: 1fr !important;
-    padding: 0 1.5rem !important;
+    padding: 0 !important;
   }
   
   .featuresTitle {
-    font-size: 36px;
+    font-size: 30px;
+  }
+  
+  .featuresSubtitle {
+    font-size: 17px;
+  }
+  
+  .featureCard__title {
+    font-size: 19px;
+  }
+  
+  .featureCard__description {
+    font-size: 14px;
+  }
+  
+  .platformAdvantages .featureCard__title {
+    font-size: 15px !important;
+  }
+  
+  .platformAdvantages .featureCard__description {
+    font-size: 12px !important;
+  }
+  
+  .ctas h3 {
+    font-size: 21px;
+  }
+  
+  .ctas p {
+    font-size: 14px;
+  }
+  
+  .ctas :global(.button--primary),
+  .ctas :global(a.button--primary) {
+    font-size: 15px !important;
+    padding: 0.5rem 1.75rem !important;
   }
   
   .community h2 {
-    font-size: 36px;
+    font-size: 30px;
+  }
+  
+  .community p {
+    font-size: 16px;
+  }
+  
+  .community :global(.button--secondary),
+  .community :global(a.button--secondary) {
+    font-size: 15px !important;
+    padding: 0.5rem 1.75rem !important;
   }
 }
 
@@ -702,16 +828,27 @@
   .buttonSecondary {
     width: 100%;
     max-width: 300px;
+    font-size: 16px;
+    padding: 0.6rem 1.5rem;
+  }
+  
+  .stats {
+    padding: 1.5rem 0;
+    margin: 0 var(--ifm-spacing-horizontal);
   }
   
   .statsContainer {
     grid-template-columns: 1fr !important;
     gap: 1.5rem;
-    padding: 0 1rem;
+    padding: 0 !important;
   }
   
-  .stats {
-    padding: 2rem 0;
+  .statNumber {
+    font-size: 28px;
+  }
+  
+  .statLabel {
+    font-size: 14px;
   }
   
   /* Force all grids to single column on mobile */
@@ -723,7 +860,7 @@
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
-    padding: 0 1rem !important;
+    padding: 0 !important;
   }
   
   /* Platform Advantages - Stack vertically on mobile */
@@ -733,37 +870,142 @@
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
-    padding: 0 1rem !important;
+    padding: 0 !important;
   }
   
   .features {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
+  }
+  
+  .features .container {
+    padding-left: var(--ifm-spacing-horizontal) !important;
+    padding-right: var(--ifm-spacing-horizontal) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  .features:first-of-type > .featuresTitle {
+    font-size: 26px !important;
+    margin-bottom: 0.5rem !important;
+    padding: 0 var(--ifm-spacing-horizontal);
+  }
+  
+  .features:first-of-type > .featuresSubtitle {
+    margin-bottom: 1.5rem !important;
+    padding: 0 var(--ifm-spacing-horizontal);
   }
   
   .featuresTitle {
-    font-size: 32px;
+    font-size: 22px;
     margin-bottom: 0.75rem;
   }
   
   .featuresSubtitle {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 2rem;
   }
   
-  .statNumber {
-    font-size: 36px;
+  .featureCard__title {
+    font-size: 18px;
   }
   
-  .community h2 {
+  .featureCard__description {
+    font-size: 14px;
+  }
+  
+  .statNumber {
     font-size: 32px;
   }
   
+  .statLabel {
+    font-size: 14px;
+  }
+  
+  .statItem {
+    padding: 1rem;
+  }
+  
+  .ctas h3 {
+    font-size: 20px;
+  }
+  
+  .ctas p {
+    font-size: 14px;
+  }
+  
+  .ctas :global(.button--primary),
+  .ctas :global(a.button--primary) {
+    font-size: 14px !important;
+    padding: 0.5rem 1.5rem !important;
+  }
+  
+  .community h2 {
+    font-size: 28px;
+  }
+  
+  .community p {
+    font-size: 16px;
+  }
+  
+  .community :global(.button--secondary),
+  .community :global(a.button--secondary) {
+    font-size: 14px !important;
+    padding: 0.5rem 1.5rem !important;
+  }
+  
+  /* Platform Advantages - smaller text on mobile */
+  .platformAdvantages .featureCard__title {
+    font-size: 14px !important;
+  }
+  
+  .platformAdvantages .featureCard__description {
+    font-size: 12px !important;
+  }
+  
   .community {
-    padding: 2rem 0 4rem 0;
+    padding: 1.5rem 0 3rem 0;
   }
   
   .ctas {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+  
+  .ctas .container {
+    padding: 0 var(--ifm-spacing-horizontal);
+  }
+  
+  .ctas .row {
+    margin: 0;
+  }
+  
+  .ctas .col {
+    padding: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .ctas .col:last-child {
+    margin-bottom: 0;
+  }
+  
+  .ctas h3 {
+    text-align: center !important;
+  }
+  
+  .ctas p {
+    text-align: center !important;
+  }
+  
+  .ctas ul {
+    text-align: left;
+    display: inline-block;
+  }
+  
+  .ctas :global(.button--primary),
+  .ctas :global(a.button--primary) {
+    display: inline-block !important;
+    margin: 0 auto;
   }
   
   .communityLinks {
@@ -783,14 +1025,55 @@
   }
   
   .statNumber {
-    font-size: 32px;
+    font-size: 28px;
+  }
+  
+  .statLabel {
+    font-size: 13px;
+  }
+  
+  .statItem {
+    padding: 0.75rem;
+  }
+  
+  .features:first-of-type > .featuresTitle {
+    font-size: 26px !important;
+    padding: 0 var(--ifm-spacing-horizontal);
+  }
+  
+  .features:first-of-type > .featuresSubtitle {
+    padding: 0 var(--ifm-spacing-horizontal);
   }
   
   .featuresTitle {
-    font-size: 28px;
+    font-size: 22px;
+  }
+  
+  .featuresSubtitle {
+    font-size: 14px;
+  }
+  
+  .featureCard__title {
+    font-size: 16px;
+  }
+  
+  .featureCard__description {
+    font-size: 13px;
+  }
+  
+  .ctas h3 {
+    font-size: 18px;
+  }
+  
+  .ctas p {
+    font-size: 13px;
   }
   
   .community h2 {
-    font-size: 28px;
+    font-size: 24px;
+  }
+  
+  .community p {
+    font-size: 14px;
   }
 }
