@@ -314,10 +314,47 @@ a[href*="discord"]:not(.button):hover {
   color: var(--ifm-color-content);
   border-radius: 8px;
   padding: 0.5rem;
+  order: 2;
+  margin-left: auto;
 }
 
 .navbar__toggle:hover {
   background: rgba(251, 162, 68, 0.1);
+}
+
+/* Mobile navbar - hamburger on the right */
+@media (max-width: 996px) {
+  .navbar__inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .navbar__brand {
+    left: 1rem;
+  }
+  
+  .navbar__toggle {
+    position: absolute;
+    right: 1rem;
+    order: 2;
+  }
+  
+  .navbar__items--right {
+    right: 1rem;
+  }
+  
+  /* Adjust navbar brand z-index when mobile menu is open to keep both logos visible */
+  body.navbar-sidebar--show .navbar__brand,
+  .navbar-sidebar--show .navbar__brand,
+  [class*="navbar-sidebar--show"] .navbar__brand {
+    z-index: 0 !important;
+  }
+  
+  /* Ensure mobile menu logo (in sidebar) appears above header logo */
+  .navbar-sidebar .navbar__brand {
+    z-index: 10 !important;
+    position: relative !important;
+  }
 }
 
 /* Sidebar */

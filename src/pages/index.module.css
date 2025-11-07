@@ -646,10 +646,25 @@
   
   .statsContainer {
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 1.5rem;
   }
   
   .featureGrid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: 1fr !important;
+    padding: 0 1.5rem !important;
+  }
+  
+  /* Override all feature grid variations on tablet and below */
+  .features .featureGrid,
+  .features:first-of-type .featureGrid {
+    grid-template-columns: 1fr !important;
+    padding: 0 1.5rem !important;
+  }
+  
+  /* Platform Advantages - Stack vertically on tablet and below */
+  .platformAdvantages .featureGrid {
+    grid-template-columns: 1fr !important;
+    padding: 0 1.5rem !important;
   }
   
   .featuresTitle {
@@ -663,7 +678,7 @@
 
 @media (max-width: 768px) {
   .heroBanner {
-    padding: 4rem 0 6rem;
+    padding: 3rem 0 4rem;
   }
   
   .hero__title {
@@ -690,21 +705,49 @@
   }
   
   .statsContainer {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 1.5rem;
+    padding: 0 1rem;
   }
   
-  .featureGrid {
+  .stats {
+    padding: 2rem 0;
+  }
+  
+  /* Force all grids to single column on mobile */
+  .featureGrid,
+  .features .featureGrid,
+  .features:first-of-type .featureGrid,
+  .features:first-of-type .container .featureGrid,
+  .container .featureGrid {
+    display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
+    padding: 0 1rem !important;
+  }
+  
+  /* Platform Advantages - Stack vertically on mobile */
+  .platformAdvantages .featureGrid,
+  .platformAdvantages .container .featureGrid,
+  .features.platformAdvantages .featureGrid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    padding: 0 1rem !important;
+  }
+  
+  .features {
+    padding: 2rem 0;
   }
   
   .featuresTitle {
     font-size: 32px;
+    margin-bottom: 0.75rem;
   }
   
   .featuresSubtitle {
     font-size: 18px;
+    margin-bottom: 2rem;
   }
   
   .statNumber {
@@ -713,6 +756,20 @@
   
   .community h2 {
     font-size: 32px;
+  }
+  
+  .community {
+    padding: 2rem 0 4rem 0;
+  }
+  
+  .ctas {
+    padding: 2rem 0;
+  }
+  
+  .communityLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 }
 
