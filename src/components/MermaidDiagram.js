@@ -205,14 +205,14 @@ const MermaidDiagram = ({ children, title = "Diagram" }) => {
 
   return (
     <>
-      <div style={{ 
-        border: '2px solid #FBA244', 
+      <div className="mermaid-diagram-container" style={{ 
+        border: '1px solid rgba(251, 162, 68, 0.2)', 
         padding: '1rem', 
         margin: '1rem 0',
         borderRadius: '8px',
-        background: '#2E2F4A'
+        background: '#1B1F30'
       }}>
-        <h3 style={{ color: '#FBA244', marginBottom: '1rem' }}>{title}</h3>
+        <h3 className="mermaid-diagram-title" style={{ color: '#FFFFFF', marginBottom: '1rem' }}>{title}</h3>
         <div style={{ background: '#1a1a1f', padding: '1rem', borderRadius: '4px' }}>
           {children}
         </div>
