@@ -440,6 +440,39 @@ a[href*="discord"]:not(.button):hover {
   box-shadow: 0 8px 24px rgba(251, 162, 68, 0.4);
 }
 
+/* CTA Section Buttons - Override with buttonPrimary style */
+section[class*="ctas"] .button--primary,
+section[class*="ctas"] a.button--primary,
+section[class*="ctas"] .button.button--primary,
+section[class*="ctas"] a.button.button--primary {
+  font-family: 'Albert Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  background: #F2994A !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 0.4rem 2rem !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+section[class*="ctas"] .button--primary:hover,
+section[class*="ctas"] a.button--primary:hover,
+section[class*="ctas"] .button.button--primary:hover,
+section[class*="ctas"] a.button.button--primary:hover {
+  background: #F5A95A !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+section[class*="ctas"] .button--primary::before,
+section[class*="ctas"] a.button--primary::before {
+  display: none !important;
+  content: none !important;
+}
+
 .button--secondary {
   background: transparent;
   border: 2px solid #FBA244;
@@ -451,6 +484,40 @@ a[href*="discord"]:not(.button):hover {
   color: white !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(251, 162, 68, 0.3);
+}
+
+/* Community Social Buttons - Match buttonSecondary style (smaller size like CTA) */
+section[class*="community"] .button--secondary,
+section[class*="community"] a.button--secondary,
+section[class*="community"] .button.button--secondary,
+section[class*="community"] a.button.button--secondary {
+  font-family: 'Albert Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  background: transparent !important;
+  color: #FFFFFF !important;
+  border: 1px solid #F5A95A !important;
+  border-radius: 6px !important;
+  padding: 0.4rem 2rem !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+section[class*="community"] .button--secondary:hover,
+section[class*="community"] a.button--secondary:hover,
+section[class*="community"] .button.button--secondary:hover,
+section[class*="community"] a.button.button--secondary:hover {
+  background: #F2994A !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
+  transform: none !important;
+  border-color: #F2994A !important;
+}
+
+section[class*="community"] .button--secondary::before,
+section[class*="community"] a.button--secondary::before {
+  display: none !important;
+  content: none !important;
 }
 
 /* Code Blocks */

@@ -84,7 +84,7 @@
   font-size: 18px;
   background: transparent;
   color: #FFFFFF;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #F5A95A;
   border-radius: 6px;
   padding: 0.75rem 2rem;
   cursor: pointer;
@@ -94,7 +94,7 @@
 }
 
 .buttonSecondary:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: #F2994A;
   color: #FFFFFF;
   text-decoration: none;
 }
@@ -103,6 +103,7 @@
   background: #1B1F30;
   padding: 4rem 0;
   position: relative;
+  border-radius: 16px;
 }
 
 .statsContainer {
@@ -147,7 +148,7 @@
 }
 
 .features {
-  padding: 6rem 0;
+  padding: 2rem 0;
   background: #1A1A1A;
   position: relative;
 }
@@ -155,7 +156,7 @@
 .featuresTitle {
   font-family: 'Albert Sans', sans-serif;
   font-weight: 700;
-  font-size: 48px;
+  font-size: 36px;
   color: #FFFFFF;
   text-align: center;
   margin-bottom: 1rem;
@@ -273,28 +274,104 @@
   color: #f06292 !important;
 }
 
+.features .featureGrid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  max-width: 1200px !important;
+  gap: 2rem !important;
+  padding: 0 2rem !important;
+  margin: 0 auto !important;
+}
+
+.features:first-of-type .featureCard {
+  padding: 2rem !important;
+}
+
+/* Built for Everyone Section - Title Orange */
+.features:first-of-type > .featuresTitle {
+  font-size: 48px !important;
+}
+
+.features:first-of-type > .featuresSubtitle {
+  margin-bottom: 0 !important;
+}
+
+.featureCard__title {
+  color: #FFFFFF;
+}
+
+/* Built for Everyone Section - Orange Card Titles */
+.features:first-of-type .featureCard__title {
+  margin-bottom: 0.75rem !important;
+}
+
+/* Built for Everyone Section - White Descriptions */
+.features:first-of-type .featureCard__description {
+  color: #FFFFFF !important;
+  line-height: 1.5 !important;
+}
+
+/* Built for Everyone Section - Watermarks (matching Platform Advantages) */
+.features:first-of-type .featureCard__watermark {
+  width: 6rem !important;
+  height: 6rem !important;
+}
+
+.features:first-of-type .featureCard__watermark i {
+  font-size: 6rem !important;
+}
+
+/* Built for Everyone Section - All watermarks */
+.features:first-of-type .featureCard__watermark,
+.features:first-of-type .featureCard__watermark i {
+  color: #1F2338 !important;
+  z-index: 0 !important;
+}
+
+.features:first-of-type .featureCard__watermark svg {
+  fill: #1F2338 !important;
+  z-index: 0 !important;
+}
+
+/* Built for Everyone Section - Colorful Icons (matching Platform Advantages) */
+.features:first-of-type .featureCard:nth-child(1) .featureCard__icon {
+  color: #f06292 !important; /* Pink for layer-group */
+}
+
+.features:first-of-type .featureCard:nth-child(2) .featureCard__icon {
+  color: #4fc3f7 !important; /* Light blue for coins */
+}
+
+.features:first-of-type .featureCard:nth-child(3) .featureCard__icon {
+  color: #69f0ae !important; /* Green for shield */
+}
+
+.features:first-of-type .featureCard:nth-child(4) .featureCard__icon {
+  color: #9575cd !important; /* Purple for bolt */
+}
+
+.features:first-of-type .featureCard:nth-child(5) .featureCard__icon {
+  color: #c6ff00 !important; /* Lime green for plug */
+}
+
+.features:first-of-type .featureCard:nth-child(6) .featureCard__icon {
+  color: #00e5ff !important; /* Cyan for expand-arrows-alt */
+}
+
+.features:first-of-type .featureCard:hover .featureCard__watermark {
+  color: #1B1F30 !important;
+}
+
+.features:first-of-type .featureCard:hover .featureCard__watermark i {
+  color: #1B1F30 !important;
+}
+
 /* All watermarks use the same background color */
 .featureCard:nth-child(1) .featureCard__watermark,
-.featureCard:nth-child(1) .featureCard__watermark i,
-.featureCard:nth-child(2) .featureCard__watermark,
-.featureCard:nth-child(2) .featureCard__watermark i,
-.featureCard:nth-child(3) .featureCard__watermark,
-.featureCard:nth-child(3) .featureCard__watermark i,
-.featureCard:nth-child(4) .featureCard__watermark,
-.featureCard:nth-child(4) .featureCard__watermark i,
-.featureCard:nth-child(5) .featureCard__watermark,
-.featureCard:nth-child(5) .featureCard__watermark i,
-.featureCard:nth-child(6) .featureCard__watermark,
-.featureCard:nth-child(6) .featureCard__watermark i {
+.featureCard .featureCard__watermark i {
   color: #1F2338 !important;
 }
 
-.featureCard:nth-child(1) .featureCard__watermark svg,
-.featureCard:nth-child(2) .featureCard__watermark svg,
-.featureCard:nth-child(3) .featureCard__watermark svg,
-.featureCard:nth-child(4) .featureCard__watermark svg,
-.featureCard:nth-child(5) .featureCard__watermark svg,
-.featureCard:nth-child(6) .featureCard__watermark svg {
+.featureCard .featureCard__watermark svg {
   fill: #1F2338 !important;
 }
 
@@ -327,190 +404,159 @@
   color: #00e5ff !important;
 }
 
-/* Platform Advantages Section - 3x1 Grid */
-.features:nth-of-type(2) .featureGrid {
-  grid-template-columns: repeat(3, 1fr) !important;
+/* Platform Advantages Section - Grid Layout (4 columns) */
+.platformAdvantages .featureGrid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
   max-width: 1200px !important;
-  gap: 2rem !important;
-  padding: 0 2rem !important;
+  gap: 1.5rem !important;
   margin: 0 auto !important;
 }
 
-/* Platform Advantages Section - Cards */
-.features:nth-of-type(2) .featureCard {
-  padding: 2rem !important;
+/* Platform Advantages Section - Smaller Cards */
+.platformAdvantages .featureCard {
+  padding: 1rem !important;
 }
 
-.features:nth-of-type(2) .featureCard__title {
-  margin-bottom: 0.75rem !important;
+.platformAdvantages .featureCard__title {
+  margin-bottom: 0.5rem !important;
+  font-size: 16px !important;
 }
 
-.features:nth-of-type(2) .featureCard__description {
-  line-height: 1.5 !important;
+.platformAdvantages .featureCard__description {
+  line-height: 1.4 !important;
+  font-size: 13px !important;
 }
 
-/* Platform Advantages Section - Title Orange */
-.features:nth-of-type(2) .featuresTitle {
-  color: #FBA244 !important;
+/* Platform Advantages Section - Smaller Icons */
+.platformAdvantages .featureCard__icon {
+  width: 32px !important;
+  height: 32px !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.platformAdvantages .featureCard__icon i {
+  font-size: 1.25rem !important;
+}
+
+/* Platform Advantages Section - Title White */
+.platformAdvantages .featuresTitle {
+  color: #FFFFFF !important;
 }
 
 /* Platform Advantages Section - Colorful Icons */
-.features:nth-of-type(2) .featureCard:nth-child(1) .featureCard__icon {
+.platformAdvantages .featureCard:nth-child(1) .featureCard__icon {
   color: #f06292 !important; /* Pink/Magenta for share-alt */
 }
 
-.features:nth-of-type(2) .featureCard:nth-child(2) .featureCard__icon {
+.platformAdvantages .featureCard:nth-child(2) .featureCard__icon {
   color: #4fc3f7 !important; /* Light blue for users */
 }
 
-.features:nth-of-type(2) .featureCard:nth-child(3) .featureCard__icon {
+.platformAdvantages .featureCard:nth-child(3) .featureCard__icon {
   color: #69f0ae !important; /* Green for eye */
 }
 
-.features:nth-of-type(2) .featureCard:nth-child(4) .featureCard__icon {
+.platformAdvantages .featureCard:nth-child(4) .featureCard__icon {
   color: #9575cd !important; /* Purple for magic */
 }
 
-/* Platform Advantages Section - Orange Card Titles */
-.features:nth-of-type(2) .featureCard__title {
-  color: #FBA244 !important;
+/* Platform Advantages Section - White Card Titles */
+.platformAdvantages .featureCard__title {
+  z-index: 1 !important;
+  position: relative !important;
 }
 
 /* Platform Advantages Section - White Descriptions */
-.features:nth-of-type(2) .featureCard__description {
+.platformAdvantages .featureCard__description {
   color: #FFFFFF !important;
+  z-index: 1 !important;
+  position: relative !important;
 }
 
-/* Platform Advantages Section - Watermarks (using base size) */
-.features:nth-of-type(2) .featureCard__watermark {
-  width: 6rem !important;
-  height: 6rem !important;
+/* Platform Advantages Section - Smaller Watermarks */
+.platformAdvantages .featureCard__watermark {
+  width: 3rem !important;
+  height: 3rem !important;
+  z-index: 0 !important;
 }
 
-.features:nth-of-type(2) .featureCard__watermark i {
-  font-size: 6rem !important;
-}
-
-/* Platform Advantages Section - All watermarks */
-.features:nth-of-type(2) .featureCard__watermark,
-.features:nth-of-type(2) .featureCard__watermark i {
-  color: #1F2338 !important;
-}
-
-.features:nth-of-type(2) .featureCard__watermark svg {
-  fill: #1F2338 !important;
+.platformAdvantages .featureCard__watermark i {
+  font-size: 3rem !important;
+  z-index: 0 !important;
 }
 
 /* Platform Advantages Section - Hover effects */
-.features:nth-of-type(2) .featureCard:hover .featureCard__icon {
+.platformAdvantages .featureCard:hover .featureCard__icon {
   color: #1B1F30 !important;
 }
 
-.features:nth-of-type(2) .featureCard:hover .featureCard__watermark {
+.platformAdvantages .featureCard:hover .featureCard__watermark {
   color: #1B1F30 !important;
 }
 
-.features:nth-of-type(2) .featureCard:hover .featureCard__watermark i {
+.platformAdvantages .featureCard:hover .featureCard__watermark i {
   color: #1B1F30 !important;
 }
-
-/* Built for Everyone Section - EXACT copy of Platform Advantages styling */
-.features:first-of-type .featureGrid {
-  grid-template-columns: repeat(3, 1fr) !important;
-  max-width: 1200px !important;
-  gap: 2rem !important;
-  padding: 0 2rem !important;
-  margin: 0 auto !important;
-}
-
-.features:first-of-type .featureCard {
-  padding: 2rem !important;
-}
-
-/* Built for Everyone Section - Title Orange */
-.features:first-of-type .featuresTitle {
-  color: #FBA244 !important;
-}
-
-/* Built for Everyone Section - Orange Card Titles */
-.features:first-of-type .featureCard__title {
-  color: #FBA244 !important;
-  margin-bottom: 0.75rem !important;
-}
-
-/* Built for Everyone Section - White Descriptions */
-.features:first-of-type .featureCard__description {
-  color: #FFFFFF !important;
-  line-height: 1.5 !important;
-}
-
-/* Built for Everyone Section - Watermarks (matching Platform Advantages) */
-.features:first-of-type .featureCard__watermark {
-  width: 6rem !important;
-  height: 6rem !important;
-}
-
-.features:first-of-type .featureCard__watermark i {
-  font-size: 6rem !important;
-}
-
-/* Built for Everyone Section - All watermarks */
-.features:first-of-type .featureCard__watermark,
-.features:first-of-type .featureCard__watermark i {
-  color: #1F2338 !important;
-}
-
-.features:first-of-type .featureCard__watermark svg {
-  fill: #1F2338 !important;
-}
-
-/* Built for Everyone Section - Colorful Icons (matching Platform Advantages) */
-.features:first-of-type .featureCard:nth-child(1) .featureCard__icon {
-  color: #f06292 !important; /* Pink for layer-group */
-}
-
-.features:first-of-type .featureCard:nth-child(2) .featureCard__icon {
-  color: #4fc3f7 !important; /* Light blue for coins */
-}
-
-.features:first-of-type .featureCard:nth-child(3) .featureCard__icon {
-  color: #69f0ae !important; /* Green for shield */
-}
-
-.features:first-of-type .featureCard:nth-child(4) .featureCard__icon {
-  color: #9575cd !important; /* Purple for bolt */
-}
-
-.features:first-of-type .featureCard:nth-child(5) .featureCard__icon {
-  color: #c6ff00 !important; /* Lime green for plug */
-}
-
-.features:first-of-type .featureCard:nth-child(6) .featureCard__icon {
-  color: #00e5ff !important; /* Cyan for expand-arrows-alt */
-}
-
-/* Built for Everyone Section - Hover effects (matching Platform Advantages) */
-.features:first-of-type .featureCard:hover .featureCard__icon {
-  color: #1B1F30 !important;
-}
-
-.features:first-of-type .featureCard:hover .featureCard__watermark {
-  color: #1B1F30 !important;
-}
-
-.features:first-of-type .featureCard:hover .featureCard__watermark i {
-  color: #1B1F30 !important;
-}
-
 
 .ctas {
-  padding: 8rem 0;
+  padding: 4rem 0;
   background: #1A1A1A;
   position: relative;
 }
 
+.ctas h3, .ctas a {
+  color: #FFFFFF;
+}
+
+.ctas p {
+  color: #AAAAAA;
+}
+
+/* CTA Buttons - Match buttonPrimary style */
+/* Using :global() to target global Docusaurus classes */
+.ctas :global(.button.button--primary),
+.ctas :global(a.button.button--primary),
+.ctas :global(.button--primary),
+.ctas :global(a.button--primary) {
+  font-family: 'Albert Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  background: #F2994A !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 0.4rem 2rem !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+  transform: none !important;
+  position: relative !important;
+}
+
+.ctas :global(.button.button--primary:hover),
+.ctas :global(a.button.button--primary:hover),
+.ctas :global(.button--primary:hover),
+.ctas :global(a.button--primary:hover) {
+  background: #F5A95A !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.ctas :global(.button.button--primary::before),
+.ctas :global(a.button.button--primary::before),
+.ctas :global(.button--primary::before),
+.ctas :global(a.button--primary::before) {
+  display: none !important;
+  content: none !important;
+}
+
 .community {
-  padding: 8rem 0;
+  padding: 4rem 0 8rem 0;
   background: #1A1A1A;
   text-align: center;
   position: relative;
@@ -540,6 +586,48 @@
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Community Social Buttons - Match buttonSecondary style (smaller size like CTA) */
+.community :global(.button--secondary),
+.community :global(a.button--secondary),
+.community :global(.button.button--secondary),
+.community :global(a.button.button--secondary) {
+  font-family: 'Albert Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  background: transparent !important;
+  color: #FFFFFF !important;
+  border: 1px solid #F5A95A !important;
+  border-radius: 6px !important;
+  padding: 0.4rem 2rem !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+  transform: none !important;
+  position: relative !important;
+}
+
+.community :global(.button--secondary:hover),
+.community :global(a.button--secondary:hover),
+.community :global(.button.button--secondary:hover),
+.community :global(a.button.button--secondary:hover) {
+  background: #F2994A !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  border-color: #F2994A !important;
+}
+
+.community :global(.button--secondary::before),
+.community :global(a.button--secondary::before),
+.community :global(.button.button--secondary::before),
+.community :global(a.button.button--secondary::before) {
+  display: none !important;
+  content: none !important;
 }
 
 /* Responsive Design */

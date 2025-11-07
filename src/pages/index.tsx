@@ -160,7 +160,7 @@ function HomepageFeatures() {
 
 function HomepagePlatformAdvantages() {
   return (
-    <section className={styles.features}>
+    <section className={`${styles.features} ${styles.platformAdvantages}`}>
       <div className="container">
         <h2 className={styles.featuresTitle}>Platform Advantages</h2>
         <p className={styles.featuresSubtitle}>
@@ -308,8 +308,14 @@ export default function Home(): React.ReactElement {
       <HomepageHeader />
       <main>
         <HomepageStats />
-        <HomepageFeatures />
-        <HomepagePlatformAdvantages />
+        <div className={styles.features}>
+          <h2 className={styles.featuresTitle}>Why Choose Oak Network?</h2>
+          <p className={styles.featuresSubtitle}>The infrastructure you need to build the future of crowdfunding.</p>
+          <HomepageFeatures />
+          <HomepagePlatformAdvantages />
+        </div>
+        <HomepageCTAs />
+        <HomepageCommunity />
       </main>
     </Layout>
   );
