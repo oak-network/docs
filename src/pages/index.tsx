@@ -251,7 +251,7 @@ function HomepageCTAs() {
               <ul>
                 <li><Link to="/docs/guides/platform-integration">Platform Integration</Link></li>
                 <li><Link to="/docs/concepts/platforms">Platform Concepts</Link></li>
-                <li><Link to="/docs/guides/treasury-models">Treasury Models</Link></li>
+                <li><Link to="/docs/concepts/treasuries">Treasury Models</Link></li>
               </ul>
               <Link className="button button--primary" to="/docs/guides/platform-integration">
                 Integrate Now
@@ -283,7 +283,7 @@ function HomepageCommunity() {
               </Link>
               <Link
                 className="button button--secondary"
-                href="https://github.com/oaknetwork">
+                href="https://github.com/oak-network">
                 <i className="fab fa-github"></i> GitHub
               </Link>
               <Link

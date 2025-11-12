@@ -1212,45 +1212,73 @@ a.footerLogoLink:hover,
 
 /* ============================================
    INTERNAL PAGES ONLY - Fluid Layout
-   Sidebar and main content are both inside .main-wrapper
+   docsWrapper (fixed container) -> docRoot (fluid) -> Content (tight)
    ============================================ */
 
-/* Main wrapper - allow fluid layout for content (contains sidebar + main content) */
-/* Only apply flex layout when theme-doc-wrapper exists (internal pages) */
-.main-wrapper:has(.theme-doc-wrapper) {
-  max-width: 100% !important;
+/* Container - fixed size (docsWrapper acts as outer container) */
+[class*="docsWrapper"] {
+  max-width: 1920px !important;
   width: 100% !important;
+  margin: 0 auto !important;
+  padding-left: var(--ifm-spacing-horizontal) !important;
+  padding-right: var(--ifm-spacing-horizontal) !important;
+  box-sizing: border-box !important;
+}
+
+/* Wrapper - fluid within container (docRoot) */
+[class*="docRoot"] {
+  width: 100% !important;
+  max-width: 100% !important;
   margin: 0 !important;
+  padding: 0 !important;
   display: flex !important;
   flex-direction: row !important;
+  gap: 0 !important;
 }
 
-/* Internal pages layout - sidebar and content together */
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper {
-  flex: 1 1 auto !important;
+/* Main content wrapper - fluid and closer to sidebar */
+[class*="docRoot"] .container,
+[class*="docRoot"] .row,
+[class*="docRoot"] [class*="theme-doc-wrapper"] .container,
+[class*="docRoot"] [class*="theme-doc-wrapper"] .row {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Row container - ensure it allows fluid layout */
+[class*="docRoot"] .row,
+[class*="docRoot"] [class*="theme-doc-wrapper"] .row {
   display: flex !important;
-  flex-direction: row !important;
-  width: 100% !important;
-  max-width: 100% !important;
+  flex-wrap: wrap !important;
+  gap: 0 !important;
 }
 
-/* Main content wrapper - fluid and closer to sidebar (part of main-wrapper with sidebar) */
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper,
-.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-wrapper"] {
-  max-width: 100% !important;
-  width: 100% !important;
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
+/* Main content column - fluid with max-width, tight spacing */
+[class*="docRoot"] .col--8,
+[class*="docRoot"] .col--9,
+[class*="docRoot"] .col--10,
+[class*="docRoot"] .col--12,
+[class*="docRoot"] [class*="col--"]:not([class*="col--3"]):not([class*="col--2"]):not([class*="col--1"]) {
   flex: 1 1 auto !important;
+  max-width: 1290px !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  box-sizing: border-box !important;
 }
 
-/* Main content area - background color and fluid layout (INTERNAL PAGES ONLY) */
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-markdown,
-.main-wrapper:has(.theme-doc-wrapper) article,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-markdown > div,
-.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-markdown"] {
+/* Main content area - background color, tight padding */
+[class*="docRoot"] .theme-doc-markdown,
+[class*="docRoot"] article,
+[class*="docRoot"] .theme-doc-markdown > div,
+[class*="docRoot"] [class*="theme-doc-markdown"] {
   background: #1B1F30 !important;
-  padding: 2rem !important;
+  padding: 1.5rem !important;
   border-radius: 8px;
   max-width: 1290px !important;
   width: 100% !important;
@@ -1259,74 +1287,42 @@ a.footerLogoLink:hover,
   box-sizing: border-box !important;
 }
 
-/* Main content container/row - reduce spacing from sidebar and ensure fluidity (INTERNAL PAGES ONLY) */
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .container,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .row,
-.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-wrapper"] .container,
-.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-wrapper"] .row {
-  max-width: 100% !important;
+/* When TOC column is not present, main content should still be fluid */
+[class*="docRoot"] .col--12,
+[class*="docRoot"] [class*="theme-doc-wrapper"]:not(:has(.col--2)) .col--8,
+[class*="docRoot"] [class*="theme-doc-wrapper"]:not(:has(.col--2)) .col--9,
+[class*="docRoot"] [class*="theme-doc-wrapper"]:not(:has(.col--2)) .col--10 {
+  flex: 1 1 auto !important;
+  max-width: 1290px !important;
   width: 100% !important;
   padding-left: 0 !important;
-  margin-left: 0 !important;
-}
-
-/* Row container - ensure it allows fluid layout (INTERNAL PAGES ONLY) */
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .row,
-.main-wrapper:has(.theme-doc-wrapper) [class*="theme-doc-wrapper"] .row {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-/* Main content column - fluid with max-width (INTERNAL PAGES ONLY) */
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--8,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--9,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--10,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--12,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper [class*="col--"]:not([class*="col--3"]):not([class*="col--2"]):not([class*="col--1"]) {
-  flex: 1 1 auto !important;
-  max-width: 1290px !important;
-  width: 100% !important;
-  padding-left: 1.5rem !important;
-  margin-left: 0 !important;
+  padding-right: 0 !important;
   box-sizing: border-box !important;
 }
 
-/* When TOC column is not present, main content should still be fluid (INTERNAL PAGES ONLY) */
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .col--12,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper:not(:has(.col--2)) .col--8,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper:not(:has(.col--2)) .col--9,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper:not(:has(.col--2)) .col--10 {
-  flex: 1 1 auto !important;
-  max-width: 1290px !important;
-  width: 100% !important;
-  padding-left: 1.5rem !important;
-  box-sizing: border-box !important;
-}
-
-/* Override any Docusaurus container max-width constraints (INTERNAL PAGES ONLY) */
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .container,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .container-fluid {
+/* Override any Docusaurus container max-width constraints */
+[class*="docRoot"] .container,
+[class*="docRoot"] .container-fluid,
+[class*="docRoot"] [class*="theme-doc-wrapper"] .container {
   max-width: 100% !important;
   width: 100% !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
-/* Ensure all column variations use box-sizing (GLOBAL) */
+/* Ensure all column variations use box-sizing */
 [class*="col"] {
   box-sizing: border-box !important;
 }
 
-/* Specific override for when TOC is missing - make content take full available width (INTERNAL PAGES ONLY) */
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .row > [class*="col--"]:only-child,
-.main-wrapper:has(.theme-doc-wrapper) .theme-doc-wrapper .row > [class*="col--"]:last-child:not([class*="col--2"]):not([class*="col--3"]) {
+/* Specific override for when TOC is missing */
+[class*="docRoot"] .row > [class*="col--"]:only-child,
+[class*="docRoot"] .row > [class*="col--"]:last-child:not([class*="col--2"]):not([class*="col--3"]) {
   flex: 1 1 auto !important;
   max-width: 1290px !important;
   width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 /* ============================================

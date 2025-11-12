@@ -26,7 +26,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'oaknetwork', // Usually your GitHub org/user name.
+  organizationName: 'oak-network', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
 
   onBrokenLinks: 'warn',
@@ -52,7 +52,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/oaknetwork/docs/tree/main/',
+            'https://github.com/oak-network/docs/tree/main/',
         },
         blog: {
           showReadingTime: true,
@@ -63,7 +63,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/oaknetwork/docs/tree/main/',
+            'https://github.com/oak-network/docs/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -109,7 +109,7 @@ const config: Config = {
         {to: '/docs/operations/bounty-program', label: 'Bounty Program', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/oaknetwork/oaknetwork-contracts',
+          href: 'https://github.com/oak-network/ccprotocol-contracts',
           label: 'GitHub',
           position: 'right',
         },
@@ -165,15 +165,15 @@ const config: Config = {
           items: [
             {
               label: 'Discord',
-              href: 'https://discord.gg/oaknetwork',
+              href: 'https://discord.gg/srhtEpWBHx',
             },
             {
               label: 'X',
-              href: 'https://x.com/oaknetwork',
+              href: 'https://x.com/oak_network',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/oaknetwork',
+              href: 'https://github.com/oak-network',
             },
           ],
         },
