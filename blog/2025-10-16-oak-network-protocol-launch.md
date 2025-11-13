@@ -74,7 +74,7 @@ This is just the beginning! We have an exciting roadmap for 2026:
 
 We're building the future of crowdfunding together. Join our community:
 
-- **Discord**: [discord.gg/oaknetwork](https://discord.gg/oaknetwork)
+- **Discord**: [discord.gg/oaknetwork](https://discord.com/invite/srhtEpWBHx)
 - **GitHub**: [github.com/oaknetwork](https://github.com/oak-network)
 - **Twitter**: [@oaknetwork](https://twitter.com/oak_network)
 

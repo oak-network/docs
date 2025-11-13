@@ -242,7 +242,7 @@ try {
 - [Bug Bounty Program](/docs/security/bug-bounty)
 
 ### Support Channels
-- **Security Discord**: [discord.gg/oaknetwork](https://discord.gg/oaknetwork)
+- **Security Discord**: [discord.gg/oaknetwork](https://discord.com/invite/srhtEpWBHx)
 - **Security GitHub**: [github.com/oaknetwork/security](https://github.com/oak-network/security)
 - **Security Email**: security@oaknetwork.org
 
@@ -263,4 +263,4 @@ Thank you to our security auditors, the community, and everyone who has helped e
 
 ---
 
-*For more information about our security model, visit our [Security Overview](/docs/security/overview) or join our [Discord community](https://discord.gg/oaknetwork).*
+*For more information about our security model, visit our [Security Overview](/docs/security/overview) or join our [Discord community](https://discord.com/invite/srhtEpWBHx).*

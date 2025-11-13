@@ -1,30 +1,32 @@
 ---
 title: Devconnect Bounty Program
-description: Join Oak Network's $60k open-source bounty program to build the future of crowdfunding infrastructure
+description: Join Oak Network's invite-only bounty program to build the future of Creator infrastructure
 ---
 
 # Devconnect Bounty Program
 
-## Introduction: Build the Future of Crowdfunding
+## Introduction: Build the Future of Creators
 
-Welcome to the Oak Network! We are building an open-source, decentralized protocol designed to serve as the fundamental infrastructure for crowdfunding platforms worldwide.
+Welcome to the Oak Network! We are building an open-source, decentralized protocol designed to serve as the fundamental infrastructure for creators platforms worldwide.
 
-To accelerate our ecosystem and celebrate **Devconnect 2025** (November 17th - 23rd), we are launching our **Devconnect Bounty Program** with **$60,000 USD** in incentives. This program is designed to:
+We are preparing to launch an **invite-only bounty program** with **$60,000 USD** in incentives. This program is designed to:
 
 - **Accelerate Development**: Speed up our in-house tools like Catalyst and Signet
 - **Foster Innovation**: Encourage new products and integrations built on Oak Network
 - **Build Community**: Create a thriving ecosystem of developers and builders
 - **Drive Adoption**: Showcase the power of our open-source stack
 
-We invite you to build with us, leverage our open-source stack, and help define the next generation of community funding.
+**At Devconnect 2025** (November 17th - 23rd), we want to meet potential developers, understand their strengths and interests, and invite them to join our structured program. After Devconnect, selected developers will receive ongoing support through Discord discussions and feature/goal distribution via GitHub.
+
+We invite you to connect with us at Devconnect, learn about our open-source stack, and explore how we can build the next generation of community funding together.
 
 ## Program Overview
 
 ### Total Prize Pool: $60,000 USD
 
-The bounty program is structured to reward both core development contributions and innovative new products. All bounties are managed and paid through the **Opire platform**, ensuring transparency and automated payouts.
+The bounty program (yet to be launched) is structured to reward both core development contributions and innovative new products. All bounties will be managed and paid through the **Opire platform**, ensuring transparency and automated payouts.
 
-**Bounty Distribution**:
+**Planned Bounty Distribution**:
 - **Final Products**: $18,000 USD (30%)
 - **Integrations**: $18,000 USD (30%)
 - **Core Development**: $18,000 USD (30%)
@@ -39,20 +41,26 @@ Rewards will be distributed based on:
 
 ### Timeline
 
-- **Event**: Devconnect 2025, November 17th - 23rd
-- **Program Launch**: Devconnect 2025 (November 17th)
-- **Submission Deadline**: TBD (to be announced)
-- **Evaluation Period**: 2-3 weeks after deadline
+- **Event**: Devconnect 2025, November 17th - 23rd (Networking & Recruitment)
+- **Program Launch**: To be announced (Invite-only program)
+- **Program Structure**: Continuous submissions with ongoing support via Discord and GitHub
+- **Evaluation Period**: Ongoing review and feedback cycles
 - **Payout Timeline**: Payments processed via Opire platform within 1-7 days after PR approval
 
-### Developer Support at Devconnect
+### Devconnect 2025: Meet & Recruit
 
-All developers participating in the bounty program will be fully supported during the event. We will:
+At **Devconnect 2025** (November 17th - 23rd), we want to meet potential developers and understand how we can work together. This is a networking and recruitment event where we will:
 
-- **One-on-One Interviews**: Schedule individual interviews with each developer to brainstorm ideas and provide guidance
-- **Technical Support**: Direct access to our core team for technical questions and architecture discussions
-- **Collaborative Sessions**: Group brainstorming sessions to refine concepts and align with Oak Network's vision
-- **Networking**: Opportunities to connect with other builders and the Oak Network community
+- **One-on-One Meetings**: Schedule individual conversations to learn about your strengths, interests, and experience
+- **Technical Discussions**: Explore your technical background and how it aligns with our needs
+- **Project Exploration**: Discuss potential contributions and areas where you can make an impact
+- **Community Building**: Connect with other builders and the Oak Network community
+- **Invitation Process**: Select developers to join our invite-only program based on mutual fit
+
+**After Devconnect**: Selected developers will be invited to join our structured program with:
+- **Discord Support**: Constant discussions, technical support, and community engagement
+- **GitHub Integration**: Features and goals distributed through GitHub issues and project boards
+- **Ongoing Collaboration**: Regular check-ins and collaborative development sessions
 
 ### Development Stack
 
@@ -78,7 +86,7 @@ All bounties will be managed and paid through the **[Opire platform](https://opi
 ### Submission Process
 
 1. **Review Categories**: Choose the category that best fits your project
-2. **Join Discord**: Join our [Discord community](https://discord.gg/oaknetwork) for updates and support
+2. **Join Discord**: Join our [Discord community](https://discord.com/invite/srhtEpWBHx) for updates and support
 3. **Submit Proposal**: Create a detailed proposal following our guidelines
 4. **Development**: Build your solution with community support
 5. **Submit for Review**: Complete your project and submit for evaluation
@@ -110,6 +118,8 @@ Our open-source solution for key management and transaction signing. Signet uses
 ## Bounty Categories
 
 We have structured bounties across four key categories. Whether you want to contribute to our core, expand the protocol's capabilities, bridge Web2 and Web3, or build a full-fledged product, there's a challenge for you.
+
+**Note**: These categories represent potential areas of work. Specific bounties and features will be distributed through GitHub issues after developers are invited to the program.
 
 ---
 
@@ -450,24 +460,22 @@ Build a full-fledged product on top of the Oak stack. Show the world what is now
 
 ---
 
-## Submission Guidelines
+## How to Get Involved
 
-### Before You Start
+### At Devconnect 2025
 
-1. **Join Our Community**: Join our [Discord](https://discord.gg/oaknetwork) to get support and updates
-2. **Review Documentation**: Familiarize yourself with our [documentation](/docs/intro) and [API reference](/docs/api/README)
-3. **Check Existing Work**: Review existing bounties and implementations to avoid duplication
-4. **Propose Your Solution**: Submit a brief proposal before starting major work
+1. **Connect With Us**: Meet our team at Devconnect to discuss your interests
+2. **Share Your Background**: Tell us about your experience, strengths, and what you'd like to work on
+3. **Explore Opportunities**: Learn about potential projects and areas where you can contribute
+4. **Get Invited**: Selected developers will receive an invitation to join our program
 
-### Proposal Requirements
+### After Being Invited
 
-Your proposal should include:
-
-- **Project Overview**: Clear description of what you're building
-- **Technical Approach**: How you plan to implement the solution
-- **Timeline**: Estimated completion time
-- **Deliverables**: What you'll provide (code, documentation, tests, etc.)
-- **Your Background**: Relevant experience and skills
+1. **Join Discord**: Access our invite-only Discord channels for structured support
+2. **Review GitHub Issues**: Features and goals are distributed through GitHub issues
+3. **Participate in Discussions**: Engage in constant discussions about features, architecture, and implementation
+4. **Start Building**: Begin development with ongoing team and community support
+5. **Iterate & Improve**: Work collaboratively with regular feedback cycles
 
 ### Code Requirements
 
@@ -494,10 +502,11 @@ Projects will be evaluated based on:
 
 ### Eligibility
 
-- Open to individuals and teams worldwide
+- **Invite-Only Program**: Participation is by invitation only
 - Participants must be 18 years or older
 - Employees of Oak Network and immediate family members are not eligible
 - Participants must comply with all applicable laws and regulations
+- Invitations are extended based on mutual fit, technical skills, and alignment with Oak Network's goals
 
 ### Intellectual Property
 
@@ -546,31 +555,32 @@ Participants may be disqualified for:
 ### Resources
 
 - **Documentation**: [docs.oaknetwork.org](https://docs.oaknetwork.org)
-- **Discord**: [Join our community](https://discord.gg/oaknetwork)
+- **Discord**: [Join our community](https://discord.com/invite/srhtEpWBHx)
 - **GitHub**: [oaknetwork-contracts](https://github.com/oak-network/oaknetwork-contracts)
 - **Email**: [bounty@oaknetwork.org](mailto:bounty@oaknetwork.org)
 
 ### Community Support
 
-- **Discord Channel**: `#bounty-program` for questions and discussions
-- **Office Hours**: Weekly office hours for technical support (announced on Discord)
-- **GitHub Discussions**: For technical questions and feature discussions
+- **Discord Channels**: Invite-only channels for constant discussions, technical support, and collaboration
+- **GitHub Issues**: Features and goals distributed through GitHub issues with clear tracking
+- **Regular Check-ins**: Ongoing collaboration and feedback cycles
+- **Office Hours**: Technical support sessions (announced on Discord for invited participants)
 
 ---
 
 ## Next Steps
 
-1. **Choose Your Category**: Review the categories and select the one that interests you
-2. **Join Discord**: Get connected with the community and team
-3. **Submit Your Proposal**: Create a detailed proposal for your chosen bounty
-4. **Start Building**: Begin development with community support
-5. **Submit for Evaluation**: Complete your project and submit for review
+1. **Attend Devconnect 2025**: Meet us at the event (November 17th - 23rd) to discuss opportunities
+2. **Connect With Our Team**: Share your background, interests, and what you'd like to work on
+3. **Get Invited**: Selected developers will receive an invitation to join our program
+4. **Join the Program**: Access Discord and GitHub for structured support and collaboration
+5. **Start Building**: Begin development with ongoing team support and constant discussions
 
-Ready to build the future of crowdfunding? Join us and let's make it happen!
+Ready to build the future of Creators? Let's connect at Devconnect and explore how we can work together!
 
 ---
 
-**Questions?** Reach out to us at [bounty@oaknetwork.org](mailto:bounty@oaknetwork.org) or join our [Discord community](https://discord.gg/oaknetwork).
+**Questions?** Join our [Discord community](https://discord.com/invite/srhtEpWBHx).
 
-**Happy Building! 🚀**
+**See you at Devconnect 2025! 🚀**
 

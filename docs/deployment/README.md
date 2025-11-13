@@ -418,7 +418,7 @@ main()
 
 ---
 
-**Need help?** Check our [Smart Contract Reference](/docs/contracts/overview) or join our [Discord community](https://discord.gg/oaknetwork).
+**Need help?** Check our [Smart Contract Reference](/docs/contracts/overview) or join our [Discord community](https://discord.com/invite/srhtEpWBHx).
 
 
 

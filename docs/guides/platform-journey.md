@@ -242,7 +242,7 @@ Offer the advantages of blockchain technology while maintaining a user-friendly 
 
 1. **Review Documentation**: Start with our [Platform Integration Guide](/docs/guides/platform-integration)
 2. **Explore Contracts**: Study our [Smart Contract Reference](/docs/contracts/overview)
-3. **Join Community**: Connect with other platform builders in our [Discord](https://discord.gg/oaknetwork)
+3. **Join Community**: Connect with other platform builders in our [Discord](https://discord.com/invite/srhtEpWBHx)
 4. **Schedule Demo**: Contact us for a personalized platform integration demo
 
 ### Support and Resources
@@ -254,7 +254,7 @@ Offer the advantages of blockchain technology while maintaining a user-friendly 
 - [API Documentation](/docs/api/overview)
 
 **Community:**
-- [Discord Community](https://discord.gg/oaknetwork)
+- [Discord Community](https://discord.com/invite/srhtEpWBHx)
 - [GitHub Repository](https://github.com/oak-network)
 - [Developer Forum](https://forum.oaknetwork.org)
 
@@ -270,5 +270,5 @@ Oak Network provides the infrastructure and tools needed to transform any platfo
 
 The benefits are clear: expanded reach through cross-platform sharing, access to crypto communities, complete transparency, and simplified user experiences. The question isn't whether to integrate with Oak Network, but how quickly you can start building the future of crowdfunding.
 
-Ready to begin your platform journey? [Start with our Platform Integration Guide](/docs/guides/platform-integration) or [join our community](https://discord.gg/oaknetwork) to connect with other platform builders.
+Ready to begin your platform journey? [Start with our Platform Integration Guide](/docs/guides/platform-integration) or [join our community](https://discord.com/invite/srhtEpWBHx) to connect with other platform builders.
 
