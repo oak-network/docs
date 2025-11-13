@@ -233,9 +233,9 @@ We're building the next generation of decentralized crowdfunding infrastructure,
 
 **Join us in revolutionizing crowdfunding!**
 
-- **Discord**: [discord.gg/oaknetwork](https://discord.gg/oaknetwork)
-- **GitHub**: [github.com/oaknetwork](https://github.com/oaknetwork)
-- **Twitter**: [@oaknetwork](https://twitter.com/oaknetwork)
+- **Discord**: [discord.gg/oaknetwork](https://discord.com/invite/srhtEpWBHx)
+- **GitHub**: [github.com/oaknetwork](https://github.com/oak-network)
+- **Twitter**: [@oaknetwork](https://twitter.com/oak_network)
 
 ---
 

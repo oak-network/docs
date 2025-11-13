@@ -18,9 +18,7 @@ function HomepageHeader() {
             From Roots to Routes.
           </p>
           <p className="hero__description">
-            Decentralized crowdfunding infrastructure on Celo. Build the future of fundraising 
-            with our comprehensive suite of smart contracts. Enable any application to leverage 
-            blockchain technology with transparent fees and secure infrastructure.
+            We build the behind the scenes “engine” that lets creators run their own Kickstarter style campaigns, online shops, and preorders, with blockchain quietly handling the money and trust in the background.
           </p>
           <div className={styles.buttons}>
             <Link
@@ -84,7 +82,7 @@ function HomepageFeatures() {
             </div>
             <h3 className={styles.featureCard__title}>Infrastructure-First</h3>
             <p className={styles.featureCard__description}>
-              Oak Network is designed as infrastructure, not just another platform. Any application can integrate our smart contracts to add crowdfunding capabilities.
+              Oak is infrastructure, not a monolith. Any application can integrate our contracts to power their own e-commerce, pre-orders, and campaigns.
             </p>
           </div>
           {/* Card 2 - Transparent Fees - Light blue coins */}
@@ -110,7 +108,7 @@ function HomepageFeatures() {
             </div>
             <h3 className={styles.featureCard__title}>Security & Trust</h3>
             <p className={styles.featureCard__description}>
-              Audited smart contracts, open source development, and decentralized governance ensure the highest security standards for your campaigns.
+              Audited smart contracts and open-source development ensure the highest security standards for your platform and your users' transactions.
             </p>
           </div>
           {/* Card 4 - Celo Benefits - Purple bolt */}
@@ -167,7 +165,7 @@ function HomepagePlatformAdvantages() {
           Unlock new revenue streams and expand your reach
         </p>
         <div className={styles.featureGrid}>
-          {/* Card 1 - Cross-Platform Campaign Sharing */}
+          {/* Card 1 - Interconnected Platforms */}
           <div className={styles.featureCard}>
             <div className={styles.featureCard__watermark}>
               <i className="fas fa-share-alt"></i>
@@ -175,9 +173,9 @@ function HomepagePlatformAdvantages() {
             <div className={styles.featureCard__icon}>
               <i className="fas fa-share-alt"></i>
             </div>
-            <h3 className={styles.featureCard__title}>Cross-Platform Campaign Sharing</h3>
+            <h3 className={styles.featureCard__title}>Interconnected Platforms</h3>
             <p className={styles.featureCard__description}>
-              Enable your creators to launch campaigns on your platform while automatically sharing them across other platforms worldwide. Expand reach without additional effort.
+              Enable creators to launch on your platform and automatically share their products or campaigns across other platforms in the ecosystem.
             </p>
           </div>
           {/* Card 2 - Access Crypto Communities */}
@@ -190,7 +188,7 @@ function HomepagePlatformAdvantages() {
             </div>
             <h3 className={styles.featureCard__title}>Access Crypto Communities</h3>
             <p className={styles.featureCard__description}>
-              Tap into the growing crypto ecosystem and reach users who prefer digital currencies. Accept crypto pledges alongside traditional payments.
+              Tap into the growing crypto ecosystem and reach users who prefer digital currencies. Accept crypto payments alongside traditional methods.
             </p>
           </div>
           {/* Card 3 - Complete Transparency */}
@@ -203,7 +201,7 @@ function HomepagePlatformAdvantages() {
             </div>
             <h3 className={styles.featureCard__title}>Complete Transparency</h3>
             <p className={styles.featureCard__description}>
-              Build trust with creators and backers through blockchain-powered transparency. Every transaction and fund flow is publicly verifiable.
+              Build trust with creators and supporters. With blockchain as the "quiet" backend, every transaction and fund flow is publicly verifiable.
             </p>
           </div>
           {/* Card 4 - Simplified Crypto Experience */}
@@ -216,7 +214,7 @@ function HomepagePlatformAdvantages() {
             </div>
             <h3 className={styles.featureCard__title}>Simplified Crypto Experience</h3>
             <p className={styles.featureCard__description}>
-              Offer blockchain benefits without the complexity. Our integration with Privy and other technologies provides seamless crypto experiences.
+              Offer blockchain benefits without the complexity. Our "behind the scenes" engine provides a seamless and simple user experience.
             </p>
           </div>
         </div>
@@ -233,7 +231,7 @@ function HomepageCTAs() {
           <div className="col col--6">
             <div className={styles.ctaCard}>
               <h3><i className="fas fa-code"></i> For Developers</h3>
-              <p>Integrate Oak Network into your application and start building the future of crowdfunding.</p>
+              <p>Integrate Oak Network into your application and start building the future of creator commerce.</p>
               <ul>
                 <li><Link to="/docs/guides/create-campaign">Create Your First Campaign</Link></li>
                 <li><Link to="/docs/guides/platform-integration">Platform Integration</Link></li>
@@ -247,7 +245,7 @@ function HomepageCTAs() {
           <div className="col col--6">
             <div className={styles.ctaCard}>
               <h3><i className="fas fa-building"></i> For Platforms</h3>
-              <p>Add crowdfunding capabilities to your existing platform with our comprehensive integration tools.</p>
+              <p>Add powerful commerce, pre-order, and campaign capabilities to your existing platform with our comprehensive integration tools.</p>
               <ul>
                 <li><Link to="/docs/guides/platform-integration">Platform Integration</Link></li>
                 <li><Link to="/docs/concepts/platforms">Platform Concepts</Link></li>
@@ -273,12 +271,12 @@ function HomepageCommunity() {
             <h2>Join the Oak Network Community</h2>
             <p>
               Connect with developers, platform builders, and community members 
-              who are shaping the future of decentralized crowdfunding.
+              who are shaping the future of decentralized creator commerce.
             </p>
             <div className={styles.communityLinks}>
               <Link
                 className="button button--secondary"
-                href="https://discord.gg/oaknetwork">
+                href="https://discord.com/invite/srhtEpWBHx">
                 <i className="fab fa-discord"></i> Discord
               </Link>
               <Link
@@ -288,7 +286,7 @@ function HomepageCommunity() {
               </Link>
               <Link
                 className="button button--secondary"
-                href="https://x.com/oaknetwork">
+                href="https://x.com/oak_network">
                 <i className="fab fa-x-twitter"></i> X
               </Link>
             </div>
@@ -303,14 +301,14 @@ export default function Home(): React.ReactElement {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title} - Decentralized Crowdfunding Infrastructure`}
-      description="Build the future of crowdfunding with Oak Network's comprehensive suite of smart contracts on Celo blockchain. Transparent fees, secure infrastructure, and easy integration.">
+      title={`${siteConfig.title} - The Invisible Engine for Creator Commerce`}
+      description="Build the future of creator commerce with Oak Network's invisible engine. Power Kickstarter-style campaigns, online shops, and pre-orders with blockchain handling payments and trust.">
       <HomepageHeader />
       <main>
         <HomepageStats />
         <div className={styles.features}>
           <h2 className={styles.featuresTitle}>Why Choose Oak Network?</h2>
-          <p className={styles.featuresSubtitle}>The infrastructure you need to build the future of crowdfunding.</p>
+          <p className={styles.featuresSubtitle}>The invisible engine you need to build the future of creator commerce.</p>
           <HomepageFeatures />
           <HomepagePlatformAdvantages />
         </div>

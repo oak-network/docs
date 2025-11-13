@@ -8,7 +8,7 @@ This workflow automatically deploys the Oak Network documentation to Vercel when
 
 To enable automatic deployments, you need to add the following secrets to your GitHub repository:
 
-1. Go to your GitHub repository: `https://github.com/oaknetwork/docs/settings/secrets/actions`
+1. Go to your GitHub repository: `https://github.com/oak-network/docs/settings/secrets/actions`
 2. Click "New repository secret" and add the following three secrets:
 
    **Secret 1**: `VERCEL_TOKEN`

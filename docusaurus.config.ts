@@ -114,7 +114,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://discord.gg/oaknetwork',
+          href: 'https://discord.com/invite/srhtEpWBHx',
           label: 'Discord',
           position: 'right',
         },

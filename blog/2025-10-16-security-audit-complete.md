@@ -243,7 +243,7 @@ try {
 
 ### Support Channels
 - **Security Discord**: [discord.gg/oaknetwork](https://discord.gg/oaknetwork)
-- **Security GitHub**: [github.com/oaknetwork/security](https://github.com/oaknetwork/security)
+- **Security GitHub**: [github.com/oaknetwork/security](https://github.com/oak-network/security)
 - **Security Email**: security@oaknetwork.org
 
 ## What's Next?

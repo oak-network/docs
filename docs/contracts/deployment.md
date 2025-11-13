@@ -14,7 +14,7 @@ This guide covers how to deploy Oak Network smart contracts to the Celo blockcha
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/oaknetwork/oaknetwork-contracts
+git clone https://github.com/oak-network/oaknetwork-contracts
 cd oaknetwork-contracts
 ```
 

@@ -34,7 +34,7 @@ This guide covers deploying Oak Network smart contracts to various networks and 
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/oaknetwork/oaknetwork-contracts.git
+git clone https://github.com/oak-network/oaknetwork-contracts.git
 cd oaknetwork-contracts
 ```
 

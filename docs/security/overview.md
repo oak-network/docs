@@ -664,7 +664,7 @@ class SecurityMonitor {
 ### Community
 
 - [Security Discord Channel](https://discord.gg/oaknetwork)
-- [Security GitHub Issues](https://github.com/oaknetwork/security)
+- [Security GitHub Issues](https://github.com/oak-network/security)
 - [Security Email](security@oaknetwork.org)
 
 ## Next Steps

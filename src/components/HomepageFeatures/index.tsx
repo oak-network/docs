@@ -25,7 +25,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Audited by OpenZeppelin, PeckShield, and part of Immunefi's bug bounty program. 
+        Audited by PeckShield, soon by OpenZeppelin, and part of Immunefi's bug bounty program. 
         Your funds are protected by industry-leading security standards.
       </>
     ),

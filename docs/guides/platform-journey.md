@@ -226,7 +226,7 @@ Offer the advantages of blockchain technology while maintaining a user-friendly 
 ### Security Considerations
 
 **Smart Contract Security:**
-- Audited by OpenZeppelin and PeckShield
+- Audited by PeckShield and soon by OpenZeppelin
 - Part of Immunefi bug bounty program
 - Regular security updates and patches
 
@@ -255,7 +255,7 @@ Offer the advantages of blockchain technology while maintaining a user-friendly 
 
 **Community:**
 - [Discord Community](https://discord.gg/oaknetwork)
-- [GitHub Repository](https://github.com/oaknetwork)
+- [GitHub Repository](https://github.com/oak-network)
 - [Developer Forum](https://forum.oaknetwork.org)
 
 **Professional Services:**

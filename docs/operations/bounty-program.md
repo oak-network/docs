@@ -547,7 +547,7 @@ Participants may be disqualified for:
 
 - **Documentation**: [docs.oaknetwork.org](https://docs.oaknetwork.org)
 - **Discord**: [Join our community](https://discord.gg/oaknetwork)
-- **GitHub**: [oaknetwork-contracts](https://github.com/oaknetwork/oaknetwork-contracts)
+- **GitHub**: [oaknetwork-contracts](https://github.com/oak-network/oaknetwork-contracts)
 - **Email**: [bounty@oaknetwork.org](mailto:bounty@oaknetwork.org)
 
 ### Community Support
