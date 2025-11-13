@@ -57,6 +57,8 @@ At **Devconnect 2025** (November 17th - 23rd), we want to meet potential develop
 - **Community Building**: Connect with other builders and the Oak Network community
 - **Invitation Process**: Select developers to join our invite-only program based on mutual fit
 
+**Can't attend Devconnect?** [Join our waitlist](https://forms.gle/aTPTfojpVbhdF5Mx7) to express your interest and we'll reach out when opportunities become available.
+
 **After Devconnect**: Selected developers will be invited to join our structured program with:
 - **Discord Support**: Constant discussions, technical support, and community engagement
 - **GitHub Integration**: Features and goals distributed through GitHub issues and project boards
@@ -462,12 +464,18 @@ Build a full-fledged product on top of the Oak stack. Show the world what is now
 
 ## How to Get Involved
 
+### Join the Waitlist
+
+**[Join our waitlist](https://forms.gle/aTPTfojpVbhdF5Mx7)** to express your interest in the invite-only program. We'll review applications and reach out to selected developers.
+
 ### At Devconnect 2025
 
 1. **Connect With Us**: Meet our team at Devconnect to discuss your interests
 2. **Share Your Background**: Tell us about your experience, strengths, and what you'd like to work on
 3. **Explore Opportunities**: Learn about potential projects and areas where you can contribute
 4. **Get Invited**: Selected developers will receive an invitation to join our program
+
+**Can't make it to Devconnect?** [Join our waitlist](https://docs.google.com/forms/d/e/1FAIpQLSdawbdiDlZsGY0Lom7WM4M_SGNxQpl1fwO1WSf3eGeK5Hwizw/viewform) and we'll consider you for future invitations.
 
 ### After Being Invited
 
@@ -570,13 +578,14 @@ Participants may be disqualified for:
 
 ## Next Steps
 
-1. **Attend Devconnect 2025**: Meet us at the event (November 17th - 23rd) to discuss opportunities
-2. **Connect With Our Team**: Share your background, interests, and what you'd like to work on
-3. **Get Invited**: Selected developers will receive an invitation to join our program
-4. **Join the Program**: Access Discord and GitHub for structured support and collaboration
-5. **Start Building**: Begin development with ongoing team support and constant discussions
+1. **[Join the Waitlist](https://docs.google.com/forms/d/e/1FAIpQLSdawbdiDlZsGY0Lom7WM4M_SGNxQpl1fwO1WSf3eGeK5Hwizw/viewform)**: Express your interest in our invite-only program
+2. **Attend Devconnect 2025** (Optional): Meet us at the event (November 17th - 23rd) to discuss opportunities in person
+3. **Connect With Our Team**: Share your background, interests, and what you'd like to work on
+4. **Get Invited**: Selected developers will receive an invitation to join our program
+5. **Join the Program**: Access Discord and GitHub for structured support and collaboration
+6. **Start Building**: Begin development with ongoing team support and constant discussions
 
-Ready to build the future of Creators? Let's connect at Devconnect and explore how we can work together!
+Ready to build the future of Creators? [Join our waitlist](https://docs.google.com/forms/d/e/1FAIpQLSdawbdiDlZsGY0Lom7WM4M_SGNxQpl1fwO1WSf3eGeK5Hwizw/viewform) or connect with us at Devconnect!
 
 ---
 
