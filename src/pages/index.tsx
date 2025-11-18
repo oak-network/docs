@@ -35,7 +35,7 @@ function HomepageHeader() {
           <div className={styles.trustedBy}>
             <div className={styles.trustedByContainer}>
               <div className={styles.trustedByGroup}>
-                <p className={styles.trustedByTitle}>Trusted by</p>
+                <p className={styles.trustedByTitle}>Supported by</p>
                 <div className={styles.trustedByLogos}>
                   <div className={styles.trustedByLogoContainer}>
                     <img 
