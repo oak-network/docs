@@ -99,6 +99,104 @@
   text-decoration: none;
 }
 
+.trustedBy {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.trustedByContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.trustedByGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.trustedByTitle {
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #AAAAAA;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.trustedByLogos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.trustedByLogoContainer {
+  background: #FFFFFF;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kickstarterLogo {
+  height: 50px;
+  width: auto;
+  opacity: 1;
+  display: block;
+  border-radius: 8px;
+}
+
+.a16zLogo {
+  height: 85px;
+  width: auto;
+  opacity: 1;
+  display: block;
+  border-radius: 8px;
+}
+
+.auditPartnerGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.auditPartnerLabel {
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #AAAAAA;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.auditPartnerLogoContainer {
+  background: #FFFFFF;
+  padding: 1.5rem 1.5rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 85px;
+}
+
+.auditPartnerLogo {
+  height: 35px;
+  width: auto;
+  opacity: 1;
+  display: block;
+  border-radius: 8px;
+}
+
 .stats {
   background: #1B1F30;
   padding: 4rem 0;
@@ -830,6 +928,52 @@
     max-width: 300px;
     font-size: 16px;
     padding: 0.6rem 1.5rem;
+  }
+  
+  .trustedBy {
+    margin-top: 2rem;
+  }
+  
+  .trustedByContainer {
+    gap: 2rem;
+  }
+  
+  .trustedByGroup,
+  .auditPartnerGroup {
+    gap: 1rem;
+  }
+  
+  .trustedByTitle {
+    font-size: 12px;
+  }
+  
+  .trustedByLogos {
+    gap: 1rem;
+  }
+  
+  .trustedByLogoContainer {
+    padding: 0.75rem 1rem;
+  }
+  
+  .kickstarterLogo {
+    height: 40px;
+  }
+  
+  .a16zLogo {
+    height: 68px;
+  }
+  
+  .auditPartnerLogoContainer {
+    padding: 0.75rem 1rem;
+    min-height: 68px;
+  }
+  
+  .auditPartnerLogo {
+    height: 28px;
+  }
+  
+  .auditPartnerLabel {
+    font-size: 12px;
   }
   
   .stats {

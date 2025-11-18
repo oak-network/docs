@@ -32,6 +32,37 @@ function HomepageHeader() {
               View Roadmap
             </Link>
           </div>
+          <div className={styles.trustedBy}>
+            <div className={styles.trustedByContainer}>
+              <div className={styles.trustedByGroup}>
+                <p className={styles.trustedByTitle}>Trusted by</p>
+                <div className={styles.trustedByLogos}>
+                  <div className={styles.trustedByLogoContainer}>
+                    <img 
+                      src="/img/kickstarter-logo.png" 
+                      alt="Kickstarter" 
+                      className={styles.kickstarterLogo}
+                    />
+                  </div>
+                  <img 
+                    src="/img/a16z-logo.webp" 
+                    alt="a16z" 
+                    className={styles.a16zLogo}
+                  />
+                </div>
+              </div>
+              <div className={styles.auditPartnerGroup}>
+                <span className={styles.auditPartnerLabel}>Audit Partner</span>
+                <div className={styles.auditPartnerLogoContainer}>
+                  <img 
+                    src="/img/open-zeppelin.png" 
+                    alt="OpenZeppelin" 
+                    className={styles.auditPartnerLogo}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>
