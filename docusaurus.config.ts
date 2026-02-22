@@ -105,6 +105,12 @@ const config: Config = {
           position: 'left',
           label: 'Smart Contracts',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'sdkSidebar',
+          position: 'left',
+          label: 'SDK',
+        },
         {to: '/docs/roadmap', label: 'Roadmap', position: 'left'},
         {to: '/docs/operations/bounty-program', label: 'Bounty Program', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
@@ -157,6 +163,10 @@ const config: Config = {
             {
               label: 'Platform Integration',
               to: '/docs/guides/platform-integration',
+            },
+            {
+              label: 'SDK Reference',
+              to: '/docs/sdk/overview',
             },
           ],
         },

@@ -1,4 +1,4 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   // Main documentation sidebar
@@ -23,7 +23,7 @@ const sidebars: SidebarsConfig = {
         'guides/create-campaign',
         'guides/platform-integration',
         'guides/platform-journey',
-        'guides/platform-sdk',
+        'sdk/overview',
       ],
     },
     {
@@ -65,9 +65,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Interfaces',
-          items: [
-            'contracts/interfaces-overview',
-          ],
+          items: ['contracts/interfaces-overview'],
         },
       ],
     },
@@ -85,11 +83,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Operations',
-      items: [
-        'deployment/README',
-        'api/README',
-        'operations/bounty-program',
-      ],
+      items: ['deployment/README', 'api/README', 'operations/bounty-program'],
     },
   ],
 
@@ -130,9 +124,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Interfaces',
-      items: [
-        'contracts/interfaces-overview',
-      ],
+      items: ['contracts/interfaces-overview'],
     },
   ],
 
@@ -141,18 +133,38 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Basic Integration',
-      items: [
-        'guides/create-campaign',
-      ],
+      items: ['guides/create-campaign'],
     },
     {
       type: 'category',
       label: 'Platform Integration',
+      items: ['guides/platform-integration'],
+    },
+  ],
+
+  sdkSidebar: [
+    'sdk/overview',
+    'sdk/installation',
+    'sdk/quickstart',
+    'sdk/authentication',
+    {
+      type: 'category',
+      label: 'Services',
       items: [
-        'guides/platform-integration',
-        'guides/platform-sdk',
+        'sdk/customers',
+        'sdk/payments',
+        'sdk/payment-methods',
+        'sdk/webhooks',
+        'sdk/transactions',
+        'sdk/transfers',
+        'sdk/plans',
+        'sdk/refunds',
+        'sdk/buy-and-sell',
+        'sdk/providers',
       ],
     },
+    'sdk/error-handling',
+    'sdk/environments',
   ],
 };
 
