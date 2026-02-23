@@ -115,4 +115,4 @@ if (!result.ok && result.error instanceof EnvironmentViolationError) {
 }
 ```
 
-> For more on environment behavior, see [Environments](/docs/sdk/environments).
+> For more on environment behavior, see [Environments](/docs/sdk/api-sdk/environments).

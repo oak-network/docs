@@ -59,4 +59,4 @@ const client = createOakClient({
 });
 ```
 
-> For a full breakdown of environment behavior, sandbox-only restrictions, and the `@SandboxOnly` decorator, see [Environments](/docs/sdk/environments).
+> For a full breakdown of environment behavior, sandbox-only restrictions, and the `@SandboxOnly` decorator, see [Environments](/docs/sdk/api-sdk/environments).

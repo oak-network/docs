@@ -109,7 +109,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'sdkSidebar',
           position: 'left',
-          label: 'SDK',
+          label: 'Payment SDK',
         },
         {to: '/docs/roadmap', label: 'Roadmap', position: 'left'},
         {to: '/docs/operations/bounty-program', label: 'Bounty Program', position: 'left'},
@@ -165,7 +165,7 @@ const config: Config = {
               to: '/docs/guides/platform-integration',
             },
             {
-              label: 'SDK Reference',
+              label: 'Payment SDK',
               to: '/docs/sdk/overview',
             },
           ],

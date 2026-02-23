@@ -142,4 +142,4 @@ All three methods return `Result<Payment.Response>`. The response data extends t
 | `updated_at` | `string` | ISO timestamp |
 | `provider_response` | `object` | Raw provider response data |
 
-> To issue a refund on a completed payment, see [Refunds](/docs/sdk/refunds).
+> To issue a refund on a completed payment, see [Refunds](/docs/sdk/api-sdk/refunds).

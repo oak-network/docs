@@ -52,7 +52,7 @@ if (result.ok) {
 
 Every SDK method returns a `Result<T, OakError>` — a discriminated union that is either `{ ok: true, value: T }` or `{ ok: false, error: OakError }`. Check `result.ok` before accessing the value.
 
-> This pattern replaces try/catch for API calls. The SDK never throws on HTTP errors — it wraps them in the `Result` type. For the full breakdown, see [Error Handling](/docs/sdk/error-handling).
+> This pattern replaces try/catch for API calls. The SDK never throws on HTTP errors — it wraps them in the `Result` type. For the full breakdown, see [Error Handling](/docs/sdk/api-sdk/error-handling).
 
 ## 5. Create a customer
 
@@ -114,7 +114,7 @@ This is useful when you want to keep your bundle size small or only interact wit
 
 ## What to read next
 
-- [Authentication](/docs/sdk/authentication) — how OAuth2 token management works under the hood
-- [Payments](/docs/sdk/payments) — create, confirm, and cancel payments across providers
-- [Webhooks](/docs/sdk/webhooks) — register endpoints and receive real-time event notifications
-- [Error Handling](/docs/sdk/error-handling) — the `Result<T>` pattern, error types, and retry configuration
+- [Authentication](/docs/sdk/api-sdk/authentication) — how OAuth2 token management works under the hood
+- [Payments](/docs/sdk/api-sdk/payments) — create, confirm, and cancel payments across providers
+- [Webhooks](/docs/sdk/api-sdk/webhooks) — register endpoints and receive real-time event notifications
+- [Error Handling](/docs/sdk/api-sdk/error-handling) — the `Result<T>` pattern, error types, and retry configuration

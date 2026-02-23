@@ -75,4 +75,4 @@ The `@SandboxOnly` decorator (and its function equivalent `sandboxOnlyFn`) check
 
 This prevents test operations from accidentally running against production data.
 
-> For the full error type reference, see [Error Handling](/docs/sdk/error-handling).
+> For the full error type reference, see [Error Handling](/docs/sdk/api-sdk/error-handling).

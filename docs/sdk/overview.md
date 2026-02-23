@@ -1,16 +1,19 @@
-# API SDK
+# Payment SDK
 
-The `@oaknetwork/api` package is a TypeScript SDK that wraps the Oak Network payment API — handling authentication, retries, and type safety so you can focus on building your integration.
+The Payment SDK is Oak Network's toolkit for integrating payments, transfers, subscriptions, and crypto on/off-ramp flows into your application.
 
-## Highlights
+## Packages
 
-- **Initialize a client** for sandbox or production: `createOakClient({ environment: 'sandbox', ... })`
-- **Bundle all services** into one object: `Crowdsplit(client)`
-- **Type-safe results** on every call: every method returns `Result<T, OakError>` — no uncaught exceptions
-- **Built-in retry** with exponential backoff, jitter, and `Retry-After` header support
-- **Two environments** out of the box: `sandbox` and `production`, plus `customUrl` for self-hosted setups
+The Payment SDK is split into focused packages. Use the one that fits your integration.
 
-## Quick example
+| Package | npm | What it does |
+|---|---|---|
+| **API SDK** | `@oaknetwork/api` | TypeScript client for the Oak Network payment API — customers, payments, webhooks, transfers, subscriptions, and crypto on/off-ramp |
+| **Contract SDK** | `@oaknetwork/contracts` | TypeScript bindings for Oak Network smart contracts — coming soon |
+
+## API SDK
+
+The API SDK is production-ready. It wraps the Oak Network REST API with type-safe methods, automatic OAuth2 authentication, and built-in retry logic.
 
 ```typescript
 import { createOakClient } from '@oaknetwork/api';
@@ -23,39 +26,17 @@ const client = createOakClient({
 });
 
 const cs = Crowdsplit(client);
-
-const result = await cs.customers.list();
-
-if (result.ok) {
-  console.log(result.value.data);
-} else {
-  console.error(result.error.message);
-}
+const result = await cs.payments.create({ ... });
 ```
 
-> See the full walkthrough in the [Quickstart](/docs/sdk/quickstart) guide.
+Start here:
 
-## Services
+- [API SDK Overview](/docs/sdk/api-sdk/overview) — highlights, services table, quick example
+- [Installation](/docs/sdk/api-sdk/installation) — install the package and configure credentials
+- [Quickstart](/docs/sdk/api-sdk/quickstart) — your first working integration in under 5 minutes
 
-The SDK ships 10 service modules. Use them individually via factory functions, or access them all at once through the `Crowdsplit(client)` bundle.
+## Contract SDK
 
-| Service | Property | What it does |
-|---|---|---|
-| `CustomerService` | `cs.customers` | Create, get, list, update customers |
-| `PaymentService` | `cs.payments` | Create, confirm, cancel payments |
-| `PaymentMethodService` | `cs.paymentMethods` | Add, list, get, delete payment methods |
-| `WebhookService` | `cs.webhooks` | Register, manage, and monitor webhooks |
-| `TransactionService` | `cs.transactions` | List, get, and settle transactions |
-| `TransferService` | `cs.transfers` | Create provider transfers (Stripe, PagarMe, BRLA) |
-| `PlanService` | `cs.plans` | CRUD subscription plans |
-| `RefundService` | — | Refund a payment |
-| `BuyService` | `cs.buy` | Crypto on-ramp via Bridge |
-| `SellService` | `cs.sell` | Crypto off-ramp via Avenia |
+The Contract SDK will provide TypeScript bindings for interacting with Oak Network smart contracts on-chain. It is currently under development.
 
-> `RefundService` is used standalone via `createRefundService(client)` since it operates on a specific payment ID. See [Refunds](/docs/sdk/refunds).
-
-## Next up
-
-- [Installation](/docs/sdk/installation) — install the package and configure credentials
-- [Quickstart](/docs/sdk/quickstart) — your first working integration in under 5 minutes
-- [Error Handling](/docs/sdk/error-handling) — understand the `Result<T>` pattern and error types
+> For direct smart contract integration today, see the [Smart Contracts](/docs/contracts/overview) documentation.
