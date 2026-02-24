@@ -101,15 +101,15 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'contractsSidebar',
-          position: 'left',
-          label: 'Smart Contracts',
-        },
-        {
-          type: 'docSidebar',
           sidebarId: 'sdkSidebar',
           position: 'left',
           label: 'Payment SDK',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'contractsSidebar',
+          position: 'left',
+          label: 'Smart Contracts',
         },
         {to: '/docs/roadmap', label: 'Roadmap', position: 'left'},
         {to: '/docs/operations/bounty-program', label: 'Bounty Program', position: 'left'},
@@ -148,6 +148,10 @@ const config: Config = {
               to: '/docs/concepts/overview',
             },
             {
+              label: 'Payment SDK',
+              to: '/docs/sdk/overview',
+            },
+            {
               label: 'Smart Contracts',
               to: '/docs/contracts/overview',
             },
@@ -157,16 +161,16 @@ const config: Config = {
           title: 'Integration',
           items: [
             {
+              label: 'Payment SDK',
+              to: '/docs/sdk/overview',
+            },
+            {
               label: 'Create Campaign',
               to: '/docs/guides/create-campaign',
             },
             {
               label: 'Platform Integration',
               to: '/docs/guides/platform-integration',
-            },
-            {
-              label: 'Payment SDK',
-              to: '/docs/sdk/overview',
             },
           ],
         },
