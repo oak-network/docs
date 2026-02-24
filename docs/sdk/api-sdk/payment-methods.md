@@ -3,11 +3,11 @@
 The `PaymentMethodService` manages payment methods attached to customers — cards, bank accounts, crypto wallets, PIX, and more.
 
 ```typescript
-const cs = Crowdsplit(client);
-const paymentMethods = cs.paymentMethods;
-```
+import { createOakClient, createPaymentMethodService } from '@oaknetwork/api';
 
-> Or create the service directly: `const paymentMethods = createPaymentMethodService(client)`.
+const client = createOakClient({ ... });
+const paymentMethods = createPaymentMethodService(client);
+```
 
 ## Methods
 
@@ -78,14 +78,14 @@ const result = await paymentMethods.add('cus_abc123', {
 | Type | Providers | Description |
 |---|---|---|
 | `BridgeBankAccount` | Bridge | US bank account with routing/account numbers |
-| `CrowdSplitBankAccount` | CrowdSplit | Bank account with SWIFT code |
+| `OakBankAccount` | Oak | Bank account with SWIFT code |
 | `StripeBankAccount` | Stripe | Bank account via Stripe |
 | `MercadoPagoCard` | MercadoPago | Card via token |
 | `PagarMeCard` | PagarMe | Card via token with billing address |
 | `StripeCard` | Stripe | Card via Stripe |
-| `CrowdSplitCustomerWallet` | CrowdSplit | EVM wallet address |
+| `OakCustomerWallet` | Oak | EVM wallet address |
 | `BridgeLiquidationAddress` | Bridge | Crypto liquidation address |
-| `CrowdSplitPix` | CrowdSplit | PIX payment method |
+| `OakPix` | Oak | PIX payment method |
 | `BridgePlaid` | Bridge | Plaid-linked bank account |
 | `BridgeVirtualAccount` | Bridge | Virtual account for on/off ramp |
 

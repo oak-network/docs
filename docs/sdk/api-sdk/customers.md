@@ -3,11 +3,11 @@
 The `CustomerService` manages customer records — create, retrieve, list, and update.
 
 ```typescript
-const cs = Crowdsplit(client);
-const customers = cs.customers;
-```
+import { createOakClient, createCustomerService } from '@oaknetwork/api';
 
-> Or create the service directly: `const customers = createCustomerService(client)`.
+const client = createOakClient({ ... });
+const customers = createCustomerService(client);
+```
 
 ## Methods
 

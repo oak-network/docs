@@ -15,7 +15,7 @@ const client = createOakClient({
 const refunds = createRefundService(client);
 ```
 
-> `RefundService` is not included in the `Crowdsplit` bundle because it operates on a specific payment ID rather than a standalone resource.
+> `RefundService` operates on a specific payment ID — pass the payment ID when calling `create`.
 
 ## Methods
 

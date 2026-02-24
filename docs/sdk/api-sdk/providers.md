@@ -3,11 +3,11 @@
 The `ProviderService` manages payment provider registration — retrieve provider schemas, check registration status, and submit registrations.
 
 ```typescript
-const cs = Crowdsplit(client);
-const providers = cs.providers;
-```
+import { createOakClient, createProviderService } from '@oaknetwork/api';
 
-> Or create the service directly: `const providers = createProviderService(client)`.
+const client = createOakClient({ ... });
+const providers = createProviderService(client);
+```
 
 ## Supported providers
 

@@ -9,7 +9,7 @@ The `@oaknetwork/api` package is a TypeScript SDK that wraps the Oak Network pay
 ## Highlights
 
 - **Initialize a client** for sandbox or production: `createOakClient({ environment: 'sandbox', ... })`
-- **Bundle all services** into one object: `Crowdsplit(client)`
+- **Standalone service factories** — import only what you need: `createCustomerService(client)`, `createPaymentService(client)`, etc.
 - **Type-safe results** on every call: every method returns `Result<T, OakError>` — no uncaught exceptions
 - **Built-in retry** with exponential backoff, jitter, and `Retry-After` header support
 - **Two environments** out of the box: `sandbox` and `production`, plus `customUrl` for self-hosted setups
@@ -17,8 +17,7 @@ The `@oaknetwork/api` package is a TypeScript SDK that wraps the Oak Network pay
 ## Quick example
 
 ```typescript
-import { createOakClient } from '@oaknetwork/api';
-import { Crowdsplit } from '@oaknetwork/api/products/crowdsplit';
+import { createOakClient, createCustomerService } from '@oaknetwork/api';
 
 const client = createOakClient({
   environment: 'sandbox',
@@ -26,9 +25,9 @@ const client = createOakClient({
   clientSecret: process.env.CLIENT_SECRET!,
 });
 
-const cs = Crowdsplit(client);
+const customers = createCustomerService(client);
 
-const result = await cs.customers.list();
+const result = await customers.list();
 
 if (result.ok) {
   console.log(result.value.data);
@@ -41,22 +40,20 @@ if (result.ok) {
 
 ## Services
 
-The SDK ships 10 service modules. Use them individually via factory functions, or access them all at once through the `Crowdsplit(client)` bundle.
+The SDK ships 10 service modules. Import the factory function for each service you need.
 
-| Service | Property | What it does |
+| Service | Factory | What it does |
 |---|---|---|
-| `CustomerService` | `cs.customers` | Create, get, list, update customers |
-| `PaymentService` | `cs.payments` | Create, confirm, cancel payments |
-| `PaymentMethodService` | `cs.paymentMethods` | Add, list, get, delete payment methods |
-| `WebhookService` | `cs.webhooks` | Register, manage, and monitor webhooks |
-| `TransactionService` | `cs.transactions` | List, get, and settle transactions |
-| `TransferService` | `cs.transfers` | Create provider transfers (Stripe, PagarMe, BRLA) |
-| `PlanService` | `cs.plans` | CRUD subscription plans |
-| `RefundService` | — | Refund a payment |
-| `BuyService` | `cs.buy` | Crypto on-ramp via Bridge |
-| `SellService` | `cs.sell` | Crypto off-ramp via Avenia |
-
-> `RefundService` is used standalone via `createRefundService(client)` since it operates on a specific payment ID. See [Refunds](/docs/sdk/api-sdk/refunds).
+| `CustomerService` | `createCustomerService(client)` | Create, get, list, update customers |
+| `PaymentService` | `createPaymentService(client)` | Create, confirm, cancel payments |
+| `PaymentMethodService` | `createPaymentMethodService(client)` | Add, list, get, delete payment methods |
+| `WebhookService` | `createWebhookService(client)` | Register, manage, and monitor webhooks |
+| `TransactionService` | `createTransactionService(client)` | List, get, and settle transactions |
+| `TransferService` | `createTransferService(client)` | Create provider transfers (Stripe, PagarMe, BRLA) |
+| `PlanService` | `createPlanService(client)` | CRUD subscription plans |
+| `RefundService` | `createRefundService(client)` | Refund a payment |
+| `BuyService` | `createBuyService(client)` | Crypto on-ramp via Bridge |
+| `SellService` | `createSellService(client)` | Crypto off-ramp via Avenia |
 
 ## Next up
 

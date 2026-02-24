@@ -16,8 +16,7 @@ The Payment SDK is split into focused packages. Use the one that fits your integ
 The API SDK is production-ready. It wraps the Oak Network REST API with type-safe methods, automatic OAuth2 authentication, and built-in retry logic.
 
 ```typescript
-import { createOakClient } from '@oaknetwork/api';
-import { Crowdsplit } from '@oaknetwork/api/products/crowdsplit';
+import { createOakClient, createPaymentService } from '@oaknetwork/api';
 
 const client = createOakClient({
   environment: 'sandbox',
@@ -25,8 +24,8 @@ const client = createOakClient({
   clientSecret: process.env.CLIENT_SECRET!,
 });
 
-const cs = Crowdsplit(client);
-const result = await cs.payments.create({ ... });
+const payments = createPaymentService(client);
+const result = await payments.create({ ... });
 ```
 
 Start here:

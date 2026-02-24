@@ -3,11 +3,11 @@
 The `PaymentService` handles creating, confirming, and cancelling payments across multiple payment providers.
 
 ```typescript
-const cs = Crowdsplit(client);
-const payments = cs.payments;
-```
+import { createOakClient, createPaymentService } from '@oaknetwork/api';
 
-> Or create the service directly: `const payments = createPaymentService(client)`.
+const client = createOakClient({ ... });
+const payments = createPaymentService(client);
+```
 
 ## Methods
 

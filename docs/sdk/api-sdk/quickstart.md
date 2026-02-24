@@ -21,8 +21,7 @@ CLIENT_SECRET=your-client-secret
 
 ```typescript
 import 'dotenv/config';
-import { createOakClient } from '@oaknetwork/api';
-import { Crowdsplit } from '@oaknetwork/api/products/crowdsplit';
+import { createOakClient, createCustomerService, createPaymentService } from '@oaknetwork/api';
 
 const client = createOakClient({
   environment: 'sandbox',
@@ -30,15 +29,16 @@ const client = createOakClient({
   clientSecret: process.env.CLIENT_SECRET!,
 });
 
-const cs = Crowdsplit(client);
+const customers = createCustomerService(client);
+const payments = createPaymentService(client);
 ```
 
-`createOakClient` configures authentication and retry behavior. `Crowdsplit(client)` bundles all service modules into a single object so you can access `cs.customers`, `cs.payments`, `cs.webhooks`, and everything else from one place.
+`createOakClient` configures authentication and retry behavior. Each `create*Service(client)` factory returns a typed service instance — import only the services you need.
 
 ## 4. Make your first call
 
 ```typescript
-const result = await cs.customers.list();
+const result = await customers.list();
 
 if (result.ok) {
   console.log(`Found ${result.value.data.count} customers`);
@@ -57,7 +57,7 @@ Every SDK method returns a `Result<T, OakError>` — a discriminated union that 
 ## 5. Create a customer
 
 ```typescript
-const customer = await cs.customers.create({
+const customer = await customers.create({
   email: 'alice@example.com',
   first_name: 'Alice',
   last_name: 'Smith',
@@ -73,7 +73,7 @@ if (customer.ok) {
 ## 6. Create a payment
 
 ```typescript
-const payment = await cs.payments.create({
+const payment = await payments.create({
   provider: 'stripe',
   source: {
     amount: 5000,
@@ -92,13 +92,17 @@ if (payment.ok) {
 }
 ```
 
-## Using individual services
+## Adding more services
 
-If you only need one service, skip `Crowdsplit` and create it directly:
+Import additional service factories as you need them:
 
 ```typescript
-import { createOakClient } from '@oaknetwork/api';
-import { createCustomerService } from '@oaknetwork/api/services';
+import {
+  createOakClient,
+  createCustomerService,
+  createPaymentService,
+  createWebhookService,
+} from '@oaknetwork/api';
 
 const client = createOakClient({
   environment: 'sandbox',
@@ -107,10 +111,11 @@ const client = createOakClient({
 });
 
 const customers = createCustomerService(client);
-const result = await customers.list();
+const payments = createPaymentService(client);
+const webhooks = createWebhookService(client);
 ```
 
-This is useful when you want to keep your bundle size small or only interact with a single API resource.
+All services share the same client — authentication and retry logic are handled once.
 
 ## What to read next
 

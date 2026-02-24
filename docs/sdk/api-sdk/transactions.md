@@ -3,11 +3,11 @@
 The `TransactionService` provides read access to transactions and the ability to settle them.
 
 ```typescript
-const cs = Crowdsplit(client);
-const transactions = cs.transactions;
-```
+import { createOakClient, createTransactionService } from '@oaknetwork/api';
 
-> Or create the service directly: `const transactions = createTransactionService(client)`.
+const client = createOakClient({ ... });
+const transactions = createTransactionService(client);
+```
 
 ## Methods
 

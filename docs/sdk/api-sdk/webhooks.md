@@ -3,11 +3,11 @@
 The `WebhookService` lets you register endpoints to receive real-time notifications when events occur — payments, refunds, transfers, and more.
 
 ```typescript
-const cs = Crowdsplit(client);
-const webhooks = cs.webhooks;
-```
+import { createOakClient, createWebhookService } from '@oaknetwork/api';
 
-> Or create the service directly: `const webhooks = createWebhookService(client)`.
+const client = createOakClient({ ... });
+const webhooks = createWebhookService(client);
+```
 
 ## Methods
 

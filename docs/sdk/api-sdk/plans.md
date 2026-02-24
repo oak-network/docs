@@ -3,11 +3,11 @@
 The `PlanService` manages subscription plans — create, publish, update, list, and delete.
 
 ```typescript
-const cs = Crowdsplit(client);
-const plans = cs.plans;
-```
+import { createOakClient, createPlanService } from '@oaknetwork/api';
 
-> Or create the service directly: `const plans = createPlanService(client)`.
+const client = createOakClient({ ... });
+const plans = createPlanService(client);
+```
 
 ## Methods
 

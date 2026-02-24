@@ -28,11 +28,11 @@ One-sentence description.
 SECTION 2 — MANDATORY: Initialization
 <blank line>
 \`\`\`typescript
-const cs = Crowdsplit(client);
-const service = cs.serviceName;
+import { createOakClient, createXxxService } from '@oaknetwork/api';
+
+const client = createOakClient({ ... });
+const service = createXxxService(client);
 \`\`\`
-<blank line>
-> Or create the service directly: `const service = createXxxService(client)`.
 
 SECTION 3 — MANDATORY: Methods table
 <blank line>
@@ -423,8 +423,7 @@ When documenting a new SDK service, every item below is MANDATORY. A page missin
 
 1. `# Title` — singular noun, no emoji
 2. One-sentence description — present tense, under 30 words, references module name in backticks
-3. Initialization code block — `const cs = Crowdsplit(client); const x = cs.serviceName;`
-4. Callout — `> Or create the service directly: ...`
+3. Initialization code block — import from `@oaknetwork/api`, create client, create service via factory function
 5. `## Methods` — table with columns: Method, Endpoint, Description
 6. One `## MethodName` section per method — code block FIRST, explanation AFTER
 7. `## Request fields` — table with columns: Field, Type, Required, Description

@@ -3,11 +3,11 @@
 The `TransferService` creates payouts and fund transfers to customers through various payment providers.
 
 ```typescript
-const cs = Crowdsplit(client);
-const transfers = cs.transfers;
-```
+import { createOakClient, createTransferService } from '@oaknetwork/api';
 
-> Or create the service directly: `const transfers = createTransferService(client)`.
+const client = createOakClient({ ... });
+const transfers = createTransferService(client);
+```
 
 ## Methods
 

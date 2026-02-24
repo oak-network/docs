@@ -3,13 +3,13 @@
 The `BuyService` and `SellService` handle crypto on-ramp and off-ramp flows — converting between fiat currencies and stablecoins.
 
 ```typescript
-const cs = Crowdsplit(client);
+import { createOakClient, createBuyService, createSellService } from '@oaknetwork/api';
 
-const buy = cs.buy;   // on-ramp: fiat → crypto
-const sell = cs.sell;  // off-ramp: crypto → fiat
+const client = createOakClient({ ... });
+
+const buy = createBuyService(client);   // on-ramp: fiat → crypto
+const sell = createSellService(client); // off-ramp: crypto → fiat
 ```
-
-> Or create the services directly: `createBuyService(client)` and `createSellService(client)`.
 
 ---
 

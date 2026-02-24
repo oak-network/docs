@@ -5,7 +5,7 @@ Every SDK method returns a `Result<T, OakError>` instead of throwing exceptions.
 ## The Result pattern
 
 ```typescript
-const result = await cs.customers.get('cus_123');
+const result = await customers.get('cus_123');
 
 if (result.ok) {
   // result.value is fully typed as Customer.Response
@@ -56,7 +56,7 @@ All errors extend `OakError`. Check the error class to determine what went wrong
 ```typescript
 import { ApiError } from '@oaknetwork/api';
 
-const result = await cs.payments.create(paymentRequest);
+const result = await payments.create(paymentRequest);
 
 if (!result.ok) {
   const error = result.error;
