@@ -111,8 +111,6 @@ const config: Config = {
           position: 'left',
           label: 'Smart Contracts',
         },
-        {to: '/docs/roadmap', label: 'Roadmap', position: 'left'},
-        {to: '/docs/operations/bounty-program', label: 'Bounty Program', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/oak-network/ccprotocol-contracts',

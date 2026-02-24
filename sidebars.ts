@@ -4,7 +4,6 @@ const sidebars: SidebarsConfig = {
   // Main documentation sidebar
   tutorialSidebar: [
     'intro',
-    'roadmap',
     {
       type: 'category',
       label: 'Getting Started',
@@ -117,7 +116,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Operations',
-      items: ['deployment/README', 'api/README', 'operations/bounty-program'],
+      items: ['deployment/README', 'api/README'],
     },
   ],
 
