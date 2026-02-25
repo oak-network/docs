@@ -11,16 +11,16 @@ const webhooks = createWebhookService(client);
 
 ## Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `register(webhook)` | `POST /api/v1/merchant/webhooks` | Register a new webhook |
-| `list()` | `GET /api/v1/merchant/webhooks` | List all registered webhooks |
-| `get(id)` | `GET /api/v1/merchant/webhooks/{id}` | Get a webhook by ID |
-| `update(id, webhook)` | `PUT /api/v1/merchant/webhooks/{id}` | Update a webhook |
-| `toggle(id)` | `PATCH /api/v1/merchant/webhooks/{id}/toggle` | Toggle a webhook on or off |
-| `delete(id)` | `DELETE /api/v1/merchant/webhooks/{id}` | Delete a webhook |
-| `listNotifications(params?)` | `GET /api/v1/merchant/webhooks/notifications` | List webhook notifications |
-| `getNotification(id)` | `GET /api/v1/merchant/webhooks/notifications/{id}` | Get a specific notification |
+| Method | Description |
+|---|---|
+| `register(webhook)` | Register a new webhook |
+| `list()` | List all registered webhooks |
+| `get(id)` | Get a webhook by ID |
+| `update(id, webhook)` | Update a webhook |
+| `toggle(id)` | Toggle a webhook on or off |
+| `delete(id)` | Delete a webhook |
+| `listNotifications(params?)` | List webhook notifications |
+| `getNotification(id)` | Get a specific notification |
 
 ## Register a webhook
 

@@ -19,9 +19,9 @@ const refunds = createRefundService(client);
 
 ## Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `create(paymentId, refund)` | `POST /api/v1/payments/{paymentId}/refund` | Refund a payment |
+| Method | Description |
+|---|---|
+| `create(paymentId, refund)` | Refund a payment |
 
 ## Create a refund
 

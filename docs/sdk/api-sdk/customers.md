@@ -11,12 +11,12 @@ const customers = createCustomerService(client);
 
 ## Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `create(customer)` | `POST /api/v1/customers` | Create a new customer |
-| `get(id)` | `GET /api/v1/customers/{id}` | Get a customer by ID |
-| `list(params?)` | `GET /api/v1/customers` | List customers with optional filters |
-| `update(id, customer)` | `PUT /api/v1/customers/{id}` | Update an existing customer |
+| Method | Description |
+|---|---|
+| `create(customer)` | Create a new customer |
+| `get(id)` | Get a customer by ID |
+| `list(params?)` | List customers with optional filters |
+| `update(id, customer)` | Update an existing customer |
 
 ## Create a customer
 

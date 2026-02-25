@@ -11,14 +11,14 @@ const plans = createPlanService(client);
 
 ## Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `create(plan)` | `POST /api/v1/subscription/plans` | Create a new plan |
-| `publish(id)` | `PATCH /api/v1/subscription/plans/{id}/publish` | Publish a draft plan |
-| `details(id)` | `GET /api/v1/subscription/plans/{id}` | Get plan details |
-| `list(params?)` | `GET /api/v1/subscription/plans` | List plans with pagination |
-| `update(id, plan)` | `PATCH /api/v1/subscription/plans/{id}` | Update a plan |
-| `delete(id)` | `DELETE /api/v1/subscription/plans/{id}` | Delete a plan |
+| Method | Description |
+|---|---|
+| `create(plan)` | Create a new plan |
+| `publish(id)` | Publish a draft plan |
+| `details(id)` | Get plan details |
+| `list(params?)` | List plans with pagination |
+| `update(id, plan)` | Update a plan |
+| `delete(id)` | Delete a plan |
 
 ## Create a plan
 

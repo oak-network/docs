@@ -11,11 +11,11 @@ const payments = createPaymentService(client);
 
 ## Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `create(payment)` | `POST /api/v1/payments/` | Create a new payment |
-| `confirm(paymentId)` | `POST /api/v1/payments/{id}/confirm` | Confirm a pending payment |
-| `cancel(paymentId)` | `POST /api/v1/payments/{id}/cancel` | Cancel a pending payment |
+| Method | Description |
+|---|---|
+| `create(payment)` | Create a new payment |
+| `confirm(paymentId)` | Confirm a pending payment |
+| `cancel(paymentId)` | Cancel a pending payment |
 
 ## Create a payment
 

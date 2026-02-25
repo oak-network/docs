@@ -11,11 +11,11 @@ const transactions = createTransactionService(client);
 
 ## Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `list(query?)` | `GET /api/v1/transactions` | List transactions with optional filters |
-| `get(id)` | `GET /api/v1/transactions/{id}` | Get a transaction by ID |
-| `settle(id, request)` | `PATCH /api/v1/transactions/{id}/settle` | Settle a completed transaction |
+| Method | Description |
+|---|---|
+| `list(query?)` | List transactions with optional filters |
+| `get(id)` | Get a transaction by ID |
+| `settle(id, request)` | Settle a completed transaction |
 
 ## List transactions
 

@@ -21,11 +21,11 @@ const providers = createProviderService(client);
 
 ## Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `getSchema(request)` | `GET /api/v1/provider-registration/schema?provider={name}` | Get the registration schema for a provider |
-| `getRegistrationStatus(customerId)` | `GET /api/v1/provider-registration/{customerId}/status` | Check registration status for a customer |
-| `submitRegistration(customerId, request)` | `POST /api/v1/provider-registration/{customerId}/submit` | Submit a provider registration |
+| Method | Description |
+|---|---|
+| `getSchema(request)` | Get the registration schema for a provider |
+| `getRegistrationStatus(customerId)` | Check registration status for a customer |
+| `submitRegistration(customerId, request)` | Submit a provider registration |
 
 ## Get a provider schema
 

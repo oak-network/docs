@@ -19,9 +19,9 @@ Convert fiat to crypto via Bridge.
 
 ### Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `create(request)` | `POST /api/v1/buy` | Create a buy transaction |
+| Method | Description |
+|---|---|
+| `create(request)` | Create a buy transaction |
 
 ### Create a buy
 
@@ -84,9 +84,9 @@ Convert crypto to fiat via Avenia.
 
 ### Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `create(request)` | `POST /api/v1/sell` | Create a sell transaction |
+| Method | Description |
+|---|---|
+| `create(request)` | Create a sell transaction |
 
 ### Create a sell
 

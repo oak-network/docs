@@ -11,9 +11,9 @@ const transfers = createTransferService(client);
 
 ## Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `create(transfer)` | `POST /api/v1/transfer` | Create a new transfer |
+| Method | Description |
+|---|---|
+| `create(transfer)` | Create a new transfer |
 
 ## Create a transfer
 

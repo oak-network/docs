@@ -11,12 +11,12 @@ const paymentMethods = createPaymentMethodService(client);
 
 ## Methods
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `add(customerId, method)` | `POST /api/v1/customers/{customerId}/payment_methods` | Add a payment method to a customer |
-| `get(customerId, paymentId)` | `GET /api/v1/customers/{customerId}/payment_methods/{paymentId}` | Get a specific payment method |
-| `list(customerId, query?)` | `GET /api/v1/customers/{customerId}/payment_methods` | List a customer's payment methods |
-| `delete(customerId, methodId)` | `DELETE /api/v1/customers/{customerId}/payment_methods/{methodId}` | Delete a payment method |
+| Method | Description |
+|---|---|
+| `add(customerId, method)` | Add a payment method to a customer |
+| `get(customerId, paymentId)` | Get a specific payment method |
+| `list(customerId, query?)` | List a customer's payment methods |
+| `delete(customerId, methodId)` | Delete a payment method |
 
 ## Add a payment method
 
