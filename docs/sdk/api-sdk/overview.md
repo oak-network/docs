@@ -12,6 +12,7 @@ The `@oaknetwork/api` package is a TypeScript SDK that wraps the Oak Network pay
 - **Standalone service factories** — import only what you need: `createCustomerService(client)`, `createPaymentService(client)`, etc.
 - **Type-safe results** on every call: every method returns `Result<T, OakError>` — no uncaught exceptions
 - **Built-in retry** with exponential backoff, jitter, and `Retry-After` header support
+- **Webhook signature verification** built in: `verifyWebhookSignature()` and `parseWebhookPayload()`
 - **Two environments** out of the box: `sandbox` and `production`, plus `customUrl` for self-hosted setups
 
 ## Quick example

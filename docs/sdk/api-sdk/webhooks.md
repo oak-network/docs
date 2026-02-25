@@ -112,6 +112,83 @@ if (result.ok) {
 }
 ```
 
+## Signature verification
+
+The SDK exports utilities to verify incoming webhook signatures using HMAC-SHA256 with timing-safe comparison.
+
+### Verify a signature
+
+```typescript
+import { verifyWebhookSignature } from '@oaknetwork/api';
+
+const isValid = verifyWebhookSignature(
+  JSON.stringify(req.body),       // raw payload string
+  req.headers['x-oak-signature'], // signature from header
+  process.env.WEBHOOK_SECRET!,    // secret from register()
+);
+
+if (!isValid) {
+  return res.status(401).send('Invalid signature');
+}
+```
+
+### Verify and parse in one step
+
+`parseWebhookPayload` combines signature verification with JSON parsing, returning a `Result`:
+
+```typescript
+import { parseWebhookPayload } from '@oaknetwork/api';
+
+const result = parseWebhookPayload<PaymentEvent>(
+  JSON.stringify(req.body),
+  req.headers['x-oak-signature'],
+  process.env.WEBHOOK_SECRET!,
+);
+
+if (!result.ok) {
+  return res.status(result.error.status).json({ error: result.error.message });
+}
+
+const event = result.value;
+switch (event.event) {
+  case 'payment.completed':
+    // handle payment completion
+    break;
+  case 'payment.failed':
+    // handle payment failure
+    break;
+}
+
+res.json({ received: true });
+```
+
+### Express.js example
+
+```typescript
+import express from 'express';
+import { parseWebhookPayload } from '@oaknetwork/api';
+
+const app = express();
+
+app.post('/webhooks/oak', express.raw({ type: 'application/json' }), (req, res) => {
+  const result = parseWebhookPayload(
+    req.body.toString(),
+    req.headers['x-oak-signature'] as string,
+    process.env.WEBHOOK_SECRET!,
+  );
+
+  if (!result.ok) {
+    return res.status(401).json({ error: 'Invalid signature' });
+  }
+
+  // Handle the verified event
+  console.log('Received event:', result.value.event);
+  res.json({ received: true });
+});
+```
+
+> Always verify webhook signatures before processing payloads. Use `express.raw()` (not `express.json()`) to preserve the raw body for signature verification.
+
 ## Webhook data types
 
 ### RegisterRequest

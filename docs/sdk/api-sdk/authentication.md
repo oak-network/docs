@@ -19,10 +19,11 @@ When you create a client, it does **not** immediately request a token. The first
 The SDK manages tokens internally through the `AuthManager`:
 
 1. On the first authenticated request, the SDK calls `POST /api/v1/merchant/token/grant` with your `clientId` and `clientSecret`
-2. The API returns an `access_token` and an `expires_in` value (in milliseconds)
-3. The SDK caches the token and its expiration time
+2. The API returns an `access_token` and an `expires_in` value (in seconds)
+3. The SDK caches the token and converts the expiration to an absolute timestamp
 4. On subsequent requests, the cached token is reused
 5. When the token is within **60 seconds** of expiring, the SDK automatically requests a fresh one
+6. Concurrent callers share a single in-flight refresh — no duplicate token requests
 
 You never need to manually refresh tokens.
 
@@ -40,7 +41,7 @@ You never need to manually refresh tokens.
 {
   access_token: "eyJhbGci...",
   token_type: "Bearer",
-  expires_in: 3600000
+  expires_in: 3600
 }
 ```
 
@@ -69,7 +70,7 @@ const grantResult = await client.grantToken();
 
 if (grantResult.ok) {
   console.log('Token type:', grantResult.value.token_type);
-  console.log('Expires in:', grantResult.value.expires_in, 'ms');
+  console.log('Expires in:', grantResult.value.expires_in, 'seconds');
 }
 ```
 
@@ -83,4 +84,4 @@ if (grantResult.ok) {
 | `customUrl` | `string` | No | Override the built-in API base URL |
 | `retryOptions` | `Partial<RetryOptions>` | No | Override default [retry behavior](/docs/sdk/api-sdk/error-handling#retry-configuration) |
 
-> All service methods handle authentication transparently. You only need to interact with `getAccessToken()` or `grantToken()` if you are making direct HTTP calls outside the SDK.
+> `clientSecret` is not exposed on `client.config` after creation — store it separately if you need it for non-SDK purposes. All service methods handle authentication transparently. You only need to interact with `getAccessToken()` or `grantToken()` if you are making direct HTTP calls outside the SDK.

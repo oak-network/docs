@@ -97,7 +97,7 @@ const client = createOakClient({
 | `maxDelay` | `number` | `30000` | Maximum delay cap in milliseconds |
 | `retryOnStatus` | `number[]` | `[408, 429, 500, 502, 503, 504]` | HTTP status codes that trigger a retry |
 | `retryOnError` | `(error) => boolean` | Network errors only | Custom function to decide if an error is retryable |
-| `onRetry` | `(attempt, error) => void` | Console warning | Callback fired before each retry attempt |
+| `onRetry` | `(attempt, error) => void` | `undefined` | Callback fired before each retry attempt. The SDK does not log retries by default — pass your own logger here. |
 | `signal` | `AbortSignal` | — | Signal to cancel retries |
 
 The retry handler also respects the `Retry-After` header when the API returns `429 Too Many Requests`.
