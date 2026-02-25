@@ -1,6 +1,6 @@
 # Customers
 
-The `CustomerService` manages customer records — create, retrieve, list, and update.
+A customer represents an end user or business entity in your platform. Every payment, payment method, and provider registration is tied to a customer. Create a customer first, then attach payment methods and initiate payments on their behalf.
 
 ```typescript
 import { createOakClient, createCustomerService } from '@oaknetwork/api';

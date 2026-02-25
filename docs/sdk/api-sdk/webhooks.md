@@ -1,6 +1,6 @@
 # Webhooks
 
-The `WebhookService` lets you register endpoints to receive real-time notifications when events occur — payments, refunds, transfers, and more.
+Webhooks push real-time event notifications to your server when something happens in your Oak account — a payment completes, a refund is issued, a transfer lands, etc. Register an HTTPS endpoint, store the signing secret, and verify incoming payloads to keep your system in sync without polling.
 
 ```typescript
 import { createOakClient, createWebhookService } from '@oaknetwork/api';

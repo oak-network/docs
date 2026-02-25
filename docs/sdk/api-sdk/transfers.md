@@ -1,6 +1,6 @@
 # Transfers
 
-The `TransferService` creates payouts and fund transfers to customers through various payment providers.
+A transfer moves funds from your platform to a customer's bank account or wallet. Use transfers to pay out sellers, distribute campaign proceeds, or send refunds via a different channel. Each transfer is routed through a provider (Stripe, PagarMe, or BRLA) and targets a specific payment method on the destination customer.
 
 ```typescript
 import { createOakClient, createTransferService } from '@oaknetwork/api';

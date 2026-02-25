@@ -1,6 +1,6 @@
 # Providers
 
-The `ProviderService` manages payment provider registration — retrieve provider schemas, check registration status, and submit registrations.
+Before a customer can send or receive payments through a specific provider, they must be registered with that provider. The provider service handles this onboarding — fetch the required fields for a given provider, submit a registration, and check its approval status. Each provider (Stripe, PagarMe, MercadoPago, Bridge, Avenia) has its own registration schema and approval flow.
 
 ```typescript
 import { createOakClient, createProviderService } from '@oaknetwork/api';

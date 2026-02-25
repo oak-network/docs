@@ -1,6 +1,6 @@
 # Transactions
 
-The `TransactionService` provides read access to transactions and the ability to settle them.
+A transaction is a ledger record of money movement — every payment, transfer, buy, or sell creates one. Use this service to query your transaction history, filter by status or date range, and settle completed transactions when funds are ready for disbursement.
 
 ```typescript
 import { createOakClient, createTransactionService } from '@oaknetwork/api';

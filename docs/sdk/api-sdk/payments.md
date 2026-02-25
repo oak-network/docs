@@ -1,6 +1,6 @@
 # Payments
 
-The `PaymentService` handles creating, confirming, and cancelling payments across multiple payment providers.
+A payment represents a charge against a customer's payment method. The SDK routes payments through your configured provider (Stripe, PagarMe, or MercadoPago) and returns a unified response regardless of which provider processes it. Payments can be created with immediate confirmation or held in a pending state for manual confirmation.
 
 ```typescript
 import { createOakClient, createPaymentService } from '@oaknetwork/api';
