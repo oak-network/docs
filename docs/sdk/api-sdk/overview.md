@@ -44,16 +44,16 @@ The SDK ships 10 service modules. Import the factory function for each service y
 
 | Service | Factory | What it does |
 |---|---|---|
-| `CustomerService` | `createCustomerService(client)` | Create, get, list, update customers |
-| `PaymentService` | `createPaymentService(client)` | Create, confirm, cancel payments |
-| `PaymentMethodService` | `createPaymentMethodService(client)` | Add, list, get, delete payment methods |
-| `WebhookService` | `createWebhookService(client)` | Register, manage, and monitor webhooks |
-| `TransactionService` | `createTransactionService(client)` | List, get, and settle transactions |
-| `TransferService` | `createTransferService(client)` | Create provider transfers (Stripe, PagarMe, BRLA) |
-| `PlanService` | `createPlanService(client)` | CRUD subscription plans |
-| `RefundService` | `createRefundService(client)` | Refund a payment |
-| `BuyService` | `createBuyService(client)` | Crypto on-ramp via Bridge |
-| `SellService` | `createSellService(client)` | Crypto off-ramp via Avenia |
+| [`CustomerService`](/docs/sdk/api-sdk/customers) | `createCustomerService(client)` | Create, get, list, update customers |
+| [`PaymentService`](/docs/sdk/api-sdk/payments) | `createPaymentService(client)` | Create, confirm, cancel payments |
+| [`PaymentMethodService`](/docs/sdk/api-sdk/payment-methods) | `createPaymentMethodService(client)` | Add, list, get, delete payment methods |
+| [`WebhookService`](/docs/sdk/api-sdk/webhooks) | `createWebhookService(client)` | Register, manage, and monitor webhooks |
+| [`TransactionService`](/docs/sdk/api-sdk/transactions) | `createTransactionService(client)` | List, get, and settle transactions |
+| [`TransferService`](/docs/sdk/api-sdk/transfers) | `createTransferService(client)` | Create provider transfers (Stripe, PagarMe, BRLA) |
+| [`PlanService`](/docs/sdk/api-sdk/plans) | `createPlanService(client)` | CRUD subscription plans |
+| [`RefundService`](/docs/sdk/api-sdk/refunds) | `createRefundService(client)` | Refund a payment |
+| [`BuyService`](/docs/sdk/api-sdk/buy-and-sell) | `createBuyService(client)` | Crypto on-ramp via Bridge |
+| [`SellService`](/docs/sdk/api-sdk/buy-and-sell) | `createSellService(client)` | Crypto off-ramp via Avenia |
 
 ## Next up
 

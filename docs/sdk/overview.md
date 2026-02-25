@@ -8,7 +8,7 @@ The Payment SDK is split into focused packages. Use the one that fits your integ
 
 | Package | npm | What it does |
 |---|---|---|
-| **API SDK** | `@oaknetwork/api` | TypeScript client for the Oak Network payment API — customers, payments, webhooks, transfers, subscriptions, and crypto on/off-ramp |
+| [**API SDK**](/docs/sdk/api-sdk/overview) | `@oaknetwork/api` | TypeScript client for the Oak Network payment API — customers, payments, webhooks, transfers, subscriptions, and crypto on/off-ramp |
 | **Contract SDK** | `@oaknetwork/contracts` | TypeScript bindings for Oak Network smart contracts — coming soon |
 
 ## API SDK
