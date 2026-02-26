@@ -41,6 +41,49 @@ const config: Config = {
 
   plugins: [
     './src/plugins/favicon-head-tags.ts',
+    [
+      'docusaurus-plugin-llms',
+      {
+        generateLLMsFullTxt: true,
+        generateLLMsTxt: true,
+        docsDir: 'docs',
+        title: 'Oak Network Documentation',
+        description: 'Payment infrastructure for platforms — API SDK, smart contracts, and integration guides.',
+        excludeImports: true,
+        removeDuplicateHeadings: true,
+        ignoreFiles: ['guides/platform-sdk*'],
+        includeOrder: [
+          'intro*',
+          'concepts/*',
+          'guides/*',
+          'sdk/overview*',
+          'sdk/api-sdk/*',
+          'contracts/*',
+          'security/*',
+          'operations/*',
+          'api/*',
+          'deployment/*',
+          'roadmap*',
+        ],
+        rootContent: 'Oak Network is a decentralized crowdfunding protocol on Celo. This documentation covers the Payment SDK (@oaknetwork/api), smart contracts, and platform integration guides.',
+        customLLMFiles: [
+          {
+            filename: 'llms-payment-sdk.txt',
+            includePatterns: ['sdk/**/*.md'],
+            fullContent: true,
+            title: 'Oak Network Payment SDK',
+            description: 'Payment SDK reference — API SDK (@oaknetwork/api) for customers, payments, transfers, subscriptions, and crypto on/off-ramp.',
+          },
+          {
+            filename: 'llms-contracts.txt',
+            includePatterns: ['contracts/**/*.md'],
+            fullContent: true,
+            title: 'Oak Network Smart Contracts',
+            description: 'Solidity smart contract reference for the Oak Network protocol.',
+          },
+        ],
+      },
+    ],
   ],
 
   presets: [

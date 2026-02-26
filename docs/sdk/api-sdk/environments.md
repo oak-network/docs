@@ -51,7 +51,7 @@ console.log(isTestEnvironment('production')); // false
 
 ## Sandbox-only restrictions
 
-Some SDK operations are restricted to the sandbox environment using the `@SandboxOnly` decorator. If you call a sandbox-only method with `environment: 'production'`, the SDK throws an `EnvironmentViolationError` without making a network request.
+Some SDK operations are restricted to the sandbox environment using the `@SandboxOnly` decorator. If you call a sandbox-only method with `environment: 'production'`, the SDK returns an `EnvironmentViolationError` in the `Result` without making a network request.
 
 ```typescript
 import { EnvironmentViolationError } from '@oaknetwork/api';
