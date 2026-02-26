@@ -3,15 +3,9 @@
 A refund returns funds from a completed payment back to the customer. Issue a full refund to reverse the entire charge, or a partial refund to return a specific amount. The refund is processed through the same provider that handled the original payment.
 
 ```typescript
-import { createOakClient } from '@oaknetwork/api';
-import { createRefundService } from '@oaknetwork/api/services';
+import { createOakClient, createRefundService } from '@oaknetwork/api';
 
-const client = createOakClient({
-  environment: 'sandbox',
-  clientId: process.env.CLIENT_ID!,
-  clientSecret: process.env.CLIENT_SECRET!,
-});
-
+const client = createOakClient({ ... });
 const refunds = createRefundService(client);
 ```
 

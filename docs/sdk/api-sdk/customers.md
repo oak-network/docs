@@ -17,6 +17,8 @@ const customers = createCustomerService(client);
 | `get(id)` | Get a customer by ID |
 | `list(params?)` | List customers with optional filters |
 | `update(id, customer)` | Update an existing customer |
+| `sync(id, sync)` | Sync customer data to a provider |
+| `balance(customerId, filter)` | Get a customer's balance for a provider |
 
 ## Create a customer
 
@@ -88,6 +90,51 @@ if (result.ok) {
   console.log('Updated:', result.value.data.last_name);
 }
 ```
+
+## Sync customer data
+
+Push customer fields to a specific provider. This is useful when you update customer data locally and need the provider's records to stay in sync.
+
+```typescript
+const result = await customers.sync('cus_abc123', {
+  providers: ['stripe'],
+  fields: ['email', 'first_name', 'last_name'],
+});
+
+if (result.ok) {
+  console.log('Synced successfully');
+}
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `providers` | `[Provider]` | Provider to sync with (exactly one): `"stripe"`, `"bridge"`, `"pagar_me"`, `"brla"`, `"avenia"`, `"mercado_pago"` |
+| `fields` | `SyncField[]` | Fields to sync: `"shipping"`, `"email"`, `"first_name"`, `"last_name"` |
+
+## Get customer balance
+
+Retrieve a customer's balance for a specific provider and role.
+
+```typescript
+const result = await customers.balance('cus_abc123', {
+  provider: 'stripe',
+  role: 'connected_account',
+});
+
+if (result.ok) {
+  for (const b of result.value.data.balances) {
+    console.log(`Account: ${b.account_id} — Provider: ${b.provider}`);
+    for (const t of b.totals) {
+      console.log(`  ${t.currency}: ${t.amount} (pending: ${t.pending})`);
+    }
+  }
+}
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `provider` | `string` | Provider to check balance for |
+| `role` | `string` | Customer role (e.g., `"connected_account"`, `"customer"`) |
 
 ## Request fields
 

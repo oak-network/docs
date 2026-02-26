@@ -27,7 +27,8 @@ type Result<T, E = OakError> =
 The SDK also exports `ok()` and `err()` helpers if you need to create `Result` values in your own code:
 
 ```typescript
-import { ok, err } from '@oaknetwork/api';
+import { ok, err, OakError } from '@oaknetwork/api';
+import type { Result } from '@oaknetwork/api';
 
 function validate(input: string): Result<string> {
   if (input.length === 0) return err(new OakError('Input cannot be empty'));
@@ -76,6 +77,8 @@ if (!result.ok) {
 The SDK includes built-in retry logic with exponential backoff. Configure it when creating the client.
 
 ```typescript
+import { createOakClient } from '@oaknetwork/api';
+
 const client = createOakClient({
   environment: 'sandbox',
   clientId: process.env.CLIENT_ID!,
@@ -107,6 +110,8 @@ The retry handler also respects the `Retry-After` header when the API returns `4
 Some operations are restricted to the sandbox environment. If you call a sandbox-only method in production, the SDK returns an `EnvironmentViolationError` without making a network request.
 
 ```typescript
+import { EnvironmentViolationError } from '@oaknetwork/api';
+
 if (!result.ok && result.error instanceof EnvironmentViolationError) {
   console.error(
     `"${result.error.methodName}" is only available in sandbox. ` +

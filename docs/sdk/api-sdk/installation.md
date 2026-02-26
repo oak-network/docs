@@ -10,6 +10,7 @@ pnpm add @oaknetwork/api
 
 ## Requirements
 
+- `@oaknetwork/api` **>= 1.0.0**
 - Node.js 18 or later
 - TypeScript 5.x recommended (the SDK ships type declarations)
 

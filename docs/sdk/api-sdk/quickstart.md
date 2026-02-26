@@ -5,7 +5,8 @@ This guide walks you from zero to a working API call in under 5 minutes.
 ## 1. Install the package
 
 ```bash
-pnpm add @oaknetwork/api
+pnpm add @oaknetwork/api dotenv
+pnpm add -D tsx
 ```
 
 ## 2. Set your credentials
@@ -48,6 +49,12 @@ if (result.ok) {
 } else {
   console.error('Request failed:', result.error.message);
 }
+```
+
+Save steps 3 and 4 together in a file (e.g. `index.ts`) and run it:
+
+```bash
+npx tsx index.ts
 ```
 
 Every SDK method returns a `Result<T, OakError>` — a discriminated union that is either `{ ok: true, value: T }` or `{ ok: false, error: OakError }`. Check `result.ok` before accessing the value.

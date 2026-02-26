@@ -5,6 +5,8 @@ The SDK authenticates with the Oak Network API using OAuth2 client credentials. 
 ## How it works
 
 ```typescript
+import { createOakClient } from '@oaknetwork/api';
+
 const client = createOakClient({
   environment: 'sandbox',
   clientId: process.env.CLIENT_ID!,

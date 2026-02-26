@@ -45,7 +45,7 @@ The SDK ships 10 service modules. Import the factory function for each service y
 
 | Service | Factory | What it does |
 |---|---|---|
-| [`CustomerService`](/docs/sdk/api-sdk/customers) | `createCustomerService(client)` | Create, get, list, update customers |
+| [`CustomerService`](/docs/sdk/api-sdk/customers) | `createCustomerService(client)` | Create, get, list, update, sync, and check balances |
 | [`PaymentService`](/docs/sdk/api-sdk/payments) | `createPaymentService(client)` | Create, confirm, cancel payments |
 | [`PaymentMethodService`](/docs/sdk/api-sdk/payment-methods) | `createPaymentMethodService(client)` | Add, list, get, delete payment methods |
 | [`WebhookService`](/docs/sdk/api-sdk/webhooks) | `createWebhookService(client)` | Register, manage, and monitor webhooks |
