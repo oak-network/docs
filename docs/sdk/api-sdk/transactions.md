@@ -23,7 +23,6 @@ const transactions = createTransactionService(client);
 const result = await transactions.list({
   limit: 20,
   offset: 0,
-  status: 'COMPLETED',
 });
 
 if (result.ok) {
@@ -42,7 +41,7 @@ if (result.ok) {
 | `offset` | `number` | Number of results to skip |
 | `customer_id` | `string` | Filter by customer UUID |
 | `type_list` | `string` | Filter by type (e.g., `"installment_payment"`) |
-| `status` | `string` | Comma-separated statuses (e.g., `"COMPLETED,SETTLED"`) |
+| `status` | `string` | Comma-separated statuses (e.g., `"succeeded,captured"`) |
 | `payment_method` | `string` | Filter by payment method (e.g., `"pix"`) |
 | `dateFrom` | `string` | Start date filter (`YYYY-MM-DD`) |
 | `dateTo` | `string` | End date filter (`YYYY-MM-DD`) |
@@ -68,7 +67,7 @@ if (result.ok) {
 const result = await transactions.settle('tx_abc123', {
   charge_id: 'ch_xyz789',
   amount: 5000,
-  status: 'SETTLED',
+  status: 'succeeded',
 });
 
 if (result.ok) {
@@ -80,12 +79,11 @@ if (result.ok) {
 
 | Status | Description |
 |---|---|
-| `INITIATED` | Transaction has been created but not yet processed |
-| `PENDING` | Transaction is being processed |
-| `COMPLETED` | Transaction completed successfully |
-| `SETTLED` | Funds have been settled to the recipient |
-| `FAILED` | Transaction failed |
-| `CANCELED_AFTER_COMPLETION` | Transaction was cancelled after completion |
+| `awaiting_confirmation` | Transaction created, waiting for confirmation |
+| `processing` | Transaction is being processed |
+| `captured` | Payment has been captured |
+| `succeeded` | Transaction completed successfully |
+| `failed` | Transaction failed |
 
 ## Transaction item fields
 

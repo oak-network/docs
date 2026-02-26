@@ -39,16 +39,20 @@ const payments = createPaymentService(client);
 ## 4. Make your first call
 
 ```typescript
-const result = await customers.list();
+async function main() {
+  const result = await customers.list();
 
-if (result.ok) {
-  console.log(`Found ${result.value.data.count} customers`);
-  for (const customer of result.value.data.customer_list) {
-    console.log(`  - ${customer.email}`);
+  if (result.ok) {
+    console.log(`Found ${result.value.data.count} customers`);
+    for (const customer of result.value.data.customer_list) {
+      console.log(`  - ${customer.email}`);
+    }
+  } else {
+    console.error('Request failed:', result.error.message);
   }
-} else {
-  console.error('Request failed:', result.error.message);
 }
+
+main();
 ```
 
 Save steps 3 and 4 together in a file (e.g. `index.ts`) and run it:
@@ -98,6 +102,8 @@ if (payment.ok) {
   console.error('Payment failed:', payment.error.message);
 }
 ```
+
+> Steps 5 and 6 go inside the `main()` function, after the list call.
 
 ## Adding more services
 

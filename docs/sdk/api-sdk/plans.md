@@ -28,7 +28,7 @@ const result = await plans.create({
   description: 'Full access to all features',
   frequency: 30,
   price: 2999,
-  currency: 'BRL',
+  currency: 'USD',
   start_date: '2026-03-01',
   is_auto_renewable: true,
   allow_amount_override: false,
@@ -90,7 +90,7 @@ const result = await plans.update('plan_abc123', {
   description: 'Updated description',
   frequency: 30,
   price: 3499,
-  currency: 'BRL',
+  currency: 'USD',
   start_date: '2026-03-01',
   is_auto_renewable: true,
   allow_amount_override: false,
@@ -116,7 +116,7 @@ if (result.ok) {
 | `description` | `string` | Yes | Plan description |
 | `frequency` | `number` | Yes | Billing frequency in days |
 | `price` | `number` | Yes | Price in smallest currency unit |
-| `currency` | `string` | Yes | Currency code (e.g., `"BRL"`) |
+| `currency` | `string` | Yes | Currency code (e.g., `"USD"`) |
 | `start_date` | `string` | Yes | Start date in `YYYY-MM-DD` format |
 | `end_date` | `string` | No | Optional end date |
 | `is_auto_renewable` | `boolean` | Yes | Whether the plan auto-renews |
