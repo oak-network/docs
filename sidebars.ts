@@ -1,10 +1,9 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   // Main documentation sidebar
   tutorialSidebar: [
     'intro',
-    'roadmap',
     {
       type: 'category',
       label: 'Getting Started',
@@ -23,7 +22,41 @@ const sidebars: SidebarsConfig = {
         'guides/create-campaign',
         'guides/platform-integration',
         'guides/platform-journey',
-        'guides/platform-sdk',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Payment SDK',
+      items: [
+        'sdk/overview',
+        {
+          type: 'category',
+          label: 'API SDK',
+          items: [
+            'sdk/api-sdk/overview',
+            'sdk/api-sdk/installation',
+            'sdk/api-sdk/quickstart',
+            'sdk/api-sdk/authentication',
+            {
+              type: 'category',
+              label: 'Services',
+              items: [
+                'sdk/api-sdk/customers',
+                'sdk/api-sdk/payments',
+                'sdk/api-sdk/payment-methods',
+                'sdk/api-sdk/webhooks',
+                'sdk/api-sdk/transactions',
+                'sdk/api-sdk/transfers',
+                'sdk/api-sdk/plans',
+                'sdk/api-sdk/refunds',
+                'sdk/api-sdk/buy-and-sell',
+                'sdk/api-sdk/providers',
+              ],
+            },
+            'sdk/api-sdk/error-handling',
+            'sdk/api-sdk/environments',
+          ],
+        },
       ],
     },
     {
@@ -65,9 +98,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Interfaces',
-          items: [
-            'contracts/interfaces-overview',
-          ],
+          items: ['contracts/interfaces-overview'],
         },
       ],
     },
@@ -85,10 +116,39 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Operations',
+      items: ['deployment/README', 'api/README'],
+    },
+  ],
+
+  // Payment SDK sidebar
+  sdkSidebar: [
+    'sdk/overview',
+    {
+      type: 'category',
+      label: 'API SDK',
       items: [
-        'deployment/README',
-        'api/README',
-        'operations/bounty-program',
+        'sdk/api-sdk/overview',
+        'sdk/api-sdk/installation',
+        'sdk/api-sdk/quickstart',
+        'sdk/api-sdk/authentication',
+        {
+          type: 'category',
+          label: 'Services',
+          items: [
+            'sdk/api-sdk/customers',
+            'sdk/api-sdk/payments',
+            'sdk/api-sdk/payment-methods',
+            'sdk/api-sdk/webhooks',
+            'sdk/api-sdk/transactions',
+            'sdk/api-sdk/transfers',
+            'sdk/api-sdk/plans',
+            'sdk/api-sdk/refunds',
+            'sdk/api-sdk/buy-and-sell',
+            'sdk/api-sdk/providers',
+          ],
+        },
+        'sdk/api-sdk/error-handling',
+        'sdk/api-sdk/environments',
       ],
     },
   ],
@@ -130,9 +190,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Interfaces',
-      items: [
-        'contracts/interfaces-overview',
-      ],
+      items: ['contracts/interfaces-overview'],
     },
   ],
 
@@ -141,17 +199,12 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Basic Integration',
-      items: [
-        'guides/create-campaign',
-      ],
+      items: ['guides/create-campaign'],
     },
     {
       type: 'category',
       label: 'Platform Integration',
-      items: [
-        'guides/platform-integration',
-        'guides/platform-sdk',
-      ],
+      items: ['guides/platform-integration'],
     },
   ],
 };
