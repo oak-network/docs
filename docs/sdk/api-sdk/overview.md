@@ -6,6 +6,10 @@ sidebar_label: Introduction
 
 The `@oaknetwork/api` package is a TypeScript SDK that wraps the Oak Network payment API — handling authentication, retries, and type safety so you can focus on building your integration.
 
+:::tip Get your API credentials
+To start building with the SDK, you need a **Client ID** and **Client Secret**. Reach out to **[support@oaknetwork.org](mailto:support@oaknetwork.org)** to get your sandbox credentials and start integrating today.
+:::
+
 ## Highlights
 
 - **Initialize a client** for sandbox or production: `createOakClient({ environment: 'sandbox', ... })`

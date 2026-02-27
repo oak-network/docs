@@ -18,6 +18,10 @@ pnpm add @oaknetwork/api
 
 The SDK authenticates using OAuth2 client credentials. Store your credentials in environment variables — never hardcode them.
 
+:::tip Don't have credentials yet?
+Contact **[support@oaknetwork.org](mailto:support@oaknetwork.org)** to get your `CLIENT_ID` and `CLIENT_SECRET` for the sandbox environment.
+:::
+
 ```bash
 CLIENT_ID=your-client-id
 CLIENT_SECRET=your-client-secret

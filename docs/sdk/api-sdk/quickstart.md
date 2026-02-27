@@ -11,6 +11,10 @@ pnpm add -D tsx
 
 ## 2. Set your credentials
 
+:::tip Don't have credentials yet?
+Contact **[support@oaknetwork.org](mailto:support@oaknetwork.org)** to get your sandbox `CLIENT_ID` and `CLIENT_SECRET`.
+:::
+
 Create a `.env` file in your project root:
 
 ```bash

@@ -2,6 +2,10 @@
 
 The Payment SDK is Oak Network's toolkit for integrating payments, transfers, subscriptions, and crypto on/off-ramp flows into your application.
 
+:::tip Get your API credentials
+To start building with the SDK, you need a **Client ID** and **Client Secret**. Reach out to **[support@oaknetwork.org](mailto:support@oaknetwork.org)** to get your sandbox credentials and start integrating today.
+:::
+
 ## Packages
 
 The Payment SDK is split into focused packages. Use the one that fits your integration.
