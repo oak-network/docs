@@ -41,6 +41,49 @@ const config: Config = {
 
   plugins: [
     './src/plugins/favicon-head-tags.ts',
+    [
+      'docusaurus-plugin-llms',
+      {
+        generateLLMsFullTxt: true,
+        generateLLMsTxt: true,
+        docsDir: 'docs',
+        title: 'Oak Network Documentation',
+        description: 'Payment infrastructure for platforms — API SDK, smart contracts, and integration guides.',
+        excludeImports: true,
+        removeDuplicateHeadings: true,
+        ignoreFiles: ['guides/platform-sdk*'],
+        includeOrder: [
+          'intro*',
+          'concepts/*',
+          'guides/*',
+          'sdk/overview*',
+          'sdk/api-sdk/*',
+          'contracts/*',
+          'security/*',
+          'operations/*',
+          'api/*',
+          'deployment/*',
+          'roadmap*',
+        ],
+        rootContent: 'Oak Network is a decentralized crowdfunding protocol on Celo. This documentation covers the Payment SDK (@oaknetwork/api), smart contracts, and platform integration guides.',
+        customLLMFiles: [
+          {
+            filename: 'llms-payment-sdk.txt',
+            includePatterns: ['sdk/**/*.md'],
+            fullContent: true,
+            title: 'Oak Network Payment SDK',
+            description: 'Payment SDK reference — API SDK (@oaknetwork/api) for customers, payments, transfers, subscriptions, and crypto on/off-ramp.',
+          },
+          {
+            filename: 'llms-contracts.txt',
+            includePatterns: ['contracts/**/*.md'],
+            fullContent: true,
+            title: 'Oak Network Smart Contracts',
+            description: 'Solidity smart contract reference for the Oak Network protocol.',
+          },
+        ],
+      },
+    ],
   ],
 
   presets: [
@@ -101,12 +144,16 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'sdkSidebar',
+          position: 'left',
+          label: 'Payment SDK',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'contractsSidebar',
           position: 'left',
           label: 'Smart Contracts',
         },
-        {to: '/docs/roadmap', label: 'Roadmap', position: 'left'},
-        {to: '/docs/operations/bounty-program', label: 'Bounty Program', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/oak-network/ccprotocol-contracts',
@@ -142,6 +189,10 @@ const config: Config = {
               to: '/docs/concepts/overview',
             },
             {
+              label: 'Payment SDK',
+              to: '/docs/sdk/overview',
+            },
+            {
               label: 'Smart Contracts',
               to: '/docs/contracts/overview',
             },
@@ -150,6 +201,10 @@ const config: Config = {
         {
           title: 'Integration',
           items: [
+            {
+              label: 'Payment SDK',
+              to: '/docs/sdk/overview',
+            },
             {
               label: 'Create Campaign',
               to: '/docs/guides/create-campaign',
