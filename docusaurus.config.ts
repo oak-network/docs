@@ -156,7 +156,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/oak-network/ccprotocol-contracts',
+          href: 'https://github.com/oak-network',
           label: 'GitHub',
           position: 'right',
         },
