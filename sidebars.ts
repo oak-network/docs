@@ -55,6 +55,14 @@ const sidebars: SidebarsConfig = {
             },
             'sdk/api-sdk/error-handling',
             'sdk/api-sdk/environments',
+            {
+              type: 'category',
+              label: 'Examples',
+              items: [
+                'sdk/api-sdk/examples/stripe-integration',
+                'sdk/api-sdk/examples/e-commerce-flow',
+              ],
+            },
           ],
         },
       ],
@@ -149,6 +157,14 @@ const sidebars: SidebarsConfig = {
         },
         'sdk/api-sdk/error-handling',
         'sdk/api-sdk/environments',
+        {
+          type: 'category',
+          label: 'Examples',
+          items: [
+            'sdk/api-sdk/examples/stripe-integration',
+            'sdk/api-sdk/examples/e-commerce-flow',
+          ],
+        },
       ],
     },
   ],
