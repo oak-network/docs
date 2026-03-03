@@ -3,7 +3,7 @@
 A transaction is a ledger record of money movement — every payment, transfer, buy, or sell creates one. Use this service to query your transaction history, filter by status or date range, and settle completed transactions when funds are ready for disbursement.
 
 ```typescript
-import { createOakClient, createTransactionService } from '@oaknetwork/api';
+import { createOakClient, createTransactionService } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({ ... });
 const transactions = createTransactionService(client);

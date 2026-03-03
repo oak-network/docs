@@ -3,7 +3,7 @@
 Webhooks push real-time event notifications to your server when something happens in your Oak account — a payment completes, a refund is issued, a transfer lands, etc. Register an HTTPS endpoint, store the signing secret, and verify incoming payloads to keep your system in sync without polling.
 
 ```typescript
-import { createOakClient, createWebhookService } from '@oaknetwork/api';
+import { createOakClient, createWebhookService } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({ ... });
 const webhooks = createWebhookService(client);
@@ -119,7 +119,7 @@ The SDK exports utilities to verify incoming webhook signatures using HMAC-SHA25
 ### Verify a signature
 
 ```typescript
-import { verifyWebhookSignature } from '@oaknetwork/api';
+import { verifyWebhookSignature } from '@oaknetwork/payments-sdk';
 
 const isValid = verifyWebhookSignature(
   JSON.stringify(req.body),       // raw payload string
@@ -137,7 +137,7 @@ if (!isValid) {
 `parseWebhookPayload` combines signature verification with JSON parsing, returning a `Result`:
 
 ```typescript
-import { parseWebhookPayload } from '@oaknetwork/api';
+import { parseWebhookPayload } from '@oaknetwork/payments-sdk';
 
 const result = parseWebhookPayload<PaymentEvent>(
   JSON.stringify(req.body),
@@ -166,7 +166,7 @@ res.json({ received: true });
 
 ```typescript
 import express from 'express';
-import { parseWebhookPayload } from '@oaknetwork/api';
+import { parseWebhookPayload } from '@oaknetwork/payments-sdk';
 
 const app = express();
 
