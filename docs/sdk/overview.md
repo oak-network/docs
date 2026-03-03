@@ -1,3 +1,7 @@
+---
+sidebar_label: Overview
+---
+
 # Payment SDK
 
 The `@oaknetwork/payments-sdk` package is a TypeScript SDK that wraps the Oak Network payment API — handling authentication, retries, and type safety so you can focus on building your integration.
