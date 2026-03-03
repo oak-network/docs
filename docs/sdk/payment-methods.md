@@ -3,7 +3,7 @@
 A payment method is a stored instrument (card, bank account, crypto wallet, or PIX key) attached to a customer. Once added, it can be referenced by ID when creating payments or transfers — the customer does not need to re-enter their details each time.
 
 ```typescript
-import { createOakClient, createPaymentMethodService } from '@oaknetwork/api';
+import { createOakClient, createPaymentMethodService } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({ ... });
 const paymentMethods = createPaymentMethodService(client);

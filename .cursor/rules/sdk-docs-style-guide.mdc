@@ -1,7 +1,7 @@
 ---
-description: Strict style guide for writing and modifying SDK documentation pages under docs/sdk/api-sdk/. All contributors and AI tools must follow these rules to maintain consistency.
+description: Strict style guide for writing and modifying SDK documentation pages under docs/sdk/. All contributors and AI tools must follow these rules to maintain consistency.
 globs:
-  - docs/sdk/api-sdk/**/*.md
+  - docs/sdk/**/*.md
 alwaysApply: false
 ---
 
@@ -28,7 +28,7 @@ One-sentence description.
 SECTION 2 — MANDATORY: Initialization
 <blank line>
 \`\`\`typescript
-import { createOakClient, createXxxService } from '@oaknetwork/api';
+import { createOakClient, createXxxService } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({ ... });
 const service = createXxxService(client);
@@ -279,11 +279,11 @@ Link to other pages inline where the reference is contextually relevant. Never c
 **Correct:**
 
 ```markdown
-> To issue a refund on a completed payment, see [Refunds](/docs/sdk/api-sdk/refunds).
+> To issue a refund on a completed payment, see [Refunds](/docs/sdk/refunds).
 ```
 
 ```markdown
-The SDK uses OAuth2 client credentials for authentication. See [Authentication](/docs/sdk/api-sdk/authentication) for details.
+The SDK uses OAuth2 client credentials for authentication. See [Authentication](/docs/sdk/authentication) for details.
 ```
 
 **Wrong:**
@@ -291,9 +291,9 @@ The SDK uses OAuth2 client credentials for authentication. See [Authentication](
 ```markdown
 ## See Also
 
-- [Authentication](/docs/sdk/api-sdk/authentication)
-- [Error Handling](/docs/sdk/api-sdk/error-handling)
-- [Environments](/docs/sdk/api-sdk/environments)
+- [Authentication](/docs/sdk/authentication)
+- [Error Handling](/docs/sdk/error-handling)
+- [Environments](/docs/sdk/environments)
 ```
 
 The only exception is the `overview.md` page, which includes a "Next up" section because it serves as the entry point to the SDK docs.
@@ -352,13 +352,13 @@ The only exception is the `overview.md` page, which includes a "Next up" section
 `pnpm` is the primary package manager. All install commands use `pnpm add`.
 
 ```bash
-pnpm add @oaknetwork/api
+pnpm add @oaknetwork/payments-sdk
 ```
 
 Mention npm and yarn as alternatives in a callout:
 
 ```markdown
-> You can also use `npm install @oaknetwork/api` or `yarn add @oaknetwork/api`.
+> You can also use `npm install @oaknetwork/payments-sdk` or `yarn add @oaknetwork/payments-sdk`.
 ```
 
 ---
@@ -423,7 +423,7 @@ When documenting a new SDK service, every item below is MANDATORY. A page missin
 
 1. `# Title` — singular noun, no emoji
 2. One-sentence description — present tense, under 30 words, references module name in backticks
-3. Initialization code block — import from `@oaknetwork/api`, create client, create service via factory function
+3. Initialization code block — import from `@oaknetwork/payments-sdk`, create client, create service via factory function
 5. `## Methods` — table with columns: Method, Endpoint, Description
 6. One `## MethodName` section per method — code block FIRST, explanation AFTER
 7. `## Request fields` — table with columns: Field, Type, Required, Description

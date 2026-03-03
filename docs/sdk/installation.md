@@ -1,16 +1,16 @@
 # Installation
 
-The `@oaknetwork/api` package is published on npm. Install it with your preferred package manager.
+The `@oaknetwork/payments-sdk` package is published on npm. Install it with your preferred package manager.
 
 ```bash
-pnpm add @oaknetwork/api
+pnpm add @oaknetwork/payments-sdk
 ```
 
-> You can also use `npm install @oaknetwork/api` or `yarn add @oaknetwork/api`.
+> You can also use `npm install @oaknetwork/payments-sdk` or `yarn add @oaknetwork/payments-sdk`.
 
 ## Requirements
 
-- `@oaknetwork/api` **>= 1.0.0**
+- `@oaknetwork/payments-sdk` **>= 1.0.0**
 - Node.js 18 or later
 - TypeScript 5.x recommended (the SDK ships type declarations)
 
@@ -44,7 +44,7 @@ The SDK supports two built-in environments. Pass the `environment` field when cr
 | `production` | `https://app.usecrowdpay.xyz` | Blocked |
 
 ```typescript
-import { createOakClient } from '@oaknetwork/api';
+import { createOakClient } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({
   environment: 'sandbox',
@@ -64,4 +64,4 @@ const client = createOakClient({
 });
 ```
 
-> For a full breakdown of environment behavior, sandbox-only restrictions, and the `@SandboxOnly` decorator, see [Environments](/docs/sdk/api-sdk/environments).
+> For a full breakdown of environment behavior, sandbox-only restrictions, and the `@SandboxOnly` decorator, see [Environments](/docs/sdk/environments).
