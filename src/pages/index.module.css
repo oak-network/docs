@@ -924,10 +924,10 @@
   
   .buttonPrimary,
   .buttonSecondary {
-    width: 100%;
+    width: auto;
     max-width: 300px;
     font-size: 16px;
-    padding: 0.6rem 1.5rem;
+    padding: 0.75rem 3rem;
   }
   
   .trustedBy {
