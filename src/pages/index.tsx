@@ -26,11 +26,6 @@ function HomepageHeader() {
               to="/docs/intro">
               Get Started
             </Link>
-            <Link
-              className={styles.buttonSecondary}
-              to="/docs/roadmap">
-              View Roadmap
-            </Link>
           </div>
           <div className={styles.trustedBy}>
             <div className={styles.trustedByContainer}>
