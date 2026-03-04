@@ -1309,7 +1309,6 @@ a.footerLogoLink:hover,
 /* Main content area - background color, tight padding */
 [class*="docRoot"] .theme-doc-markdown,
 [class*="docRoot"] article,
-[class*="docRoot"] .theme-doc-markdown > div,
 [class*="docRoot"] [class*="theme-doc-markdown"] {
   background: #1B1F30 !important;
   padding: 1.5rem !important;
@@ -1319,7 +1318,17 @@ a.footerLogoLink:hover,
   margin-left: 0 !important;
   margin-right: auto !important;
   box-sizing: border-box !important;
-  overflow-x: hidden !important;
+}
+
+[class*="docRoot"] .theme-doc-markdown > div:not([class*="tableContainer"]) {
+  background: #1B1F30 !important;
+  padding: 1.5rem !important;
+  border-radius: 8px;
+  max-width: 1290px !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
 }
 
 /* Prevent code blocks and pre from overflowing on mobile */
