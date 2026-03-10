@@ -344,6 +344,13 @@ a[href*="discord"]:not(.button):hover {
   .navbar__items--right {
     right: 0;
   }
+
+  /* Solid background on mobile so sidebar overlay works correctly */
+  [data-theme='dark'] .navbar {
+    background-color: #050505;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
   
   /* Adjust navbar brand z-index when mobile menu is open to keep both logos visible */
   body.navbar-sidebar--show .navbar__brand,
@@ -356,6 +363,23 @@ a[href*="discord"]:not(.button):hover {
   .navbar-sidebar .navbar__brand {
     z-index: 10 !important;
     position: relative !important;
+  }
+
+  /* Solid background for the mobile sidebar so content doesn't bleed through */
+  .navbar-sidebar {
+    background-color: #050505 !important;
+  }
+
+  .navbar-sidebar .navbar-sidebar__item {
+    background-color: #050505 !important;
+  }
+
+  .navbar-sidebar .menu {
+    background-color: #050505 !important;
+  }
+
+  .navbar-sidebar__backdrop {
+    background-color: rgba(0, 0, 0, 0.7) !important;
   }
 }
 
