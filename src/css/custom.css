@@ -1,12 +1,11 @@
 /**
- * Oak Network Brand Theme
- * Orange (#FBA244) and Dark Blue (#2E2F4A) color scheme
- * Typography: Lexend (base) and Jura (headings)
+ * Oak Network site theme tokens and global overrides.
+ * Primary accent: #FBA244.
  */
 
 /* Import Google Fonts and Font Awesome */
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
 
 /* Font Variables */
 :root {
@@ -68,33 +67,33 @@
   --ifm-color-primary-lightest: #fdc382;
 
   /* Background Colors (Dark Base) */
-  --ifm-background-color: #13171C;
-  --ifm-background-surface-color: #1B1F30;
+  --ifm-background-color: #050505;
+  --ifm-background-surface-color: #0a0a0a;
   --ifm-font-color-base: #ffffff;
   
   /* Code color */
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.05);
   
   /* Navigation */
-  --ifm-navbar-background-color: #13171C;
+  --ifm-navbar-background-color: transparent;
   --ifm-navbar-link-color: #CCCCCC;
   --ifm-navbar-link-hover-color: #FFFFFF;
   
   /* Footer */
-  --ifm-footer-background-color: #2E2F4A;
+  --ifm-footer-background-color: #050505;
   --ifm-footer-color: #ffffff;
   --ifm-footer-link-color: #ffffff;
   --ifm-footer-link-hover-color: #FBA244;
   
   /* Sidebar */
-  --ifm-sidebar-background-color: #2E2F4A;
+  --ifm-sidebar-background-color: #050505;
   --ifm-menu-link-color: #ffffff;
   --ifm-menu-link-hover-color: #FBA244;
   --ifm-menu-link-active-color: #FBA244;
   
   /* Cards */
-  --ifm-card-background-color: #2E2F4A;
-  --ifm-card-hover-background-color: #3a3b5a;
+  --ifm-card-background-color: #0a0a0a;
+  --ifm-card-hover-background-color: #111111;
 }
 
 /* Fine-tuning */
@@ -107,17 +106,21 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Adjust dark navbar to use the brand color */
 [data-theme='dark'] .navbar {
-  background-color: #13171C;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Adjust dark footer to use the brand color */
 [data-theme='dark'] .footer {
-  background-color: var(--ifm-background-surface-color);
+  background-color: #050505;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Global Styles */
 html[data-theme='dark'] {
-  background: #13171C;
+  background: #050505;
   color: var(--ifm-color-content);
 }
 
@@ -853,7 +856,7 @@ a.footerLogoLink:hover,
 
 /* Hero Section */
 .hero {
-  background: #13171C;
+  background: #050505;
   padding: 6rem 0 8rem;
   position: relative;
   overflow: hidden;
@@ -961,7 +964,7 @@ a.footerLogoLink:hover,
 
 /* Mermaid Diagram Enhancements */
 .mermaid {
-  background: #1B1F30 !important;
+  background: #0a0a0a !important;
   border: 1px solid rgba(204, 204, 204, 0.3) !important;
   border-radius: 16px;
   padding: 2rem;
@@ -975,7 +978,7 @@ a.footerLogoLink:hover,
 
 /* MermaidDiagram component container - match homepage card background */
 .mermaid-diagram-container {
-  background: #1B1F30 !important;
+  background: #0a0a0a !important;
   border: 1px solid rgba(204, 204, 204, 0.3) !important;
   border-width: 1px !important;
 }
@@ -1141,7 +1144,7 @@ a.footerLogoLink:hover,
 }
 
 ::-webkit-scrollbar-track {
-  background: #13171C;
+  background: #050505;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -1310,7 +1313,7 @@ a.footerLogoLink:hover,
 [class*="docRoot"] .theme-doc-markdown,
 [class*="docRoot"] article,
 [class*="docRoot"] [class*="theme-doc-markdown"] {
-  background: #1B1F30 !important;
+  background: #0a0a0a !important;
   padding: 1.5rem !important;
   border-radius: 8px;
   max-width: 1290px !important;
