@@ -27,8 +27,8 @@ type Result<T, E = OakError> =
 The SDK also exports `ok()` and `err()` helpers if you need to create `Result` values in your own code:
 
 ```typescript
-import { ok, err, OakError } from '@oaknetwork/api';
-import type { Result } from '@oaknetwork/api';
+import { ok, err, OakError } from '@oaknetwork/payments-sdk';
+import type { Result } from '@oaknetwork/payments-sdk';
 
 function validate(input: string): Result<string> {
   if (input.length === 0) return err(new OakError('Input cannot be empty'));
@@ -55,7 +55,7 @@ All errors extend `OakError`. Check the error class to determine what went wrong
 `ApiError` is the most common error type. It contains the HTTP status code, the parsed response body, and response headers.
 
 ```typescript
-import { ApiError } from '@oaknetwork/api';
+import { ApiError } from '@oaknetwork/payments-sdk';
 
 const result = await payments.create(paymentRequest);
 
@@ -77,7 +77,7 @@ if (!result.ok) {
 The SDK includes built-in retry logic with exponential backoff. Configure it when creating the client.
 
 ```typescript
-import { createOakClient } from '@oaknetwork/api';
+import { createOakClient } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({
   environment: 'sandbox',
@@ -110,7 +110,7 @@ The retry handler also respects the `Retry-After` header when the API returns `4
 Some operations are restricted to the sandbox environment. If you call a sandbox-only method in production, the SDK returns an `EnvironmentViolationError` without making a network request.
 
 ```typescript
-import { EnvironmentViolationError } from '@oaknetwork/api';
+import { EnvironmentViolationError } from '@oaknetwork/payments-sdk';
 
 if (!result.ok && result.error instanceof EnvironmentViolationError) {
   console.error(
@@ -120,4 +120,4 @@ if (!result.ok && result.error instanceof EnvironmentViolationError) {
 }
 ```
 
-> For more on environment behavior, see [Environments](/docs/sdk/api-sdk/environments).
+> For more on environment behavior, see [Environments](/docs/sdk/environments).

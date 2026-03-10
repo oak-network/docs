@@ -111,9 +111,6 @@ function HomepageHeader() {
             <Link className={clsx(styles.btn, styles.btnPrimary)} to="/docs/intro">
               Get Started
             </Link>
-            <Link className={clsx(styles.btn, styles.btnOutline)} to="/docs/roadmap">
-              View Roadmap
-            </Link>
           </div>
         </div>
       </div>
