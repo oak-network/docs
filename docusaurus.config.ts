@@ -81,6 +81,13 @@ const config: Config = {
             title: 'Oak Network Smart Contracts',
             description: 'Solidity smart contract reference for the Oak Network protocol.',
           },
+          {
+            filename: 'llms-contracts-sdk.txt',
+            includePatterns: ['contracts-sdk/**/*.md'],
+            fullContent: true,
+            title: 'Oak Network Contracts SDK',
+            description: 'TypeScript SDK reference (@oaknetwork/contracts) for interacting with Oak Network smart contracts.',
+          },
         ],
       },
     ],
@@ -148,6 +155,12 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'contractsSdkSidebar',
+          position: 'left',
+          label: 'Contracts SDK',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'contractsSidebar',
           position: 'left',
           label: 'Smart Contracts',
@@ -189,6 +202,10 @@ const config: Config = {
             {
               label: 'Payment SDK',
               to: '/docs/sdk/overview',
+            },
+            {
+              label: 'Contracts SDK',
+              to: '/docs/contracts-sdk/overview',
             },
             {
               label: 'Smart Contracts',

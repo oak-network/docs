@@ -54,6 +54,32 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Contracts SDK',
+      items: [
+        'contracts-sdk/overview',
+        'contracts-sdk/installation',
+        'contracts-sdk/quickstart',
+        'contracts-sdk/client',
+        {
+          type: 'category',
+          label: 'Contract Entities',
+          items: [
+            'contracts-sdk/global-params',
+            'contracts-sdk/campaign-info-factory',
+            'contracts-sdk/campaign-info',
+            'contracts-sdk/treasury-factory',
+            'contracts-sdk/payment-treasury',
+            'contracts-sdk/all-or-nothing',
+            'contracts-sdk/keep-whats-raised',
+            'contracts-sdk/item-registry',
+          ],
+        },
+        'contracts-sdk/error-handling',
+        'contracts-sdk/utilities',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Smart Contracts',
       items: [
         'contracts/overview',
@@ -137,6 +163,30 @@ const sidebars: SidebarsConfig = {
     },
     'sdk/error-handling',
     'sdk/environments',
+  ],
+
+  // Contracts SDK sidebar
+  contractsSdkSidebar: [
+    'contracts-sdk/overview',
+    'contracts-sdk/installation',
+    'contracts-sdk/quickstart',
+    'contracts-sdk/client',
+    {
+      type: 'category',
+      label: 'Contract Entities',
+      items: [
+        'contracts-sdk/global-params',
+        'contracts-sdk/campaign-info-factory',
+        'contracts-sdk/campaign-info',
+        'contracts-sdk/treasury-factory',
+        'contracts-sdk/payment-treasury',
+        'contracts-sdk/all-or-nothing',
+        'contracts-sdk/keep-whats-raised',
+        'contracts-sdk/item-registry',
+      ],
+    },
+    'contracts-sdk/error-handling',
+    'contracts-sdk/utilities',
   ],
 
   // Smart contracts sidebar
