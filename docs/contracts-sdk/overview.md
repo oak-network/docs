@@ -10,6 +10,10 @@ The `@oaknetwork/contracts` package is a TypeScript SDK for interacting with Oak
 Start by pointing the SDK at Celo Sepolia testnet (`CHAIN_IDS.CELO_TESTNET_SEPOLIA`) to experiment without risking real funds.
 :::
 
+:::tip Deployed addresses
+You need deployed contract addresses to use this SDK — including factory addresses (for example `CampaignInfoFactory`, `TreasuryFactory`) and any protocol contracts you call through the client. The SDK interacts with Oak Network smart contracts that must already be deployed on-chain. To get your contract addresses and sandbox environment access, contact our team at [support@oaknetwork.org](mailto:support@oaknetwork.org).
+:::
+
 ## Highlights
 
 - **Flexible signers** — simple keyed client, read-only RPC client, per-entity or per-call signer overrides, or full viem `PublicClient` / `WalletClient` setup (see [Client Configuration](/docs/contracts-sdk/client))
