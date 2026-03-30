@@ -4,16 +4,20 @@ Oak Network has undergone comprehensive security audits to ensure the safety and
 
 ## Audit Results
 
-### PeckShield Audit
+### Immunefi Security Audit
 
-**Status**: ✅ Completed  
-**Date**: May 2025 
-**Report**: [PeckShield Audit Report](/oaknetwork-contracts/audits/PeckShield-Audit-Report-CreativeCrowdfunding_v1.0.pdf)
+**Status**: ✅ Completed
 
 #### Key Findings
 - No critical vulnerabilities found
 - Minor recommendations implemented
 - All smart contracts approved for mainnet deployment
+
+### OpenZeppelin Audit
+
+**Status**: 🔄 Ongoing
+
+We are currently undergoing a comprehensive audit with **OpenZeppelin**, the industry standard for smart contract security.
 
 ## Security Measures
 

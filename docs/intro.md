@@ -30,7 +30,7 @@ graph TB
 Campaigns live on-chain, ensuring they cannot be removed or altered by any central authority.
 
 ### 🔐 Security First
-Our smart contracts are audited by **PeckShield** and **OpenZeppelin** already scheduled for January, and are part of **Immunefi's bug bounty program** with rewards up to $50,000.
+Our smart contracts are audited by **Immunefi** with an ongoing **OpenZeppelin** audit, and are part of **Immunefi's bug bounty program** with rewards up to $50,000.
 
 ### 🌍 Multi-Platform
 Oak Network is infrastructure - integrate it into your existing platform to add crowdfunding capabilities.

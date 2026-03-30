@@ -282,13 +282,12 @@ OpenZeppelin conducted a comprehensive audit of Oak Network's smart contracts:
 - Strong input validation throughout
 - Efficient gas optimization
 
-#### PeckShield
+#### Immunefi
 
 **Leading Blockchain Security Firm**
 
-PeckShield performed an independent security audit:
+Immunefi performed an independent security audit:
 
-- **Audit Date**: May 2025
 - **Scope**: Full protocol security review
 - **Focus Areas**:
   - Smart contract vulnerabilities
@@ -302,6 +301,15 @@ PeckShield performed an independent security audit:
 - 2 medium-severity issues (fixed)
 - 5 low-severity issues (fixed)
 - Strong security architecture overall
+
+#### OpenZeppelin
+
+**Industry Standard for Smart Contract Security**
+
+We are currently undergoing a comprehensive audit with OpenZeppelin:
+
+- **Scope**: Full protocol security review
+- **Status**: 🔄 Ongoing
 
 #### Immunefi
 
@@ -345,7 +353,8 @@ Our audits covered:
 
 ### Audit Reports
 
-- **PeckShield**: [PeckShield Audit Report](/docs/security/audits/PeckShield-Audit-Report-CreativeCrowdfunding_v1.0.pdf)
+- **Immunefi**: Completed
+- **OpenZeppelin**: Ongoing
 
 ### Continuous Security
 
