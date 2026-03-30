@@ -12,7 +12,7 @@ Start by pointing the SDK at Celo Sepolia testnet (`CHAIN_IDS.CELO_TESTNET_SEPOL
 
 ## Highlights
 
-- **Three configuration modes** — simple (`chainId + rpcUrl + privateKey`), read-only (`chainId + rpcUrl`), or full (bring your own viem clients)
+- **Flexible signers** — simple keyed client, read-only RPC client, per-entity or per-call signer overrides, or full viem `PublicClient` / `WalletClient` setup (see [Client Configuration](/docs/contracts-sdk/client))
 - **Entity factories** for every on-chain contract: `oak.globalParams(address)`, `oak.campaignInfo(address)`, etc.
 - **Typed reads, writes, and simulations** — every method is fully typed with TypeScript
 - **Typed error decoding** — `parseContractError()` turns raw revert data into SDK errors with recovery hints
@@ -70,5 +70,5 @@ The SDK ships 8 contract entity modules. Call the factory method on the client t
 
 - [Installation](/docs/contracts-sdk/installation) — install the package and configure your chain
 - [Quickstart](/docs/contracts-sdk/quickstart) — your first contract interaction in under 5 minutes
-- [Client Configuration](/docs/contracts-sdk/client) — simple vs full configuration modes
+- [Client Configuration](/docs/contracts-sdk/client) — patterns, signer overrides, and resolution order
 - [Error Handling](/docs/contracts-sdk/error-handling) — typed error decoding and recovery hints

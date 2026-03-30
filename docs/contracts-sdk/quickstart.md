@@ -120,23 +120,21 @@ console.log('Campaign deployed at:', campaignAddress);
 Contract reverts can be decoded into typed errors with recovery hints:
 
 ```typescript
-import { parseContractError } from '@oaknetwork/contracts';
+import { parseContractError, getRevertData } from '@oaknetwork/contracts';
 
 try {
   await factory.createCampaign({ ... });
 } catch (err) {
-  let current = err;
-  while (current) {
-    if (typeof current.data === 'string' && current.data.startsWith('0x')) {
-      const parsed = parseContractError(current.data);
-      if (parsed) {
-        console.error('Reverted:', parsed.name);
-        console.error('Hint:', parsed.recoveryHint);
-        break;
-      }
+  const revertData = getRevertData(err);
+  if (revertData) {
+    const parsed = parseContractError(revertData);
+    if (parsed) {
+      console.error('Reverted:', parsed.name);
+      console.error('Hint:', parsed.recoveryHint);
+      return;
     }
-    current = current.cause;
   }
+  console.error('Unknown error:', err);
 }
 ```
 
@@ -144,7 +142,7 @@ try {
 
 ## What to read next
 
-- [Client Configuration](/docs/contracts-sdk/client) — simple vs full config modes, options, and browser wallets
+- [Client Configuration](/docs/contracts-sdk/client) — all setup patterns, per-entity and per-call signers, resolution order, and browser wallets
 - [GlobalParams](/docs/contracts-sdk/global-params) — protocol-wide configuration reads and writes
 - [CampaignInfoFactory](/docs/contracts-sdk/campaign-info-factory) — deploying new campaigns
 - [Error Handling](/docs/contracts-sdk/error-handling) — typed error decoding and recovery hints
