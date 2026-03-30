@@ -13,9 +13,9 @@ We're proud to announce that Oak Network has successfully completed comprehensiv
 
 ## Audit Results
 
-### PeckShield Security Audit
+### Immunefi Security Audit
 
-Our smart contracts have undergone rigorous security analysis by **PeckShield**, a leading blockchain security firm. The audit covered:
+Our smart contracts have undergone rigorous security analysis by **Immunefi**, a leading blockchain security firm. The audit covered:
 
 - **Smart Contract Security**: Code review and vulnerability assessment
 - **Economic Security**: Tokenomics and incentive analysis
@@ -120,13 +120,9 @@ const keyResponse = await turnkeyClient.createKeys({
 
 ## Audit Report
 
-### Download Full Report
+### Ongoing Audit with OpenZeppelin
 
-The complete audit report is available for download:
-
-- [PeckShield Audit Report](/docs/security/audits/peckshield-audit.pdf)
-- [Security Best Practices Guide](/docs/security/best-practices)
-- [Integration Security Checklist](/docs/security/checklist)
+We are currently undergoing an additional comprehensive audit with **OpenZeppelin**, the industry standard for smart contract security. This ongoing engagement further strengthens our security posture ahead of mainnet deployment.
 
 ### Key Security Measures
 
