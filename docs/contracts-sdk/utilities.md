@@ -7,6 +7,7 @@ import {
   keccak256,
   id,
   toHex,
+  isHex,
   getCurrentTimestamp,
   addDays,
   getChainFromId,
@@ -44,6 +45,15 @@ const topic = id('Transfer(address,address,uint256)');
 ```
 
 ## Encoding
+
+### isHex(data)
+
+Type guard that checks if a string is a valid `0x`-prefixed hex string.
+
+```typescript
+isHex('0x1234'); // true
+isHex('hello');  // false
+```
 
 ### toHex(value, options?)
 
@@ -149,8 +159,8 @@ const provider = createBrowserProvider(window.ethereum, chain);
 const signer   = await getSigner(window.ethereum, chain);
 
 // Server-side
-const rpcProvider = createJsonRpcProvider(chain, 'https://rpc-url.com');
-const wallet      = createWallet('0x...privateKey', chain, 'https://rpc-url.com');
+const rpcProvider = createJsonRpcProvider('https://rpc-url.com', chain);
+const wallet      = createWallet('0x...privateKey', 'https://rpc-url.com', chain);
 ```
 
 ## Constants

@@ -127,12 +127,19 @@ try {
 | `PaymentTreasuryPaymentAlreadyConfirmed` | Payment already confirmed | Cannot re-confirm |
 | `PaymentTreasuryPaymentAlreadyExpired` | Payment expired | Create a new payment |
 | `PaymentTreasuryPaymentNotConfirmed` | Payment not yet confirmed | Confirm the payment first |
+| `PaymentTreasuryPaymentNotClaimable` | Payment does not meet refund eligibility | May not be confirmed, expired, or claim window not reached |
 | `PaymentTreasuryTokenNotAccepted` | Token not accepted | Use an accepted token |
 | `PaymentTreasuryUnAuthorized` | Caller not authorized | Use authorized account |
+| `PaymentTreasuryCampaignInfoIsPaused` | Campaign is paused | Unpause the campaign first |
+| `PaymentTreasurySuccessConditionNotFulfilled` | Goal not reached | Goal amount must be reached before withdrawing |
+| `PaymentTreasuryCryptoPayment` | Wrong flow for crypto payment | Use `processCryptoPayment()` instead |
 | `PaymentTreasuryInsufficientBalance` | Insufficient token balance | Fund the account |
+| `PaymentTreasuryInsufficientFundsForFee` | Insufficient funds for withdrawal fee | Ensure treasury has enough balance for the fee |
 | `PaymentTreasuryFeeNotDisbursed` | Fees not yet disbursed | Call `disburseFees()` first |
 | `PaymentTreasuryAlreadyWithdrawn` | Already withdrawn | Cannot withdraw twice |
-| `PaymentTreasuryNoFundsToClaimError` | No funds available | No refundable funds |
+| `PaymentTreasuryExpirationExceedsMax` | Payment expiration too long | Use a shorter expiration time |
+| `PaymentTreasuryClaimWindowNotReached` | Claim attempted too early | Wait until the claimableAt timestamp |
+| `PaymentTreasuryNoFundsToClaim` | No funds available | No refundable funds |
 
 ### AllOrNothing errors
 
@@ -147,6 +154,7 @@ try {
 | `AllOrNothingFeeAlreadyDisbursed` | Fees already disbursed | Already processed |
 | `AllOrNothingFeeNotDisbursed` | Fees not disbursed | Call `disburseFees()` first |
 | `AllOrNothingTransferFailed` | Token transfer failed | Check balances and allowances |
+| `TreasurySuccessConditionNotFulfilled` | Goal not met | Goal amount must be reached before withdrawing |
 
 ### KeepWhatsRaised errors
 
@@ -159,11 +167,13 @@ try {
 | `KeepWhatsRaisedAlreadyClaimed` | Already claimed | Cannot claim twice |
 | `KeepWhatsRaisedAlreadyWithdrawn` | Already withdrawn | Cannot withdraw twice |
 | `KeepWhatsRaisedNotClaimable` | Not claimable | Conditions not met for claim |
+| `KeepWhatsRaisedNotClaimableAdmin` | Admin claim conditions not met | Ensure campaign is in the correct state |
 | `KeepWhatsRaisedRewardExists` | Duplicate reward name | Use a different reward name |
 | `KeepWhatsRaisedTokenNotAccepted` | Token not accepted | Use an accepted token |
 | `KeepWhatsRaisedUnAuthorized` | Caller not authorized | Use authorized account |
 | `KeepWhatsRaisedPledgeAlreadyProcessed` | Pledge already processed | Cannot re-process |
 | `KeepWhatsRaisedInsufficientFundsForFee` | Insufficient funds for fee | Ensure sufficient balance |
+| `KeepWhatsRaisedInsufficientFundsForWithdrawalAndFee` | Insufficient funds for withdrawal + fee | Reduce withdrawal or wait for more pledges |
 | `KeepWhatsRaisedDisbursementBlocked` | Disbursement blocked | Conditions not met |
 
 ### TreasuryFactory errors

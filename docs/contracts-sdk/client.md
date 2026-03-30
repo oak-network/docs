@@ -23,6 +23,29 @@ const oak = createOakContractsClient({
 | `privateKey` | `` `0x${string}` `` | Yes | 0x-prefixed private key for the signer |
 | `options` | `Partial<OakContractsClientOptions>` | No | Client-level overrides |
 
+## Read-only configuration
+
+Omit the `privateKey` to create a read-only client. Reads work normally but any write or simulation call will throw.
+
+```typescript
+import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts';
+
+const oak = createOakContractsClient({
+  chainId: CHAIN_IDS.CELO_TESTNET_SEPOLIA,
+  rpcUrl:  'https://forno.celo-sepolia.celo-testnet.org',
+});
+
+const gp = oak.globalParams('0x...');
+const fee = await gp.getProtocolFeePercent(); // works
+// await gp.enlistPlatform(...);              // throws — no signer
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `chainId` | `number` | Yes | Numeric chain ID (use `CHAIN_IDS.*` constants) |
+| `rpcUrl` | `string` | Yes | RPC endpoint URL for the chain |
+| `options` | `Partial<OakContractsClientOptions>` | No | Client-level overrides |
+
 ## Full configuration
 
 Bring your own viem `PublicClient` and `WalletClient`. Use this when you need custom transport settings, a browser wallet, or an externally managed signer.
@@ -97,7 +120,7 @@ Once created, the client exposes these read-only properties:
 | `config` | `PublicOakContractsClientConfig` | Public chain configuration (no secrets) |
 | `options` | `OakContractsClientOptions` | Resolved client options |
 | `publicClient` | `PublicClient` | Viem `PublicClient` for custom reads |
-| `walletClient` | `WalletClient` | Viem `WalletClient` for custom writes |
+| `walletClient` | `WalletClient \| null` | Viem `WalletClient` for custom writes (`null` for read-only clients) |
 
 ## Waiting for receipts
 

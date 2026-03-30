@@ -12,7 +12,7 @@ Start by pointing the SDK at Celo Sepolia testnet (`CHAIN_IDS.CELO_TESTNET_SEPOL
 
 ## Highlights
 
-- **Two configuration modes** — simple (`chainId + rpcUrl + privateKey`) or full (bring your own viem clients)
+- **Three configuration modes** — simple (`chainId + rpcUrl + privateKey`), read-only (`chainId + rpcUrl`), or full (bring your own viem clients)
 - **Entity factories** for every on-chain contract: `oak.globalParams(address)`, `oak.campaignInfo(address)`, etc.
 - **Typed reads, writes, and simulations** — every method is fully typed with TypeScript
 - **Typed error decoding** — `parseContractError()` turns raw revert data into SDK errors with recovery hints
