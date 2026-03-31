@@ -9,20 +9,30 @@ Use `parseContractError()` to decode raw revert data from a failed transaction o
 ```typescript
 import { parseContractError, getRevertData } from '@oaknetwork/contracts';
 
+function handleError(err) {
+  // If the error is already a typed SDK error (thrown by simulate methods)
+  if (typeof err?.recoveryHint === 'string') {
+    console.error('Reverted:', err.name);
+    console.error('Args:', err.args);
+    console.error('Hint:', err.recoveryHint);
+    return;
+  }
+  // Otherwise extract raw revert hex from the viem error chain and decode it
+  const revertData = getRevertData(err);
+  const parsed = parseContractError(revertData ?? '');
+  if (parsed) {
+    console.error('Reverted:', parsed.name);
+    console.error('Args:', parsed.args);
+    if (parsed.recoveryHint) console.error('Hint:', parsed.recoveryHint);
+    return;
+  }
+  console.error('Unknown error:', err.message);
+}
+
 try {
   const txHash = await factory.createCampaign({ ... });
 } catch (err) {
-  const revertData = getRevertData(err);
-  if (revertData) {
-    const parsed = parseContractError(revertData);
-    if (parsed) {
-      console.error('Error:', parsed.name);
-      console.error('Args:', parsed.args);
-      console.error('Hint:', parsed.recoveryHint);
-      return;
-    }
-  }
-  console.error('Unknown error:', err);
+  handleError(err);
 }
 ```
 

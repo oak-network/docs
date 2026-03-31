@@ -68,7 +68,6 @@ The SDK ships 8 contract entity modules. Call the factory method on the client t
 | `@oaknetwork/contracts/contracts` | Contract entity factories only |
 | `@oaknetwork/contracts/utils` | Utility functions only (no client) |
 | `@oaknetwork/contracts/errors` | Error classes and `parseContractError` only |
-| `@oaknetwork/contracts/metrics` | Metrics types and functions |
 
 ## Next up
 
