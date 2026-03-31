@@ -5,39 +5,30 @@ This guide walks you from zero to a working contract interaction in under 5 minu
 ## 1. Install the package
 
 ```bash
-pnpm add @oaknetwork/contracts dotenv
-pnpm add -D tsx
+pnpm add @oaknetwork/contracts
 ```
 
-## 2. Set your credentials
+> You can also use `npm install @oaknetwork/contracts` or `yarn add @oaknetwork/contracts`.
 
-Create a `.env` file in your project root:
-
-```bash
-PRIVATE_KEY=0x...your-private-key
-RPC_URL=https://forno.celo-sepolia.celo-testnet.org
-```
-
-:::tip Need testnet tokens?
-Get free Celo Sepolia tokens from the [Celo faucet](https://faucet.celo.org) to cover gas fees on testnet.
-:::
-
-## 3. Create a client
+## 2. Create a client
 
 ```typescript
-import 'dotenv/config';
 import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts';
 
 const oak = createOakContractsClient({
   chainId:    CHAIN_IDS.CELO_TESTNET_SEPOLIA,
-  rpcUrl:     process.env.RPC_URL!,
-  privateKey: process.env.PRIVATE_KEY! as `0x${string}`,
+  rpcUrl:     'https://forno.celo-sepolia.celo-testnet.org',
+  privateKey: '0x...',
 });
 ```
 
 `createOakContractsClient` sets up a viem `PublicClient` for reads and a `WalletClient` for writes. Pass a contract address to any entity factory to start interacting with it.
 
-## 4. Read from a contract
+:::tip Need testnet tokens?
+Get free Celo Sepolia tokens from the [Celo faucet](https://faucet.celo.org) to cover gas fees on testnet.
+:::
+
+## 3. Read from a contract
 
 ```typescript
 const GLOBAL_PARAMS_ADDRESS = '0x...'; // deployed GlobalParams address
@@ -51,13 +42,13 @@ console.log('Protocol admin:', admin);
 console.log('Protocol fee (bps):', fee); // e.g. 100n = 1%
 ```
 
-Save steps 3 and 4 together in a file (e.g. `index.ts`) and run it:
+Save steps 2 and 3 together in a file (e.g. `index.ts`) and run it:
 
 ```bash
 npx tsx index.ts
 ```
 
-## 5. Write to a contract
+## 4. Write to a contract
 
 Write methods return a transaction hash (`Hex`). Use `oak.waitForReceipt()` to wait for confirmation.
 
@@ -77,7 +68,7 @@ const receipt = await oak.waitForReceipt(txHash);
 console.log('Mined in block:', receipt.blockNumber);
 ```
 
-## 6. Create a campaign
+## 5. Create a campaign
 
 ```typescript
 import {
@@ -115,7 +106,7 @@ const campaignAddress = await factory.identifierToCampaignInfo(identifierHash);
 console.log('Campaign deployed at:', campaignAddress);
 ```
 
-## 7. Handle errors
+## 6. Handle errors
 
 Contract reverts can be decoded into typed errors with recovery hints:
 
