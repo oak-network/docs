@@ -21,6 +21,7 @@ import {
   BPS_DENOMINATOR,
   BYTES32_ZERO,
   DATA_REGISTRY_KEYS,
+  multicall,
   scopedToPlatform,
 } from '@oaknetwork/contracts-sdk';
 ```
@@ -209,6 +210,24 @@ const scopedKey = scopedToPlatform(
 );
 const value = await gp.getFromRegistry(scopedKey);
 ```
+
+## Multicall
+
+Batch multiple read calls into a single RPC round-trip. Pass an array of lazy closures — the same entity read methods you'd normally `await` individually.
+
+```typescript
+import { multicall } from '@oaknetwork/contracts-sdk';
+
+const gp = oak.globalParams('0x...');
+
+const [platformCount, feePercent, admin] = await multicall([
+  () => gp.getNumberOfListedPlatforms(),
+  () => gp.getProtocolFeePercent(),
+  () => gp.getProtocolAdminAddress(),
+]);
+```
+
+> For full usage details including cross-contract batching, see the dedicated [Multicall](/docs/contracts-sdk/multicall) page.
 
 ## Viem re-exports
 
