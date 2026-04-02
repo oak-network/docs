@@ -73,6 +73,27 @@ const [platformCount, goalAmount, raisedAmount] = await oak.multicall([
 
 > See the full [Multicall](/docs/contracts-sdk/multicall) guide for standalone usage and cross-contract batching.
 
+## Events
+
+Every contract entity exposes an `events` property for fetching historical logs, decoding raw logs, and watching live events:
+
+```typescript
+const gp = oak.globalParams('0x...');
+
+// Fetch historical logs
+const logs = await gp.events.getPlatformEnlistedLogs();
+
+// Decode raw logs from a receipt
+const decoded = gp.events.decodeLog({ topics: log.topics, data: log.data });
+
+// Watch live events
+const unwatch = gp.events.watchPlatformEnlisted((logs) => {
+  console.log('New platform enlisted:', logs);
+});
+```
+
+> See the full [Events](/docs/contracts-sdk/events) guide for all available events per contract.
+
 ## Metrics
 
 Pre-built aggregation functions that combine multiple on-chain reads into meaningful reports:
@@ -106,5 +127,6 @@ import { getPlatformStats, getCampaignSummary, getTreasuryReport } from '@oaknet
 - [Quickstart](/docs/contracts-sdk/quickstart) — your first contract interaction in under 5 minutes
 - [Client Configuration](/docs/contracts-sdk/client) — patterns, signer overrides, and resolution order
 - [Multicall](/docs/contracts-sdk/multicall) — batch reads into a single RPC call
+- [Events](/docs/contracts-sdk/events) — historical logs, decoding, and live event watching
 - [Metrics](/docs/contracts-sdk/metrics) — pre-built aggregation reports
 - [Error Handling](/docs/contracts-sdk/error-handling) — typed error decoding and recovery hints
