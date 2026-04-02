@@ -10,8 +10,8 @@ Full read/write access using a raw private key. Suitable for backend services an
 import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts';
 
 const oak = createOakContractsClient({
-  chainId:    CHAIN_IDS.CELO_TESTNET_SEPOLIA,
-  rpcUrl:     'https://forno.celo-sepolia.celo-testnet.org',
+  chainId: CHAIN_IDS.CELO_TESTNET_SEPOLIA,
+  rpcUrl: 'https://forno.celo-sepolia.celo-testnet.org',
   privateKey: '0x...', // 0x-prefixed 32-byte hex string
 });
 
@@ -20,12 +20,12 @@ const admin = await gp.getProtocolAdminAddress(); // read
 await gp.enlistPlatform(hash, adminAddr, fee, adapter); // write — uses client key
 ```
 
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `chainId` | `number` | Yes | Numeric chain ID (use `CHAIN_IDS.*` constants) |
-| `rpcUrl` | `string` | Yes | RPC endpoint URL for the chain |
-| `privateKey` | `` `0x${string}` `` | Yes | 0x-prefixed private key for the signer |
-| `options` | `Partial<OakContractsClientOptions>` | No | Client-level overrides |
+| Field        | Type                                 | Required | Description                                    |
+| ------------ | ------------------------------------ | -------- | ---------------------------------------------- |
+| `chainId`    | `number`                             | Yes      | Numeric chain ID (use `CHAIN_IDS.*` constants) |
+| `rpcUrl`     | `string`                             | Yes      | RPC endpoint URL for the chain                 |
+| `privateKey` | `` `0x${string}` ``                  | Yes      | 0x-prefixed private key for the signer         |
+| `options`    | `Partial<OakContractsClientOptions>` | No       | Client-level overrides                         |
 
 ## Pattern 2 — Read-only (`chainId` + `rpcUrl`, no `privateKey`)
 
@@ -36,7 +36,7 @@ import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts';
 
 const oak = createOakContractsClient({
   chainId: CHAIN_IDS.CELO_TESTNET_SEPOLIA,
-  rpcUrl:  'https://forno.celo-sepolia.celo-testnet.org',
+  rpcUrl: 'https://forno.celo-sepolia.celo-testnet.org',
 });
 
 const gp = oak.globalParams('0x...');
@@ -44,11 +44,11 @@ const admin = await gp.getProtocolAdminAddress(); // reads work fine
 await gp.transferOwnership('0x...'); // throws (no signer — see requireSigner message)
 ```
 
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `chainId` | `number` | Yes | Numeric chain ID (use `CHAIN_IDS.*` constants) |
-| `rpcUrl` | `string` | Yes | RPC endpoint URL for the chain |
-| `options` | `Partial<OakContractsClientOptions>` | No | Client-level overrides |
+| Field     | Type                                 | Required | Description                                    |
+| --------- | ------------------------------------ | -------- | ---------------------------------------------- |
+| `chainId` | `number`                             | Yes      | Numeric chain ID (use `CHAIN_IDS.*` constants) |
+| `rpcUrl`  | `string`                             | Yes      | RPC endpoint URL for the chain                 |
+| `options` | `Partial<OakContractsClientOptions>` | No       | Client-level overrides                         |
 
 ## Pattern 3 — Per-entity signer override
 
@@ -61,7 +61,7 @@ const RPC_URL = 'https://forno.celo-sepolia.celo-testnet.org';
 
 const oak = createOakContractsClient({
   chainId: CHAIN_IDS.CELO_TESTNET_SEPOLIA,
-  rpcUrl:  RPC_URL,
+  rpcUrl: RPC_URL,
 });
 
 // Resolve signer after wallet connect
@@ -112,19 +112,19 @@ import {
 
 const RPC_URL = 'https://forno.celo-sepolia.celo-testnet.org';
 
-const chain    = getChainFromId(CHAIN_IDS.CELO_TESTNET_SEPOLIA);
+const chain = getChainFromId(CHAIN_IDS.CELO_TESTNET_SEPOLIA);
 const provider = createPublicClient({ chain, transport: http(RPC_URL) });
-const signer   = createWalletClient({ account, chain, transport: http(RPC_URL) });
+const signer = createWalletClient({ account, chain, transport: http(RPC_URL) });
 
 const oak = createOakContractsClient({ chain, provider, signer });
 ```
 
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `chain` | `number \| Chain` | Yes | Numeric chain ID or viem `Chain` object |
-| `provider` | `PublicClient` | Yes | Viem `PublicClient` for on-chain reads |
-| `signer` | `WalletClient` | Yes | Viem `WalletClient` with an attached account |
-| `options` | `Partial<OakContractsClientOptions>` | No | Client-level overrides |
+| Field      | Type                                 | Required | Description                                  |
+| ---------- | ------------------------------------ | -------- | -------------------------------------------- |
+| `chain`    | `number \| Chain`                    | Yes      | Numeric chain ID or viem `Chain` object      |
+| `provider` | `PublicClient`                       | Yes      | Viem `PublicClient` for on-chain reads       |
+| `signer`   | `WalletClient`                       | Yes      | Viem `WalletClient` with an attached account |
+| `options`  | `Partial<OakContractsClientOptions>` | No       | Client-level overrides                       |
 
 ### Browser wallet with full configuration
 
@@ -139,32 +139,75 @@ import {
   CHAIN_IDS,
 } from '@oaknetwork/contracts';
 
-const chain    = getChainFromId(CHAIN_IDS.CELO_TESTNET_SEPOLIA);
+const chain = getChainFromId(CHAIN_IDS.CELO_TESTNET_SEPOLIA);
 const provider = createBrowserProvider(window.ethereum, chain);
-const signer   = await getSigner(window.ethereum, chain);
+const signer = await getSigner(window.ethereum, chain);
 
 const oak = createOakContractsClient({ chain, provider, signer });
 ```
+
+### Privy wallet with full configuration
+
+[Privy](https://www.privy.io/) embedded wallets expose an EIP-1193 provider. Pass that provider to viem's `custom` transport for both `createPublicClient` and `createWalletClient`, then pass `chain`, `provider`, and `signer` into `createOakContractsClient`—the same pattern as [Browser wallet with full configuration](#browser-wallet-with-full-configuration) above.
+
+The snippet uses the `useWallets` hook from `@privy-io/react-auth` to pick a wallet; replace that with whatever wallet selection logic your app uses.
+
+```typescript
+import {
+  createOakContractsClient,
+  createPublicClient,
+  createWalletClient,
+  custom,
+  getChainFromId,
+  CHAIN_IDS,
+} from '@oaknetwork/contracts';
+import { useWallets } from '@privy-io/react-auth';
+
+const { wallets } = useWallets();
+const wallet = wallets[0]; // or select by address / connector
+
+const chain = getChainFromId(CHAIN_IDS.CELO_TESTNET_SEPOLIA);
+await wallet.switchChain(chain.id); // ensure the wallet is on this chain
+
+const ethereumProvider = await wallet.getEthereumProvider();
+
+const provider = createPublicClient({
+  chain,
+  transport: custom(ethereumProvider),
+});
+
+const signer = createWalletClient({
+  chain,
+  transport: custom(ethereumProvider),
+  account: wallet.address as `0x${string}`,
+});
+
+const oak = createOakContractsClient({ chain, provider, signer });
+```
+
+:::info Unsupported chains
+If Privy does not include your chain in its default networks, register it in the Privy provider. See [Configuring EVM networks](https://docs.privy.io/basics/react/advanced/configuring-evm-networks) in the Privy documentation.
+:::
 
 ## Signer resolution priority
 
 When a write or simulate method runs, the signer is resolved in this order:
 
-1. **Per-call** `options.signer` — highest priority  
-2. **Per-entity** `signer` passed to the entity factory (e.g. `oak.globalParams(addr, { signer })`)  
-3. **Client-level** `walletClient` from `createOakContractsClient` (simple or full config with a wallet)  
-4. **Throws** an `Error` from `requireSigner()` (message begins with `No signer configured.`) if none of the above is set  
+1. **Per-call** `options.signer` — highest priority
+2. **Per-entity** `signer` passed to the entity factory (e.g. `oak.globalParams(addr, { signer })`)
+3. **Client-level** `walletClient` from `createOakContractsClient` (simple or full config with a wallet)
+4. **Throws** an `Error` from `requireSigner()` (message begins with `No signer configured.`) if none of the above is set
 
 ## Client options
 
-| Option | Type | Default | Description |
-|---|---|---|---|
+| Option    | Type     | Default | Description                                                                 |
+| --------- | -------- | ------- | --------------------------------------------------------------------------- |
 | `timeout` | `number` | `30000` | Timeout in milliseconds for transport calls and `waitForTransactionReceipt` |
 
 ```typescript
 const oak = createOakContractsClient({
-  chainId:    CHAIN_IDS.CELO_TESTNET_SEPOLIA,
-  rpcUrl:     'https://forno.celo-sepolia.celo-testnet.org',
+  chainId: CHAIN_IDS.CELO_TESTNET_SEPOLIA,
+  rpcUrl: 'https://forno.celo-sepolia.celo-testnet.org',
   privateKey: '0x...',
   options: {
     timeout: 60000, // 60 seconds
@@ -176,12 +219,12 @@ const oak = createOakContractsClient({
 
 Once created, the client exposes these read-only properties:
 
-| Property | Type | Description |
-|---|---|---|
-| `config` | `PublicOakContractsClientConfig` | Public chain configuration (no secrets) |
-| `options` | `OakContractsClientOptions` | Resolved client options |
-| `publicClient` | `PublicClient` | Viem `PublicClient` for custom reads |
-| `walletClient` | `WalletClient \| null` | Viem `WalletClient` for custom writes (`null` for read-only clients) |
+| Property       | Type                             | Description                                                          |
+| -------------- | -------------------------------- | -------------------------------------------------------------------- |
+| `config`       | `PublicOakContractsClientConfig` | Public chain configuration (no secrets)                              |
+| `options`      | `OakContractsClientOptions`      | Resolved client options                                              |
+| `publicClient` | `PublicClient`                   | Viem `PublicClient` for custom reads                                 |
+| `walletClient` | `WalletClient \| null`           | Viem `WalletClient` for custom writes (`null` for read-only clients) |
 
 ## Waiting for receipts
 
@@ -199,8 +242,8 @@ console.log('Logs:', receipt.logs.length);
 
 The receipt includes:
 
-| Field | Type | Description |
-|---|---|---|
-| `blockNumber` | `bigint` | Block in which the transaction was mined |
-| `gasUsed` | `bigint` | Total gas consumed |
-| `logs` | `readonly { topics, data }[]` | Raw log entries from the transaction |
+| Field         | Type                          | Description                              |
+| ------------- | ----------------------------- | ---------------------------------------- |
+| `blockNumber` | `bigint`                      | Block in which the transaction was mined |
+| `gasUsed`     | `bigint`                      | Total gas consumed                       |
+| `logs`        | `readonly { topics, data }[]` | Raw log entries from the transaction     |
