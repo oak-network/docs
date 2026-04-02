@@ -98,7 +98,7 @@ console.log('Identifier:', config.identifierHash);
 ### Update campaign deadline
 
 ```typescript
-import { addDays, getCurrentTimestamp } from '@oaknetwork/contracts';
+import { addDays, getCurrentTimestamp } from '@oaknetwork/contracts-sdk';
 
 const newDeadline = addDays(getCurrentTimestamp(), 60);
 const txHash = await ci.updateDeadline(newDeadline);
@@ -108,7 +108,7 @@ await oak.waitForReceipt(txHash);
 ### Pause and cancel
 
 ```typescript
-import { toHex } from '@oaknetwork/contracts';
+import { toHex } from '@oaknetwork/contracts-sdk';
 
 // Pause
 const pauseTx = await ci.pauseCampaign(toHex('Maintenance window', { size: 32 }));

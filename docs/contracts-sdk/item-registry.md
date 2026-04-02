@@ -45,7 +45,7 @@ interface Item {
 ### Register an item
 
 ```typescript
-import { keccak256, toHex } from '@oaknetwork/contracts';
+import { keccak256, toHex } from '@oaknetwork/contracts-sdk';
 
 const itemId = keccak256(toHex('premium-t-shirt'));
 

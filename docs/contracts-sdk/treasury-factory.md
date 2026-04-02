@@ -29,7 +29,7 @@ All write methods return `Promise<Hex>` (transaction hash).
 ### Deploy a treasury
 
 ```typescript
-import { keccak256, toHex } from '@oaknetwork/contracts';
+import { keccak256, toHex } from '@oaknetwork/contracts-sdk';
 
 const PLATFORM_HASH = keccak256(toHex('my-platform'));
 const campaignInfoAddress = '0x...';

@@ -1,16 +1,16 @@
 # Installation
 
-The `@oaknetwork/contracts` package is published on npm. Install it with your preferred package manager.
+The `@oaknetwork/contracts-sdk` package is published on npm. Install it with your preferred package manager.
 
 ```bash
-pnpm add @oaknetwork/contracts
+pnpm add @oaknetwork/contracts-sdk
 ```
 
-> You can also use `npm install @oaknetwork/contracts` or `yarn add @oaknetwork/contracts`.
+> You can also use `npm install @oaknetwork/contracts-sdk` or `yarn add @oaknetwork/contracts-sdk`.
 
 ## Requirements
 
-- `@oaknetwork/contracts` **>= 1.0.0**
+- `@oaknetwork/contracts-sdk` **>= 1.0.0**
 - Node.js 18 or later
 - TypeScript 5.x recommended (the SDK ships type declarations)
 
@@ -21,7 +21,7 @@ The SDK depends on [viem](https://viem.sh) for blockchain interactions. It is in
 The SDK ships a `CHAIN_IDS` constant with all supported networks:
 
 ```typescript
-import { CHAIN_IDS } from '@oaknetwork/contracts';
+import { CHAIN_IDS } from '@oaknetwork/contracts-sdk';
 
 CHAIN_IDS.ETHEREUM_MAINNET; // 1
 CHAIN_IDS.CELO_MAINNET; // 42220

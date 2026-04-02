@@ -1,6 +1,6 @@
 # Utilities
 
-The SDK exports pure utility functions and constants that have no client dependency. Import them from `@oaknetwork/contracts` or `@oaknetwork/contracts/utils`.
+The SDK exports pure utility functions and constants that have no client dependency. Import them from `@oaknetwork/contracts-sdk` or `@oaknetwork/contracts-sdk/utils`.
 
 ```typescript
 import {
@@ -22,7 +22,7 @@ import {
   BYTES32_ZERO,
   DATA_REGISTRY_KEYS,
   scopedToPlatform,
-} from '@oaknetwork/contracts';
+} from '@oaknetwork/contracts-sdk';
 ```
 
 ## Hashing
@@ -152,7 +152,7 @@ import {
   getSigner,
   createJsonRpcProvider,
   createWallet,
-} from '@oaknetwork/contracts';
+} from '@oaknetwork/contracts-sdk';
 
 // Browser (MetaMask, etc.)
 const provider = createBrowserProvider(window.ethereum, chain);
@@ -223,7 +223,7 @@ import {
   mainnet,
   sepolia,
   goerli,
-} from '@oaknetwork/contracts';
+} from '@oaknetwork/contracts-sdk';
 ```
 
 | Export | Description |

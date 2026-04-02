@@ -102,7 +102,7 @@ Returned by `getPaymentData()`:
 ### Create and confirm a payment
 
 ```typescript
-import { keccak256, toHex, getCurrentTimestamp, addDays } from '@oaknetwork/contracts';
+import { keccak256, toHex, getCurrentTimestamp, addDays } from '@oaknetwork/contracts-sdk';
 
 const paymentId    = keccak256(toHex('payment-001'));
 const buyerId      = keccak256(toHex('buyer-alice'));
