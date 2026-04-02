@@ -185,6 +185,7 @@ const sidebars: SidebarsConfig = {
         'contracts-sdk/item-registry',
       ],
     },
+    'contracts-sdk/events',
     'contracts-sdk/metrics',
     'contracts-sdk/error-handling',
     'contracts-sdk/utilities',
