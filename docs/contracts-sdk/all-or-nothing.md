@@ -82,7 +82,7 @@ interface TieredReward {
 ### Add rewards and pledge
 
 ```typescript
-import { keccak256, toHex } from '@oaknetwork/contracts';
+import { keccak256, toHex } from '@oaknetwork/contracts-sdk';
 
 const rewardName = keccak256(toHex('early-bird'));
 const reward = {

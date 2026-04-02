@@ -7,7 +7,7 @@
 Full read/write access using a raw private key. Suitable for backend services and scripts.
 
 ```typescript
-import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts';
+import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts-sdk';
 
 const oak = createOakContractsClient({
   chainId: CHAIN_IDS.CELO_TESTNET_SEPOLIA,
@@ -32,7 +32,7 @@ await gp.enlistPlatform(hash, adminAddr, fee, adapter); // write — uses client
 No private key required. All read methods work normally; write and simulate methods throw immediately — no RPC call is made. The error is thrown by `requireSigner()`; the message starts with `No signer configured.` and explains how to pass a client key, full-config signer, or per-entity signer (for example `oak.globalParams(address, { signer })`).
 
 ```typescript
-import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts';
+import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts-sdk';
 
 const oak = createOakContractsClient({
   chainId: CHAIN_IDS.CELO_TESTNET_SEPOLIA,
@@ -55,7 +55,7 @@ await gp.transferOwnership('0x...'); // throws (no signer — see requireSigner 
 Pass a signer when creating an entity. Every write and simulate call on that entity uses the provided signer — you do not pass it again on each call. Use this when the signer is resolved **after** the client is created (browser wallets, Privy, etc.).
 
 ```typescript
-import { createOakContractsClient, createWallet, CHAIN_IDS } from '@oaknetwork/contracts';
+import { createOakContractsClient, createWallet, CHAIN_IDS } from '@oaknetwork/contracts-sdk';
 
 const RPC_URL = 'https://forno.celo-sepolia.celo-testnet.org';
 
@@ -108,7 +108,7 @@ import {
   http,
   getChainFromId,
   CHAIN_IDS,
-} from '@oaknetwork/contracts';
+} from '@oaknetwork/contracts-sdk';
 
 const RPC_URL = 'https://forno.celo-sepolia.celo-testnet.org';
 
@@ -137,7 +137,7 @@ import {
   getSigner,
   getChainFromId,
   CHAIN_IDS,
-} from '@oaknetwork/contracts';
+} from '@oaknetwork/contracts-sdk';
 
 const chain = getChainFromId(CHAIN_IDS.CELO_TESTNET_SEPOLIA);
 const provider = createBrowserProvider(window.ethereum, chain);
@@ -160,7 +160,7 @@ import {
   custom,
   getChainFromId,
   CHAIN_IDS,
-} from '@oaknetwork/contracts';
+} from '@oaknetwork/contracts-sdk';
 import { useWallets } from '@privy-io/react-auth';
 
 const { wallets } = useWallets();

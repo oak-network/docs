@@ -7,7 +7,7 @@ sidebar_label: GlobalParams
 Protocol-wide configuration registry. Manages platform listings, fee settings, token currencies, line item types, and a general-purpose key-value registry.
 
 ```typescript
-import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts';
+import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts-sdk';
 
 const oak = createOakContractsClient({ ... });
 const gp = oak.globalParams('0x...contractAddress');
@@ -72,7 +72,7 @@ console.log('Fee:', fee, 'bps'); // 100n = 1%
 ### Enlist a platform
 
 ```typescript
-import { keccak256, toHex } from '@oaknetwork/contracts';
+import { keccak256, toHex } from '@oaknetwork/contracts-sdk';
 
 const PLATFORM_HASH = keccak256(toHex('my-platform'));
 

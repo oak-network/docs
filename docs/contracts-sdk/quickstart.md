@@ -5,15 +5,15 @@ This guide walks you from zero to a working contract interaction in under 5 minu
 ## 1. Install the package
 
 ```bash
-pnpm add @oaknetwork/contracts
+pnpm add @oaknetwork/contracts-sdk
 ```
 
-> You can also use `npm install @oaknetwork/contracts` or `yarn add @oaknetwork/contracts`.
+> You can also use `npm install @oaknetwork/contracts-sdk` or `yarn add @oaknetwork/contracts-sdk`.
 
 ## 2. Create a client
 
 ```typescript
-import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts';
+import { createOakContractsClient, CHAIN_IDS } from '@oaknetwork/contracts-sdk';
 
 const oak = createOakContractsClient({
   chainId: CHAIN_IDS.CELO_TESTNET_SEPOLIA,
@@ -53,7 +53,7 @@ npx tsx index.ts
 Write methods return a transaction hash (`Hex`). Use `oak.waitForReceipt()` to wait for confirmation.
 
 ```typescript
-import { keccak256, toHex } from '@oaknetwork/contracts';
+import { keccak256, toHex } from '@oaknetwork/contracts-sdk';
 
 const PLATFORM_HASH = keccak256(toHex('my-platform'));
 
@@ -71,7 +71,7 @@ console.log('Mined in block:', receipt.blockNumber);
 ## 5. Create a campaign
 
 ```typescript
-import { keccak256, toHex, getCurrentTimestamp, addDays } from '@oaknetwork/contracts';
+import { keccak256, toHex, getCurrentTimestamp, addDays } from '@oaknetwork/contracts-sdk';
 
 const factory = oak.campaignInfoFactory('0x...factoryAddress');
 
@@ -106,7 +106,7 @@ console.log('Campaign deployed at:', campaignAddress);
 Contract reverts can be decoded into typed errors with recovery hints:
 
 ```typescript
-import { parseContractError, getRevertData } from '@oaknetwork/contracts';
+import { parseContractError, getRevertData } from '@oaknetwork/contracts-sdk';
 
 try {
   await factory.createCampaign({ ... });
@@ -144,7 +144,7 @@ import {
   toHex,
   getCurrentTimestamp,
   addDays,
-} from '@oaknetwork/contracts';
+} from '@oaknetwork/contracts-sdk';
 import { useWallets } from '@privy-io/react-auth';
 
 const { wallets } = useWallets();

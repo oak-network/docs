@@ -7,7 +7,7 @@ Contract calls can revert with on-chain errors. The SDK decodes raw revert data 
 Use `parseContractError()` to decode raw revert data from a failed transaction or simulation:
 
 ```typescript
-import { parseContractError, getRevertData } from '@oaknetwork/contracts';
+import { parseContractError, getRevertData } from '@oaknetwork/contracts-sdk';
 
 function handleError(err) {
   // If the error is already a typed SDK error (thrown by simulate methods)
@@ -61,7 +61,7 @@ interface ContractErrorBase {
 Use `simulateWithErrorDecode()` to wrap a `simulateContract` call. It catches reverts, decodes them, and re-throws as typed SDK errors:
 
 ```typescript
-import { simulateWithErrorDecode } from '@oaknetwork/contracts';
+import { simulateWithErrorDecode } from '@oaknetwork/contracts-sdk';
 
 try {
   await simulateWithErrorDecode(() =>
@@ -218,7 +218,7 @@ try {
 import {
   GlobalParamsPlatformNotListedError,
   CampaignInfoFactoryInvalidInputError,
-} from '@oaknetwork/contracts';
+} from '@oaknetwork/contracts-sdk';
 
 try {
   await factory.createCampaign(params);
@@ -236,7 +236,7 @@ try {
 Convenience function to extract the recovery hint from any typed error:
 
 ```typescript
-import { getRecoveryHint } from '@oaknetwork/contracts';
+import { getRecoveryHint } from '@oaknetwork/contracts-sdk';
 
 const hint = getRecoveryHint(err);
 if (hint) console.log('Suggestion:', hint);

@@ -65,7 +65,7 @@ import {
   toHex,
   getCurrentTimestamp,
   addDays,
-} from '@oaknetwork/contracts';
+} from '@oaknetwork/contracts-sdk';
 
 const PLATFORM_HASH  = keccak256(toHex('my-platform'));
 const CURRENCY       = toHex('USD', { size: 32 });

@@ -4,7 +4,7 @@ sidebar_label: Overview
 
 # Contracts SDK
 
-The `@oaknetwork/contracts` package is a TypeScript SDK for interacting with Oak Network smart contracts. It provides a type-safe client with full read/write access to all Oak protocol contracts, built on top of [viem](https://viem.sh).
+The `@oaknetwork/contracts-sdk` package is a TypeScript SDK for interacting with Oak Network smart contracts. It provides a type-safe client with full read/write access to all Oak protocol contracts, built on top of [viem](https://viem.sh).
 
 :::tip Testnet first
 Start by pointing the SDK at Celo Sepolia testnet (`CHAIN_IDS.CELO_TESTNET_SEPOLIA`) to experiment without risking real funds.
@@ -21,12 +21,12 @@ You need deployed contract addresses to use this SDK — including factory addre
 - **Typed reads, writes, and simulations** — every method is fully typed with TypeScript
 - **Typed error decoding** — `parseContractError()` turns raw revert data into SDK errors with recovery hints
 - **Pure utility exports** — hashing, encoding, time helpers, and chain resolution with zero client dependency
-- **Tree-shakeable entry points** — import only what you need: `@oaknetwork/contracts/utils`, `@oaknetwork/contracts/client`, etc.
+- **Tree-shakeable entry points** — import only what you need: `@oaknetwork/contracts-sdk/utils`, `@oaknetwork/contracts-sdk/client`, etc.
 
 ## Quick example
 
 ```typescript
-import { createOakContractsClient, CHAIN_IDS, keccak256, toHex } from '@oaknetwork/contracts';
+import { createOakContractsClient, CHAIN_IDS, keccak256, toHex } from '@oaknetwork/contracts-sdk';
 
 const oak = createOakContractsClient({
   chainId: CHAIN_IDS.CELO_TESTNET_SEPOLIA,
@@ -63,11 +63,11 @@ The SDK ships 8 contract entity modules. Call the factory method on the client t
 
 | Import path                       | Contents                                    |
 | --------------------------------- | ------------------------------------------- |
-| `@oaknetwork/contracts`           | Everything — client, types, utils, errors   |
-| `@oaknetwork/contracts/client`    | `createOakContractsClient` only             |
-| `@oaknetwork/contracts/contracts` | Contract entity factories only              |
-| `@oaknetwork/contracts/utils`     | Utility functions only (no client)          |
-| `@oaknetwork/contracts/errors`    | Error classes and `parseContractError` only |
+| `@oaknetwork/contracts-sdk`           | Everything — client, types, utils, errors   |
+| `@oaknetwork/contracts-sdk/client`    | `createOakContractsClient` only             |
+| `@oaknetwork/contracts-sdk/contracts` | Contract entity factories only              |
+| `@oaknetwork/contracts-sdk/utils`     | Utility functions only (no client)          |
+| `@oaknetwork/contracts-sdk/errors`    | Error classes and `parseContractError` only |
 
 ## Next up
 

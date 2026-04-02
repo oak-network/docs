@@ -126,7 +126,7 @@ interface KeepWhatsRaisedFeeValues {
 ### Configure the treasury
 
 ```typescript
-import { toHex, getCurrentTimestamp, addDays } from '@oaknetwork/contracts';
+import { toHex, getCurrentTimestamp, addDays } from '@oaknetwork/contracts-sdk';
 
 const now = getCurrentTimestamp();
 
@@ -161,7 +161,7 @@ await oak.waitForReceipt(txHash);
 ### Pledge with a reward
 
 ```typescript
-import { keccak256, toHex } from '@oaknetwork/contracts';
+import { keccak256, toHex } from '@oaknetwork/contracts-sdk';
 
 const pledgeId   = keccak256(toHex('pledge-001'));
 const rewardName = keccak256(toHex('gold-tier'));
