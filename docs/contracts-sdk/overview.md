@@ -59,6 +59,36 @@ The SDK ships 8 contract entity modules. Call the factory method on the client t
 | [`KeepWhatsRaised`](/docs/contracts-sdk/keep-whats-raised)         | `oak.keepWhatsRaisedTreasury(address)` | Crowdfunding — creator keeps all funds raised     |
 | [`ItemRegistry`](/docs/contracts-sdk/item-registry)                | `oak.itemRegistry(address)`            | Manage items available for purchase in campaigns  |
 
+## Multicall
+
+Batch multiple read calls into a single RPC round-trip. Works across different contract entities:
+
+```typescript
+const [platformCount, goalAmount, raisedAmount] = await oak.multicall([
+  () => gp.getNumberOfListedPlatforms(),
+  () => ci.getGoalAmount(),
+  () => aon.getRaisedAmount(),
+]);
+```
+
+> See the full [Multicall](/docs/contracts-sdk/multicall) guide for standalone usage and cross-contract batching.
+
+## Metrics
+
+Pre-built aggregation functions that combine multiple on-chain reads into meaningful reports:
+
+```typescript
+import { getPlatformStats, getCampaignSummary, getTreasuryReport } from '@oaknetwork/contracts-sdk/metrics';
+```
+
+| Function | Description |
+|---|---|
+| [`getPlatformStats`](/docs/contracts-sdk/metrics#platform-stats) | Protocol-level statistics from GlobalParams |
+| [`getCampaignSummary`](/docs/contracts-sdk/metrics#campaign-summary) | Financial aggregation from a CampaignInfo contract |
+| [`getTreasuryReport`](/docs/contracts-sdk/metrics#treasury-report) | Per-treasury financial report for any treasury type |
+
+> See the full [Metrics](/docs/contracts-sdk/metrics) guide.
+
 ## Entry points
 
 | Import path                       | Contents                                    |
@@ -68,10 +98,13 @@ The SDK ships 8 contract entity modules. Call the factory method on the client t
 | `@oaknetwork/contracts-sdk/contracts` | Contract entity factories only              |
 | `@oaknetwork/contracts-sdk/utils`     | Utility functions only (no client)          |
 | `@oaknetwork/contracts-sdk/errors`    | Error classes and `parseContractError` only |
+| `@oaknetwork/contracts-sdk/metrics`   | Platform, campaign, and treasury reporting helpers |
 
 ## Next up
 
 - [Installation](/docs/contracts-sdk/installation) — install the package and configure your chain
 - [Quickstart](/docs/contracts-sdk/quickstart) — your first contract interaction in under 5 minutes
 - [Client Configuration](/docs/contracts-sdk/client) — patterns, signer overrides, and resolution order
+- [Multicall](/docs/contracts-sdk/multicall) — batch reads into a single RPC call
+- [Metrics](/docs/contracts-sdk/metrics) — pre-built aggregation reports
 - [Error Handling](/docs/contracts-sdk/error-handling) — typed error decoding and recovery hints
