@@ -17,6 +17,17 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Integration Flows',
+      items: [
+        'guides/integration-overview',
+        'guides/payment-sdk-quickstart',
+        'guides/payment-sdk-complete',
+        'guides/contracts-sdk-quickstart',
+        'guides/contracts-sdk-complete',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Integration Guides',
       items: [
         'guides/create-campaign',
@@ -142,6 +153,17 @@ const sidebars: SidebarsConfig = {
   // Payment SDK sidebar
   sdkSidebar: [
     'sdk/overview',
+    {
+      type: 'category',
+      label: 'Integration Flows',
+      items: [
+        'guides/integration-overview',
+        'guides/payment-sdk-quickstart',
+        'guides/payment-sdk-complete',
+        'guides/contracts-sdk-quickstart',
+        'guides/contracts-sdk-complete',
+      ],
+    },
     'sdk/installation',
     'sdk/quickstart',
     'sdk/authentication',
@@ -168,6 +190,17 @@ const sidebars: SidebarsConfig = {
   // Contracts SDK sidebar
   contractsSdkSidebar: [
     'contracts-sdk/overview',
+    {
+      type: 'category',
+      label: 'Integration Flows',
+      items: [
+        'guides/integration-overview',
+        'guides/contracts-sdk-quickstart',
+        'guides/contracts-sdk-complete',
+        'guides/payment-sdk-quickstart',
+        'guides/payment-sdk-complete',
+      ],
+    },
     'contracts-sdk/installation',
     'contracts-sdk/quickstart',
     'contracts-sdk/client',
@@ -194,6 +227,17 @@ const sidebars: SidebarsConfig = {
   // Smart contracts sidebar
   contractsSidebar: [
     'contracts/overview',
+    {
+      type: 'category',
+      label: 'Integration Flows',
+      items: [
+        'guides/integration-overview',
+        'guides/contracts-sdk-quickstart',
+        'guides/contracts-sdk-complete',
+        'guides/payment-sdk-quickstart',
+        'guides/payment-sdk-complete',
+      ],
+    },
     {
       type: 'category',
       label: 'Core Contracts',

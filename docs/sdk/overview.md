@@ -43,6 +43,13 @@ if (result.ok) {
 
 > See the full walkthrough in the [Quickstart](/docs/sdk/quickstart) guide.
 
+## Start here
+
+- [Payment SDK Quick Start](/docs/guides/payment-sdk-quickstart) — 6-step universal integration flow
+- [Payment SDK Complete Flow](/docs/guides/payment-sdk-complete) — Detailed provider-specific flows (US, Brazil)
+- [Installation](/docs/sdk/installation) — Install the package and configure credentials
+- [Quickstart](/docs/sdk/quickstart) — Your first working integration in under 5 minutes
+
 ## Services
 
 The SDK ships 10 service modules. Import the factory function for each service you need.

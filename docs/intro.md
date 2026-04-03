@@ -43,12 +43,14 @@ Comprehensive documentation, SDKs, and integration guides to get you started qui
 
 ## Quick Links
 
+- [Choose Your Integration Path](/docs/guides/integration-overview) - Find the right integration approach
 - [Create Your First Campaign](/docs/guides/create-campaign) - Get started in minutes
+- [Payment SDK Quick Start](/docs/guides/payment-sdk-quickstart) - 6-step fiat payment integration
+- [Contracts SDK Quick Start](/docs/guides/contracts-sdk-quickstart) - Deploy crypto-native campaigns
 - [Core Concepts](/docs/concepts/overview) - Understand the protocol
-- [Integration Guides](/docs/guides/create-campaign) - Integrate Oak Network
 - [Smart Contracts](/docs/contracts/overview) - Technical reference
 - [Security](/docs/security/overview) - Security architecture and audits
 
 ## Get Started
 
-Ready to build? Check out our [Create Your First Campaign](/docs/guides/create-campaign) guide or explore our [Platform Integration](/docs/guides/platform-integration) documentation.
+Ready to build? Start with [Choose Your Integration Path](/docs/guides/integration-overview) to find the right approach for your platform, or jump straight into [Create Your First Campaign](/docs/guides/create-campaign) to get started in minutes.
