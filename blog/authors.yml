@@ -5,18 +5,7 @@ oak-team:
   image_url: https://github.com/oak-network.png
   page: true
   socials:
-    x: oaknetwork
-    linkedin: oaknetwork
-    github: oaknetwork
+    x: oak_network
+    linkedin: https://www.linkedin.com/company/oaknetwork
+    github: oak-network
     discord: https://discord.com/invite/srhtEpWBHx
-
-maradrash:
-  name: Marad Rash
-  title: Protocol Architect
-  url: https://github.com/maradrash
-  image_url: https://github.com/maradrash.png
-  page: true
-  socials:
-    x: maradrash
-    linkedin: maradrash
-    github: maradrash

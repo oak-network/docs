@@ -57,7 +57,7 @@ const config: Config = {
           'concepts/*',
           'guides/*',
           'sdk/overview*',
-          'sdk/api-sdk/*',
+          'sdk/*',
           'contracts/*',
           'security/*',
           'operations/*',
@@ -65,14 +65,14 @@ const config: Config = {
           'deployment/*',
           'roadmap*',
         ],
-        rootContent: 'Oak Network is a decentralized crowdfunding protocol on Celo. This documentation covers the Payment SDK (@oaknetwork/api), smart contracts, and platform integration guides.',
+        rootContent: 'Oak Network is a decentralized crowdfunding protocol on Celo. This documentation covers the Payment SDK (@oaknetwork/payments-sdk), smart contracts, and platform integration guides.',
         customLLMFiles: [
           {
             filename: 'llms-payment-sdk.txt',
             includePatterns: ['sdk/**/*.md'],
             fullContent: true,
             title: 'Oak Network Payment SDK',
-            description: 'Payment SDK reference — API SDK (@oaknetwork/api) for customers, payments, transfers, subscriptions, and crypto on/off-ramp.',
+            description: 'Payment SDK reference — API SDK (@oaknetwork/payments-sdk) for customers, payments, transfers, subscriptions, and crypto on/off-ramp.',
           },
           {
             filename: 'llms-contracts.txt',
@@ -80,6 +80,13 @@ const config: Config = {
             fullContent: true,
             title: 'Oak Network Smart Contracts',
             description: 'Solidity smart contract reference for the Oak Network protocol.',
+          },
+          {
+            filename: 'llms-contracts-sdk.txt',
+            includePatterns: ['contracts-sdk/**/*.md'],
+            fullContent: true,
+            title: 'Oak Network Contracts SDK',
+            description: 'TypeScript SDK reference (@oaknetwork/contracts) for interacting with Oak Network smart contracts.',
           },
         ],
       },
@@ -120,8 +127,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/oak-social-card.jpg',
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: true,
@@ -150,13 +155,19 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'contractsSdkSidebar',
+          position: 'left',
+          label: 'Contracts SDK',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'contractsSidebar',
           position: 'left',
           label: 'Smart Contracts',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/oak-network/ccprotocol-contracts',
+          href: 'https://github.com/oak-network',
           label: 'GitHub',
           position: 'right',
         },
@@ -191,6 +202,10 @@ const config: Config = {
             {
               label: 'Payment SDK',
               to: '/docs/sdk/overview',
+            },
+            {
+              label: 'Contracts SDK',
+              to: '/docs/contracts-sdk/overview',
             },
             {
               label: 'Smart Contracts',

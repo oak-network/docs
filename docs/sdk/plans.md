@@ -3,7 +3,7 @@
 A plan defines a recurring billing configuration — price, currency, billing frequency, and renewal behavior. Plans start as drafts, giving you time to configure them before publishing. Once published, customers can subscribe to a plan and be billed automatically at the defined interval.
 
 ```typescript
-import { createOakClient, createPlanService } from '@oaknetwork/api';
+import { createOakClient, createPlanService } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({ ... });
 const plans = createPlanService(client);

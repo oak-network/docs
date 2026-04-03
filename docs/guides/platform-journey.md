@@ -226,7 +226,7 @@ Offer the advantages of blockchain technology while maintaining a user-friendly 
 ### Security Considerations
 
 **Smart Contract Security:**
-- Audited by PeckShield and soon by OpenZeppelin
+- Audited by Immunefi with ongoing OpenZeppelin audit
 - Part of Immunefi bug bounty program
 - Regular security updates and patches
 

@@ -1,12 +1,11 @@
 /**
- * Oak Network Brand Theme
- * Orange (#FBA244) and Dark Blue (#2E2F4A) color scheme
- * Typography: Lexend (base) and Jura (headings)
+ * Oak Network site theme tokens and global overrides.
+ * Primary accent: #FBA244.
  */
 
 /* Import Google Fonts and Font Awesome */
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
 
 /* Font Variables */
 :root {
@@ -68,33 +67,33 @@
   --ifm-color-primary-lightest: #fdc382;
 
   /* Background Colors (Dark Base) */
-  --ifm-background-color: #13171C;
-  --ifm-background-surface-color: #1B1F30;
+  --ifm-background-color: #050505;
+  --ifm-background-surface-color: #0a0a0a;
   --ifm-font-color-base: #ffffff;
   
   /* Code color */
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.05);
   
   /* Navigation */
-  --ifm-navbar-background-color: #13171C;
+  --ifm-navbar-background-color: transparent;
   --ifm-navbar-link-color: #CCCCCC;
   --ifm-navbar-link-hover-color: #FFFFFF;
   
   /* Footer */
-  --ifm-footer-background-color: #2E2F4A;
+  --ifm-footer-background-color: #050505;
   --ifm-footer-color: #ffffff;
   --ifm-footer-link-color: #ffffff;
   --ifm-footer-link-hover-color: #FBA244;
   
   /* Sidebar */
-  --ifm-sidebar-background-color: #2E2F4A;
+  --ifm-sidebar-background-color: #050505;
   --ifm-menu-link-color: #ffffff;
   --ifm-menu-link-hover-color: #FBA244;
   --ifm-menu-link-active-color: #FBA244;
   
   /* Cards */
-  --ifm-card-background-color: #2E2F4A;
-  --ifm-card-hover-background-color: #3a3b5a;
+  --ifm-card-background-color: #0a0a0a;
+  --ifm-card-hover-background-color: #111111;
 }
 
 /* Fine-tuning */
@@ -107,23 +106,28 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Adjust dark navbar to use the brand color */
 [data-theme='dark'] .navbar {
-  background-color: #13171C;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Adjust dark footer to use the brand color */
 [data-theme='dark'] .footer {
-  background-color: var(--ifm-background-surface-color);
+  background-color: #050505;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Global Styles */
 html[data-theme='dark'] {
-  background: #13171C;
+  background: #050505;
   color: var(--ifm-color-content);
 }
 
 /* Apply Albert Sans to all text */
 body {
   font-family: 'Albert Sans', sans-serif;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -340,6 +344,13 @@ a[href*="discord"]:not(.button):hover {
   .navbar__items--right {
     right: 0;
   }
+
+  /* Solid background on mobile so sidebar overlay works correctly */
+  [data-theme='dark'] .navbar {
+    background-color: #050505;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
   
   /* Adjust navbar brand z-index when mobile menu is open to keep both logos visible */
   body.navbar-sidebar--show .navbar__brand,
@@ -352,6 +363,23 @@ a[href*="discord"]:not(.button):hover {
   .navbar-sidebar .navbar__brand {
     z-index: 10 !important;
     position: relative !important;
+  }
+
+  /* Solid background for the mobile sidebar so content doesn't bleed through */
+  .navbar-sidebar {
+    background-color: #050505 !important;
+  }
+
+  .navbar-sidebar .navbar-sidebar__item {
+    background-color: #050505 !important;
+  }
+
+  .navbar-sidebar .menu {
+    background-color: #050505 !important;
+  }
+
+  .navbar-sidebar__backdrop {
+    background-color: rgba(0, 0, 0, 0.7) !important;
   }
 }
 
@@ -454,12 +482,12 @@ a[href*="discord"]:not(.button):hover {
   color: #CCCCCC !important;
 }
 
-/* Main content links - white, underline on hover */
+/* Main content links - golden, brighter on hover */
 article a,
 .markdown a,
 .theme-doc-markdown a,
 [class*="markdown"] a {
-  color: #CCCCCC;
+  color: #FBA244;
   text-decoration: none;
   transition: color 0.2s ease, text-decoration 0.2s ease;
 }
@@ -468,7 +496,7 @@ article a:hover,
 .markdown a:hover,
 .theme-doc-markdown a:hover,
 [class*="markdown"] a:hover {
-  color: #FFFFFF !important;
+  color: #fdb05e !important;
   text-decoration: underline;
   background: none !important;
 }
@@ -700,14 +728,24 @@ section[class*="community"] a.button--secondary::before {
 }
 
 /* Tables */
+.theme-doc-markdown table,
+[class*="markdown"] table,
+article table,
 table {
   background: var(--ifm-card-background-color);
   border: 1px solid rgba(251, 162, 68, 0.2);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: auto;
+  width: 100%;
   display: table;
+}
+
+.theme-doc-markdown div[class*="tableContainer"],
+[class*="tableContainer"] {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
 }
 
 thead {
@@ -842,7 +880,7 @@ a.footerLogoLink:hover,
 
 /* Hero Section */
 .hero {
-  background: #13171C;
+  background: #050505;
   padding: 6rem 0 8rem;
   position: relative;
   overflow: hidden;
@@ -950,7 +988,7 @@ a.footerLogoLink:hover,
 
 /* Mermaid Diagram Enhancements */
 .mermaid {
-  background: #1B1F30 !important;
+  background: #0a0a0a !important;
   border: 1px solid rgba(204, 204, 204, 0.3) !important;
   border-radius: 16px;
   padding: 2rem;
@@ -964,7 +1002,7 @@ a.footerLogoLink:hover,
 
 /* MermaidDiagram component container - match homepage card background */
 .mermaid-diagram-container {
-  background: #1B1F30 !important;
+  background: #0a0a0a !important;
   border: 1px solid rgba(204, 204, 204, 0.3) !important;
   border-width: 1px !important;
 }
@@ -1103,13 +1141,34 @@ a.footerLogoLink:hover,
   }
 }
 
+/* Mobile: prevent doc content from overflowing viewport */
+@media (max-width: 996px) {
+  [class*="docRoot"],
+  [class*="docMainContainer"],
+  [class*="docPage"],
+  main[class*="docMainContainer"] {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  [class*="docRoot"] .theme-doc-markdown,
+  [class*="docRoot"] article {
+    padding: 1rem !important;
+  }
+
+  th, td {
+    padding: 0.5rem !important;
+    font-size: 0.85rem;
+  }
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #13171C;
+  background: #050505;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -1277,8 +1336,18 @@ a.footerLogoLink:hover,
 /* Main content area - background color, tight padding */
 [class*="docRoot"] .theme-doc-markdown,
 [class*="docRoot"] article,
-[class*="docRoot"] .theme-doc-markdown > div,
 [class*="docRoot"] [class*="theme-doc-markdown"] {
+  background: #0a0a0a !important;
+  padding: 1.5rem !important;
+  border-radius: 8px;
+  max-width: 1290px !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+[class*="docRoot"] .theme-doc-markdown > div:not([class*="tableContainer"]) {
   background: #1B1F30 !important;
   padding: 1.5rem !important;
   border-radius: 8px;
@@ -1287,6 +1356,20 @@ a.footerLogoLink:hover,
   margin-left: 0 !important;
   margin-right: auto !important;
   box-sizing: border-box !important;
+}
+
+/* Prevent code blocks and pre from overflowing on mobile */
+article pre,
+.theme-doc-markdown pre,
+[class*="markdown"] pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+article code,
+.theme-doc-markdown code,
+[class*="markdown"] code {
+  word-break: break-word;
 }
 
 /* When TOC column is not present, main content should still be fluid */

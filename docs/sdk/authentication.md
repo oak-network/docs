@@ -5,7 +5,7 @@ The SDK authenticates with the Oak Network API using OAuth2 client credentials. 
 ## How it works
 
 ```typescript
-import { createOakClient } from '@oaknetwork/api';
+import { createOakClient } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({
   environment: 'sandbox',
@@ -84,6 +84,6 @@ if (grantResult.ok) {
 | `clientId` | `string` | Yes | OAuth2 client ID |
 | `clientSecret` | `string` | Yes | OAuth2 client secret |
 | `customUrl` | `string` | No | Override the built-in API base URL |
-| `retryOptions` | `Partial<RetryOptions>` | No | Override default [retry behavior](/docs/sdk/api-sdk/error-handling#retry-configuration) |
+| `retryOptions` | `Partial<RetryOptions>` | No | Override default [retry behavior](/docs/sdk/error-handling#retry-configuration) |
 
 > `clientSecret` is not exposed on `client.config` after creation — store it separately if you need it for non-SDK purposes. All service methods handle authentication transparently. You only need to interact with `getAccessToken()` or `grantToken()` if you are making direct HTTP calls outside the SDK.

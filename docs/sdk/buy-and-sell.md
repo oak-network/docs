@@ -3,7 +3,7 @@
 Buy and sell operations convert between fiat and crypto. A **buy** (on-ramp) converts fiat currency into stablecoins and deposits them into a customer's wallet. A **sell** (off-ramp) converts stablecoins back into fiat and sends the funds to a customer's bank account or PIX key. These flows are powered by Bridge (on-ramp) and Avenia (off-ramp).
 
 ```typescript
-import { createOakClient, createBuyService, createSellService } from '@oaknetwork/api';
+import { createOakClient, createBuyService, createSellService } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({ ... });
 

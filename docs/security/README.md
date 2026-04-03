@@ -302,11 +302,9 @@ contract MultiSig {
 
 ### Completed Audits
 
-#### PeckShield Security Audit
-- **Date**: December 2024
+#### Immunefi Security Audit
 - **Scope**: Core smart contracts
 - **Status**: ✅ Completed
-- **Report**: [PeckShield Audit Report](audits/PeckShield-Audit-Report-CreativeCrowdfunding_v1.0.pdf)
 
 #### Key Findings
 - **Critical Issues**: 0
@@ -315,11 +313,9 @@ contract MultiSig {
 - **Low Issues**: 5 (Fixed)
 - **Informational**: 8 (Addressed)
 
-### Upcoming Audits
-
-- **Q1 2025**: Trail of Bits comprehensive audit
-- **Q2 2025**: ConsenSys Diligence audit
-- **Q3 2025**: OpenZeppelin audit
+#### OpenZeppelin Audit
+- **Scope**: Full protocol security review
+- **Status**: 🔄 Ongoing
 
 ## 🐛 Bug Bounty Program
 

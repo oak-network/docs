@@ -3,7 +3,7 @@
 The SDK supports two built-in environments and an optional custom URL override.
 
 ```typescript
-import { createOakClient } from '@oaknetwork/api';
+import { createOakClient } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({
   environment: 'sandbox', // or 'production'
@@ -39,7 +39,7 @@ When `customUrl` is set, it takes priority over the environment's default URL. T
 The SDK exports helper functions for environment checks:
 
 ```typescript
-import { getEnvironmentConfig, isTestEnvironment } from '@oaknetwork/api';
+import { getEnvironmentConfig, isTestEnvironment } from '@oaknetwork/payments-sdk';
 
 const config = getEnvironmentConfig('sandbox');
 console.log(config.apiUrl);              // "https://api-stage.usecrowdpay.xyz"
@@ -54,7 +54,7 @@ console.log(isTestEnvironment('production')); // false
 Some SDK operations are restricted to the sandbox environment using the `@SandboxOnly` decorator. If you call a sandbox-only method with `environment: 'production'`, the SDK returns an `EnvironmentViolationError` in the `Result` without making a network request.
 
 ```typescript
-import { EnvironmentViolationError } from '@oaknetwork/api';
+import { EnvironmentViolationError } from '@oaknetwork/payments-sdk';
 
 const result = await someService.sandboxOnlyMethod();
 
@@ -75,4 +75,4 @@ The `@SandboxOnly` decorator (and its function equivalent `sandboxOnlyFn`) check
 
 This prevents test operations from accidentally running against production data.
 
-> For the full error type reference, see [Error Handling](/docs/sdk/api-sdk/error-handling).
+> For the full error type reference, see [Error Handling](/docs/sdk/error-handling).
