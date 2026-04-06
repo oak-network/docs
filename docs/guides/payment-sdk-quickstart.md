@@ -234,13 +234,13 @@ const sellOrder = await sell.create({
   provider: 'avenia',
   source: {
     customer: { id: creator.value.data.customer_id },
-    currency: 'usdc',
+    currency: 'brla',
     amount: 10000,
   },
   destination: {
     customer: { id: creator.value.data.customer_id },
-    currency: 'usd',
-    payment_method: { type: 'bank', id: 'pm_bank_123' },
+    currency: 'brl',
+    payment_method: { type: 'pix', id: 'pm_pix_123' },
   },
 });
 ```

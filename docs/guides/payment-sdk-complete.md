@@ -97,8 +97,7 @@ flowchart TD
 | **Transfer** | `TransferService` | Move funds to bank, wallet, or customer | Stripe, PagarMe, BRLA |
 | **Buy** | `BuyService` | Convert fiat → crypto (on-ramp) | Bridge |
 | **Sell** | `SellService` | Convert crypto → fiat (off-ramp) | Avenia |
-| **Plans** | `PlanService` | Define subscription billing configuration | All |
-| **Subscribe** | `SubscriptionService` | Attach customer to a plan | All |
+| **Plans** | `PlanService` | Define recurring billing plans | All |
 
 ---
 
@@ -502,13 +501,14 @@ import { createTransferService } from '@oaknetwork/payments-sdk';
 const transfers = createTransferService(client);
 
 const transfer = await transfers.create({
-  provider: 'avenia',
+  provider: 'brla',
   source: {
     customer: { id: creatorCustomerId },
-    amount: '10000',
+    amount: 10000,
     currency: 'brla',
   },
   destination: {
+    customer: { id: creatorCustomerId },
     payment_method: {
       type: 'customer_wallet',
       chain: 'polygon',
@@ -538,7 +538,7 @@ const sellOrder = await sell.create({
   source: {
     customer: { id: creatorCustomerId },
     currency: 'brla',
-    amount: '10000',
+    amount: 10000,
   },
   destination: {
     customer: { id: creatorCustomerId },
@@ -642,40 +642,47 @@ stateDiagram-v2
 </MermaidDiagram>
 
 ```typescript
-import { createPlanService, createSubscriptionService } from '@oaknetwork/payments-sdk';
+import { createPlanService } from '@oaknetwork/payments-sdk';
 
 const plans = createPlanService(client);
-const subscriptions = createSubscriptionService(client);
 
 // 1. Create a plan (draft)
 const plan = await plans.create({
   name: 'Premium Monthly',
   description: 'Full access to all features',
+  frequency: 30, // Billing frequency in days
   price: 2999,
   currency: 'BRL',
-  billing_cycle: 'month',
-  billing_interval: 1,
   start_date: '2026-04-01',
   is_auto_renewable: true,
   allow_amount_override: false,
   created_by: 'admin',
 });
 
-// 2. Publish the plan
+// 2. Publish the plan (makes it available for subscriptions)
 await plans.publish(plan.value.data.hash_id);
 
-// 3. Subscribe a customer
-const subscription = await subscriptions.subscribe({
-  plan_id: plan.value.data.hash_id,
-  price: 2999,
-  customer_id: backerCustomerId,
-  payment_method_id: savedCardId,
-  payment_method_type: 'card',
-  payment_method_provider: 'pagar_me',
+// 3. List plans
+const allPlans = await plans.list({ page_no: 1, per_page: 10 });
+
+// 4. Get plan details
+const planDetails = await plans.details(plan.value.data.hash_id);
+
+// 5. Update a plan
+await plans.update(plan.value.data.hash_id, {
+  name: 'Premium Monthly (Updated)',
+  description: 'Updated description',
+  frequency: 30,
+  price: 3499,
+  currency: 'BRL',
+  start_date: '2026-04-01',
+  is_auto_renewable: true,
+  allow_amount_override: false,
+  created_by: 'admin',
 });
 
-// 4. Cancel subscription
-await subscriptions.cancel(subscription.value.data.hash_id);
+// 6. Delete a plan
+await plans.delete(plan.value.data.hash_id);
 ```
 
 ---
@@ -772,22 +779,23 @@ flowchart LR
 | **BuyService** | `create(data)` | `provider`, `source`, `destination` | Convert fiat to crypto (on-ramp) |
 | **SellService** | `create(data)` | `provider`, `source`, `destination` | Convert crypto to fiat (off-ramp) |
 | **RefundService** | `create(data)` | `payment_id`, `amount`, `reason` | Refund a captured payment |
-| **PlanService** | `create(data)` | `name`, `price`, `currency`, `billing_cycle`, `billing_interval` | Create subscription plan |
+| **PlanService** | `create(data)` | `name`, `description`, `frequency`, `price`, `currency`, `start_date` | Create subscription plan |
 | | `publish(id)` | `plan_id` | Publish a draft plan |
-| **SubscriptionService** | `subscribe(data)` | `plan_id`, `customer_id`, `payment_method_id` | Subscribe customer to plan |
-| | `cancel(id)` | `subscription_id` | Cancel subscription |
+| | `details(id)` | `plan_id` | Get plan details |
+| | `list(params)` | `page_no`, `per_page` | List plans with pagination |
+| | `update(id, data)` | `plan_id`, plan fields | Update a plan |
+| | `delete(id)` | `plan_id` | Delete a plan |
 | **WebhookService** | `register(data)` | `url`, `description` | Register webhook endpoint |
 
 ### Common Parameter Values
 
 | Parameter | Type | Example Values |
 |---|---|---|
-| `provider` | string | `stripe`, `pagar_me`, `bridge`, `avenia` |
+| `provider` | string | `stripe`, `pagar_me`, `bridge`, `avenia`, `brla` |
 | `target_role` | string | `connected_account`, `customer` |
 | `currency` | string | `usd`, `brl`, `usdc`, `brla` |
-| `payment_method.type` | string | `card`, `pix`, `bank`, `virtual_account`, `liquidation_address` |
+| `payment_method.type` | string | `card`, `pix`, `bank`, `customer_wallet`, `virtual_account`, `liquidation_address` |
 | `capture_method` | string | `automatic`, `manual` |
-| `billing_cycle` | string | `day`, `week`, `month`, `year` |
 
 ---
 
