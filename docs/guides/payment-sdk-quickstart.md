@@ -65,7 +65,7 @@ flowchart TD
 The SDK handles OAuth2 authentication automatically. Tokens are valid for 55 minutes and refresh automatically.
 
 ```typescript
-import { createOakClient } from '@oaknetwork/api';
+import { createOakClient } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({
   environment: 'sandbox', // or 'production'
@@ -83,7 +83,7 @@ const client = createOakClient({
 Create customers for campaign creators (receive funds) and backers (contribute to campaigns).
 
 ```typescript
-import { createCustomerService } from '@oaknetwork/api';
+import { createCustomerService } from '@oaknetwork/payments-sdk';
 
 const customers = createCustomerService(client);
 
@@ -116,12 +116,12 @@ if (creator.ok && backer.ok) {
 Register customers with payment providers. Campaign creators need full KYC verification to receive funds; backers need basic registration.
 
 ```typescript
-import { createProviderService } from '@oaknetwork/api';
+import { createProviderService } from '@oaknetwork/payments-sdk';
 
 const providers = createProviderService(client);
 
 // Register campaign creator (requires KYC)
-const creatorReg = await providers.submit(creator.value.data.customer_id, {
+const creatorReg = await providers.submitRegistration(creator.value.data.customer_id, {
   provider: 'stripe', // or 'pagar_me' for Brazil
   target_role: 'connected_account',
   provider_data: {
@@ -137,7 +137,7 @@ if (creatorReg.ok) {
 }
 
 // Register backer (minimal verification)
-const backerReg = await providers.submit(backer.value.data.customer_id, {
+const backerReg = await providers.submitRegistration(backer.value.data.customer_id, {
   provider: 'stripe',
   target_role: 'customer',
   provider_data: {},
@@ -158,7 +158,7 @@ const backerReg = await providers.submit(backer.value.data.customer_id, {
 Create a payment from backer to campaign creator.
 
 ```typescript
-import { createPaymentService } from '@oaknetwork/api';
+import { createPaymentService } from '@oaknetwork/payments-sdk';
 
 const payments = createPaymentService(client);
 
@@ -195,7 +195,7 @@ if (payment.ok) {
 After payment is captured, move funds using Transfer, Buy, or Sell services.
 
 ```typescript
-import { createTransferService, createBuyService, createSellService } from '@oaknetwork/api';
+import { createTransferService, createBuyService, createSellService } from '@oaknetwork/payments-sdk';
 
 // Option 1: Transfer to bank
 const transfers = createTransferService(client);
@@ -258,7 +258,7 @@ const sellOrder = await sell.create({
 Register a webhook to receive real-time notifications for payment and registration events.
 
 ```typescript
-import { createWebhookService } from '@oaknetwork/api';
+import { createWebhookService } from '@oaknetwork/payments-sdk';
 
 const webhooks = createWebhookService(client);
 
@@ -292,7 +292,7 @@ import {
   createProviderService,
   createPaymentService,
   createWebhookService,
-} from '@oaknetwork/api';
+} from '@oaknetwork/payments-sdk';
 
 async function integrateCrowdfundingPlatform() {
   // Step 1: Initialize client
@@ -318,7 +318,7 @@ async function integrateCrowdfundingPlatform() {
   });
 
   // Step 3: Register with provider
-  const creatorReg = await providers.submit(creator.value.data.customer_id, {
+  const creatorReg = await providers.submitRegistration(creator.value.data.customer_id, {
     provider: 'stripe',
     target_role: 'connected_account',
     provider_data: {
@@ -330,7 +330,7 @@ async function integrateCrowdfundingPlatform() {
 
   // Wait for creator to complete KYC via webhook...
 
-  await providers.submit(backer.value.data.customer_id, {
+  await providers.submitRegistration(backer.value.data.customer_id, {
     provider: 'stripe',
     target_role: 'customer',
     provider_data: {},

@@ -191,7 +191,7 @@ import {
   createOakClient, 
   createCustomerService, 
   createProviderService 
-} from '@oaknetwork/api';
+} from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({
   environment: 'sandbox',
@@ -209,7 +209,7 @@ const creator = await customers.create({
 });
 
 // Register creator with Stripe as connected account
-const stripeReg = await providers.submit(creator.value.data.customer_id, {
+const stripeReg = await providers.submitRegistration(creator.value.data.customer_id, {
   provider: 'stripe',
   target_role: 'connected_account',
   provider_data: {
@@ -225,7 +225,7 @@ const stripeReg = await providers.submit(creator.value.data.customer_id, {
 const { client_secret, publishable_key } = stripeReg.value.data.provider_response;
 
 // Register creator with Bridge for crypto
-const bridgeReg = await providers.submit(creator.value.data.customer_id, {
+const bridgeReg = await providers.submitRegistration(creator.value.data.customer_id, {
   provider: 'bridge',
   target_role: 'customer',
   provider_data: {
@@ -240,7 +240,7 @@ const { kyc_url, tos_url } = bridgeReg.value.data.provider_response;
 ### Phase 2: Payment Collection
 
 ```typescript
-import { createPaymentService } from '@oaknetwork/api';
+import { createPaymentService } from '@oaknetwork/payments-sdk';
 
 const payments = createPaymentService(client);
 
@@ -274,12 +274,12 @@ if (payment.ok) {
 ### Phase 3: Virtual Account for Auto-Conversion
 
 ```typescript
-import { createPaymentMethodService } from '@oaknetwork/api';
+import { createPaymentMethodService } from '@oaknetwork/payments-sdk';
 
 const paymentMethods = createPaymentMethodService(client);
 
 // Create Bridge virtual account (receives USD, converts to USDC)
-const virtualAccount = await paymentMethods.create(creatorCustomerId, {
+const virtualAccount = await paymentMethods.add(creatorCustomerId, {
   type: 'virtual_account',
   provider: 'bridge',
   source_currency: 'usd',
@@ -294,7 +294,7 @@ const virtualAccount = await paymentMethods.create(creatorCustomerId, {
 const { bank_account_number, bank_routing_number } = 
   virtualAccount.value.data.provider_response.source_deposit_instructions;
 
-const stripeExternal = await paymentMethods.create(creatorCustomerId, {
+const stripeExternal = await paymentMethods.add(creatorCustomerId, {
   type: 'bank',
   provider: 'stripe',
   bank_name: 'Bridge Virtual Bank',
@@ -313,7 +313,7 @@ const stripeExternal = await paymentMethods.create(creatorCustomerId, {
 
 ```typescript
 // Add real bank account to Bridge
-const realBank = await paymentMethods.create(creatorCustomerId, {
+const realBank = await paymentMethods.add(creatorCustomerId, {
   type: 'bank',
   provider: 'bridge',
   bank_name: 'Chase',
@@ -331,7 +331,7 @@ const realBank = await paymentMethods.create(creatorCustomerId, {
 });
 
 // Create liquidation address (send USDC here → receive USD in bank)
-const liquidation = await paymentMethods.create(creatorCustomerId, {
+const liquidation = await paymentMethods.add(creatorCustomerId, {
   type: 'liquidation_address',
   provider: 'bridge',
   source_currency: 'usdc',
@@ -435,7 +435,7 @@ sequenceDiagram
 ### Card Payment with Fraud Detection
 
 ```typescript
-import { createPaymentService } from '@oaknetwork/api';
+import { createPaymentService } from '@oaknetwork/payments-sdk';
 
 const payments = createPaymentService(client);
 
@@ -497,7 +497,7 @@ if (pixPayment.ok) {
 ### Transfer BRLA to Wallet
 
 ```typescript
-import { createTransferService } from '@oaknetwork/api';
+import { createTransferService } from '@oaknetwork/payments-sdk';
 
 const transfers = createTransferService(client);
 
@@ -521,13 +521,13 @@ const transfer = await transfers.create({
 ### Sell BRLA for BRL (Off-Ramp)
 
 ```typescript
-import { createSellService, createPaymentMethodService } from '@oaknetwork/api';
+import { createSellService, createPaymentMethodService } from '@oaknetwork/payments-sdk';
 
 const paymentMethods = createPaymentMethodService(client);
 const sell = createSellService(client);
 
 // Add PIX as payment method
-const pixMethod = await paymentMethods.create(creatorCustomerId, {
+const pixMethod = await paymentMethods.add(creatorCustomerId, {
   type: 'pix',
   pix_string: '12345678901', // CPF, phone, email, or random key
 });
@@ -583,7 +583,7 @@ sequenceDiagram
 </MermaidDiagram>
 
 ```typescript
-import { createBuyService } from '@oaknetwork/api';
+import { createBuyService } from '@oaknetwork/payments-sdk';
 
 const buy = createBuyService(client);
 
@@ -642,7 +642,7 @@ stateDiagram-v2
 </MermaidDiagram>
 
 ```typescript
-import { createPlanService, createSubscriptionService } from '@oaknetwork/api';
+import { createPlanService, createSubscriptionService } from '@oaknetwork/payments-sdk';
 
 const plans = createPlanService(client);
 const subscriptions = createSubscriptionService(client);
@@ -760,12 +760,12 @@ flowchart LR
 | **CustomerService** | `create(data)` | `email`, `country_code` | Create a new customer |
 | | `get(id)` | `customer_id` | Retrieve customer details |
 | | `list()` | — | List all customers |
-| **ProviderService** | `submit(id, data)` | `customer_id`, `provider`, `target_role`, `provider_data` | Register customer with payment provider |
-| | `get(id)` | `registration_id` | Get registration status |
+| **ProviderService** | `submitRegistration(id, data)` | `customer_id`, `provider`, `target_role`, `provider_data` | Register customer with payment provider |
+| | `getRegistrationStatus(id)` | `customer_id` | Get registration status |
 | **PaymentService** | `create(data)` | `provider`, `source`, `destination`, `confirm`, `metadata` | Create payment intent |
 | | `confirm(id)` | `payment_id` | Confirm a payment |
 | | `cancel(id)` | `payment_id` | Cancel a payment |
-| **PaymentMethodService** | `create(id, data)` | `customer_id`, `type`, `provider`, provider-specific fields | Add payment method |
+| **PaymentMethodService** | `add(id, data)` | `customer_id`, `type`, `provider`, provider-specific fields | Add payment method |
 | | `list(id)` | `customer_id` | List customer's payment methods |
 | | `delete(id, methodId)` | `customer_id`, `payment_method_id` | Remove payment method |
 | **TransferService** | `create(data)` | `provider`, `source`, `destination` | Transfer funds to bank/wallet |
