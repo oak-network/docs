@@ -154,15 +154,9 @@ const sidebars: SidebarsConfig = {
   sdkSidebar: [
     'sdk/overview',
     {
-      type: 'category',
+      type: 'link',
       label: 'Integration Flows',
-      items: [
-        'guides/integration-overview',
-        'guides/payment-sdk-quickstart',
-        'guides/payment-sdk-complete',
-        'guides/contracts-sdk-quickstart',
-        'guides/contracts-sdk-complete',
-      ],
+      href: '/docs/guides/integration-overview',
     },
     'sdk/installation',
     'sdk/quickstart',
@@ -191,15 +185,9 @@ const sidebars: SidebarsConfig = {
   contractsSdkSidebar: [
     'contracts-sdk/overview',
     {
-      type: 'category',
+      type: 'link',
       label: 'Integration Flows',
-      items: [
-        'guides/integration-overview',
-        'guides/contracts-sdk-quickstart',
-        'guides/contracts-sdk-complete',
-        'guides/payment-sdk-quickstart',
-        'guides/payment-sdk-complete',
-      ],
+      href: '/docs/guides/integration-overview',
     },
     'contracts-sdk/installation',
     'contracts-sdk/quickstart',
@@ -228,15 +216,9 @@ const sidebars: SidebarsConfig = {
   contractsSidebar: [
     'contracts/overview',
     {
-      type: 'category',
+      type: 'link',
       label: 'Integration Flows',
-      items: [
-        'guides/integration-overview',
-        'guides/contracts-sdk-quickstart',
-        'guides/contracts-sdk-complete',
-        'guides/payment-sdk-quickstart',
-        'guides/payment-sdk-complete',
-      ],
+      href: '/docs/guides/integration-overview',
     },
     {
       type: 'category',
