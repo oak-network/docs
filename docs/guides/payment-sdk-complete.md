@@ -751,6 +751,46 @@ flowchart LR
 
 ---
 
+## API Reference
+
+### Service Functions
+
+| Service | Function | Parameters | Description |
+|---|---|---|---|
+| **CustomerService** | `create(data)` | `email`, `country_code` | Create a new customer |
+| | `get(id)` | `customer_id` | Retrieve customer details |
+| | `list()` | — | List all customers |
+| **ProviderService** | `submit(id, data)` | `customer_id`, `provider`, `target_role`, `provider_data` | Register customer with payment provider |
+| | `get(id)` | `registration_id` | Get registration status |
+| **PaymentService** | `create(data)` | `provider`, `source`, `destination`, `confirm`, `metadata` | Create payment intent |
+| | `confirm(id)` | `payment_id` | Confirm a payment |
+| | `cancel(id)` | `payment_id` | Cancel a payment |
+| **PaymentMethodService** | `create(id, data)` | `customer_id`, `type`, `provider`, provider-specific fields | Add payment method |
+| | `list(id)` | `customer_id` | List customer's payment methods |
+| | `delete(id, methodId)` | `customer_id`, `payment_method_id` | Remove payment method |
+| **TransferService** | `create(data)` | `provider`, `source`, `destination` | Transfer funds to bank/wallet |
+| **BuyService** | `create(data)` | `provider`, `source`, `destination` | Convert fiat to crypto (on-ramp) |
+| **SellService** | `create(data)` | `provider`, `source`, `destination` | Convert crypto to fiat (off-ramp) |
+| **RefundService** | `create(data)` | `payment_id`, `amount`, `reason` | Refund a captured payment |
+| **PlanService** | `create(data)` | `name`, `price`, `currency`, `billing_cycle`, `billing_interval` | Create subscription plan |
+| | `publish(id)` | `plan_id` | Publish a draft plan |
+| **SubscriptionService** | `subscribe(data)` | `plan_id`, `customer_id`, `payment_method_id` | Subscribe customer to plan |
+| | `cancel(id)` | `subscription_id` | Cancel subscription |
+| **WebhookService** | `register(data)` | `url`, `description` | Register webhook endpoint |
+
+### Common Parameter Values
+
+| Parameter | Type | Example Values |
+|---|---|---|
+| `provider` | string | `stripe`, `pagar_me`, `bridge`, `avenia` |
+| `target_role` | string | `connected_account`, `customer` |
+| `currency` | string | `usd`, `brl`, `usdc`, `brla` |
+| `payment_method.type` | string | `card`, `pix`, `bank`, `virtual_account`, `liquidation_address` |
+| `capture_method` | string | `automatic`, `manual` |
+| `billing_cycle` | string | `day`, `week`, `month`, `year` |
+
+---
+
 ## Next Steps
 
 - [Payment SDK Quick Start](/docs/guides/payment-sdk-quickstart) — 6-step universal flow
