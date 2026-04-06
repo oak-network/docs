@@ -351,32 +351,40 @@ if (hasEnded && !isSuccessful) {
 
 ---
 
-## Fee Structure
+## Fund Distribution
 
-<MermaidDiagram title="Fee Distribution">
+When a campaign succeeds, funds are distributed as follows:
+
+<MermaidDiagram title="Fund Distribution Breakdown">
 
 ```mermaid
 flowchart LR
     Total[Total Raised] --> Protocol[Protocol Fee<br/>2.5%]
     Total --> Platform[Platform Fee<br/>Variable]
-    Total --> Creator[Creator<br/>Remaining]
+    Total --> Creator[Creator Payout<br/>Remaining]
 ```
 
 </MermaidDiagram>
 
+| Recipient | Description | Calculation |
+|---|---|---|
+| **Protocol Fee** | Oak Network's fee for infrastructure | 2.5% of total raised |
+| **Platform Fee** | Fee for the crowdfunding platform | Variable (set by platform) |
+| **Creator Payout** | Net funds received by campaign creator | Total - Protocol Fee - Platform Fee |
+
 ```javascript
-// Fee calculation example
+// Fund distribution calculation example
 const totalRaised = await treasury.getTotalPledged();
 const protocolFeePercent = await globalParams.getProtocolFeePercent(); // 250 = 2.5%
 const platformFeePercent = await campaign.getPlatformFeePercent();
 
 const protocolFee = totalRaised.mul(protocolFeePercent).div(10000);
 const platformFee = totalRaised.mul(platformFeePercent).div(10000);
-const creatorAmount = totalRaised.sub(protocolFee).sub(platformFee);
+const creatorPayout = totalRaised.sub(protocolFee).sub(platformFee);
 
 console.log('Protocol fee:', ethers.utils.formatUnits(protocolFee, 6));
 console.log('Platform fee:', ethers.utils.formatUnits(platformFee, 6));
-console.log('Creator receives:', ethers.utils.formatUnits(creatorAmount, 6));
+console.log('Creator payout:', ethers.utils.formatUnits(creatorPayout, 6));
 ```
 
 ---
@@ -541,6 +549,63 @@ async function pollEvents(treasury, fromBlock) {
     : fromBlock;
 }
 ```
+
+---
+
+## Contract Function Reference
+
+### CampaignInfoFactory
+
+| Function | Parameters | Returns | Description |
+|---|---|---|---|
+| `createCampaign` | `creator`, `identifierHash`, `platformHashes[]`, `dataKeys[]`, `dataValues[]`, `campaignData` | Campaign address | Deploy new campaign |
+
+**campaignData struct:**
+
+| Field | Type | Description |
+|---|---|---|
+| `launchTime` | `uint256` | Unix timestamp when campaign opens for pledges |
+| `deadline` | `uint256` | Unix timestamp when campaign ends |
+| `goalAmount` | `uint256` | Target funding amount (in token decimals) |
+
+### TreasuryFactory
+
+| Function | Parameters | Returns | Description |
+|---|---|---|---|
+| `deploy` | `platformHash`, `campaignAddress`, `implementationId`, `name`, `symbol` | Treasury address | Deploy treasury for campaign |
+| `registerTreasuryImplementation` | `platformHash`, `implementationId`, `implementationAddress` | — | Register treasury type |
+| `approveTreasuryImplementation` | `platformHash`, `implementationId` | — | Approve treasury for use |
+
+### AllOrNothing Treasury
+
+| Function | Parameters | Returns | Description |
+|---|---|---|---|
+| `addRewards` | `rewardNames[]`, `rewards[]` | — | Configure reward tiers (before launch) |
+| `pledgeForAReward` | `rewardName`, `amount`, `shippingFee` | Token ID | Backer pledges and receives NFT |
+| `claimRefund` | `tokenId` | — | Backer claims refund (if campaign failed) |
+| `disburseFees` | — | — | Distribute protocol and platform fees |
+| `withdraw` | — | — | Creator withdraws remaining funds |
+| `getTotalPledged` | — | `uint256` | Total amount pledged |
+| `getPledgeInfo` | `tokenId` | Pledge struct | Get pledge details by NFT |
+
+**reward struct:**
+
+| Field | Type | Description |
+|---|---|---|
+| `rewardValue` | `uint256` | Minimum pledge amount for this tier |
+| `isRewardTier` | `bool` | Whether this is a reward tier |
+| `itemId` | `bytes32[]` | Item identifiers in this reward |
+| `itemValue` | `uint256[]` | Value of each item |
+| `itemQuantity` | `uint256[]` | Quantity of each item |
+
+### CampaignInfo
+
+| Function | Parameters | Returns | Description |
+|---|---|---|---|
+| `getDeadline` | — | `uint256` | Campaign end timestamp |
+| `getGoalAmount` | — | `uint256` | Target funding amount |
+| `getLaunchTime` | — | `uint256` | Campaign start timestamp |
+| `getPlatformFeePercent` | — | `uint256` | Platform fee in basis points |
 
 ---
 
