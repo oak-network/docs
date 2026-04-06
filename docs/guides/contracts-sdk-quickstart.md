@@ -30,6 +30,18 @@ flowchart LR
 pnpm add ethers
 ```
 
+:::warning Store secrets securely
+Never commit private keys or secrets to version control. Use environment variables or a secrets manager:
+
+```bash
+# .env file (add to .gitignore)
+PRIVATE_KEY=your_wallet_private_key
+RPC_URL=https://forno.celo.org
+```
+
+For production, use a secrets manager like AWS Secrets Manager, HashiCorp Vault, or Doppler.
+:::
+
 ---
 
 ## Step 1: Connect to Contracts
