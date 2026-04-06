@@ -110,7 +110,15 @@ flowchart LR
 
 </MermaidDiagram>
 
-This approach gives you:
+### When to Use
+
+- Accepting fiat payments but settling funds on-chain
+- Providing on-chain transparency while supporting traditional payment methods
+- Platforms transitioning from fiat-only to crypto-enabled
+- Campaigns that want blockchain auditability with familiar checkout experiences
+
+### Benefits
+
 - Familiar payment methods for backers (card, PIX)
 - On-chain transparency for campaign funds
 - Decentralized settlement and refunds
