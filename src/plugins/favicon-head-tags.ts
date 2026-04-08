@@ -6,38 +6,6 @@ export default function faviconHeadTagsPlugin(): Plugin {
     injectHtmlTags() {
       return {
         headTags: [
-          // Preconnect to Google Fonts for faster font loading
-          {
-            tagName: 'link',
-            attributes: {
-              rel: 'preconnect',
-              href: 'https://fonts.googleapis.com',
-            },
-          },
-          {
-            tagName: 'link',
-            attributes: {
-              rel: 'preconnect',
-              href: 'https://fonts.gstatic.com',
-              crossorigin: 'anonymous',
-            },
-          },
-          // Primary font — swap ensures text is visible immediately
-          {
-            tagName: 'link',
-            attributes: {
-              rel: 'stylesheet',
-              href: 'https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap',
-            },
-          },
-          // Decorative fonts — optional avoids layout shift and FOIT
-          {
-            tagName: 'link',
-            attributes: {
-              rel: 'stylesheet',
-              href: 'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Manrope:wght@400;600;800&family=Outfit:wght@800&display=optional',
-            },
-          },
           // Standard favicon
           {
             tagName: 'link',
