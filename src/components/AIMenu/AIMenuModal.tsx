@@ -59,7 +59,7 @@ export default function AIMenuModal({onClose}: Props): JSX.Element {
       ? content.slice(0, MAX_URL_CONTENT) + '\n\n[content truncated]'
       : content;
     const prompt = `Here is documentation from Oak Network — "${title}":\n\n${truncated}\n\nPlease help me understand this.`;
-    window.open(`https://chatgpt.com/?q=${encodeURIComponent(prompt)}`, '_blank');
+    window.open(`https://chatgpt.com/?q=${encodeURIComponent(prompt)}`, '_blank', 'noopener,noreferrer');
     onClose();
   }, [getPageMarkdown, onClose]);
 
@@ -69,7 +69,7 @@ export default function AIMenuModal({onClose}: Props): JSX.Element {
       ? content.slice(0, MAX_URL_CONTENT) + '\n\n[content truncated]'
       : content;
     const prompt = `Here is documentation from Oak Network — "${title}":\n\n${truncated}\n\nPlease help me understand this.`;
-    window.open(`https://claude.ai/new?q=${encodeURIComponent(prompt)}`, '_blank');
+    window.open(`https://claude.ai/new?q=${encodeURIComponent(prompt)}`, '_blank', 'noopener,noreferrer');
     onClose();
   }, [getPageMarkdown, onClose]);
 
@@ -85,7 +85,7 @@ export default function AIMenuModal({onClose}: Props): JSX.Element {
 
   const handleViewMarkdown = useCallback(() => {
     const url = getGitHubRawUrl();
-    window.open(url, '_blank');
+    window.open(url, '_blank', 'noopener,noreferrer');
     onClose();
   }, [getGitHubRawUrl, onClose]);
 
