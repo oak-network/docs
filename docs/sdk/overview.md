@@ -65,7 +65,7 @@ The SDK ships 10 service modules. Import the factory function for each service y
 | [`PlanService`](/docs/sdk/plans) | `createPlanService(client)` | CRUD subscription plans |
 | [`RefundService`](/docs/sdk/refunds) | `createRefundService(client)` | Refund a payment |
 | [`BuyService`](/docs/sdk/buy-and-sell) | `createBuyService(client)` | Crypto on-ramp via Bridge |
-| [`SellService`](/docs/sdk/buy-and-sell) | `createSellService(client)` | Crypto off-ramp via Avenia |
+| [`SellService`](/docs/sdk/buy-and-sell) | `createSellService(client)` | Crypto off-ramp |
 
 ## Next up
 

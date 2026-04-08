@@ -1,6 +1,6 @@
 # Buy and Sell
 
-Buy and sell operations convert between fiat and crypto. A **buy** (on-ramp) converts fiat currency into stablecoins and deposits them into a customer's wallet. A **sell** (off-ramp) converts stablecoins back into fiat and sends the funds to a customer's bank account or PIX key. These flows are powered by Bridge (on-ramp) and Avenia (off-ramp).
+Buy and sell operations convert between fiat and crypto. A **buy** (on-ramp) converts fiat currency into stablecoins and deposits them into a customer's wallet. A **sell** (off-ramp) converts stablecoins back into fiat and sends the funds to a customer's bank account or PIX key.
 
 ```typescript
 import { createOakClient, createBuyService, createSellService } from '@oaknetwork/payments-sdk';
@@ -80,7 +80,7 @@ if (result.ok) {
 
 ## Sell (off-ramp)
 
-Convert crypto to fiat via Avenia.
+Convert crypto to fiat.
 
 ### Methods
 
@@ -92,7 +92,7 @@ Convert crypto to fiat via Avenia.
 
 ```typescript
 const result = await sell.create({
-  provider: 'avenia',
+  provider: 'bridge',
   source: {
     customer: { id: 'cus_abc123' },
     currency: 'brla',
@@ -118,7 +118,7 @@ if (result.ok) {
 
 | Field | Type | Description |
 |---|---|---|
-| `provider` | `"avenia"` | Currently only Avenia is supported |
+| `provider` | `"bridge"` | Currently only Bridge is supported |
 | `source.customer.id` | `string` | Source customer UUID (optional — defaults to master account) |
 | `source.currency` | `string` | Source currency (e.g., `"brla"`) |
 | `source.amount` | `number` | Amount to sell |

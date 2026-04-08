@@ -96,7 +96,7 @@ flowchart TD
 | **Refund** | `RefundService` | Return funds from a captured payment | Same as payment provider |
 | **Transfer** | `TransferService` | Move funds to bank, wallet, or customer | Stripe, PagarMe, BRLA |
 | **Buy** | `BuyService` | Convert fiat → crypto (on-ramp) | Bridge |
-| **Sell** | `SellService` | Convert crypto → fiat (off-ramp) | Avenia |
+| **Sell** | `SellService` | Convert crypto → fiat (off-ramp) | Bridge |
 | **Plans** | `PlanService` | Define recurring billing plans | All |
 
 ---
@@ -348,7 +348,7 @@ const { liquidation_address } = liquidation.value.data;
 
 ---
 
-## Brazil Integration Flow (PagarMe + Avenia)
+## Brazil Integration Flow (PagarMe + Bridge)
 
 Complete flow for Brazilian platforms with BRL payments and optional BRLA stablecoin conversion.
 
@@ -359,13 +359,13 @@ sequenceDiagram
     participant Platform
     participant Oak as Oak Network API
     participant PagarMe
-    participant Avenia
+    participant Bridge
     participant Konduto as Konduto (Fraud)
     participant Backer
     participant Creator
     
     rect rgb(40, 40, 60)
-    Note over Platform,Avenia: Phase 1: Setup & KYC
+    Note over Platform,Bridge: Phase 1: Setup & KYC
     Platform->>Oak: POST /merchant/token/grant
     Oak-->>Platform: access_token
     
@@ -377,9 +377,9 @@ sequenceDiagram
     PagarMe-->>Oak: Approved (synchronous)
     Oak-->>Platform: Registration approved
     
-    Platform->>Oak: POST /provider-registration/:id/submit (avenia)
-    Oak->>Avenia: Create subaccount
-    Avenia-->>Oak: Webhook: Subaccount created with BR code
+    Platform->>Oak: POST /provider-registration/:id/submit (bridge)
+    Oak->>Bridge: Create subaccount
+    Bridge-->>Oak: Webhook: Subaccount created
     Oak-->>Platform: Subaccount details
     end
     
@@ -398,7 +398,7 @@ sequenceDiagram
     end
     
     rect rgb(60, 60, 40)
-    Note over Platform,Avenia: Phase 2b: PIX Payment (Alternative)
+    Note over Platform,Bridge: Phase 2b: PIX Payment (Alternative)
     Platform->>Oak: POST /payments (pix)
     Oak->>PagarMe: Create PIX charge
     PagarMe-->>Oak: QR code, PIX link
@@ -409,22 +409,22 @@ sequenceDiagram
     end
     
     rect rgb(60, 40, 60)
-    Note over Platform,Avenia: Phase 3: Transfer to Crypto
-    Platform->>Oak: POST /transfer (avenia)
-    Oak->>Avenia: Transfer BRLA to wallet
-    Avenia-->>Oak: Transfer complete
-    Oak-->>Platform: BRLA in wallet
+    Note over Platform,Bridge: Phase 3: Transfer to Crypto
+    Platform->>Oak: POST /transfer (bridge)
+    Oak->>Bridge: Transfer to wallet
+    Bridge-->>Oak: Transfer complete
+    Oak-->>Platform: Funds in wallet
     end
     
     rect rgb(60, 40, 40)
-    Note over Platform,Avenia: Phase 4: Sell (Off-Ramp)
+    Note over Platform,Bridge: Phase 4: Sell (Off-Ramp)
     Platform->>Oak: POST /customers/:id/payment_methods (pix)
     Oak-->>Platform: PIX payment method added
     
     Platform->>Oak: POST /sell
-    Oak->>Avenia: Sell BRLA for BRL
-    Avenia-->>Oak: Sell order executed
-    Avenia-->>Creator: BRL sent via PIX
+    Oak->>Bridge: Sell crypto for fiat
+    Bridge-->>Oak: Sell order executed
+    Bridge-->>Creator: Fiat sent via PIX
     Oak-->>Platform: Sell complete
     end
 ```
@@ -532,9 +532,9 @@ const pixMethod = await paymentMethods.add(creatorCustomerId, {
   pix_string: '12345678901', // CPF, phone, email, or random key
 });
 
-// Sell BRLA → BRL via PIX
+// Sell crypto → fiat via PIX
 const sellOrder = await sell.create({
-  provider: 'avenia',
+  provider: 'bridge',
   source: {
     customer: { id: creatorCustomerId },
     currency: 'brla',
@@ -791,7 +791,7 @@ flowchart LR
 
 | Parameter | Type | Example Values |
 |---|---|---|
-| `provider` | string | `stripe`, `pagar_me`, `bridge`, `avenia`, `brla` |
+| `provider` | string | `stripe`, `pagar_me`, `bridge`, `brla` |
 | `target_role` | string | `connected_account`, `customer` |
 | `currency` | string | `usd`, `brl`, `usdc`, `brla` |
 | `payment_method.type` | string | `card`, `pix`, `bank`, `customer_wallet`, `virtual_account`, `liquidation_address` |

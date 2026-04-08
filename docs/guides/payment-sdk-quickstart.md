@@ -231,7 +231,7 @@ const buyOrder = await buy.create({
 // Option 3: Convert crypto back to fiat (off-ramp)
 const sell = createSellService(client);
 const sellOrder = await sell.create({
-  provider: 'avenia',
+  provider: 'bridge',
   source: {
     customer: { id: creator.value.data.customer_id },
     currency: 'brla',

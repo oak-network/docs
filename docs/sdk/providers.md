@@ -1,6 +1,6 @@
 # Providers
 
-Before a customer can send or receive payments through a specific provider, they must be registered with that provider. The provider service handles this onboarding — fetch the required fields for a given provider, submit a registration, and check its approval status. Each provider (Stripe, PagarMe, MercadoPago, Bridge, Avenia) has its own registration schema and approval flow.
+Before a customer can send or receive payments through a specific provider, they must be registered with that provider. The provider service handles this onboarding — fetch the required fields for a given provider, submit a registration, and check its approval status. Each provider (Stripe, PagarMe, MercadoPago, Bridge) has its own registration schema and approval flow.
 
 ```typescript
 import { createOakClient, createProviderService } from '@oaknetwork/payments-sdk';
@@ -17,7 +17,6 @@ const providers = createProviderService(client);
 | PagarMe | `"pagar_me"` | Card payments and transfers (Brazil) |
 | MercadoPago | `"mercado_pago"` | Card payments (Colombia) |
 | Bridge | `"bridge"` | Crypto on-ramp, bank accounts, Plaid |
-| Avenia | `"avenia"` | Crypto off-ramp, PIX (Brazil) |
 
 ## Methods
 

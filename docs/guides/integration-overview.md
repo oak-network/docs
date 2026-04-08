@@ -51,7 +51,7 @@ Use the Payment SDK to collect fiat payments (card, PIX, bank transfer) from bac
 | Region | Payment Provider | Crypto Provider | Currencies |
 |---|---|---|---|
 | **United States** | Stripe | Bridge | USD ↔ USDC |
-| **Brazil** | PagarMe | Avenia | BRL ↔ BRLA |
+| **Brazil** | PagarMe | BRL ↔ BRLA |
 
 ---
 

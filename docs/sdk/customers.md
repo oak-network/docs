@@ -108,7 +108,7 @@ if (result.ok) {
 
 | Field | Type | Description |
 |---|---|---|
-| `providers` | `[Provider]` | Provider to sync with (exactly one): `"stripe"`, `"bridge"`, `"pagar_me"`, `"brla"`, `"avenia"`, `"mercado_pago"` |
+| `providers` | `[Provider]` | Provider to sync with (exactly one): `"stripe"`, `"bridge"`, `"pagar_me"`, `"brla"`, `"mercado_pago"` |
 | `fields` | `SyncField[]` | Fields to sync: `"shipping"`, `"email"`, `"first_name"`, `"last_name"` |
 
 ## Get customer balance
