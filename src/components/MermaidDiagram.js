@@ -228,7 +228,7 @@ const MermaidDiagram = ({ children, title = "Diagram" }) => {
             marginTop: '1rem'
           }}
         >
-          <i className="fas fa-expand"></i> Fullscreen
+          &#x26F6; Fullscreen
         </button>
       </div>
 
@@ -289,7 +289,7 @@ const MermaidDiagram = ({ children, title = "Diagram" }) => {
             onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
           >
-            <i className="fas fa-times"></i>
+            &#x2715;
           </button>
           
                   <h3 className="mermaid-modal-title" style={{ 

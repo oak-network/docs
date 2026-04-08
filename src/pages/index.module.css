@@ -71,13 +71,11 @@
 @keyframes heroFadeUp {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.98);
-    filter: blur(4px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
@@ -197,7 +195,7 @@
   z-index: 0;
   pointer-events: none;
   animation: auraDrift1 14s ease-in-out infinite;
-  will-change: transform, opacity;
+  /* will-change removed — reduces mobile GPU memory pressure */
   mix-blend-mode: screen;
 }
 
@@ -218,7 +216,7 @@
   z-index: 0;
   pointer-events: none;
   animation: auraDrift2 18s ease-in-out infinite;
-  will-change: transform, opacity;
+  /* will-change removed — reduces mobile GPU memory pressure */
   mix-blend-mode: screen;
 }
 
@@ -239,7 +237,7 @@
   z-index: 0;
   pointer-events: none;
   animation: auraDrift3 16s ease-in-out infinite;
-  will-change: transform, opacity;
+  /* will-change removed — reduces mobile GPU memory pressure */
 }
 
 /* Geometric grid */
@@ -294,7 +292,7 @@
   margin: 0 0 32px;
   color: #ffffff;
   white-space: nowrap;
-  animation: heroFadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  /* No animation on title — it's the LCP element and must render instantly */
 }
 
 /* Both words sit inline on one line */
@@ -322,7 +320,7 @@
   color: #c2c2c2;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
-  animation: heroFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.56s both;
+  animation: heroFadeUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s both;
 }
 
 .heroTagline em {
@@ -338,7 +336,7 @@
   color: #b8b8b8;
   max-width: 560px;
   margin: 0 auto 52px;
-  animation: heroFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.7s both;
+  animation: heroFadeUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
 }
 
 /* CTA row */
@@ -347,7 +345,7 @@
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  animation: heroFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.86s both;
+  animation: heroFadeUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
 }
 
 /* Trust bar — frosted strip pinned to the bottom of the hero */
@@ -361,10 +359,10 @@
   padding: 28px 48px;
   background: rgba(255, 255, 255, 0.03);
   border-top: 1px solid rgba(255, 255, 255, 0.09);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   flex-wrap: wrap;
-  animation: heroFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 1.05s both;
+  animation: heroFadeUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s both;
 }
 
 .heroTrustGroup {
@@ -467,6 +465,8 @@
     padding: 28px 24px;
     flex-direction: column;
     align-items: center;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
   .heroTrustGroup {
     display: flex;
@@ -487,12 +487,18 @@
   .heroGlow2 {
     width: 800px;
     height: 600px;
+    filter: blur(60px);
+    animation: none;
   }
   .heroGlow3 {
     width: 600px;
     height: 450px;
     bottom: -120px;
     filter: blur(42px);
+    animation: none;
+  }
+  .gridOverlay {
+    display: none;
   }
   .logoKickstarter {
     height: 18px;
@@ -1241,6 +1247,25 @@
   .btn {
     padding: 12px 24px;
     font-size: 15px;
+  }
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .heroGlow1,
+  .heroGlow2,
+  .heroGlow3 {
+    animation: none !important;
+  }
+  .heroTitle,
+  .heroTagline,
+  .heroDescription,
+  .heroButtons,
+  .heroTrustBar {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }
 

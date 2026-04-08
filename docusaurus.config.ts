@@ -126,12 +126,81 @@ const config: Config = {
     ],
   ],
 
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:image',
+        content: 'https://docs.oaknetwork.org/img/docusaurus-social-card.jpg',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:image:width',
+        content: '1200',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:image:height',
+        content: '630',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:image',
+        content: 'https://docs.oaknetwork.org/img/docusaurus-social-card.jpg',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:site',
+        content: '@oak_network',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:creator',
+        content: '@oak_network',
+      },
+    },
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Oak Network',
+        url: 'https://docs.oaknetwork.org',
+        logo: 'https://docs.oaknetwork.org/img/logo.svg',
+        description:
+          'Decentralized crowdfunding and commerce infrastructure on Celo. SDKs, smart contracts, and integration guides.',
+        sameAs: [
+          'https://x.com/oak_network',
+          'https://github.com/oak-network',
+          'https://discord.gg/srhtEpWBHx',
+        ],
+      }),
+    },
+  ],
+
   themeConfig: {
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
+    metadata: [
+      { name: 'keywords', content: 'Oak Network, crowdfunding, Celo, blockchain, smart contracts, SDK, creator commerce, decentralized, payments' },
+      { name: 'author', content: 'Oak Network' },
+    ],
     navbar: {
       logo: {
         alt: 'Oak Network Logo',

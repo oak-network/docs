@@ -3,9 +3,20 @@
  * Primary accent: #FBA244.
  */
 
-/* Import Google Fonts and Font Awesome */
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+/* Self-hosted fonts via Fontsource (latin subset only) */
+@import '@fontsource/albert-sans/latin-400.css';
+@import '@fontsource/albert-sans/latin-500.css';
+@import '@fontsource/albert-sans/latin-600.css';
+@import '@fontsource/albert-sans/latin-700.css';
+@import '@fontsource/inter/latin-300.css';
+@import '@fontsource/inter/latin-400.css';
+@import '@fontsource/inter/latin-500.css';
+@import '@fontsource/instrument-serif/latin-400-italic.css';
+@import '@fontsource/manrope/latin-400.css';
+@import '@fontsource/manrope/latin-600.css';
+@import '@fontsource/manrope/latin-800.css';
+@import '@fontsource/outfit/latin-800.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
 
 /* Font Variables */
 :root {
