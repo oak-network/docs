@@ -3,18 +3,26 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
+import {
+  IconLayerGroup, IconCoins, IconPlug, IconBolt, IconShieldAlt,
+  IconExpandArrowsAlt, IconShareAlt, IconUsers, IconEye, IconMagic,
+  IconGlobe, IconCode, IconArrowRight, IconBuilding, IconDiscord,
+  IconGithub, IconXTwitter, Icon,
+} from '../components/Icons';
 import styles from './index.module.css';
+
+type IconComponent = React.ComponentType<{ className?: string; 'aria-hidden'?: boolean | 'true' | 'false' }>;
 
 type FeatureCard = {
   title: string;
   description: string;
-  icon: string;
+  icon: IconComponent;
 };
 
 type AdvantageCard = {
   title: string;
   description: string;
-  icon: string;
+  icon: IconComponent;
 };
 
 const FEATURE_CARDS: FeatureCard[] = [
@@ -22,37 +30,37 @@ const FEATURE_CARDS: FeatureCard[] = [
     title: 'Infrastructure-First',
     description:
       'Oak is infrastructure, not a monolith. Any application can integrate our contracts to power their own e-commerce, pre-orders, and campaigns.',
-    icon: 'fas fa-layer-group',
+    icon: IconLayerGroup,
   },
   {
     title: 'Transparent Fees',
     description:
       'Clear, predictable fee structure with 1% protocol fee going directly to the ecosystem. No hidden costs, all fees are transparent and on-chain.',
-    icon: 'fas fa-coins',
+    icon: IconCoins,
   },
   {
     title: 'Easy Integration',
     description:
       'Comprehensive SDKs, detailed documentation, and developer-friendly APIs make integration simple and straightforward.',
-    icon: 'fas fa-plug',
+    icon: IconPlug,
   },
   {
     title: 'Celo Benefits',
     description:
       'Low fees, fast settlement, mobile-first design, and carbon-negative blockchain make Celo the perfect home for Oak Network.',
-    icon: 'fas fa-bolt',
+    icon: IconBolt,
   },
   {
     title: 'Security & Trust',
     description:
       "Audited smart contracts and open-source development ensure the highest security standards for your platform and your users' transactions.",
-    icon: 'fas fa-shield-alt',
+    icon: IconShieldAlt,
   },
   {
     title: 'Scalable Architecture',
     description:
       'Modular design allows for easy customization and extension. Build exactly what you need without unnecessary complexity.',
-    icon: 'fas fa-expand-arrows-alt',
+    icon: IconExpandArrowsAlt,
   },
 ];
 
@@ -61,25 +69,25 @@ const ADVANTAGE_CARDS: AdvantageCard[] = [
     title: 'Interconnected Platforms',
     description:
       'Enable creators to launch on your platform and automatically share their products or campaigns across other platforms in the ecosystem.',
-    icon: 'fas fa-share-alt',
+    icon: IconShareAlt,
   },
   {
     title: 'Access Crypto Communities',
     description:
       'Tap into the growing crypto ecosystem and reach users who prefer digital currencies. Accept crypto payments alongside traditional methods.',
-    icon: 'fas fa-users',
+    icon: IconUsers,
   },
   {
     title: 'Complete Transparency',
     description:
       'Build trust with creators and supporters. With blockchain as the "quiet" backend, every transaction and fund flow is publicly verifiable.',
-    icon: 'fas fa-eye',
+    icon: IconEye,
   },
   {
     title: 'Simplified Crypto Experience',
     description:
       'Offer blockchain benefits without the complexity. Our "behind the scenes" engine provides a seamless and simple user experience.',
-    icon: 'fas fa-magic',
+    icon: IconMagic,
   },
 ];
 
@@ -119,23 +127,35 @@ function HomepageHeader() {
         <div className={styles.heroTrustGroup}>
           <span className={styles.heroTrustLabel}>Backed by</span>
           <img
-            src="/img/kickstarter-cropped.png"
+            src="/img/kickstarter-cropped.webp"
             alt="Kickstarter"
             className={clsx(styles.heroTrustLogo, styles.logoKickstarter)}
+            loading="lazy"
+            decoding="async"
+            width={200}
+            height={23}
           />
           <img
-            src="/img/a16z-no-bg.png"
+            src="/img/a16z-no-bg.webp"
             alt="a16z"
             className={clsx(styles.heroTrustLogo, styles.heroTrustLogoMono, styles.logoA16z)}
+            loading="lazy"
+            decoding="async"
+            width={120}
+            height={33}
           />
         </div>
         <div className={styles.heroTrustSep} />
         <div className={styles.heroTrustGroup}>
           <span className={styles.heroTrustLabel}>Audited by</span>
           <img
-            src="/img/open-zeppelin.png"
+            src="/img/open-zeppelin.webp"
             alt="OpenZeppelin"
             className={clsx(styles.heroTrustLogo, styles.heroTrustLogoMono, styles.logoOz)}
+            loading="lazy"
+            decoding="async"
+            width={160}
+            height={25}
           />
         </div>
       </div>
@@ -161,7 +181,7 @@ function HomepageStats() {
         </div>
         <div className={styles.statBox}>
           <span className={styles.statValue}>
-            <i className="fas fa-globe" aria-hidden="true"></i>
+            <IconGlobe aria-hidden="true" />
           </span>
           <span className={styles.statName}>CELO NETWORK</span>
         </div>
@@ -197,18 +217,21 @@ function HomepageFeatures() {
         <p className={styles.editorialSubtitle}>From Individual Developers to Enterprise Platforms</p>
       </div>
       <div className={styles.staggeredGrid}>
-        {FEATURE_CARDS.map((feature, index) => (
+        {FEATURE_CARDS.map((feature, index) => {
+          const FeatureIcon = feature.icon;
+          return (
           <div key={feature.title} className={styles.staggeredCard}>
             <div className={styles.staggeredHeader}>
               <span className={styles.staggeredNumber}>0{index + 1}</span>
-              <i className={clsx(feature.icon, styles.staggeredIcon)}></i>
+              <FeatureIcon className={styles.staggeredIcon} />
             </div>
             <div className={styles.staggeredContent}>
               <h3 className={styles.staggeredTitle}>{feature.title}</h3>
               <p className={styles.staggeredDesc}>{feature.description}</p>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
@@ -222,22 +245,25 @@ function HomepagePlatformAdvantages() {
         <p className={styles.editorialSubtitle}>Unlock new revenue streams and expand your reach</p>
       </div>
       <div className={styles.elegantGrid}>
-        {ADVANTAGE_CARDS.map((advantage, index) => (
+        {ADVANTAGE_CARDS.map((advantage, index) => {
+          const AdvIcon = advantage.icon;
+          return (
           <div key={advantage.title} className={styles.elegantCard}>
             <div className={styles.elegantCardWatermark}>
-              <i className={advantage.icon}></i>
+              <AdvIcon />
             </div>
             <div className={styles.elegantCardTop}>
               <span className={styles.elegantCardNumber}>0{index + 1}</span>
               <div className={styles.elegantCardIcon}>
-                <i className={advantage.icon}></i>
+                <AdvIcon />
               </div>
             </div>
             <h3 className={styles.elegantCardTitle}>{advantage.title}</h3>
             <p className={styles.elegantCardDesc}>{advantage.description}</p>
             <div className={styles.elegantCardHoverLine}></div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
@@ -255,7 +281,7 @@ function HomepageCTAs() {
           <div className={styles.elegantCtaGlow}></div>
           <div className={styles.elegantCtaContent}>
             <div className={styles.elegantCtaIcon}>
-              <i className="fas fa-code"></i>
+              <IconCode />
             </div>
             <h3 className={styles.elegantCtaTitle}>For <em>Developers</em></h3>
             <p className={styles.elegantCtaDesc}>
@@ -263,15 +289,15 @@ function HomepageCTAs() {
             </p>
             <div className={styles.elegantCtaLinks}>
               <Link className={styles.elegantCtaLink} to="/docs/guides/create-campaign">
-                <i className="fas fa-arrow-right"></i>
+                <IconArrowRight />
                 <span>Create Your First Campaign</span>
               </Link>
               <Link className={styles.elegantCtaLink} to="/docs/guides/platform-integration">
-                <i className="fas fa-arrow-right"></i>
+                <IconArrowRight />
                 <span>Platform Integration</span>
               </Link>
               <Link className={styles.elegantCtaLink} to="/docs/contracts/overview">
-                <i className="fas fa-arrow-right"></i>
+                <IconArrowRight />
                 <span>Smart Contract Reference</span>
               </Link>
             </div>
@@ -285,7 +311,7 @@ function HomepageCTAs() {
           <div className={styles.elegantCtaGlowAlt}></div>
           <div className={styles.elegantCtaContent}>
             <div className={styles.elegantCtaIcon}>
-              <i className="fas fa-building"></i>
+              <IconBuilding />
             </div>
             <h3 className={styles.elegantCtaTitle}>For <em>Platforms</em></h3>
             <p className={styles.elegantCtaDesc}>
@@ -293,15 +319,15 @@ function HomepageCTAs() {
             </p>
             <div className={styles.elegantCtaLinks}>
               <Link className={styles.elegantCtaLink} to="/docs/guides/platform-integration">
-                <i className="fas fa-arrow-right"></i>
+                <IconArrowRight />
                 <span>Platform Integration</span>
               </Link>
               <Link className={styles.elegantCtaLink} to="/docs/concepts/platforms">
-                <i className="fas fa-arrow-right"></i>
+                <IconArrowRight />
                 <span>Platform Concepts</span>
               </Link>
               <Link className={styles.elegantCtaLink} to="/docs/concepts/treasuries">
-                <i className="fas fa-arrow-right"></i>
+                <IconArrowRight />
                 <span>Treasury Models</span>
               </Link>
             </div>
@@ -329,13 +355,13 @@ function HomepageCommunity() {
             </p>
             <div className={styles.communityLinks}>
               <Link className={clsx(styles.communityBtn, styles.btnDiscord)} href="https://discord.com/invite/srhtEpWBHx">
-                <i className="fab fa-discord"></i> Discord
+                <IconDiscord /> Discord
               </Link>
               <Link className={clsx(styles.communityBtn, styles.btnGithub)} href="https://github.com/oak-network">
-                <i className="fab fa-github"></i> GitHub
+                <IconGithub /> GitHub
               </Link>
               <Link className={clsx(styles.communityBtn, styles.btnX)} href="https://x.com/oak_network">
-                <i className="fa-brands fa-x-twitter"></i> X
+                <IconXTwitter /> X
               </Link>
             </div>
           </div>
