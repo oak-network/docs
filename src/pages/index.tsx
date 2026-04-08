@@ -130,7 +130,6 @@ function HomepageHeader() {
             src="/img/kickstarter-cropped.webp"
             alt="Kickstarter"
             className={clsx(styles.heroTrustLogo, styles.logoKickstarter)}
-            loading="lazy"
             decoding="async"
             width={200}
             height={23}
@@ -139,7 +138,6 @@ function HomepageHeader() {
             src="/img/a16z-no-bg.webp"
             alt="a16z"
             className={clsx(styles.heroTrustLogo, styles.heroTrustLogoMono, styles.logoA16z)}
-            loading="lazy"
             decoding="async"
             width={120}
             height={33}
@@ -152,7 +150,6 @@ function HomepageHeader() {
             src="/img/open-zeppelin.webp"
             alt="OpenZeppelin"
             className={clsx(styles.heroTrustLogo, styles.heroTrustLogoMono, styles.logoOz)}
-            loading="lazy"
             decoding="async"
             width={160}
             height={25}
