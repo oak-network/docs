@@ -3,9 +3,8 @@
  * Primary accent: #FBA244.
  */
 
-/* Import Google Fonts and Font Awesome */
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+/* Fonts loaded via <link> tags in favicon-head-tags plugin for non-blocking loading.
+   Font Awesome removed — replaced with inline SVGs in components/Icons.tsx. */
 
 /* Font Variables */
 :root {
