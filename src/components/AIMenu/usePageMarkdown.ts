@@ -82,23 +82,25 @@ export interface PageMarkdown {
 export function usePageMarkdown() {
   const location = useLocation();
 
+  const isDocsPage = location.pathname.startsWith('/docs/');
+
   const getPageMarkdown = useCallback((): PageMarkdown => {
     const url = typeof window !== 'undefined'
       ? window.location.href
       : `https://docs.oaknetwork.org${location.pathname}`;
 
-    const slug = location.pathname
-      .replace(/^\/docs\//, '')
-      .replace(/\/$/, '');
+    const slug = isDocsPage
+      ? location.pathname.replace(/^\/docs\//, '').replace(/\/$/, '')
+      : location.pathname.replace(/^\//, '').replace(/\/$/, '') || 'index';
 
     const titleEl = document.querySelector('article h1, .theme-doc-markdown h1');
     const title = titleEl?.textContent?.trim() ?? document.title;
 
-    const article = document.querySelector('article, .theme-doc-markdown');
+    const article = document.querySelector('article, .theme-doc-markdown, main');
     const content = article ? htmlToMarkdown(article) : document.title;
 
     return {title, content, url, slug};
-  }, [location.pathname]);
+  }, [location.pathname, isDocsPage]);
 
   const getFormattedContent = useCallback((): string => {
     const {title, content, url} = getPageMarkdown();
@@ -107,8 +109,11 @@ export function usePageMarkdown() {
 
   const getGitHubRawUrl = useCallback((): string => {
     const {slug} = getPageMarkdown();
-    return `https://github.com/oak-network/docs/blob/main/docs/${slug}.md`;
-  }, [getPageMarkdown]);
+    if (isDocsPage) {
+      return `https://github.com/oak-network/docs/blob/main/docs/${slug}.md`;
+    }
+    return `https://github.com/oak-network/docs/blob/main/src/pages/${slug}.tsx`;
+  }, [getPageMarkdown, isDocsPage]);
 
-  return {getPageMarkdown, getFormattedContent, getGitHubRawUrl};
+  return {getPageMarkdown, getFormattedContent, getGitHubRawUrl, isDocsPage};
 }

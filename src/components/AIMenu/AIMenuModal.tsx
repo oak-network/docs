@@ -45,7 +45,7 @@ const LinkIcon = () => (
 );
 
 export default function AIMenuModal({onClose}: Props): JSX.Element {
-  const {getPageMarkdown, getFormattedContent, getGitHubRawUrl} = usePageMarkdown();
+  const {getPageMarkdown, getFormattedContent, getGitHubRawUrl, isDocsPage} = usePageMarkdown();
   const [toast, setToast] = useState<string | null>(null);
 
   const showToast = useCallback((msg: string) => {
@@ -123,7 +123,12 @@ export default function AIMenuModal({onClose}: Props): JSX.Element {
             <span className={styles.menuItemIcon}><CopyIcon /></span>
             <span className={styles.menuItemLabel}>Copy page for AI</span>
           </button>
-          <button className={styles.menuItem} onClick={handleViewMarkdown}>
+          <button
+            className={`${styles.menuItem} ${!isDocsPage ? styles.menuItemDisabled : ''}`}
+            onClick={isDocsPage ? handleViewMarkdown : undefined}
+            disabled={!isDocsPage}
+            title={!isDocsPage ? 'Only available on docs pages' : undefined}
+          >
             <span className={styles.menuItemIcon}><MarkdownIcon /></span>
             <span className={styles.menuItemLabel}>View as Markdown</span>
           </button>
@@ -132,7 +137,12 @@ export default function AIMenuModal({onClose}: Props): JSX.Element {
         <div className={styles.divider} />
 
         <div className={styles.menuList}>
-          <button className={styles.menuItem} onClick={handleCopyMCP}>
+          <button
+            className={`${styles.menuItem} ${!isDocsPage ? styles.menuItemDisabled : ''}`}
+            onClick={isDocsPage ? handleCopyMCP : undefined}
+            disabled={!isDocsPage}
+            title={!isDocsPage ? 'Only available on docs pages' : undefined}
+          >
             <span className={styles.menuItemIcon}><LinkIcon /></span>
             <span className={styles.menuItemLabel}>Copy MCP URL</span>
           </button>
