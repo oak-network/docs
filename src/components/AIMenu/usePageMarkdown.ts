@@ -96,7 +96,11 @@ export function usePageMarkdown() {
     const titleEl = document.querySelector('article h1, .theme-doc-markdown h1');
     const title = titleEl?.textContent?.trim() ?? document.title;
 
-    const article = document.querySelector('article, .theme-doc-markdown, main');
+    const article =
+      document.querySelector('article .theme-doc-markdown') ??
+      document.querySelector('article') ??
+      document.querySelector('.theme-doc-markdown') ??
+      document.querySelector('main');
     const content = article ? htmlToMarkdown(article) : document.title;
 
     return {title, content, url, slug};
