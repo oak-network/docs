@@ -1,4 +1,4 @@
-import React, {useState, useCallback, type JSX} from 'react';
+import React, {useState, useCallback, useRef, useEffect, type JSX} from 'react';
 import {usePageMarkdown} from './usePageMarkdown';
 import styles from './AIMenu.module.css';
 
@@ -47,10 +47,16 @@ const LinkIcon = () => (
 export default function AIMenuModal({onClose}: Props): JSX.Element {
   const {getPageMarkdown, getFormattedContent, getGitHubRawUrl, isDocsPage} = usePageMarkdown();
   const [toast, setToast] = useState<string | null>(null);
+  const toastTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  useEffect(() => {
+    return () => { clearTimeout(toastTimer.current); };
+  }, []);
 
   const showToast = useCallback((msg: string) => {
+    clearTimeout(toastTimer.current);
     setToast(msg);
-    setTimeout(() => setToast(null), 2000);
+    toastTimer.current = setTimeout(() => setToast(null), 2000);
   }, []);
 
   const handleOpenChatGPT = useCallback(() => {
