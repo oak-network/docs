@@ -112,6 +112,10 @@ export function usePageMarkdown() {
   }, [getPageMarkdown]);
 
   const getGitHubRawUrl = useCallback((): string => {
+    const editLink = document.querySelector('a[href*="github.com/oak-network/docs/tree/main/"]') as HTMLAnchorElement | null;
+    if (editLink) {
+      return editLink.href.replace('/tree/', '/blob/');
+    }
     const {slug} = getPageMarkdown();
     if (isDocsPage) {
       return `https://github.com/oak-network/docs/blob/main/docs/${slug}.md`;
