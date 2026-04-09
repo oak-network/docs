@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useCallback, type JSX} from 'react';
+import {useLocation} from '@docusaurus/router';
 import AIMenuModal from './AIMenuModal';
 import styles from './AIMenu.module.css';
 
@@ -17,13 +18,24 @@ const SparkleIcon = () => (
 
 export default function AIMenuButton(): JSX.Element {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   const toggle = useCallback(() => setOpen((v) => !v), []);
   const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'i') {
+      const target = e.target as HTMLElement;
+      const isEditable =
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable;
+
+      if ((e.metaKey || e.ctrlKey) && e.key === 'i' && !isEditable) {
         e.preventDefault();
         toggle();
       }
