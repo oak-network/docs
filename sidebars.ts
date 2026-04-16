@@ -17,19 +17,9 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Integration Flows',
-      items: [
-        'guides/integration-overview',
-        'guides/payment-sdk-quickstart',
-        'guides/payment-sdk-complete',
-        'guides/contracts-sdk-quickstart',
-        'guides/contracts-sdk-complete',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Integration Guides',
       items: [
+        'guides/integration-overview',
         'guides/create-campaign',
         'guides/platform-integration',
         'guides/platform-journey',
@@ -61,6 +51,7 @@ const sidebars: SidebarsConfig = {
         },
         'sdk/error-handling',
         'sdk/environments',
+        'sdk/integration-flow',
       ],
     },
     {
@@ -87,6 +78,7 @@ const sidebars: SidebarsConfig = {
         },
         'contracts-sdk/error-handling',
         'contracts-sdk/utilities',
+        'contracts-sdk/integration-flow',
       ],
     },
     {
@@ -155,7 +147,7 @@ const sidebars: SidebarsConfig = {
     'sdk/overview',
     {
       type: 'link',
-      label: 'Integration Flows',
+      label: 'Choose Your Integration Path',
       href: '/docs/guides/integration-overview',
     },
     'sdk/installation',
@@ -179,6 +171,7 @@ const sidebars: SidebarsConfig = {
     },
     'sdk/error-handling',
     'sdk/environments',
+    'sdk/integration-flow',
   ],
 
   // Contracts SDK sidebar
@@ -186,7 +179,7 @@ const sidebars: SidebarsConfig = {
     'contracts-sdk/overview',
     {
       type: 'link',
-      label: 'Integration Flows',
+      label: 'Choose Your Integration Path',
       href: '/docs/guides/integration-overview',
     },
     'contracts-sdk/installation',
@@ -210,16 +203,12 @@ const sidebars: SidebarsConfig = {
     'contracts-sdk/metrics',
     'contracts-sdk/error-handling',
     'contracts-sdk/utilities',
+    'contracts-sdk/integration-flow',
   ],
 
   // Smart contracts sidebar
   contractsSidebar: [
     'contracts/overview',
-    {
-      type: 'link',
-      label: 'Integration Flows',
-      href: '/docs/guides/integration-overview',
-    },
     {
       type: 'category',
       label: 'Core Contracts',

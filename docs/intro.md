@@ -45,8 +45,8 @@ Comprehensive documentation, SDKs, and integration guides to get you started qui
 
 - [Choose Your Integration Path](/docs/guides/integration-overview) - Find the right integration approach
 - [Create Your First Campaign](/docs/guides/create-campaign) - Get started in minutes
-- [Payment SDK Quick Start](/docs/guides/payment-sdk-quickstart) - 6-step fiat payment integration
-- [Contracts SDK Quick Start](/docs/guides/contracts-sdk-quickstart) - Deploy crypto-native campaigns
+- [Payment SDK Quickstart](/docs/sdk/quickstart) - 6-step fiat payment integration
+- [Contracts SDK Quickstart](/docs/contracts-sdk/quickstart) - Deploy crypto-native campaigns
 - [Core Concepts](/docs/concepts/overview) - Understand the protocol
 - [Smart Contracts](/docs/contracts/overview) - Technical reference
 - [Security](/docs/security/overview) - Security architecture and audits

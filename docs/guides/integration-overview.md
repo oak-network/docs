@@ -15,12 +15,14 @@ flowchart TD
     Q1 -->|Both| Hybrid[Hybrid Approach]
     
     SDK --> SDKChoice{How do you want to start?}
-    SDKChoice -->|Get started fast| SDKQuick[Payment SDK Quick Start]
-    SDKChoice -->|Full details| SDKFull[Payment SDK Complete Flow]
+    SDKChoice -->|Get started fast| SDKQuick[Quickstart]
+    SDKChoice -->|Understand the SDK| SDKFull[Overview]
+    SDKChoice -->|Provider-specific flows| SDKFlow[Integration Flow]
     
     Contracts --> ContractChoice{How do you want to start?}
-    ContractChoice -->|Get started fast| ContractQuick[Contracts SDK Quick Start]
-    ContractChoice -->|Full details| ContractFull[Contracts SDK Complete Flow]
+    ContractChoice -->|Get started fast| ContractQuick[Quickstart]
+    ContractChoice -->|Understand the SDK| ContractFull[Overview]
+    ContractChoice -->|Step-by-step guide| ContractFlow[Integration Flow]
     
     Hybrid --> HybridFlow[Payment SDK + Contracts SDK]
 ```
@@ -35,8 +37,9 @@ Use the Payment SDK to collect fiat payments (card, PIX, bank transfer) from bac
 
 | Guide | Time | What You'll Learn |
 |---|---|---|
-| [**Payment SDK Quick Start**](/docs/guides/payment-sdk-quickstart) | 10 min | 6-step universal flow to integrate payments |
-| [**Payment SDK Complete Flow**](/docs/guides/payment-sdk-complete) | 30 min | Detailed provider-specific flows (US, Brazil), all operations |
+| [**Quickstart**](/docs/sdk/quickstart) | 5 min | Install, authenticate, first API call |
+| [**Complete Guide**](/docs/sdk/overview) | 30 min | All services and operations |
+| [**Integration Flow**](/docs/sdk/integration-flow) | 45 min | US/Brazil provider flows, subscriptions, webhook events, status reference |
 
 ### When to Use
 
@@ -61,8 +64,9 @@ Use the Contracts SDK for crypto-native crowdfunding with on-chain campaign mana
 
 | Guide | Time | What You'll Learn |
 |---|---|---|
-| [**Contracts SDK Quick Start**](/docs/guides/contracts-sdk-quickstart) | 15 min | Deploy a campaign and accept contributions |
-| [**Contracts SDK Complete Flow**](/docs/guides/contracts-sdk-complete) | 45 min | Full contract architecture, treasury management, settlements |
+| [**Quickstart**](/docs/contracts-sdk/quickstart) | 15 min | Deploy a campaign and accept contributions |
+| [**Complete Guide**](/docs/contracts-sdk/overview) | 45 min | Full contract architecture, treasury management, settlements |
+| [**Integration Flow**](/docs/contracts-sdk/integration-flow) | 60 min | Campaign creation, backer interactions, settlement, security, gas optimization |
 
 ### When to Use
 
@@ -142,7 +146,9 @@ flowchart LR
 
 Choose your path and get started:
 
-- [Payment SDK Quick Start](/docs/guides/payment-sdk-quickstart) — Fastest way to integrate fiat payments
-- [Payment SDK Complete Flow](/docs/guides/payment-sdk-complete) — Deep dive into all Payment SDK features
-- [Contracts SDK Quick Start](/docs/guides/contracts-sdk-quickstart) — Deploy your first on-chain campaign
-- [Contracts SDK Complete Flow](/docs/guides/contracts-sdk-complete) — Master the full contract architecture
+- [Payment SDK Quickstart](/docs/sdk/quickstart) — Fastest way to integrate fiat payments
+- [Payment SDK Overview](/docs/sdk/overview) — All services and operations
+- [Payment SDK Integration Flow](/docs/sdk/integration-flow) — US/Brazil provider flows, subscriptions, webhook events
+- [Contracts SDK Quickstart](/docs/contracts-sdk/quickstart) — Deploy your first on-chain campaign
+- [Contracts SDK Overview](/docs/contracts-sdk/overview) — Full contract architecture
+- [Contracts SDK Integration Flow](/docs/contracts-sdk/integration-flow) — Campaign creation, backer interactions, settlement
