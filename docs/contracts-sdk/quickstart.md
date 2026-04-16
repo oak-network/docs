@@ -1,6 +1,23 @@
 # Quickstart
 
-This guide walks you from zero to a working contract interaction in under 5 minutes.
+Deploy your first on-chain crowdfunding campaign using Oak Network's Contracts SDK. This guide walks you from zero to a working contract interaction in under 5 minutes.
+
+import MermaidDiagram from '@site/src/components/MermaidDiagram';
+
+<MermaidDiagram title="Campaign Lifecycle">
+
+```mermaid
+flowchart LR
+    Create[Create Campaign] --> Deploy[Deploy Treasury]
+    Deploy --> Rewards[Add Rewards]
+    Rewards --> Launch[Campaign Launches]
+    Launch --> Pledge[Backers Pledge]
+    Pledge --> Settle[Settle or Refund]
+```
+
+</MermaidDiagram>
+
+---
 
 ## 1. Install the package
 
@@ -196,8 +213,23 @@ If Privy does not include your chain in its default networks, register it in the
 
 > For per-entity and per-call signers, browser wallets, and the full list of patterns, see [Client Configuration](/docs/contracts-sdk/client).
 
+---
+
+## Key Concepts
+
+| Concept | Description |
+|---|---|
+| **CampaignInfo** | Stores campaign metadata (goal, deadline, platforms) |
+| **Treasury** | Holds funds, manages rewards, handles settlements |
+| **AllOrNothing** | Treasury type where backers get refunds if goal isn't met |
+| **NFT Receipt** | ERC721 token proving a backer's pledge |
+| **Reward Tier** | Minimum pledge amount to receive specific rewards |
+
+---
+
 ## What to read next
 
+- [Integration Flow](/docs/contracts-sdk/integration-flow) — campaign creation, backer interactions, settlement, security, and contract reference
 - [Client Configuration](/docs/contracts-sdk/client) — all setup patterns, per-entity and per-call signers, resolution order, and browser wallets
 - [GlobalParams](/docs/contracts-sdk/global-params) — protocol-wide configuration reads and writes
 - [CampaignInfoFactory](/docs/contracts-sdk/campaign-info-factory) — deploying new campaigns
