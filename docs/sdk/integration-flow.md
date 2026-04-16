@@ -344,7 +344,7 @@ const pixPayment = await payments.create({
     currency: 'brl',
     payment_method: {
       type: 'pix',
-      expiry_date: '2025-12-31T23:59:59Z',
+      expiry_date: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours from now
     },
   },
   confirm: true,
