@@ -1,71 +1,15 @@
 # Quickstart
 
-Integrate Oak Network's Payment SDK in 6 steps. This guide covers the universal flow that works with any supported provider.
+This guide walks you from zero to a working API call in under 5 minutes.
 
-import MermaidDiagram from '@site/src/components/MermaidDiagram';
-
-<MermaidDiagram title="Payment SDK Integration Flow">
-
-```mermaid
-flowchart TD
-    subgraph Step1["Step 1: Authentication"]
-        Auth[Get Access Token]
-    end
-    
-    subgraph Step2["Step 2: Customer Setup"]
-        CreateCreator[Create Campaign Creator]
-        CreateBacker[Create Backer]
-    end
-    
-    subgraph Step3["Step 3: Provider Registration"]
-        CreatorKYC[Creator: Submit Provider Registration]
-        CreatorKYCComplete[Creator: Complete KYC]
-        BackerReg[Backer: Submit Provider Registration]
-    end
-    
-    subgraph Step4["Step 4: Payment Collection"]
-        CreatePayment[Create Payment Intent]
-        BackerPays[Backer Completes Payment]
-        PaymentCaptured[Payment Captured]
-    end
-    
-    subgraph Step5["Step 5: Fund Movement"]
-        Transfer[Transfer to Bank]
-        OnRamp[Buy: Fiat to Crypto]
-        OffRamp[Sell: Crypto to Fiat]
-    end
-    
-    subgraph Step6["Step 6: Webhooks"]
-        RegisterWebhook[Register Webhook URL]
-        HandleEvents[Handle Lifecycle Events]
-    end
-    
-    Auth --> CreateCreator
-    Auth --> CreateBacker
-    CreateCreator --> CreatorKYC
-    CreatorKYC --> CreatorKYCComplete
-    CreateBacker --> BackerReg
-    CreatorKYCComplete --> CreatePayment
-    BackerReg --> CreatePayment
-    CreatePayment --> BackerPays
-    BackerPays --> PaymentCaptured
-    PaymentCaptured --> Transfer
-    PaymentCaptured --> OnRamp
-    OnRamp --> OffRamp
-    Auth --> RegisterWebhook
-    RegisterWebhook --> HandleEvents
-```
-
-</MermaidDiagram>
-
----
-
-## Step 1: Install and Authenticate
+## 1. Install the package
 
 ```bash
 pnpm add @oaknetwork/payments-sdk dotenv
 pnpm add -D tsx
 ```
+
+## 2. Set your credentials
 
 :::tip Don't have credentials yet?
 Contact **[support@oaknetwork.org](mailto:support@oaknetwork.org)** to get your sandbox `CLIENT_ID` and `CLIENT_SECRET`.
@@ -78,322 +22,121 @@ CLIENT_ID=your-client-id
 CLIENT_SECRET=your-client-secret
 ```
 
-Initialize the client:
+## 3. Create a client
 
 ```typescript
 import 'dotenv/config';
-import { createOakClient } from '@oaknetwork/payments-sdk';
+import { createOakClient, createCustomerService, createPaymentService } from '@oaknetwork/payments-sdk';
 
 const client = createOakClient({
-  environment: 'sandbox', // or 'production'
+  environment: 'sandbox',
   clientId: process.env.CLIENT_ID!,
   clientSecret: process.env.CLIENT_SECRET!,
 });
-```
-
-The SDK handles OAuth2 authentication automatically. Tokens are valid for 55 minutes and refresh automatically.
-
----
-
-## Step 2: Customer Setup
-
-Create customers for campaign creators (receive funds) and backers (contribute to campaigns).
-
-```typescript
-import { createCustomerService } from '@oaknetwork/payments-sdk';
 
 const customers = createCustomerService(client);
-
-// Create campaign creator (receives funds)
-const creator = await customers.create({
-  email: 'creator@example.com',
-  country_code: 'US', // Required for creators
-});
-
-// Create backer (contributes to campaigns)
-const backer = await customers.create({
-  email: 'backer@example.com',
-});
-
-if (creator.ok && backer.ok) {
-  console.log('Creator ID:', creator.value.data.customer_id);
-  console.log('Backer ID:', backer.value.data.customer_id);
-}
+const payments = createPaymentService(client);
 ```
 
-| Role | Required Fields | Purpose |
-|---|---|---|
-| **Campaign Creator** | `email`, `country_code` | Receives campaign funds, requires full KYC |
-| **Backer** | `email` | Contributes to campaigns, minimal verification |
+`createOakClient` configures authentication and retry behavior. Each `create*Service(client)` factory returns a typed service instance — import only the services you need.
+
+## 4. Make your first call
+
+```typescript
+async function main() {
+  const result = await customers.list();
+
+  if (result.ok) {
+    console.log(`Found ${result.value.data.count} customers`);
+    for (const customer of result.value.data.customer_list) {
+      console.log(`  - ${customer.email}`);
+    }
+  } else {
+    console.error('Request failed:', result.error.message);
+  }
+}
+
+main();
+```
+
+Save steps 3 and 4 together in a file (e.g. `index.ts`) and run it:
+
+```bash
+npx tsx index.ts
+```
 
 Every SDK method returns a `Result<T, OakError>` — a discriminated union that is either `{ ok: true, value: T }` or `{ ok: false, error: OakError }`. Check `result.ok` before accessing the value.
 
 > This pattern replaces try/catch for API calls. The SDK never throws on HTTP errors — it wraps them in the `Result` type. For the full breakdown, see [Error Handling](/docs/sdk/error-handling).
 
----
-
-## Step 3: Provider Registration
-
-Register customers with payment providers. Campaign creators need full KYC verification to receive funds; backers need basic registration.
+## 5. Create a customer
 
 ```typescript
-import { createProviderService } from '@oaknetwork/payments-sdk';
-
-const providers = createProviderService(client);
-
-// Register campaign creator (requires KYC)
-const creatorReg = await providers.submitRegistration(creator.value.data.customer_id, {
-  provider: 'stripe', // or 'pagar_me' for Brazil
-  target_role: 'connected_account',
-  provider_data: {
-    account_type: 'custom',
-    transfers_requested: true,
-    card_payments_requested: true,
-  },
+const customer = await customers.create({
+  email: 'alice@example.com',
+  first_name: 'Alice',
+  last_name: 'Smith',
 });
 
-if (creatorReg.ok) {
-  const { client_secret } = creatorReg.value.data.provider_response;
-  // Redirect creator to complete KYC using provider's UI
+if (customer.ok) {
+  console.log('Created customer:', customer.value.data.id);
+} else {
+  console.error('Failed:', customer.error.message);
 }
-
-// Register backer (minimal verification)
-const backerReg = await providers.submitRegistration(backer.value.data.customer_id, {
-  provider: 'stripe',
-  target_role: 'customer',
-  provider_data: {},
-});
 ```
 
-| Status | Meaning | Next Step |
-|---|---|---|
-| `awaiting_confirmation` | User action needed | Complete KYC via provider UI |
-| `processing` | Provider reviewing | Wait for webhook |
-| `approved` | Ready for payments | Proceed to Step 4 |
-| `rejected` | Verification failed | Check rejection reason |
-
----
-
-## Step 4: Payment Collection
-
-Create a payment from backer to campaign creator.
+## 6. Create a payment
 
 ```typescript
-import { createPaymentService } from '@oaknetwork/payments-sdk';
-
-const payments = createPaymentService(client);
-
 const payment = await payments.create({
   provider: 'stripe',
   source: {
-    amount: 10000, // $100.00 in cents
-    customer: { id: backer.value.data.customer_id },
+    amount: 5000,
     currency: 'usd',
-    payment_method: { type: 'card' },
+    customer: { id: 'cus_abc123' },
+    payment_method: { type: 'card', id: 'pm_xyz789' },
     capture_method: 'automatic',
   },
-  destination: {
-    customer: { id: creator.value.data.customer_id },
-    currency: 'usd',
-  },
   confirm: true,
-  metadata: {
-    campaign_id: 'campaign_12345',
-    reward_tier: 'early_bird',
-  },
 });
 
 if (payment.ok) {
-  const { client_secret } = payment.value.data.provider_response;
-  // Use client_secret to show payment UI to backer
+  console.log('Payment status:', payment.value.data.status);
+} else {
+  console.error('Payment failed:', payment.error.message);
 }
 ```
 
----
+> Steps 5 and 6 go inside the `main()` function, after the list call.
 
-## Step 5: Fund Movement
+## Adding more services
 
-After payment is captured, move funds using Transfer, Buy, or Sell services.
-
-```typescript
-import { createTransferService, createBuyService, createSellService } from '@oaknetwork/payments-sdk';
-
-// Option 1: Transfer to bank
-const transfers = createTransferService(client);
-const transfer = await transfers.create({
-  provider: 'stripe',
-  source: {
-    amount: 9500,
-    currency: 'usd',
-    customer: { id: creator.value.data.customer_id },
-  },
-  destination: {
-    customer: { id: creator.value.data.customer_id },
-    payment_method: { type: 'bank', id: 'pm_bank_123' },
-  },
-});
-
-// Option 2: Convert to crypto (on-ramp)
-const buy = createBuyService(client);
-const buyOrder = await buy.create({
-  provider: 'bridge',
-  source: { currency: 'usd' },
-  destination: {
-    currency: 'usdc',
-    customer: { id: creator.value.data.customer_id },
-    payment_method: {
-      type: 'customer_wallet',
-      chain: 'polygon',
-      evm_address: '0x1234...',
-    },
-  },
-});
-
-// Option 3: Convert crypto back to fiat (off-ramp)
-const sell = createSellService(client);
-const sellOrder = await sell.create({
-  provider: 'bridge',
-  source: {
-    customer: { id: creator.value.data.customer_id },
-    currency: 'brla',
-    amount: 10000,
-  },
-  destination: {
-    customer: { id: creator.value.data.customer_id },
-    currency: 'brl',
-    payment_method: { type: 'pix', id: 'pm_pix_123' },
-  },
-});
-```
-
-| Service | Direction | Use Case |
-|---|---|---|
-| **Transfer** | Platform → Bank/Wallet | Payout campaign funds to creator |
-| **Buy** | Fiat → Crypto | On-ramp to stablecoin |
-| **Sell** | Crypto → Fiat | Off-ramp to creator's bank |
-
----
-
-## Step 6: Webhooks
-
-Register a webhook to receive real-time notifications for payment and registration events.
-
-```typescript
-import { createWebhookService } from '@oaknetwork/payments-sdk';
-
-const webhooks = createWebhookService(client);
-
-const webhook = await webhooks.register({
-  url: 'https://yourplatform.com/webhooks/oak',
-  description: 'Campaign payment notifications',
-});
-
-if (webhook.ok) {
-  const { id, secret } = webhook.value.data;
-  // Store secret securely for signature verification
-}
-```
-
-| Event | When Triggered |
-|---|---|
-| `provider_registration.approved` | Creator KYC completed |
-| `provider_registration.rejected` | Creator KYC failed |
-| `payment.captured` | Backer payment successful |
-| `payment.failed` | Backer payment declined |
-| `payment.refunded` | Refund issued to backer |
-
----
-
-## Complete Example
+Import additional service factories as you need them:
 
 ```typescript
 import {
   createOakClient,
   createCustomerService,
-  createProviderService,
   createPaymentService,
   createWebhookService,
 } from '@oaknetwork/payments-sdk';
 
-async function integrateCrowdfundingPlatform() {
-  // Step 1: Initialize client
-  const client = createOakClient({
-    environment: 'sandbox',
-    clientId: process.env.CLIENT_ID!,
-    clientSecret: process.env.CLIENT_SECRET!,
-  });
+const client = createOakClient({
+  environment: 'sandbox',
+  clientId: process.env.CLIENT_ID!,
+  clientSecret: process.env.CLIENT_SECRET!,
+});
 
-  const customers = createCustomerService(client);
-  const providers = createProviderService(client);
-  const payments = createPaymentService(client);
-  const webhooks = createWebhookService(client);
-
-  // Step 2: Create customers
-  const creator = await customers.create({
-    email: 'creator@example.com',
-    country_code: 'US',
-  });
-
-  const backer = await customers.create({
-    email: 'backer@example.com',
-  });
-
-  // Step 3: Register with provider
-  const creatorReg = await providers.submitRegistration(creator.value.data.customer_id, {
-    provider: 'stripe',
-    target_role: 'connected_account',
-    provider_data: {
-      account_type: 'custom',
-      transfers_requested: true,
-      card_payments_requested: true,
-    },
-  });
-
-  // Wait for creator to complete KYC via webhook...
-
-  await providers.submitRegistration(backer.value.data.customer_id, {
-    provider: 'stripe',
-    target_role: 'customer',
-    provider_data: {},
-  });
-
-  // Step 4: Create payment
-  const payment = await payments.create({
-    provider: 'stripe',
-    source: {
-      amount: 10000,
-      customer: { id: backer.value.data.customer_id },
-      currency: 'usd',
-      payment_method: { type: 'card' },
-      capture_method: 'automatic',
-    },
-    destination: {
-      customer: { id: creator.value.data.customer_id },
-      currency: 'usd',
-    },
-    confirm: true,
-    metadata: {
-      campaign_id: 'campaign_12345',
-      reward_tier: 'early_bird',
-    },
-  });
-
-  // Step 6: Register webhook
-  const webhook = await webhooks.register({
-    url: 'https://yourplatform.com/webhooks/oak',
-  });
-
-  return { creator, backer, payment, webhook };
-}
+const customers = createCustomerService(client);
+const payments = createPaymentService(client);
+const webhooks = createWebhookService(client);
 ```
 
----
+All services share the same client — authentication and retry logic are handled once.
 
 ## What to read next
 
-- [Integration Flow](/docs/sdk/integration-flow) — US/Brazil provider flows, subscriptions, webhook events, and API reference
 - [Authentication](/docs/sdk/authentication) — how OAuth2 token management works under the hood
-- [Customers](/docs/sdk/customers) — customer management API
 - [Payments](/docs/sdk/payments) — create, confirm, and cancel payments across providers
 - [Webhooks](/docs/sdk/webhooks) — register endpoints and receive real-time event notifications
 - [Error Handling](/docs/sdk/error-handling) — the `Result<T>` pattern, error types, and retry configuration
