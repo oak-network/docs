@@ -19,6 +19,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Integration Guides',
       items: [
+        'guides/integration-overview',
         'guides/create-campaign',
         'guides/platform-integration',
         'guides/platform-journey',
@@ -50,6 +51,7 @@ const sidebars: SidebarsConfig = {
         },
         'sdk/error-handling',
         'sdk/environments',
+        'sdk/integration-flow',
       ],
     },
     {
@@ -76,6 +78,7 @@ const sidebars: SidebarsConfig = {
         },
         'contracts-sdk/error-handling',
         'contracts-sdk/utilities',
+        'contracts-sdk/integration-flow',
       ],
     },
     {
@@ -142,6 +145,11 @@ const sidebars: SidebarsConfig = {
   // Payment SDK sidebar
   sdkSidebar: [
     'sdk/overview',
+    {
+      type: 'link',
+      label: 'Choose Your Integration Path',
+      href: '/docs/guides/integration-overview',
+    },
     'sdk/installation',
     'sdk/quickstart',
     'sdk/authentication',
@@ -163,11 +171,17 @@ const sidebars: SidebarsConfig = {
     },
     'sdk/error-handling',
     'sdk/environments',
+    'sdk/integration-flow',
   ],
 
   // Contracts SDK sidebar
   contractsSdkSidebar: [
     'contracts-sdk/overview',
+    {
+      type: 'link',
+      label: 'Choose Your Integration Path',
+      href: '/docs/guides/integration-overview',
+    },
     'contracts-sdk/installation',
     'contracts-sdk/quickstart',
     'contracts-sdk/client',
@@ -189,6 +203,7 @@ const sidebars: SidebarsConfig = {
     'contracts-sdk/metrics',
     'contracts-sdk/error-handling',
     'contracts-sdk/utilities',
+    'contracts-sdk/integration-flow',
   ],
 
   // Smart contracts sidebar
