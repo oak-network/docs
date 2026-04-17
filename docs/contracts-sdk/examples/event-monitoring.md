@@ -1,0 +1,155 @@
+---
+sidebar_label: Event Monitoring
+sidebar_position: 6
+---
+
+# Event Monitoring
+
+> **Source:** Full executable TypeScript in `contract/src/examples/04-event-monitoring/`. This page summarizes the flow — read the source for complete per-step code.
+
+## The Story
+
+ArtFund's product team is building an **analytics dashboard** for their platform. They need to show platform operators and campaign creators a live view of everything happening on-chain — new campaigns launching, backers pledging, refunds being claimed, and funds being withdrawn.
+
+The dashboard has two layers:
+
+- A **historical data layer** that loads past events when the page first opens (e.g., "show me every campaign created since launch")
+- A **real-time layer** that subscribes to new events as they happen on-chain and updates the UI instantly
+
+The SDK provides three tools for this: **event log queries** for historical data, **watchers** for real-time subscriptions, and a **metrics module** for pre-built aggregations like total raised, goal progress, and treasury reports.
+
+## Role Reference
+
+All event queries are read-only and can be called by anyone — no wallet or private key is required.
+
+## Steps
+
+### Step 1: Historical Campaign Events
+
+When ArtFund's dashboard loads for the first time, it queries the CampaignInfoFactory for all historical `CampaignCreated` events. In production, store the last synced block number and only fetch new events on subsequent loads.
+
+```typescript
+const factory = oak.campaignInfoFactory(
+  process.env.CAMPAIGN_INFO_FACTORY_ADDRESS! as `0x${string}`,
+);
+
+const campaignLogs = await factory.events.getCampaignCreatedLogs({
+  fromBlock: 0n,
+});
+
+console.log(`Found ${campaignLogs.length} campaigns`);
+
+for (const log of campaignLogs) {
+  console.log("Campaign:", log.args);
+}
+```
+
+### Step 2: Treasury-Specific Events
+
+Each treasury emits events for every financial action — pledges, refunds, withdrawals — building a detailed activity feed per campaign.
+
+```typescript
+const treasury = oak.allOrNothingTreasury(treasuryAddress);
+
+const pledgeLogs = await treasury.events.getReceiptLogs({ fromBlock: 0n });
+console.log(`${pledgeLogs.length} backers have pledged`);
+
+const refundLogs = await treasury.events.getRefundClaimedLogs({ fromBlock: 0n });
+console.log(`${refundLogs.length} refunds claimed`);
+
+const withdrawalLogs = await treasury.events.getWithdrawalSuccessfulLogs({ fromBlock: 0n });
+console.log(`${withdrawalLogs.length} withdrawals made`);
+```
+
+### Step 3: Real-Time Watchers
+
+After loading historical data, ArtFund subscribes to live events so the dashboard updates instantly as new activity happens. Watchers use WebSocket connections under the hood and fire a callback every time a matching event is emitted. Each watcher returns an `unwatch` function that should be called on component unmount.
+
+```typescript
+const unwatchCampaigns = factory.events.watchCampaignCreated((logs) => {
+  for (const log of logs) {
+    console.log("NEW CAMPAIGN:", log.args);
+  }
+});
+
+const unwatchPledges = treasury.events.watchReceipt((logs) => {
+  for (const log of logs) {
+    console.log("NEW PLEDGE:", log.args);
+  }
+});
+
+const unwatchPlatforms = gp.events.watchPlatformEnlisted((logs) => {
+  for (const log of logs) {
+    console.log("NEW PLATFORM:", log.args);
+  }
+});
+
+// Clean up when the component unmounts
+export function cleanup() {
+  unwatchCampaigns();
+  unwatchPledges();
+  unwatchPlatforms();
+}
+```
+
+### Step 4: Decode Raw Logs
+
+When you receive raw log data from a transaction receipt or an external indexer (like The Graph), use the SDK's `decodeLog` method on any entity's events object. It returns a typed event with the event name and decoded arguments — no manual ABI parsing.
+
+```typescript
+const receipt = await oak.waitForReceipt(someTxHash);
+
+for (const log of receipt.logs) {
+  try {
+    const decoded = factory.events.decodeLog({
+      topics: log.topics,
+      data: log.data,
+    });
+
+    console.log(`Event: ${decoded.eventName}`);
+    console.log(`Args:`, decoded.args);
+  } catch {
+    // Log belongs to a different contract — skip silently
+  }
+}
+```
+
+### Step 5: Metrics Aggregation
+
+For high-level dashboard statistics — total platforms, campaign health, treasury financials — the SDK provides a dedicated metrics module with pre-built aggregation functions. It is imported from a separate subpath: `@oaknetwork/contracts-sdk/metrics`.
+
+```typescript
+import {
+  getPlatformStats,
+  getCampaignSummary,
+  getTreasuryReport,
+} from "@oaknetwork/contracts-sdk/metrics";
+
+// Platform overview
+const platformStats = await getPlatformStats({
+  globalParamsAddress: process.env.GLOBAL_PARAMS_ADDRESS! as `0x${string}`,
+  publicClient: oak.publicClient,
+});
+console.log("Total listed platforms:", platformStats.platformCount);
+
+// Campaign health check
+const campaignSummary = await getCampaignSummary({
+  campaignInfoAddress,
+  publicClient: oak.publicClient,
+});
+console.log("Goal reached:", campaignSummary.goalReached);
+
+// Treasury financial report
+const treasuryReport = await getTreasuryReport({
+  treasuryAddress,
+  treasuryType: "all-or-nothing",
+  publicClient: oak.publicClient,
+});
+console.log("Raised:", treasuryReport.raisedAmount);
+```
+
+## Related
+
+- [Events](/docs/contracts-sdk/events)
+- [Metrics](/docs/contracts-sdk/metrics)
+- [Client](/docs/contracts-sdk/client)

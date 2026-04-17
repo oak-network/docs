@@ -1,0 +1,307 @@
+---
+sidebar_label: All-or-Nothing Campaign
+sidebar_position: 3
+---
+
+# All-or-Nothing Campaign
+
+> **Source:** Full executable TypeScript in `contract/src/examples/01-campaign-all-or-nothing/`. This page summarizes the flow — read the source for complete per-step code.
+
+:::info Prerequisites
+Your platform must be enlisted — see [Platform Enlistment](/docs/contracts-sdk/examples/platform-enlistment).
+:::
+
+## The Story
+
+Maya is a ceramic artist who sells her handmade pottery through **ArtFund**, a creative crowdfunding platform built on Oak Protocol. She wants to raise **$5,000** to fund a new collection called "Earth & Fire" — a series of hand-thrown vases and bowls inspired by volcanic landscapes.
+
+Maya chooses the **All-or-Nothing** funding model. This means every dollar pledged is held in an on-chain treasury until the campaign deadline. If the campaign reaches its $5,000 goal, Maya can withdraw the funds and fulfill rewards to her backers. If the goal is not met, every backer receives a full refund automatically — no questions asked.
+
+This model builds trust with backers because their funds are protected by the smart contract. Maya cannot access the money unless the community collectively meets the target.
+
+## Multi-token support
+
+Maya's campaign accepts whatever ERC-20s the platform mapped to her campaign currency at creation time. Each pledge passes `pledgeToken`; the All-or-Nothing treasury checks `CampaignInfo.isTokenAccepted`. Raised totals aggregate across accepted tokens (normalized on-chain); refunds return the same token the backer used.
+
+## Role Reference
+
+| Function | Who can call | Contract modifier |
+| --- | --- | --- |
+| `addRewards` / `removeReward` | Creator | `onlyCampaignOwner` |
+| `pledgeForAReward` / `pledgeWithoutAReward` | Anyone (backer) | (no role modifier — time-gated) |
+| `claimRefund(tokenId)` | Anyone (refund goes to NFT owner) | (no role modifier) |
+| `disburseFees` | Anyone | (no role modifier — requires deadline passed + goal met) |
+| `withdraw` | Anyone (funds go to campaign owner) | (no role modifier — requires fees disbursed) |
+| `pauseTreasury` / `unpauseTreasury` | Platform Admin | `onlyPlatformAdmin` |
+| `cancelTreasury` | Platform Admin or Creator | custom check (both roles) |
+
+## Steps
+
+### Step 1: Create Campaign
+
+Maya creates the campaign through the CampaignInfoFactory, setting the funding goal, deadline, platform, and NFT metadata for backer receipts. The factory emits a `CampaignCreated` event that contains the deployed `CampaignInfo` address.
+
+```typescript
+import { CAMPAIGN_INFO_FACTORY_EVENTS } from "@oaknetwork/contracts-sdk";
+
+const platformHash = keccak256(toHex("artfund"));
+const identifierHash = keccak256(toHex("earth-and-fire-2026"));
+const currency = toHex("USD", { size: 32 });
+const now = getCurrentTimestamp();
+
+const txHash = await factory.createCampaign({
+  creator: process.env.MAYA_ADDRESS! as `0x${string}`,
+  identifierHash,
+  selectedPlatformHash: [platformHash],
+  campaignData: {
+    launchTime: now + 3600n,       // launches 1 hour from now
+    deadline: addDays(now, 30),    // 30-day campaign
+    goalAmount: 5_000_000_000n,    // $5,000 (6-decimal token)
+    currency,
+  },
+  nftName: "Earth & Fire Backers",
+  nftSymbol: "EF26",
+  nftImageURI: "ipfs://QmXyz.../earth-fire.png",
+  contractURI: "ipfs://QmXyz.../metadata.json",
+});
+
+const receipt = await oak.waitForReceipt(txHash);
+```
+
+After the transaction is mined, the deployed `CampaignInfo` address can be discovered two ways. **Both are shown in the source file** — prefer Approach 1 when you have the receipt.
+
+**Approach 1 — Decode `CampaignCreated` from the receipt (recommended):** deterministic and works immediately, regardless of RPC indexing lag.
+
+```typescript
+let campaignInfoAddress: `0x${string}` | undefined;
+
+for (const log of receipt.logs) {
+  try {
+    const decoded = factory.events.decodeLog({
+      topics: log.topics as [`0x${string}`, ...`0x${string}`[]],
+      data: log.data as `0x${string}`,
+    });
+
+    if (decoded.eventName === CAMPAIGN_INFO_FACTORY_EVENTS.CampaignCreated) {
+      campaignInfoAddress = decoded.args?.campaignInfoAddress as `0x${string}`;
+      break;
+    }
+  } catch {
+    // Log belongs to a different contract — skip
+  }
+}
+
+console.log("CampaignInfo (from receipt):", campaignInfoAddress);
+```
+
+**Approach 2 — Look up via `identifierToCampaignInfo` (convenience):** handy when you only have the identifier and did not keep the receipt. On some RPC providers the mapping may briefly return the zero address right after the transaction, so prefer Approach 1 when the receipt is available.
+
+```typescript
+const lookedUp = await factory.identifierToCampaignInfo(identifierHash);
+console.log("CampaignInfo (from lookup):", lookedUp);
+```
+
+### Step 2: Look Up the Campaign Address
+
+A standalone lookup is useful for any caller (not just the creator) who only has the identifier hash and wants to resolve it to the deployed `CampaignInfo` address — for example, a front end displaying campaign data. Maya also validates that the factory recognizes the address as a legitimate campaign.
+
+```typescript
+const identifierHash = keccak256(toHex("earth-and-fire-2026"));
+
+const campaignInfoAddress = await factory.identifierToCampaignInfo(identifierHash);
+const isValid = await factory.isValidCampaignInfo(campaignInfoAddress);
+console.log("CampaignInfo deployed at:", campaignInfoAddress);
+console.log("Is valid campaign:", isValid); // true
+```
+
+### Step 3: Review Campaign Details
+
+Before sharing the campaign link, Maya reads back the on-chain campaign details to catch any configuration mistakes before backers start pledging.
+
+```typescript
+const campaign = oak.campaignInfo(campaignInfoAddress);
+
+const launchTime = await campaign.getLaunchTime();
+const deadline = await campaign.getDeadline();
+const goalAmount = await campaign.getGoalAmount();
+const campaignCurrency = await campaign.getCampaignCurrency();
+
+const platformHash = keccak256(toHex("artfund"));
+const isPlatformSelected = await campaign.checkIfPlatformSelected(platformHash);
+
+const config = await campaign.getCampaignConfig();
+console.log("Treasury factory:", config.treasuryFactory);
+console.log("Protocol fee:", Number(config.protocolFeePercent), "bps");
+```
+
+### Step 4: Deploy the Treasury
+
+Every campaign needs a treasury — the smart contract that holds all pledged funds until the campaign outcome is decided. Maya deploys an All-or-Nothing treasury through the TreasuryFactory.
+
+```typescript
+import { TREASURY_FACTORY_EVENTS } from "@oaknetwork/contracts-sdk";
+
+const platformHash = keccak256(toHex("artfund"));
+const allOrNothingImplementationId = 0n;
+
+const deployTxHash = await treasuryFactory.deploy(
+  platformHash,
+  campaignInfoAddress,
+  allOrNothingImplementationId,
+);
+
+const deployReceipt = await oak.waitForReceipt(deployTxHash);
+
+// Decode the TreasuryDeployed event from the receipt
+let treasuryAddress: `0x${string}` | undefined;
+
+for (const log of deployReceipt.logs) {
+  try {
+    const decoded = treasuryFactory.events.decodeLog({
+      topics: log.topics as [`0x${string}`, ...`0x${string}`[]],
+      data: log.data as `0x${string}`,
+    });
+
+    if (decoded.eventName === TREASURY_FACTORY_EVENTS.TreasuryDeployed) {
+      treasuryAddress = decoded.args?.treasuryAddress as `0x${string}`;
+      break;
+    }
+  } catch {
+    // Log belongs to a different contract — skip
+  }
+}
+
+console.log("Treasury deployed at:", treasuryAddress);
+```
+
+### Step 5: Manage Reward Tiers
+
+Maya sets up reward tiers. Each tier has a minimum pledge value. When a backer pledges at a tier, they receive an NFT receipt representing their pledge and chosen reward. Rewards can also be removed before backers pledge for them.
+
+```typescript
+const stickerReward = keccak256(toHex("sticker-pack"));
+const printReward = keccak256(toHex("signed-print"));
+const originalReward = keccak256(toHex("original-piece"));
+
+const addTxHash = await treasury.addRewards(
+  [stickerReward, printReward, originalReward],
+  [
+    { rewardValue: 25_000_000n, isRewardTier: true, itemId: [], itemValue: [], itemQuantity: [] },
+    { rewardValue: 100_000_000n, isRewardTier: true, itemId: [], itemValue: [], itemQuantity: [] },
+    { rewardValue: 250_000_000n, isRewardTier: true, itemId: [], itemValue: [], itemQuantity: [] },
+  ],
+);
+await oak.waitForReceipt(addTxHash);
+
+// Optional: remove a reward
+await treasury.removeReward(stickerReward);
+```
+
+### Step 6: Backer Pledges
+
+Backers can pledge in two ways: choosing a specific reward tier with `pledgeForAReward`, or contributing a flat amount without a reward via `pledgeWithoutAReward`. In both cases the treasury transfers ERC-20 tokens and mints an NFT receipt on the CampaignInfo contract.
+
+```typescript
+const pledgeToken = process.env.USDC_TOKEN_ADDRESS! as `0x${string}`;
+const shippingFee = 5_000_000n;
+const printReward = keccak256(toHex("signed-print"));
+
+const pledgeTxHash = await alexTreasury.pledgeForAReward(
+  process.env.ALEX_ADDRESS! as `0x${string}`,
+  pledgeToken,
+  shippingFee,
+  [printReward],
+);
+await alexOak.waitForReceipt(pledgeTxHash);
+
+// Pledge without a reward
+await samTreasury.pledgeWithoutAReward(
+  process.env.SAM_ADDRESS! as `0x${string}`,
+  pledgeToken,
+  50_000_000n, // $50
+);
+```
+
+### Step 7: Monitor Campaign Progress
+
+Anyone can check the campaign's progress at any time with read-only calls — no wallet required. This combines reads from both `CampaignInfo` (goal, deadline) and the AllOrNothing treasury (raised amount, paused/cancelled, fees, reward tiers).
+
+```typescript
+const goalAmount = await campaign.getGoalAmount();
+const raisedAmount = await treasury.getRaisedAmount();
+const lifetimeRaised = await treasury.getLifetimeRaisedAmount();
+const refundedAmount = await treasury.getRefundedAmount();
+const isPaused = await treasury.paused();
+const isCancelled = await treasury.cancelled();
+
+const progressPercent = goalAmount > 0n ? Number((raisedAmount * 100n) / goalAmount) : 0;
+console.log(`Raised: $${Number(raisedAmount) / 1_000_000} (${progressPercent}%)`);
+```
+
+### Step 8: Disburse Fees
+
+Before anyone can withdraw funds from a successful campaign, the protocol and platform fees must be disbursed first. `disburseFees()` has no role restriction — anyone can call it. The contract verifies internally that the deadline has passed and the goal is met.
+
+```typescript
+const feeTxHash = await treasury.disburseFees();
+await oak.waitForReceipt(feeTxHash);
+console.log("Fees disbursed");
+```
+
+### Step 9a: Success — Withdraw Funds
+
+After fees have been disbursed, the remaining funds are available for withdrawal. `withdraw()` has no role restriction — anyone can call it. The contract always sends the funds to the campaign owner, regardless of who initiates the transaction.
+
+```typescript
+const withdrawTxHash = await treasury.withdraw();
+await oak.waitForReceipt(withdrawTxHash);
+```
+
+### Step 9b: Failure — Claim Refund
+
+If the goal is not met, every backer is entitled to a full refund. `claimRefund(tokenId)` has no role restriction; the contract always sends the refund to the current NFT owner, then burns the NFT.
+
+Prerequisite: the backer must approve the treasury on the **CampaignInfo** contract (where pledge NFTs live) before calling `claimRefund`.
+
+```typescript
+const tokenId = BigInt(process.env.ALEX_PLEDGE_TOKEN_ID!);
+
+// Approve treasury on CampaignInfo (NFTs live there, not on the treasury)
+const approveTxHash = await campaign.approve(treasuryAddress, tokenId);
+await alexOak.waitForReceipt(approveTxHash);
+
+const refundTxHash = await treasury.claimRefund(tokenId);
+await alexOak.waitForReceipt(refundTxHash);
+```
+
+### Step 10: Pause and Unpause
+
+If an investigation is needed, the Platform Admin can temporarily freeze all treasury activity. `pauseTreasury(message)` takes a bytes32 reason code emitted in the `Paused` event.
+
+```typescript
+const pauseReason = keccak256(toHex("copyright-investigation"));
+await treasury.pauseTreasury(pauseReason);
+
+// ... investigation concludes ...
+
+const unpauseReason = keccak256(toHex("investigation-cleared"));
+await treasury.unpauseTreasury(unpauseReason);
+```
+
+### Step 11: Cancel the Treasury
+
+In rare cases a campaign must be permanently shut down. Both the Platform Admin and the campaign owner can cancel. Once cancelled, no new pledges or withdrawals are allowed, but backers can still claim refunds.
+
+```typescript
+const cancelReason = keccak256(toHex("duplicate-campaign"));
+await treasury.cancelTreasury(cancelReason);
+// Cancellation is permanent — there is no uncancel
+```
+
+## Related
+
+- [CampaignInfoFactory](/docs/contracts-sdk/campaign-info-factory)
+- [CampaignInfo](/docs/contracts-sdk/campaign-info)
+- [AllOrNothing Treasury](/docs/contracts-sdk/all-or-nothing)
+- [TreasuryFactory](/docs/contracts-sdk/treasury-factory)
+- [Error Handling](/docs/contracts-sdk/examples/error-handling)
