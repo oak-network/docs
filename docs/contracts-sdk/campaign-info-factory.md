@@ -89,10 +89,43 @@ const txHash = await factory.createCampaign({
 });
 
 const receipt = await oak.waitForReceipt(txHash);
+```
 
-// Look up the deployed CampaignInfo address
+### Discover the deployed CampaignInfo address
+
+After `createCampaign`, the factory emits a `CampaignCreated` event that carries the new `CampaignInfo` address. Two approaches are available — prefer the receipt-based one.
+
+**Approach 1 — Decode the `CampaignCreated` event from the receipt (recommended).** Deterministic and works immediately regardless of RPC indexing lag.
+
+```typescript
+import { CAMPAIGN_INFO_FACTORY_EVENTS } from '@oaknetwork/contracts-sdk';
+
+let campaignInfoAddress: `0x${string}` | undefined;
+
+for (const log of receipt.logs) {
+  try {
+    const decoded = factory.events.decodeLog({
+      topics: log.topics as [`0x${string}`, ...`0x${string}`[]],
+      data:   log.data   as `0x${string}`,
+    });
+
+    if (decoded.eventName === CAMPAIGN_INFO_FACTORY_EVENTS.CampaignCreated) {
+      campaignInfoAddress = decoded.args?.campaignInfoAddress as `0x${string}`;
+      break;
+    }
+  } catch {
+    // Log belongs to a different contract — skip
+  }
+}
+
+console.log('CampaignInfo (from receipt):', campaignInfoAddress);
+```
+
+**Approach 2 — Lookup via `identifierToCampaignInfo` (convenience).** Handy when you only have the identifier and did not keep the receipt. On some RPC providers the mapping may briefly return the zero address right after the transaction, so prefer Approach 1 when the receipt is available.
+
+```typescript
 const campaignAddress = await factory.identifierToCampaignInfo(identifierHash);
-console.log('Campaign deployed at:', campaignAddress);
+console.log('CampaignInfo (from lookup):', campaignAddress);
 ```
 
 ### Verify a campaign address

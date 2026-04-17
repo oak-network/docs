@@ -1,0 +1,178 @@
+---
+sidebar_label: Platform Enlistment
+sidebar_position: 2
+---
+
+# Platform Enlistment
+
+> **Source:** Full executable TypeScript in `contract/src/examples/00-platform-enlistment/`. This page summarizes the flow — read the source for complete per-step code.
+
+## The Story
+
+**NovaPay** is a digital marketplace that helps independent sellers accept payments online. They want to integrate Oak Protocol to offer their merchants on-chain payment processing and crowdfunding capabilities. Before any campaign can be created or treasury deployed on their platform, NovaPay must first be **enlisted as a platform** on the protocol.
+
+Platform enlistment is a coordinated process between two roles:
+
+- The **Protocol Admin** (the Oak Network team) — who governs the GlobalParams contract and must approve every new platform joining the protocol
+- The **Platform Admin** (NovaPay's operations wallet) — who will manage the platform's day-to-day configuration once enlisted, such as treasury registration, fee settings, and payment operations
+
+There is no self-service signup. NovaPay contacts the Oak support team, provides their admin wallet address, and agrees on a fee structure. The Protocol Admin then records the enlistment on-chain in a single transaction.
+
+Once enlisted, NovaPay registers the treasury implementation contracts they want to use. A platform can register as many or as few treasury models as they need — even a single model is enough to get started. Each registration enters a "pending" state and must be explicitly approved by the Protocol Admin before it can be used to deploy treasuries.
+
+## Platform Hash
+
+Every platform on Oak Protocol is identified by a `bytes32` value called the **platform hash**. It is the `keccak256` hash of the platform name and remains fixed for the lifetime of the platform.
+
+```typescript
+const platformHash = keccak256(toHex("NOVAPAY"));
+```
+
+## Implementation ID Layout
+
+Each platform maintains its own mapping of implementation ID to treasury contract inside TreasuryFactory:
+
+| Implementation ID | Treasury Model | Use Case |
+| --- | --- | --- |
+| `0n` | AllOrNothing | Crowdfunding — backers get a full refund if the goal is not met |
+| `1n` | KeepWhatsRaised | Crowdfunding — the creator keeps whatever is raised, even if the goal is not met |
+| `2n` | PaymentTreasury | E-commerce — structured payments with no time restrictions |
+| `3n` | TimeConstrainedPaymentTreasury | E-commerce — same as PaymentTreasury but enforces launch time and deadline on-chain |
+
+## Role Reference
+
+| Function | Who can call | Contract modifier |
+| --- | --- | --- |
+| `enlistPlatform` | Protocol Admin | `onlyOwner` |
+| `delistPlatform` | Protocol Admin | `onlyOwner` |
+| `updatePlatformAdminAddress` | Protocol Admin | `onlyOwner` |
+| `updateProtocolFeePercent` | Protocol Admin | `onlyOwner` |
+| `addTokenToCurrency` / `removeTokenFromCurrency` | Protocol Admin | `onlyOwner` |
+| `setPlatformAdapter` | Protocol Admin | `onlyOwner` |
+| `setPlatformLineItemType` / `removePlatformLineItemType` | Platform Admin | `onlyPlatformAdmin` |
+| `updatePlatformClaimDelay` | Platform Admin | `onlyPlatformAdmin` |
+| `addPlatformData` / `removePlatformData` | Platform Admin | `onlyPlatformAdmin` |
+| All `get*` / `check*` reads | Anyone | (read-only) |
+
+## Steps
+
+### Step 1: Enlist the Platform
+
+The Protocol Admin calls `enlistPlatform` on GlobalParams. This single transaction sets the platform hash, admin address, fee percent, and adapter. Any other caller reverts with `GlobalParamsUnauthorizedError`.
+
+```typescript
+const platformHash = keccak256(toHex("NOVAPAY"));
+const platformAdminAddress = process.env.NOVAPAY_ADMIN_ADDRESS! as `0x${string}`;
+const platformFeePercent = 250n; // 2.5% in basis points
+const noAdapter = "0x0000000000000000000000000000000000000000" as `0x${string}`;
+
+const txHash = await globalParams.enlistPlatform(
+  platformHash,
+  platformAdminAddress,
+  platformFeePercent,
+  noAdapter,
+);
+
+const receipt = await oak.waitForReceipt(txHash);
+console.log(`NovaPay enlisted at block ${receipt.blockNumber}`);
+```
+
+### Step 2: Verify the Enlistment
+
+After the Protocol Admin enlists NovaPay, anyone with a read-only client can verify the on-chain state. No private key is needed — these are pure view calls against GlobalParams.
+
+```typescript
+const platformHash = keccak256(toHex("NOVAPAY"));
+
+const isListed = await globalParams.checkIfPlatformIsListed(platformHash);
+const adminAddress = await globalParams.getPlatformAdminAddress(platformHash);
+const feePercent = await globalParams.getPlatformFeePercent(platformHash);
+const adapter = await globalParams.getPlatformAdapter(platformHash);
+
+console.log("Platform listed:", isListed);
+console.log("Admin address:", adminAddress);
+console.log("Fee percent:", Number(feePercent), "bps");
+```
+
+### Step 3: Register a Treasury Implementation
+
+Now that NovaPay is enlisted, the Platform Admin registers the treasury model they want to use. Each model goes into a numbered slot (`implementationId`) on TreasuryFactory. Registrations are **not** immediately active — they sit in a pending state until the Protocol Admin approves them.
+
+```typescript
+const platformHash = keccak256(toHex("NOVAPAY"));
+const allOrNothingImpl = process.env.ALL_OR_NOTHING_IMPL! as `0x${string}`;
+
+const txHash = await treasuryFactory.registerTreasuryImplementation(
+  platformHash,
+  0n, // slot 0
+  allOrNothingImpl,
+);
+await oak.waitForReceipt(txHash);
+console.log("AllOrNothing registered at slot 0 — awaiting approval");
+```
+
+### Step 4: Approve the Implementation
+
+The Protocol Admin explicitly approves the registered implementation. This is a safety gate — the protocol team verifies the implementation contract before allowing the platform to deploy treasuries from it. Each registered slot requires its own approval call.
+
+```typescript
+const platformHash = keccak256(toHex("NOVAPAY"));
+
+const txHash = await treasuryFactory.approveTreasuryImplementation(platformHash, 0n);
+await oak.waitForReceipt(txHash);
+console.log("AllOrNothing approved (slot 0)");
+```
+
+### Step 5: Verify Full Setup
+
+Before going live, NovaPay's admin runs a final check to confirm every piece of the onboarding is in place: the platform is listed, admin and fee values match agreed terms, and treasury implementations are registered and approved.
+
+```typescript
+const isListed = await globalParams.checkIfPlatformIsListed(platformHash);
+const adminAddress = await globalParams.getPlatformAdminAddress(platformHash);
+const feePercent = await globalParams.getPlatformFeePercent(platformHash);
+
+// Derive current registrations by replaying Registered vs Removed events
+const registeredLogs = await treasuryFactory.events.getImplementationRegisteredLogs();
+const removedLogs = await treasuryFactory.events.getImplementationRemovedLogs();
+const approvalLogs = await treasuryFactory.events.getImplementationApprovalLogs();
+
+// ... filter by platformHash, check the latest approval state per implementation
+```
+
+### Step 6: Optional Configuration
+
+After core onboarding, a platform can configure additional features. These are all optional and independent — skip any you don't need.
+
+| Section | Feature | Who Calls | Applies To |
+| --- | --- | --- | --- |
+| A | Line Item Types | Platform Admin | PaymentTreasury only |
+| B | Claim Delay | Platform Admin | PaymentTreasury only |
+| C | Platform Data Keys | Platform Admin | All treasury types |
+| D | Platform Adapter | Protocol Admin | All treasury types |
+| E | Protocol Admin Functions | Protocol Admin | Protocol-wide |
+
+Example — register a line item type for "product" (counts toward goal, refundable):
+
+```typescript
+const productTypeId = keccak256(toHex("product"));
+await globalParams.setPlatformLineItemType(
+  platformHash,
+  productTypeId,
+  "product",
+  true,   // countsTowardGoal
+  false,  // applyProtocolFee
+  true,   // canRefund
+  false,  // instantTransfer
+);
+```
+
+## Multi-token currencies
+
+`GlobalParams` holds `currencyToTokens`: bootstrapped in `initialize(currencies, tokensPerCurrency)`, then the protocol owner can `addTokenToCurrency` / `removeTokenFromCurrency`; anyone can read `getTokensForCurrency(currency)`. When `CampaignInfoFactory` creates a campaign, it reads the current token list and stores a snapshot on `CampaignInfo`; treasuries validate every `paymentToken` / `pledgeToken` against that cache.
+
+## Related
+
+- [GlobalParams](/docs/contracts-sdk/global-params)
+- [TreasuryFactory](/docs/contracts-sdk/treasury-factory)
+- [Client setup](/docs/contracts-sdk/client)
