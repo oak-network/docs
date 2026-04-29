@@ -23,11 +23,7 @@ The `Provider.Name` type includes 13 providers:
 | BRLA | `"brla"` | BRLA stablecoin provider |
 | Facilita Pay | `"facilita_pay"` | Facilita Pay provider |
 | Inter Bank | `"inter_bank"` | Inter Bank provider |
-| Wallet Service | `"wallet_service"` | Wallet service provider |
-| CrowdSplit | `"crowd_split"` | CrowdSplit provider |
 | Konduto | `"konduto"` | Fraud detection provider |
-| Cel Coin | `"cel_coin"` | Cel Coin provider |
-| Cel BaaS | `"cel_baas"` | Cel BaaS provider |
 
 ## Methods
 

@@ -118,10 +118,10 @@ The SDK exports utilities to verify incoming webhook signatures using HMAC-SHA25
 
 ### Signature header format
 
-The webhook signature is sent in the `CrowdSplit-Signature` header with the format:
+The webhook signature is sent in the `Oak-Signature` header with the format:
 
 ```
-CrowdSplit-Signature: t=<timestamp>,v1=<signature>
+Oak-Signature: t=<timestamp>,v1=<signature>
 ```
 
 The SDK parses the header by key prefix (not position), so the field order does not matter.
@@ -133,7 +133,7 @@ import { verifyWebhookSignature } from '@oaknetwork/payments-sdk';
 
 const isValid = verifyWebhookSignature(
   JSON.stringify(req.body),                  // raw payload string
-  req.headers['crowdsplit-signature'],       // signature from CrowdSplit-Signature header
+  req.headers['oak-signature'],              // signature from Oak-Signature header
   process.env.WEBHOOK_SECRET!,              // secret from register()
 );
 
@@ -151,7 +151,7 @@ import { parseWebhookPayload } from '@oaknetwork/payments-sdk';
 
 const result = parseWebhookPayload<PaymentEvent>(
   JSON.stringify(req.body),
-  req.headers['crowdsplit-signature'],
+  req.headers['oak-signature'],
   process.env.WEBHOOK_SECRET!,
 );
 
@@ -183,7 +183,7 @@ const app = express();
 app.post('/webhooks/oak', express.raw({ type: 'application/json' }), (req, res) => {
   const result = parseWebhookPayload(
     req.body.toString(),
-    req.headers['crowdsplit-signature'] as string,
+    req.headers['oak-signature'] as string,
     process.env.WEBHOOK_SECRET!,
   );
 
