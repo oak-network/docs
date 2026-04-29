@@ -11,6 +11,8 @@ const providers = createProviderService(client);
 
 ## Supported providers
 
+The `Provider.Name` type includes 13 providers:
+
 | Provider | Value | Description |
 |---|---|---|
 | Stripe | `"stripe"` | Card payments, transfers, connected accounts |
@@ -18,6 +20,10 @@ const providers = createProviderService(client);
 | MercadoPago | `"mercado_pago"` | Card payments (Colombia) |
 | Bridge | `"bridge"` | Crypto on-ramp, bank accounts, Plaid |
 | Avenia | `"avenia"` | Crypto off-ramp, PIX (Brazil) |
+| BRLA | `"brla"` | BRLA stablecoin provider |
+| Facilita Pay | `"facilita_pay"` | Facilita Pay provider |
+| Inter Bank | `"inter_bank"` | Inter Bank provider |
+| Konduto | `"konduto"` | Fraud detection provider |
 
 ## Methods
 
@@ -80,6 +86,14 @@ if (result.ok) {
   }
 }
 ```
+
+### Platform status values
+
+The `Provider.PlatformStatus` type includes 9 values: `"NOT_SUBMITTED"`, `"SUBMITTED"`, `"AWAITING_CONFIRMATION"`, `"PROCESSING"`, `"APPROVED"`, `"REJECTED"`, `"RESTRICTED"`, `"CANCELLED"`, `"ERROR"`.
+
+### KYC levels
+
+The `Provider.KycLevel` type is `"1"` or `"2"`.
 
 ### Registration status fields
 

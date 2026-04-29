@@ -116,15 +116,25 @@ if (result.ok) {
 
 The SDK exports utilities to verify incoming webhook signatures using HMAC-SHA256 with timing-safe comparison.
 
+### Signature header format
+
+The webhook signature is sent in the `Oak-Signature` header with the format:
+
+```
+Oak-Signature: t=<timestamp>,v1=<signature>
+```
+
+The SDK parses the header by key prefix (not position), so the field order does not matter.
+
 ### Verify a signature
 
 ```typescript
 import { verifyWebhookSignature } from '@oaknetwork/payments-sdk';
 
 const isValid = verifyWebhookSignature(
-  JSON.stringify(req.body),       // raw payload string
-  req.headers['x-oak-signature'], // signature from header
-  process.env.WEBHOOK_SECRET!,    // secret from register()
+  JSON.stringify(req.body),                  // raw payload string
+  req.headers['oak-signature'],              // signature from Oak-Signature header
+  process.env.WEBHOOK_SECRET!,              // secret from register()
 );
 
 if (!isValid) {
@@ -141,7 +151,7 @@ import { parseWebhookPayload } from '@oaknetwork/payments-sdk';
 
 const result = parseWebhookPayload<PaymentEvent>(
   JSON.stringify(req.body),
-  req.headers['x-oak-signature'],
+  req.headers['oak-signature'],
   process.env.WEBHOOK_SECRET!,
 );
 
@@ -173,7 +183,7 @@ const app = express();
 app.post('/webhooks/oak', express.raw({ type: 'application/json' }), (req, res) => {
   const result = parseWebhookPayload(
     req.body.toString(),
-    req.headers['x-oak-signature'] as string,
+    req.headers['oak-signature'] as string,
     process.env.WEBHOOK_SECRET!,
   );
 
@@ -217,3 +227,23 @@ app.post('/webhooks/oak', express.raw({ type: 'application/json' }), (req, res) 
 | `category` | `string \| null` | Event category |
 | `data` | `any` | Event payload |
 | `is_acknowledged` | `boolean` | Whether the notification was acknowledged |
+
+## Event types
+
+The `Webhook.EventType` type includes 75+ events across these namespaces:
+
+- `customer.*` — customer lifecycle events
+- `provider_registration.*` — provider registration events
+- `payment.*` — payment lifecycle events
+- `transaction.*` — transaction events
+- `dispute.*` — dispute events
+- `kyc.*` — KYC verification events
+- `transfer.*` — transfer events
+- `sell.*` — sell (off-ramp) events
+- `buy.*` — buy (on-ramp) events
+
+## Event categories
+
+The `Webhook.Category` type includes 12 categories:
+
+`payment_lifecycle`, `provider_registration_lifecycle`, and others that group related events for filtering and routing.

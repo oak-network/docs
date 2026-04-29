@@ -1,6 +1,6 @@
 # Payment Methods
 
-A payment method is a stored instrument (card, bank account, crypto wallet, or PIX key) attached to a customer. Once added, it can be referenced by ID when creating payments or transfers — the customer does not need to re-enter their details each time.
+A payment method is a stored instrument (card, bank account, crypto wallet, PIX key, or trading wallet) attached to a customer. Once added, it can be referenced by ID when creating payments or transfers — the customer does not need to re-enter their details each time.
 
 ```typescript
 import { createOakClient, createPaymentMethodService } from '@oaknetwork/payments-sdk';
@@ -16,6 +16,7 @@ const paymentMethods = createPaymentMethodService(client);
 | `add(customerId, method)` | Add a payment method to a customer |
 | `get(customerId, paymentId)` | Get a specific payment method |
 | `list(customerId, query?)` | List a customer's payment methods |
+| `update(customerId, methodId, data)` | Update a payment method |
 | `delete(customerId, methodId)` | Delete a payment method |
 
 ## Add a payment method
@@ -75,6 +76,14 @@ const result = await paymentMethods.add('cus_abc123', {
 
 ## Payment method types
 
+The `type` field on a payment method is one of: `"bank"`, `"card"`, `"plaid"`, `"virtual_account"`, `"liquidation_address"`, `"trading_wallet"`, `"customer_wallet"`, `"pix"`, `"evm_address"`.
+
+### Bank account types
+
+The `bank_account_type` field can be: `"payment"`, `"checking"`, `"savings"`, `"virtual_account"`.
+
+### Type reference
+
 | Type | Providers | Description |
 |---|---|---|
 | `BridgeBankAccount` | Bridge | US bank account with routing/account numbers |
@@ -88,6 +97,8 @@ const result = await paymentMethods.add('cus_abc123', {
 | `OakPix` | Oak | PIX payment method |
 | `BridgePlaid` | Bridge | Plaid-linked bank account |
 | `BridgeVirtualAccount` | Bridge | Virtual account for on/off ramp |
+| `TradingWallet` | Oak | Trading wallet |
+| `PlaidResponseData` | Bridge | Plaid response data |
 
 ## List payment methods
 
@@ -111,6 +122,18 @@ const result = await paymentMethods.get('cus_abc123', 'pm_xyz789');
 if (result.ok) {
   console.log('Type:', result.value.data.type);
   console.log('Status:', result.value.data.status);
+}
+```
+
+## Update a payment method
+
+```typescript
+const result = await paymentMethods.update('cus_abc123', 'pm_xyz789', {
+  bank_account_name: 'Alice Johnson',
+});
+
+if (result.ok) {
+  console.log('Updated:', result.value.data.id);
 }
 ```
 

@@ -14,6 +14,7 @@ const transfers = createTransferService(client);
 | Method | Description |
 |---|---|
 | `create(transfer)` | Create a new transfer |
+| `sendWebhook(transferId)` | Send a webhook notification for a transfer |
 
 ## Create a transfer
 
@@ -93,6 +94,22 @@ const result = await transfers.create({
 | `destination.customer` | Required (same as source) | — | Optional |
 | `destination.payment_method` | Bank PM by ID | — | Wallet or PM by ID |
 | `provider_data` | `statement_descriptor` | — | `wallet_memo` |
+
+## Send webhook
+
+Trigger a webhook notification for a completed transfer:
+
+```typescript
+const result = await transfers.sendWebhook('txr_abc123');
+
+if (result.ok) {
+  console.log('Webhook sent');
+}
+```
+
+## Transfer type constraints
+
+Transfer payment method types are restricted to `"customer_wallet"` or `"bank"`. The `chain` field is restricted to `"polygon"` or `"celo"`.
 
 ## Response
 

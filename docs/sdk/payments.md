@@ -16,6 +16,9 @@ const payments = createPaymentService(client);
 | `create(payment)` | Create a new payment |
 | `confirm(paymentId)` | Confirm a pending payment |
 | `cancel(paymentId)` | Cancel a pending payment |
+| `capture(paymentId)` | Capture a payment authorized with `capture_method: "manual"` |
+| `sandboxPaid(paymentId)` | Simulate a paid payment (sandbox only) |
+| `sandboxSettle(paymentId)` | Simulate settling a payment (sandbox only) |
 
 ## Create a payment
 
@@ -64,17 +67,34 @@ const result = await payments.create({
         country_code: 'BR',
       },
     },
-    capture_method: 'automatic',
+    capture_method: 'automatic', // or 'manual' for two-step capture
     fraud_check: {
       enabled: true,
       provider: 'konduto',
-      config: { sequence: 'fraud_before_auth', threshold: 'medium' },
+      config: { sequence: 'fraud_before_auth', threshold: 'medium', action_on_fail: 'CANCEL_AUTH' },
       data: {
         last_four_digits: '4242',
         card_expiration_date: '12/2027',
         card_holder_name: 'Alice Smith',
       },
     },
+  },
+  confirm: true,
+});
+```
+
+### PagarMe PIX
+
+```typescript
+const result = await payments.create({
+  provider: 'pagar_me',
+  source: {
+    amount: 5000,
+    currency: 'BRL',
+    customer: { id: 'cus_abc123' },
+    payment_method: { type: 'pix' },
+    capture_method: 'automatic',
+    expiry_date: '2026-05-01T23:59:59Z',
   },
   confirm: true,
 });
@@ -104,8 +124,11 @@ const result = await payments.create({
 | `source.currency` | Any string | `"BRL"` | `"COP"` |
 | `source.payment_method.id` | Card PM ID | Card PM ID or omit | — |
 | `source.payment_method.card_token` | — | Required if no `id` | Required |
-| `source.fraud_check` | Optional (disabled) | Required | — |
+| `source.expiry_date` | — | Optional (PIX only) | — |
+| `source.fraud_check` | Optional (disabled) | Required (card) | — |
 | `destination` | Optional (connected accounts) | — | — |
+| `source.capture_method` | `"automatic" \| "manual"` | `"automatic" \| "manual"` | `"automatic" \| "manual"` |
+| `source.fraud_check.config.action_on_fail` | — | `"RETAIN_AUTH" \| "CANCEL_AUTH"` | — |
 | `flow` | `"platform"` or `"destination"` | — | — |
 | `allocations` | Optional split payments | — | — |
 
@@ -129,6 +152,44 @@ if (result.ok) {
 }
 ```
 
+## Capture a payment
+
+If a payment was created with `capture_method: "manual"`, you must explicitly capture it to collect funds:
+
+```typescript
+const result = await payments.capture('pay_abc123');
+
+if (result.ok) {
+  console.log('Captured. Status:', result.value.data.status);
+}
+```
+
+## Sandbox test helpers
+
+The SDK provides sandbox-only methods to simulate payment state transitions during development.
+
+### Simulate a paid payment
+
+```typescript
+const result = await payments.sandboxPaid('pay_abc123');
+
+if (result.ok) {
+  console.log('Payment marked as paid');
+}
+```
+
+### Simulate settling a payment
+
+```typescript
+const result = await payments.sandboxSettle('pay_abc123');
+
+if (result.ok) {
+  console.log('Payment settled');
+}
+```
+
+> `sandboxPaid()` and `sandboxSettle()` are restricted to the sandbox environment. Calling them in production returns an `EnvironmentViolationError`.
+
 ## Response type
 
 All three methods return `Result<Payment.Response>`. The response data extends the original request with additional fields:
@@ -137,7 +198,7 @@ All three methods return `Result<Payment.Response>`. The response data extends t
 |---|---|---|
 | `id` | `string` | Payment ID |
 | `status` | `string` | Payment status (e.g., `"created"`, `"confirmed"`, `"cancelled"`) |
-| `type` | `"payment"` | Always `"payment"` |
+| `type` | `string` | Transaction type (dynamically set) |
 | `created_at` | `string` | ISO timestamp |
 | `updated_at` | `string` | ISO timestamp |
 | `provider_response` | `object` | Raw provider response data |

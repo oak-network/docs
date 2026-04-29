@@ -79,11 +79,24 @@ if (result.ok) {
 
 | Status | Description |
 |---|---|
+| `created` | Transaction has been created |
 | `awaiting_confirmation` | Transaction created, waiting for confirmation |
 | `processing` | Transaction is being processed |
 | `captured` | Payment has been captured |
 | `succeeded` | Transaction completed successfully |
 | `failed` | Transaction failed |
+| `canceled_after_completion` | Transaction was canceled after completion |
+| `canceled` | Transaction was canceled |
+
+## Transaction types
+
+Transactions can be one of 14 types:
+
+`pledge`, `payment`, `pay_out`, `batch_transfer`, `transfer`, `buy`, `sell`, `cancel`, `refund`, `payment_method_verification`, `pledge_with_installment`, `recurring_payment`, `installment_payment`, `external`
+
+## Sub-statuses
+
+Transactions also carry a `sub_status` field with 31 possible values that provide more granular detail about the current state of the transaction.
 
 ## Transaction item fields
 
@@ -91,7 +104,9 @@ if (result.ok) {
 |---|---|---|
 | `id` | `string` | Transaction ID |
 | `status` | `Status` | Current status |
-| `type` | `string` | Transaction type |
+| `type` | `TransactionType` | Transaction type (one of 14 values) |
+| `sub_status` | `SubStatus` | Granular sub-status |
+| `installment` | `Installment` | Installment details (if applicable) |
 | `source` | `object` | Payment source details |
 | `confirm` | `boolean` | Whether confirmation was requested |
 | `metadata` | `object` | Custom metadata |

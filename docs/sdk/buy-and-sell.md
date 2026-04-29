@@ -23,7 +23,7 @@ Convert fiat to crypto via Bridge.
 |---|---|
 | `create(request)` | Create a buy transaction |
 
-### Create a buy
+### Create a buy (Bridge)
 
 ```typescript
 const result = await buy.create({
@@ -49,18 +49,43 @@ if (result.ok) {
 }
 ```
 
+### Create a buy (BRLA)
+
+```typescript
+const result = await buy.create({
+  provider: 'brla',
+  source: {
+    currency: 'brl',
+    amount: 50000,
+  },
+  destination: {
+    currency: 'brla',
+    customer: { id: 'cus_abc123' },
+    payment_method: {
+      type: 'customer_wallet',
+      chain: 'celo',
+      evm_address: '0x1234567890abcdef1234567890abcdef12345678',
+    },
+  },
+  provider_data: {
+    developer_fee_percent: 1.5,
+  },
+});
+```
+
 ### Buy request fields
 
 | Field | Type | Description |
 |---|---|---|
-| `provider` | `"bridge"` | Currently only Bridge is supported |
-| `source.currency` | `"usd"` | Source fiat currency |
+| `provider` | `"bridge"` or `"brla"` | Bridge or BRLA provider |
+| `source.currency` | `"usd"` or `"brl"` | Source fiat currency |
 | `source.amount` | `number` | Amount in smallest unit (optional) |
-| `destination.currency` | `"usdc" \| "usdt" \| "usdb"` | Target stablecoin |
+| `destination.currency` | `"usdc" \| "usdt" \| "usdb" \| "brla"` | Target stablecoin |
 | `destination.customer.id` | `string` | Customer UUID |
 | `destination.payment_method.type` | `"customer_wallet"` | Must be a crypto wallet |
-| `destination.payment_method.chain` | `string` | Target chain (`ethereum`, `polygon`, `arbitrum`, `solana`) |
+| `destination.payment_method.chain` | `string` | Target chain (`ethereum`, `polygon`, `arbitrum`, `solana`, `celo`) |
 | `destination.payment_method.evm_address` | `string` | Destination wallet address |
+| `provider_data.developer_fee_percent` | `number` | Optional developer fee percentage |
 
 ### Buy response
 
@@ -124,7 +149,7 @@ if (result.ok) {
 | `source.amount` | `number` | Amount to sell |
 | `destination.customer.id` | `string` | Destination customer UUID |
 | `destination.currency` | `string` | Target fiat currency (e.g., `"brl"`) |
-| `destination.payment_method` | `object` | PIX payment method — either `{ type: "pix", id }` or `{ type: "pix", pix_string }` |
+| `destination.payment_method` | `object` | Payment method — either `{ type: "pix", id }`, `{ type: "pix", pix_string }`, or `{ type: "bank", id }` |
 
 ### Sell response
 

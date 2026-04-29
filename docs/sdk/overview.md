@@ -45,20 +45,25 @@ if (result.ok) {
 
 ## Services
 
-The SDK ships 10 service modules. Import the factory function for each service you need.
+The SDK ships 15 service modules. Import the factory function for each service you need.
 
 | Service | Factory | What it does |
 |---|---|---|
-| [`CustomerService`](/docs/sdk/customers) | `createCustomerService(client)` | Create, get, list, update, sync, and check balances |
-| [`PaymentService`](/docs/sdk/payments) | `createPaymentService(client)` | Create, confirm, cancel payments |
-| [`PaymentMethodService`](/docs/sdk/payment-methods) | `createPaymentMethodService(client)` | Add, list, get, delete payment methods |
+| [`CustomerService`](/docs/sdk/customers) | `createCustomerService(client)` | Create, get, list, update, sync, check balances, upload/get files, populate platform |
+| [`PaymentService`](/docs/sdk/payments) | `createPaymentService(client)` | Create, confirm, cancel, capture payments; sandbox test helpers |
+| [`PaymentMethodService`](/docs/sdk/payment-methods) | `createPaymentMethodService(client)` | Add, list, get, update, delete payment methods |
 | [`WebhookService`](/docs/sdk/webhooks) | `createWebhookService(client)` | Register, manage, and monitor webhooks |
 | [`TransactionService`](/docs/sdk/transactions) | `createTransactionService(client)` | List, get, and settle transactions |
-| [`TransferService`](/docs/sdk/transfers) | `createTransferService(client)` | Create provider transfers (Stripe, PagarMe, BRLA) |
-| [`PlanService`](/docs/sdk/plans) | `createPlanService(client)` | CRUD subscription plans |
+| [`TransferService`](/docs/sdk/transfers) | `createTransferService(client)` | Create provider transfers and send webhooks |
+| [`PlanService`](/docs/sdk/plans) | `createPlanService(client)` | CRUD subscription plans with active/expired filters |
 | [`RefundService`](/docs/sdk/refunds) | `createRefundService(client)` | Refund a payment |
-| [`BuyService`](/docs/sdk/buy-and-sell) | `createBuyService(client)` | Crypto on-ramp via Bridge |
+| [`BuyService`](/docs/sdk/buy-and-sell) | `createBuyService(client)` | Crypto on-ramp via Bridge or BRLA |
 | [`SellService`](/docs/sdk/buy-and-sell) | `createSellService(client)` | Crypto off-ramp via Avenia |
+| [`SubscriptionService`](/docs/sdk/subscriptions) | `createSubscriptionService(client)` | Subscribe, cancel, list, get, and pay subscriptions |
+| [`DisputeService`](/docs/sdk/disputes) | `createDisputeService(client)` | List, update evidence, submit, and close disputes |
+| [`PayoutService`](/docs/sdk/payouts) | `createPayoutService(client)` | Create payouts |
+| [`FileService`](/docs/sdk/files) | `createFileService(client)` | Upload, list, get, and delete files |
+| [`TaxService`](/docs/sdk/taxes) | `createTaxService(client)` | Calculate taxes |
 
 ## Next up
 
