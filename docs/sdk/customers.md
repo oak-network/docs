@@ -19,6 +19,9 @@ const customers = createCustomerService(client);
 | `update(id, customer)` | Update an existing customer |
 | `sync(id, sync)` | Sync customer data to a provider |
 | `balance(customerId, filter)` | Get a customer's balance for a provider |
+| `uploadFiles(customerId, files)` | Upload files for a customer |
+| `getFiles(customerId)` | Get files associated with a customer |
+| `populatePlatform(customerId)` | Populate platform data for a customer |
 
 ## Create a customer
 
@@ -154,6 +157,50 @@ All fields except `email` are optional on create. On update, all fields are opti
 | `country_code` | `string` | Country code |
 | `company_name` | `string` | Company name |
 
+## Upload files
+
+Upload files for a customer (e.g., identity documents, proof of address):
+
+```typescript
+const result = await customers.uploadFiles('cus_abc123', formData);
+
+if (result.ok) {
+  console.log('Files uploaded:', result.value.data);
+}
+```
+
+> This method uses multipart form data upload internally via `postMultipart()`.
+
+## Get files
+
+Retrieve files associated with a customer:
+
+```typescript
+const result = await customers.getFiles('cus_abc123');
+
+if (result.ok) {
+  for (const file of result.value.data) {
+    console.log(`File: ${file.id} — ${file.name}`);
+  }
+}
+```
+
+## Populate platform
+
+Populate platform-specific data for a customer:
+
+```typescript
+const result = await customers.populatePlatform('cus_abc123');
+
+if (result.ok) {
+  console.log('Platform data populated');
+}
+```
+
+## Customer status values
+
+Customers have one of 12 possible status values throughout their lifecycle.
+
 ## Response data
 
-The response `data` object includes all request fields plus additional system fields like `id`, `customer_id`, `customer_wallet`, `trading_wallet`, `account_type`, and address fields.
+The response `data` object includes all request fields plus additional system fields like `id`, `customer_id`, `customer_wallet`, `trading_wallet`, `account_type`, `additional_info`, `synced`, `synced_at`, and address fields.

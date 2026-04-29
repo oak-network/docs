@@ -67,10 +67,14 @@ if (result.ok) {
 
 ## List plans
 
+The `list()` method supports filtering by `active` (boolean) and `expired` (boolean) query params:
+
 ```typescript
 const result = await plans.list({
   page_no: 1,
   per_page: 10,
+  active: true,
+  expired: false,
 });
 
 if (result.ok) {
@@ -132,6 +136,9 @@ if (result.ok) {
 | `description` | `string` | Plan description |
 | `frequency` | `number` | Billing frequency in days |
 | `price` | `number` | Price |
+| `overridden_price` | `number` | Overridden price (if set by a campaign) |
+| `campaign_id` | `string` | Associated campaign ID |
+| `campaign_name` | `string` | Associated campaign name |
 | `is_active` | `boolean` | Whether the plan is active |
 | `is_auto_renewable` | `boolean` | Whether it auto-renews |
 | `currency` | `string` | Currency code |
