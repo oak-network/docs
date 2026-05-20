@@ -131,7 +131,7 @@ const config: Config = {
       tagName: 'meta',
       attributes: {
         property: 'og:image',
-        content: 'https://docs.oaknetwork.org/img/docusaurus-social-card.jpg',
+        content: 'https://docs.oaknetwork.org/img/oak-social-card.png',
       },
     },
     {
@@ -151,8 +151,36 @@ const config: Config = {
     {
       tagName: 'meta',
       attributes: {
+        property: 'og:image:alt',
+        content: 'Oak Network — payment infrastructure for platforms',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:image:type',
+        content: 'image/png',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
         name: 'twitter:image',
-        content: 'https://docs.oaknetwork.org/img/docusaurus-social-card.jpg',
+        content: 'https://docs.oaknetwork.org/img/oak-social-card.png',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:image:alt',
+        content: 'Oak Network — payment infrastructure for platforms',
       },
     },
     {
