@@ -1,0 +1,1 @@
+{"title":"Body","body":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["transfer_id","status"],"properties":{"transfer_id":{"type":"string","format":"uuid","description":"Transfer transaction UUID"},"status":{"type":"string","description":"Status to set"}}}}}}}

@@ -1,0 +1,1 @@
+{"parameters":[{"name":"subscriptionId","in":"path","required":true,"description":"Subscription hash ID.","schema":{"type":"string"}}]}

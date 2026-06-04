@@ -1,0 +1,1 @@
+{"title":"Body","body":{"required":true,"content":{"application/json":{"schema":{"type":"object","description":"Provider-specific request body (varies by provider and endpoint)","additionalProperties":true}}}}}

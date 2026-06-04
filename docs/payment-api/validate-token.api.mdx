@@ -1,0 +1,69 @@
+---
+id: validate-token
+title: "Validate access token"
+description: "Check whether an access token is valid and not expired. Token can be passed via x-access-token header or query parameter."
+sidebar_label: "Validate access token"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/payment-api/crowdsplit-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Validate access token"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/auth/token/validate"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Check whether an access token is valid and not expired. Token can be passed via x-access-token header or query parameter.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./validate-token.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./validate-token.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./validate-token.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

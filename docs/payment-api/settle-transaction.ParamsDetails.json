@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","required":true,"description":"Transaction UID","schema":{"type":"string","format":"uuid"}},{"name":"app-key","in":"header","required":true,"description":"Application key for settlement authorization","schema":{"type":"string"}}]}
