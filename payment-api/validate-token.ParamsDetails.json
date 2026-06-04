@@ -1,1 +1,0 @@
-{"parameters":[{"name":"x_access_token","in":"query","required":false,"description":"Access token (alternative to x-access-token header)","schema":{"type":"string"}}]}

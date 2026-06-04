@@ -1,1 +1,0 @@
-{"title":"Body","body":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["provider","target_role"],"properties":{"provider":{"type":"string","description":"Provider name (case-insensitive)"},"target_role":{"type":"string","description":"Target role for the provider registration"}},"additionalProperties":true}}}}}
