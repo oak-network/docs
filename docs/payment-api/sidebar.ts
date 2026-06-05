@@ -886,6 +886,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "payment-api/webhook-prov-reg-updated",
+          label: "Provider registration updated",
+          className: "api-method event",
+        },
+        {
+          type: "doc",
           id: "payment-api/webhook-prov-reg-verification-expired",
           label: "Provider registration verification expired",
           className: "api-method event",

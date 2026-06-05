@@ -1746,6 +1746,25 @@ paths:
             type: string
             format: uuid
       requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentMethodRequest'
+            examples:
+              bankAccount:
+                summary: Bank account payment method
+                value:
+                  type: bank
+                  provider: crowd_split
+                  bank_details:
+                    account_number: '12345678'
+                    account_name: John Doe
+                    bank_name: Banco do Brasil
+                    branch_code: '0001'
+                    account_type: checking
+                    ispb: '00000000'
+      responses:
         '200':
           description: Payment method created
           content:
@@ -1773,24 +1792,6 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '422':
           $ref: '#/components/responses/ValidationError'
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreatePaymentMethodRequest'
-            examples:
-              bankAccount:
-                summary: Bank account payment method
-                value:
-                  type: bank
-                  provider: crowd_split
-                  bank_details:
-                    account_number: '12345678'
-                    account_name: John Doe
-                    bank_name: Banco do Brasil
-                    branch_code: '0001'
-                    account_type: checking
-                    ispb: '00000000'
     get:
       operationId: listPaymentMethods
       summary: List payment methods
@@ -3089,7 +3090,6 @@ paths:
                     - CARD
                 payment_method_provider:
                   type: string
-                  enum: []
                 fee_bearer:
                   type: string
                   enum:
@@ -3306,7 +3306,6 @@ paths:
                     - CARD
                 payment_method_provider:
                   type: string
-                  enum: []
       responses:
         '200':
           description: Payment initiated
@@ -4983,6 +4982,38 @@ webhooks:
       responses:
         '200':
           description: Webhook acknowledged
+  provider_registration.updated:
+    post:
+      summary: Provider registration updated
+      description: |
+        Provider registration updated. Emitted during a customer's registration flow
+        at an upstream provider. `data.provider` identifies the provider and
+        `data.status` reflects the new state. Combined, `provider_registration.*`
+        events represent the full onboarding lifecycle on each provider.
+      operationId: webhookProvRegUpdated
+      tags:
+        - Webhook Events
+      parameters:
+        - $ref: '#/components/parameters/CrowdSplitSignatureHeader'
+        - $ref: '#/components/parameters/CrowdSplitTimestampHeader'
+        - $ref: '#/components/parameters/CrowdSplitNotificationIdHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/WebhookEnvelope'
+                - type: object
+                  properties:
+                    event:
+                      const: provider_registration.updated
+                    category:
+                      const: provider_registration_lifecycle
+                    data:
+                      $ref: '#/components/schemas/WebhookProviderRegistrationData'
+      responses:
+        '200':
+          description: Webhook acknowledged
   provider_registration.verification_expired:
     post:
       summary: Provider registration verification expired
@@ -5695,7 +5726,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
       description: |
-        Merchant authentication token. Obtained via POST /api/auth/token.
+        Merchant authentication token. Obtained via POST /api/v1/merchant/token/grant.
         Pass as: Authorization: Bearer <token>
     accessTokenAuth:
       type: apiKey
@@ -6292,7 +6323,7 @@ components:
           enum:
             - male
             - female
-            - non_binary
+            - other
           description: Gender (case-insensitive)
         mother_name:
           type: string
