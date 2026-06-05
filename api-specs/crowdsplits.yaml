@@ -2884,8 +2884,7 @@ paths:
       summary: Create a subscription plan
       description: |
         Define a recurring-payment plan template. `price` must be between
-        100 and 10_000 and `currency` must be `USD`
-        (`services/subscriptionService.js:18-29`). Plans are not eligible
+        100 and 10_000 and `currency` must be `USD`. Plans are not eligible
         for subscriptions until they are published via
         `PATCH /api/v1/subscription/plans/{planId}/publish`.
       tags:
@@ -3129,9 +3128,7 @@ paths:
       operationId: cancelSubscription
       summary: Cancel a subscription
       description: |
-        Cancel an active subscription by forwarding the request to the
-        upstream subscription service
-        (`services/subscriptionService.js:776-830`). Future billing cycles
+        Cancel an active subscription. Future billing cycles
         are skipped; already-captured payments are preserved and must be
         refunded separately via `POST /api/v1/payments/{id}/refund` if a
         refund is required.
@@ -3160,9 +3157,8 @@ paths:
                     type: object
                     description: |
                       Pass-through response from the upstream subscription
-                      service (see `services/subscriptionService.js:776-830`
-                      for the forwarding logic). Shape is not contractually
-                      stable; treat as opaque acknowledgement.
+                      service. Shape is not contractually stable; treat as
+                      opaque acknowledgement.
                     additionalProperties: true
         '404':
           $ref: '#/components/responses/NotFoundError'
@@ -3265,12 +3261,7 @@ paths:
       description: |
         Manually initiate a payment for a subscription.
 
-        **Authentication.** Merchant `bearerAuth` only — the route is
-        guarded by `merchantMiddleware.verifyMerchantToken`
-        (`route/subscriptionRoute.js:74-80`). The subscription-service
-        dispatcher uses a different entry path that performs `Ref-App-Key`
-        validation via `subscriptionMiddleware.verifySubscriptionServiceRequest`;
-        that path is not this operation.
+        **Authentication.** Merchant `bearerAuth` only.
       tags:
         - Subscriptions
       security:
@@ -3492,8 +3483,7 @@ paths:
                     description: |
                       Tax calculation result. Echoes the request body fields
                       and adds a `provider_response` object containing the
-                      raw tax-provider reply
-                      (`services/paymentService.js:1148`). Exact keys inside
+                      raw tax-provider reply. Exact keys inside
                       `provider_response` vary per provider.
                     properties:
                       provider:
@@ -3521,7 +3511,7 @@ paths:
       description: |
         Upload one or more files for the merchant. Requests are
         `multipart/form-data`; size and MIME-type limits follow the
-        server's `multer` configuration (see `middleware/fileMiddleware.js`).
+        server's upload configuration.
       tags:
         - Files
       security:
@@ -6808,10 +6798,9 @@ components:
       type: string
       description: |
         CrowdSplit-managed upstream provider identifier. Lowercased in every
-        merchant-facing payload; the internal enum keys are defined in `util/enum/PLATFORMS.js`.
+        merchant-facing payload.
 
-        Note: merchant-facing `*.provider` fields receive a special
-        transform (`util/helper.js:314-326`) that emits `avenia` in place
+        Note: merchant-facing `*.provider` fields emit `avenia` in place
         of `brla` in the lowercased form; consumers should treat the two
         as equivalent for now.
       enum:
@@ -6822,8 +6811,7 @@ components:
     TransactionStatus:
       type: string
       description: |
-        Transaction lifecycle status (lowercased on the wire). Source of
-        truth: `util/enum/TRANSACTION_STATUS.js`.
+        Transaction lifecycle status (lowercased on the wire).
       enum:
         - created
         - awaiting_confirmation
@@ -6943,8 +6931,7 @@ components:
           nullable: true
           description: |
             Platform / provider fee charged on this transaction, when present.
-            Shape originates from the merchant's request body (see e.g.
-            `factory/payment/card/StripeCardHandler.js`).
+            Shape originates from the merchant's request body.
           properties:
             bearer:
               type: string
@@ -7139,8 +7126,7 @@ components:
     PaymentMethodType:
       type: string
       description: |
-        Payment-method type identifier (lowercased). Source:
-        `util/enum/subject/SUBJECT_PAYMENT_METHOD_TYPE.js`.
+        Payment-method type identifier (lowercased).
       enum:
         - bank
         - card
