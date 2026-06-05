@@ -42,6 +42,20 @@ const config: Config = {
 
   plugins: [
     './src/plugins/favicon-head-tags.ts',
+    function webpackFallbackPlugin() {
+      return {
+        name: 'webpack-node-polyfill-fallback',
+        configureWebpack() {
+          return {
+            resolve: {
+              fallback: {
+                path: false,
+              },
+            },
+          };
+        },
+      };
+    },
     [
       'docusaurus-plugin-openapi-docs',
       {
@@ -117,7 +131,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          docItemComponent: '@theme/ApiItem',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
