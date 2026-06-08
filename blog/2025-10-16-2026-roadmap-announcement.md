@@ -9,7 +9,7 @@ tags: [roadmap, announcement, development]
 
 We're thrilled to share our ambitious roadmap for 2026, featuring three revolutionary products that will transform how we think about decentralized crowdfunding infrastructure.
 
-<!-- truncate -->
+{/* truncate */}
 
 ## 🏪 Appstore - Extensible Platform Ecosystem
 

@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -16,7 +17,7 @@ const config: Config = {
   markdown: {
     mermaid: true,
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: ['@docusaurus/theme-mermaid', 'docusaurus-theme-openapi-docs'],
 
   // Set the production url of your site here
   url: 'https://docs.oaknetwork.org',
@@ -41,6 +42,37 @@ const config: Config = {
 
   plugins: [
     './src/plugins/favicon-head-tags.ts',
+    function webpackFallbackPlugin() {
+      return {
+        name: 'webpack-node-polyfill-fallback',
+        configureWebpack() {
+          return {
+            resolve: {
+              fallback: {
+                path: false,
+              },
+            },
+          };
+        },
+      };
+    },
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'payment-api-spec',
+        docsPluginId: 'classic',
+        config: {
+          crowdsplits: {
+            specPath: 'api-specs/crowdsplits.yaml',
+            outputDir: 'docs/payment-api',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+        },
+      },
+    ],
     [
       'docusaurus-plugin-llms',
       {
@@ -261,6 +293,12 @@ const config: Config = {
           sidebarId: 'contractsSidebar',
           position: 'left',
           label: 'Smart Contracts',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'paymentApiSidebar',
+          position: 'left',
+          label: 'Payment API',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {

@@ -9,7 +9,7 @@ tags: [announcement, protocol, celo]
 
 We're excited to announce the official launch of the Oak Network protocol on the Celo blockchain! After months of development, testing, and security audits, we're ready to revolutionize decentralized crowdfunding infrastructure.
 
-<!-- truncate -->
+{/* truncate */}
 
 ## What is Oak Network?
 

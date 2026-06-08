@@ -9,7 +9,7 @@ tags: [security, announcement, protocol]
 
 We're proud to announce that Oak Network has successfully completed comprehensive security audits and is ready for mainnet deployment on Celo.
 
-<!-- truncate -->
+{/* truncate */}
 
 ## Audit Results
 

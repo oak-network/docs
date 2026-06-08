@@ -1,0 +1,1 @@
+{"parameters":[{"name":"token","in":"query","required":true,"description":"JWT verification token sent to the user's email","schema":{"type":"string"}}]}

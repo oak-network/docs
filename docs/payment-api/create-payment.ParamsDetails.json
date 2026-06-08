@@ -1,0 +1,1 @@
+{"parameters":[{"name":"Ref-App-Key","in":"header","required":false,"description":"App key for subscription service authentication","schema":{"type":"string"}},{"name":"Payment-Type","in":"header","required":false,"description":"Set to 'recurring_payment' for subscription payment flows","schema":{"type":"string","enum":["recurring_payment"]}}]}

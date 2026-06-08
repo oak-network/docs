@@ -13,13 +13,16 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
+    "gen-api-docs": "docusaurus gen-api-docs crowdsplits",
+    "clean-api-docs": "docusaurus clean-api-docs crowdsplits",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.1",
     "@docusaurus/preset-classic": "3.9.1",
-    "@docusaurus/theme-mermaid": "^3.9.1",
+    "@docusaurus/theme-common": "3.9.1",
+    "@docusaurus/theme-mermaid": "3.9.1",
     "@fontsource/albert-sans": "^5.2.8",
     "@fontsource/instrument-serif": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
@@ -28,6 +31,8 @@
     "@fontsource/outfit": "^5.2.8",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
+    "docusaurus-plugin-openapi-docs": "^4.7.1",
+    "docusaurus-theme-openapi-docs": "^4.7.1",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -53,5 +58,21 @@
   },
   "engines": {
     "node": ">=20.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@docusaurus/babel": "3.9.1",
+      "@docusaurus/bundler": "3.9.1",
+      "@docusaurus/cssnano-preset": "3.9.1",
+      "@docusaurus/faster": "3.9.1",
+      "@docusaurus/logger": "3.9.1",
+      "@docusaurus/mdx-loader": "3.9.1",
+      "@docusaurus/plugin-content-docs": "3.9.1",
+      "@docusaurus/theme-common": "3.9.1",
+      "@docusaurus/types": "3.9.1",
+      "@docusaurus/utils": "3.9.1",
+      "@docusaurus/utils-common": "3.9.1",
+      "@docusaurus/utils-validation": "3.9.1"
+    }
   }
 }
