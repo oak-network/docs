@@ -357,8 +357,8 @@
     { "source": "/docs/api/:slug*", "destination": "/contracts/overview", "permanent": true },
     { "source": "/docs/api", "destination": "/contracts/overview", "permanent": true },
     { "source": "/docs/payment-api/:slug*", "destination": "/api-reference", "permanent": true },
-    { "source": "/blog/:slug*", "destination": "/", "permanent": true },
-    { "source": "/blog", "destination": "/", "permanent": true },
+    { "source": "/blog/:slug*", "destination": "/blog/overview", "permanent": true },
+    { "source": "/blog", "destination": "/blog/overview", "permanent": true },
     { "source": "/docs/:slug*", "destination": "/:slug*", "permanent": true }
   ]
 }
