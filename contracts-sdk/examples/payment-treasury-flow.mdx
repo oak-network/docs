@@ -1,0 +1,324 @@
+---
+title: "Payment Treasury Flow"
+---
+
+> **Source:** Full executable TypeScript in `contract/src/examples/03-campaign-payment-treasury/`. This page summarizes the flow — read the source for complete per-step code.
+
+<Info>
+
+**Prerequisites**
+
+Your platform must be enlisted with the PaymentTreasury (or TimeConstrainedPaymentTreasury) implementation registered and approved — see [Platform Enlistment](/contracts-sdk/examples/platform-enlistment).
+
+</Info>
+
+## The Story
+
+**CeloMarket** is an online marketplace where independent artisans sell handcrafted goods. Unlike the crowdfunding scenarios, CeloMarket does not run time-bound campaigns with pledges and rewards. Instead, it processes individual **e-commerce transactions** — a buyer selects a product, pays with cryptocurrency, and the platform fulfills the order.
+
+CeloMarket uses the **PaymentTreasury** model, which works like a traditional payment processor but entirely on-chain. Every payment is broken down into **line items** (product price, shipping, tax) and follows a two-step flow for the off-chain path: the buyer pays, the treasury is funded, and the platform confirms after verifying the order. Direct on-chain checkout uses `processCryptoPayment` instead.
+
+In this scenario, a buyer named **Sam** purchases a handcrafted ceramic vase for **\$120** with **\$15 shipping**. The payment flows through the treasury, gets confirmed by the platform (off-chain path) or settles in one transaction (`processCryptoPayment`), and the funds become available for withdrawal after fees are disbursed.
+
+## Multi-token support
+
+Every payment record includes `paymentToken`. The treasury only accepts tokens that `CampaignInfo.isTokenAccepted` allows. Pending, confirmed, fee, and refund accounting is **per ERC-20 contract** (amounts in that token's decimals).
+
+## PaymentTreasury vs. TimeConstrainedPaymentTreasury
+
+The SDK's `oak.paymentTreasury(address)` supports **two on-chain variants** through the same interface:
+
+| Variant | Behavior |
+| --- | --- |
+| **PaymentTreasury** | Standard payment processing with no time restrictions. Payments can be created and confirmed at any time. |
+| **TimeConstrainedPaymentTreasury** | Adds a launch time and deadline enforced on-chain. Payments can only be created after the launch time and before the deadline. Enables `claimExpiredFunds` after deadline + claim delay. |
+
+From your code's perspective, there is no difference. Time constraints are enforced transparently by the contract.
+
+## NFT Handling
+
+All pledge/payment NFTs across every treasury type live on the `CampaignInfo` contract. No treasury contract is an ERC-721 itself. Before calling any refund function that burns an NFT (`claimRefundSelf`), the NFT owner must approve the treasury contract to manage the NFT via `campaignInfo.approve(treasuryAddress, tokenId)`.
+
+## Role Reference
+
+| Function | Who can call | Contract modifier |
+| --- | --- | --- |
+| `createPayment` / `createPaymentBatch` | Platform Admin | `onlyPlatformAdmin` |
+| `processCryptoPayment` | Anyone (buyer) | (no role modifier) |
+| `confirmPayment` / `confirmPaymentBatch` | Platform Admin | `onlyPlatformAdmin` |
+| `cancelPayment` | Platform Admin | `onlyPlatformAdmin` |
+| `claimRefundSelf(paymentId)` | Anyone (crypto payments only — refund goes to NFT owner) | (no role modifier) |
+| `claimRefund(paymentId, refundAddress)` | Platform Admin (off-chain payments only) | `onlyPlatformAdmin` |
+| `disburseFees` | Anyone | (no role modifier) |
+| `withdraw` | Platform Admin or Creator | `onlyPlatformAdminOrCampaignOwner` |
+| `claimExpiredFunds` | Platform Admin | `onlyPlatformAdmin` |
+| `claimNonGoalLineItems` | Platform Admin | `onlyPlatformAdmin` |
+
+## Steps
+
+### Step 1: Create Campaign
+
+Before deploying a PaymentTreasury, CeloMarket needs a `CampaignInfo` contract, which will hold NFT receipts for crypto payments. E-commerce campaigns typically have `goalAmount: 0n`.
+
+```typescript
+import { CAMPAIGN_INFO_FACTORY_EVENTS } from "@oaknetwork/contracts-sdk";
+
+const platformHash = keccak256(toHex("celomarket"));
+const identifierHash = keccak256(toHex("celomarket-storefront-2026"));
+const currency = toHex("USD", { size: 32 });
+const now = getCurrentTimestamp();
+
+const txHash = await factory.createCampaign({
+  creator: process.env.CELOMARKET_ADMIN_ADDRESS! as `0x${string}`,
+  identifierHash,
+  selectedPlatformHash: [platformHash],
+  campaignData: {
+    launchTime: now,
+    deadline: addDays(now, 365),    // storefront open for 1 year
+    goalAmount: 0n,                 // no funding goal for e-commerce
+    currency,
+  },
+  nftName: "CeloMarket Receipts",
+  nftSymbol: "CMR",
+  nftImageURI: "ipfs://QmXyz.../celomarket-receipt.png",
+  contractURI: "ipfs://QmXyz.../metadata.json",
+});
+
+const receipt = await oak.waitForReceipt(txHash);
+```
+
+After the transaction is mined, the deployed `CampaignInfo` address can be discovered two ways. **Both are shown in the source file** — prefer Approach 1 when you have the receipt.
+
+**Approach 1 — Decode `CampaignCreated` from the receipt (recommended):** deterministic and works immediately, regardless of RPC indexing lag.
+
+```typescript
+let campaignInfoAddress: `0x${string}` | undefined;
+
+for (const log of receipt.logs) {
+  try {
+    const decoded = factory.events.decodeLog({
+      topics: log.topics as [`0x${string}`, ...`0x${string}`[]],
+      data: log.data as `0x${string}`,
+    });
+
+    if (decoded.eventName === CAMPAIGN_INFO_FACTORY_EVENTS.CampaignCreated) {
+      campaignInfoAddress = decoded.args?.campaignInfoAddress as `0x${string}`;
+      break;
+    }
+  } catch {
+    // Log belongs to a different contract — skip
+  }
+}
+
+console.log("CampaignInfo (from receipt):", campaignInfoAddress);
+```
+
+**Approach 2 — Look up via `identifierToCampaignInfo` (convenience):** handy when you only have the identifier and did not keep the receipt. On some RPC providers the mapping may briefly return the zero address right after the transaction, so prefer Approach 1 when the receipt is available.
+
+```typescript
+const lookedUp = await factory.identifierToCampaignInfo(identifierHash);
+console.log("CampaignInfo (from lookup):", lookedUp);
+```
+
+### Step 2: Deploy Treasury
+
+CeloMarket deploys a PaymentTreasury linked to the `CampaignInfo` from Step 1. Slot `2n` is PaymentTreasury; slot `3n` is TimeConstrainedPaymentTreasury.
+
+```typescript
+import { TREASURY_FACTORY_EVENTS } from "@oaknetwork/contracts-sdk";
+
+const platformHash = keccak256(toHex("celomarket"));
+const paymentTreasuryImplementationId = 2n;
+
+const deployTxHash = await treasuryFactory.deploy(
+  platformHash,
+  campaignInfoAddress,
+  paymentTreasuryImplementationId,
+);
+
+const deployReceipt = await oak.waitForReceipt(deployTxHash);
+
+// Decode the TreasuryDeployed event from the receipt
+let treasuryAddress: `0x${string}` | undefined;
+
+for (const log of deployReceipt.logs) {
+  try {
+    const decoded = treasuryFactory.events.decodeLog({
+      topics: log.topics as [`0x${string}`, ...`0x${string}`[]],
+      data: log.data as `0x${string}`,
+    });
+
+    if (decoded.eventName === TREASURY_FACTORY_EVENTS.TreasuryDeployed) {
+      treasuryAddress = decoded.args?.treasuryAddress as `0x${string}`;
+      break;
+    }
+  } catch {
+    // Log belongs to a different contract — skip
+  }
+}
+
+console.log("PaymentTreasury deployed at:", treasuryAddress);
+```
+
+### Step 3: Create Payment Record — Flow A (Platform Admin)
+
+For off-chain payments, the Platform Admin creates a payment record on-chain that describes the order: payment ID, line items, external fees, and expiration. This step moves no funds; it records intent. The buyer pays through off-chain rails; the platform later confirms.
+
+```typescript
+const paymentId = keccak256(toHex("order-12345"));
+const buyerId = keccak256(toHex("sam-user-id"));
+const itemId = keccak256(toHex("handcrafted-vase-001"));
+const paymentToken = process.env.USDC_TOKEN_ADDRESS! as `0x${string}`;
+const totalAmount = 135_000_000n; // $135 (product + shipping)
+const expiration = BigInt(Math.floor(Date.now() / 1000)) + 86400n; // 24 hours
+
+const lineItems: LineItem[] = [
+  { typeId: keccak256(toHex("product")),  amount: 120_000_000n }, // $120
+  { typeId: keccak256(toHex("shipping")), amount: 15_000_000n },  // $15
+];
+
+const externalFees: ExternalFees[] = [
+  { feeType: keccak256(toHex("payment-processor")), feeAmount: 2_700_000n }, // $2.70
+];
+
+await paymentTreasury.createPayment(
+  paymentId, buyerId, itemId, paymentToken,
+  totalAmount, expiration, lineItems, externalFees,
+);
+```
+
+Batch variant: `createPaymentBatch` creates multiple records in a single transaction.
+
+### Step 4: Process Crypto Payment — Flow B (Buyer)
+
+`processCryptoPayment` is an **independent** entry point: it creates the payment record AND transfers ERC-20 tokens to the treasury in a single transaction. It does not complete a prior `createPayment`. An NFT is minted as proof of payment.
+
+```typescript
+const paymentId = keccak256(toHex("order-12345"));
+const paymentToken = process.env.USDC_TOKEN_ADDRESS! as `0x${string}`;
+
+// Prerequisite: Sam has approved the treasury to spend his USDC
+const cryptoPaymentTxHash = await paymentTreasury.processCryptoPayment(
+  paymentId,
+  itemId,
+  process.env.SAM_ADDRESS! as `0x${string}`,
+  paymentToken,
+  135_000_000n,
+  lineItems,
+  externalFees,
+);
+```
+
+### Step 5: Confirm Payment — Flow A (Platform Admin)
+
+After Sam's tokens arrive in the treasury (off-chain path), CeloMarket runs fraud detection and validates the shipping address, then confirms on-chain. Until confirmation, funds remain in a pending state. Omit this step if using Flow B.
+
+```typescript
+const paymentId = keccak256(toHex("order-12345"));
+
+await paymentTreasury.confirmPayment(
+  paymentId,
+  process.env.SAM_ADDRESS! as `0x${string}`,
+);
+```
+
+Batch variant: `confirmPaymentBatch(paymentIds, buyerAddresses)` for high-volume platforms.
+
+### Step 6: Read Payment Data
+
+All payment and treasury data is publicly readable. Useful for order detail pages, customer support dashboards, and audit reports.
+
+```typescript
+const paymentData = await paymentTreasury.getPaymentData(paymentId);
+console.log("Buyer:", paymentData.buyerAddress);
+console.log("Confirmed:", paymentData.isConfirmed);
+console.log("Is crypto payment:", paymentData.isCryptoPayment);
+
+const raised = await paymentTreasury.getRaisedAmount();
+const available = await paymentTreasury.getAvailableRaisedAmount();
+const expected = await paymentTreasury.getExpectedAmount();
+const refunded = await paymentTreasury.getRefundedAmount();
+```
+
+### Step 7: Handle Refunds
+
+Three distinct paths:
+
+**A) Cancel an unconfirmed off-chain payment** — Platform Admin calls `cancelPayment(paymentId)`. Works only on unconfirmed, non-expired, non-crypto payments.
+
+**B) Refund a confirmed off-chain payment (no NFT)** — Platform Admin calls `claimRefund(paymentId, refundAddress)`.
+
+**C) Refund a crypto payment (NFT)** — Any caller can `claimRefundSelf(paymentId)`. The contract looks up the NFT owner, burns the NFT, and sends the refundable amount to that owner. Crypto payments are auto-confirmed; no prior `cancelPayment` is needed (and would revert).
+
+```typescript
+// Path C: crypto payment refund (NFT owner)
+// Approve the treasury on CampaignInfo where the NFT lives
+const approveTxHash = await samCampaign.approve(treasuryAddress, tokenId);
+await samOak.waitForReceipt(approveTxHash);
+
+const selfRefundTxHash = await samTreasury.claimRefundSelf(paymentId);
+await samOak.waitForReceipt(selfRefundTxHash);
+```
+
+Only line items marked as `canRefund: true` at creation time are included in the refund.
+
+### Step 8: Disburse Fees
+
+Transfers accumulated protocol and platform fees to their recipients. Anyone can call it. Can be called multiple times as new payments are confirmed.
+
+```typescript
+const feeTxHash = await paymentTreasury.disburseFees();
+await oak.waitForReceipt(feeTxHash);
+```
+
+### Step 9: Withdraw Funds
+
+After fees have been disbursed, the Platform Admin or creator withdraws all remaining confirmed funds to the campaign owner's wallet.
+
+```typescript
+const withdrawTxHash = await paymentTreasury.withdraw();
+await oak.waitForReceipt(withdrawTxHash);
+```
+
+### Step 10: Claim Expired Funds (TimeConstrainedPaymentTreasury only)
+
+After the campaign deadline plus the platform's `claimDelay`, the Platform Admin sweeps all remaining balances (confirmed, non-goal, refundable, fees).
+
+```typescript
+const claimTxHash = await paymentTreasury.claimExpiredFunds();
+```
+
+If the claim delay has not elapsed, the call reverts with `PaymentTreasuryClaimWindowNotReached`.
+
+### Step 11: Claim Non-Goal Line Items (Platform Admin)
+
+Non-goal line items (shipping fees, handling charges) accumulate separately. Call once per accepted token.
+
+```typescript
+const usdcToken = process.env.USDC_TOKEN_ADDRESS! as `0x${string}`;
+await paymentTreasury.claimNonGoalLineItems(usdcToken);
+```
+
+### Step 12: Pause and Unpause (Optional)
+
+```typescript
+await paymentTreasury.pauseTreasury(keccak256(toHex("fraud-investigation")));
+// ... later ...
+await paymentTreasury.unpauseTreasury(keccak256(toHex("investigation-cleared")));
+```
+
+### Step 13: Cancel Treasury (Optional)
+
+Permanent. Once cancelled, no new payments, confirmations, withdrawals, or fee disbursements are possible. Buyers can still claim refunds.
+
+```typescript
+await paymentTreasury.cancelTreasury(keccak256(toHex("terms-violation")));
+```
+
+## Related
+
+- [Payment Treasury](/contracts-sdk/payment-treasury)
+- [CampaignInfoFactory](/contracts-sdk/campaign-info-factory)
+- [CampaignInfo](/contracts-sdk/campaign-info)
+- [TreasuryFactory](/contracts-sdk/treasury-factory)
+- [Error Handling](/contracts-sdk/examples/error-handling)

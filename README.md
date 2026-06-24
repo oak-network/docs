@@ -1,11 +1,10 @@
 # Oak Network Documentation
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Docusaurus](https://img.shields.io/badge/Docusaurus-3.0.0-blue)](https://docusaurus.io/)
+[![Mintlify](https://img.shields.io/badge/Mintlify-docs-brightgreen)](https://mintlify.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-18.0.0-blue)](https://reactjs.org/)
 
-> **Oak Network Documentation** - Comprehensive documentation for the Oak Network crowdfunding protocol built with Docusaurus.
+> **Oak Network Documentation** - Comprehensive documentation for the Oak Network crowdfunding protocol built with Mintlify.
 
 ## 📋 Table of Contents
 
@@ -13,16 +12,16 @@
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Development](#development)
-- [Testing](#testing)
-- [Deployment](#deployment)
+- [Content Management](#content-management)
 - [Contributing](#contributing)
-- [Code Standards](#code-standards)
-- [Security](#security)
+- [Content Standards](#content-standards)
+- [Deployment](#deployment)
 - [License](#license)
+- [Support](#support)
 
 ## 📖 Overview
 
-This repository contains the documentation for Oak Network, a decentralized crowdfunding protocol built on the Celo blockchain. The documentation is built with Docusaurus and provides comprehensive guides for developers, users, and contributors.
+This repository contains the documentation for Oak Network, a decentralized crowdfunding protocol built on the Celo blockchain. The documentation is built with Mintlify and provides comprehensive guides for developers, users, and contributors.
 
 ### Documentation Sections
 
@@ -30,24 +29,24 @@ This repository contains the documentation for Oak Network, a decentralized crow
 - **Smart Contracts** - Detailed API reference for all smart contracts
 - **Integration Guides** - Step-by-step guides for developers
 - **Security** - Security model, audits, and best practices
-- **Deployment** - Deployment guides for different networks
-- **API Reference** - Complete API documentation
+- **Operations** - Operational guides and runbooks
+- **API Reference** - Complete Payment API documentation, synced from the backend OpenAPI spec
 
 ## 🔧 Prerequisites
 
-- **Node.js** 18+ and pnpm
+- **Node.js** 18+ (to run the Mintlify CLI)
 - **Git** for version control
-- **Basic knowledge** of Markdown and React (for contributions)
+- **Basic knowledge** of Markdown / MDX (for contributions)
 
 ## 🚀 Installation
 
 ```bash
 # Clone the repository
 git clone https://github.com/oak-network/docs.git
-cd docs/oaknetwork
+cd docs
 
-# Install dependencies
-pnpm install
+# Install the Mintlify CLI
+npm i -g mint      # or run ad-hoc with: npx mint@latest <cmd>
 ```
 
 ## 💻 Development
@@ -55,39 +54,33 @@ pnpm install
 ### Start Development Server
 
 ```bash
-# Start the development server
-pnpm start
+# Start the local preview server
+mint dev
 
 # The site will be available at http://localhost:3000
 ```
 
-### Build Documentation
+### Validate the Build
 
 ```bash
-# Build the documentation for production
-pnpm build
+# Check internal links
+mint broken-links
 
-# The built files will be in the 'build' directory
+# Validate docs.json and the OpenAPI spec
+mint validate
 ```
 
-### Serve Production Build
-
-```bash
-# Serve the production build locally
-pnpm serve
-
-# The site will be available at http://localhost:3000
-```
+All configuration lives in [`docs.json`](./docs.json) — theme, navigation, redirects, SEO, and the API reference.
 
 ## 📝 Content Management
 
 ### Adding New Pages
 
-1. Create a new Markdown file in the `docs/` directory
-2. Add the page to `sidebars.ts` for navigation
+1. Create a new `.mdx` file in the relevant content directory
+2. Add its path (without the `.mdx` extension) to the appropriate `group` in `docs.json` → `navigation.tabs` — a page is only visible once it is listed in the navigation
 3. Use proper frontmatter for metadata
 
-```markdown
+```mdx
 ---
 title: "Page Title"
 description: "Page description"
@@ -100,16 +93,14 @@ Your content here...
 
 ### Adding Blog Posts
 
-1. Create a new Markdown file in `blog/` directory
-2. Use the format: `YYYY-MM-DD-title.md`
+1. Create a new `.mdx` file in the `blog/` directory
+2. Add it to the **Blog** tab in `docs.json`
 3. Include proper frontmatter
 
-```markdown
+```mdx
 ---
-slug: post-title
 title: "Post Title"
-authors: [author-name]
-tags: [tag1, tag2]
+description: "Post description"
 ---
 
 # Post Content
@@ -117,11 +108,15 @@ tags: [tag1, tag2]
 Your blog post content...
 ```
 
-### Custom Components
+### Components
 
-- **Mermaid Diagrams** - Use the `MermaidDiagram` component for interactive diagrams
-- **Custom React Components** - Add to `src/components/`
-- **Styling** - Modify `src/css/custom.css`
+- **Callouts** - `<Tip>`, `<Info>`, `<Note>`, `<Warning>`
+- **Mermaid Diagrams** - fenced ` ```mermaid ` code blocks
+- **Styling** - modify [`style.css`](./style.css)
+
+### API Reference
+
+The **API Reference** tab is generated natively by Mintlify from the bundled OpenAPI spec at [`api-specs/v1/crowdsplits.yaml`](./api-specs/v1/crowdsplits.yaml). The spec is **not** edited by hand — it is synced from the [`oak-network/crowdsplit`](https://github.com/oak-network/crowdsplit) backend.
 
 ## 🤝 Contributing
 
@@ -132,19 +127,16 @@ We welcome contributions to improve the documentation! Please read our [Contribu
 ```bash
 # Fork and clone the repository
 git clone https://github.com/your-username/docs.git
-cd docs/oaknetwork
-
-# Install dependencies
-npm install
+cd docs
 
 # Create a feature branch
 git checkout -b feature/your-feature-name
 
-# Start development server
-npm start
+# Start the preview server
+mint dev
 
-# Make your changes and test
-npm run build
+# Make your changes, then validate
+mint broken-links && mint validate
 
 # Commit and push
 git add .
@@ -176,11 +168,6 @@ git push origin feature/your-feature-name
 *Italic text* for subtle emphasis
 `code` for inline code
 
-```javascript
-// Code blocks with syntax highlighting
-const example = "Hello World";
-```
-
 - Use bullet points for lists
 - Keep lines under 80 characters
 - Use descriptive link text
@@ -197,68 +184,37 @@ const example = "Hello World";
 ### File Organization
 
 ```
-docs/
-├── concepts/          # Core concepts
-├── contracts/         # Smart contract docs
-├── guides/           # Integration guides
-├── security/         # Security documentation
-└── deployment/       # Deployment guides
-
-blog/
-├── 2024-12-20-*.md   # Blog posts
-└── authors.yml       # Author information
+concepts/         # Core concepts
+contracts/        # Smart contract docs
+contracts-sdk/    # Contracts client SDK reference
+sdk/              # Payments SDK reference
+guides/           # Integration guides
+security/         # Security documentation
+operations/       # Operational guides
+blog/             # Blog posts
+api-specs/        # Bundled OpenAPI spec (powers the API Reference tab)
 ```
 
 ### Mermaid Diagrams
 
-```markdown
-import MermaidDiagram from '@site/src/components/MermaidDiagram';
-
-<MermaidDiagram title="Architecture Overview">
-
+````mdx
 ```mermaid
 graph TB
     A[User] --> B[Contract]
     B --> C[Result]
 ```
-
-</MermaidDiagram>
-```
+````
 
 ## 🚀 Deployment
 
-### Development
+This site is built with Mintlify, so there is no local build step to run.
+
+Before opening a PR, verify locally:
 
 ```bash
-# Start development server
-npm start
+mint dev          # preview the site
+mint validate     # validate docs.json and the OpenAPI spec
 ```
-
-### Production Build
-
-```bash
-# Build for production
-npm run build
-
-# Serve production build
-npm run serve
-```
-
-### GitHub Pages
-
-```bash
-# Deploy to GitHub Pages
-npm run deploy
-```
-
-### Custom Deployment
-
-The built files in the `build/` directory can be deployed to any static hosting service:
-
-- **Vercel** - Connect your GitHub repository
-- **Netlify** - Drag and drop the build folder
-- **AWS S3** - Upload build files to S3 bucket
-- **Cloudflare Pages** - Connect your repository
 
 ## 📄 License
 
@@ -273,8 +229,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Docusaurus** - Documentation framework
-- **React** - UI library
+- **Mintlify** - Documentation platform
 - **Mermaid** - Diagram generation
 - **Community** - Feedback, contributions, and support
 

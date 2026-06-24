@@ -1,0 +1,115 @@
+---
+title: "Subscriptions"
+---
+
+A subscription ties a customer to a plan for recurring billing. Customers subscribe to a published plan, and the system handles billing at each interval. You can list, retrieve, pay, and cancel subscriptions through the SDK.
+
+```typescript
+import { createOakClient, createSubscriptionService } from '@oaknetwork/payments-sdk';
+
+const client = createOakClient({ ... });
+const subscriptions = createSubscriptionService(client);
+```
+
+## Methods
+
+| Method | Description |
+|---|---|
+| `subscribe(request)` | Subscribe a customer to a plan |
+| `cancel(subscriptionId)` | Cancel an active subscription |
+| `list(query?)` | List subscriptions with optional filters |
+| `get(subscriptionId)` | Get a subscription by ID |
+| `pay(subscriptionId, request)` | Make a payment on a subscription |
+
+## Subscribe
+
+```typescript
+const result = await subscriptions.subscribe({
+  plan_id: 'plan_abc123',
+  customer_id: 'cus_abc123',
+  payment_method_id: 'pm_xyz789',
+});
+
+if (result.ok) {
+  console.log('Subscription ID:', result.value.data.id);
+  console.log('Status:', result.value.data.status);
+}
+```
+
+### Subscribe request fields
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `plan_id` | `string` | Yes | The plan to subscribe to |
+| `customer_id` | `string` | Yes | The customer subscribing |
+| `payment_method_id` | `string` | Yes | Payment method for billing |
+
+## Cancel a subscription
+
+```typescript
+const result = await subscriptions.cancel('sub_abc123');
+
+if (result.ok) {
+  console.log('Subscription cancelled');
+}
+```
+
+## List subscriptions
+
+```typescript
+const result = await subscriptions.list({
+  limit: 20,
+  offset: 0,
+});
+
+if (result.ok) {
+  for (const sub of result.value.data) {
+    console.log(`${sub.id} — ${sub.status}`);
+  }
+}
+```
+
+## Get a subscription
+
+```typescript
+const result = await subscriptions.get('sub_abc123');
+
+if (result.ok) {
+  const sub = result.value.data;
+  console.log('Plan:', sub.plan_id);
+  console.log('Status:', sub.status);
+  console.log('Next billing:', sub.next_billing_date);
+}
+```
+
+## Pay a subscription
+
+Manually trigger a payment on a subscription (e.g., for retry after a failed automatic payment):
+
+```typescript
+const result = await subscriptions.pay('sub_abc123', {
+  amount: 2999,
+  payment_method_id: 'pm_xyz789',
+});
+
+if (result.ok) {
+  console.log('Payment processed:', result.value.data);
+}
+```
+
+## Subscription statuses
+
+Subscriptions move through several statuses during their lifecycle, including active, paused, cancelled, and expired states.
+
+## Response data
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | `string` | Subscription ID |
+| `plan_id` | `string` | Associated plan ID |
+| `customer_id` | `string` | Subscribing customer ID |
+| `status` | `Status` | Current subscription status |
+| `payment_method_id` | `string` | Payment method used |
+| `next_billing_date` | `string` | Next billing date |
+| `created_at` | `string` | ISO timestamp |
+| `updated_at` | `string` | ISO timestamp |

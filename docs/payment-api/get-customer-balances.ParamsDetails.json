@@ -1,1 +1,0 @@
-{"parameters":[{"name":"customer_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"provider","in":"query","description":"Comma-separated provider names (case-insensitive)","schema":{"type":"string"}},{"name":"role","in":"query","description":"Comma-separated roles (case-insensitive)","schema":{"type":"string"}}]}

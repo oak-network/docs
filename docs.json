@@ -1,0 +1,364 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Oak Network",
+  "colors": {
+    "primary": "#FBA244",
+    "light": "#E08A2B",
+    "dark": "#FCA951"
+  },
+  "appearance": {
+    "default": "system"
+  },
+  "background": {
+    "decoration": "grid"
+  },
+  "fonts": {
+    "heading": { "family": "Inter Tight", "weight": 500 }
+  },
+  "logo": {
+    "light": "/logo/logo-light.svg",
+    "dark": "/logo/logo.svg",
+    "href": "https://oaknetwork.org"
+  },
+  "favicon": "/favicon.ico",
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude", "perplexity"]
+  },
+  "navbar": {
+    "links": [
+      { "label": "Discord", "href": "https://discord.com/invite/srhtEpWBHx" }
+    ],
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/oak-network"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Home",
+        "icon": "house",
+        "groups": [
+          {
+            "group": "Home",
+            "pages": [
+              "index"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Documentation",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "concepts/overview",
+              "concepts/campaigns",
+              "concepts/platforms",
+              "concepts/treasuries",
+              "concepts/security",
+              "concepts/open-source-philosophy"
+            ]
+          },
+          {
+            "group": "Integration Guides",
+            "pages": [
+              "guides/create-campaign",
+              "guides/platform-integration",
+              "guides/platform-journey",
+              "guides/platform-sdk"
+            ]
+          },
+          {
+            "group": "Security & Audits",
+            "pages": [
+              "security/overview",
+              "security/audits",
+              "security/bug-bounty",
+              "security/best-practices",
+              "security/checklist"
+            ]
+          },
+          {
+            "group": "Operations",
+            "pages": [
+              "operations/deployment",
+              "operations/bounty-program"
+            ]
+          },
+          {
+            "group": "Protocol",
+            "pages": [
+              "roadmap"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Smart Contracts",
+        "icon": "file-contract",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "contracts/overview",
+              "contracts/deployment"
+            ]
+          },
+          {
+            "group": "Core Contracts",
+            "pages": [
+              "contracts/campaign-info-factory",
+              "contracts/campaign-info",
+              "contracts/global-params",
+              "contracts/treasury-factory"
+            ]
+          },
+          {
+            "group": "Treasury Contracts",
+            "pages": [
+              "contracts/base-treasury",
+              "contracts/all-or-nothing"
+            ]
+          },
+          {
+            "group": "Utility Contracts",
+            "pages": [
+              "contracts/admin-access-checker",
+              "contracts/campaign-access-checker",
+              "contracts/pausable-cancellable",
+              "contracts/timestamp-checker",
+              "contracts/item-registry",
+              "contracts/fiat-enabled"
+            ]
+          },
+          {
+            "group": "Interfaces",
+            "pages": [
+              "contracts/interfaces-overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Contracts SDK",
+        "icon": "cube",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "contracts-sdk/overview",
+              "contracts-sdk/installation",
+              "contracts-sdk/quickstart",
+              "contracts-sdk/client",
+              "sdk/showcase"
+            ]
+          },
+          {
+            "group": "Contract Entities",
+            "pages": [
+              "contracts-sdk/global-params",
+              "contracts-sdk/campaign-info-factory",
+              "contracts-sdk/campaign-info",
+              "contracts-sdk/treasury-factory",
+              "contracts-sdk/payment-treasury",
+              "contracts-sdk/all-or-nothing",
+              "contracts-sdk/keep-whats-raised",
+              "contracts-sdk/item-registry"
+            ]
+          },
+          {
+            "group": "Examples",
+            "pages": [
+              "contracts-sdk/examples/overview",
+              "contracts-sdk/examples/platform-enlistment",
+              "contracts-sdk/examples/all-or-nothing-campaign",
+              "contracts-sdk/examples/keep-whats-raised-campaign",
+              "contracts-sdk/examples/payment-treasury-flow",
+              "contracts-sdk/examples/event-monitoring",
+              "contracts-sdk/examples/error-handling",
+              "contracts-sdk/examples/advanced-patterns"
+            ]
+          },
+          {
+            "group": "Use Cases",
+            "pages": [
+              "contracts-sdk/use-cases/overview",
+              "contracts-sdk/use-cases/crowdfunding",
+              "contracts-sdk/use-cases/escrow",
+              "contracts-sdk/use-cases/marketplace",
+              "contracts-sdk/use-cases/flexible-funding",
+              "contracts-sdk/use-cases/prepayment"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "contracts-sdk/events",
+              "contracts-sdk/metrics",
+              "contracts-sdk/multicall",
+              "contracts-sdk/error-handling",
+              "contracts-sdk/utilities"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Payments SDK",
+        "icon": "credit-card",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "sdk/overview",
+              "sdk/installation",
+              "sdk/quickstart",
+              "sdk/authentication",
+              "sdk/showcase"
+            ]
+          },
+          {
+            "group": "Services",
+            "pages": [
+              "sdk/customers",
+              "sdk/payments",
+              "sdk/payment-methods",
+              "sdk/webhooks",
+              "sdk/transactions",
+              "sdk/transfers",
+              "sdk/plans",
+              "sdk/subscriptions",
+              "sdk/refunds",
+              "sdk/disputes",
+              "sdk/payouts",
+              "sdk/files",
+              "sdk/taxes",
+              "sdk/buy-and-sell",
+              "sdk/providers"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "sdk/error-handling",
+              "sdk/environments"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "code",
+        "versions": [
+          {
+            "version": "v1",
+            "default": true,
+            "openapi": "api-specs/v1/crowdsplits.yaml"
+          }
+        ]
+      },
+      {
+        "tab": "Blog",
+        "icon": "newspaper",
+        "groups": [
+          {
+            "group": "Blog",
+            "pages": [
+              "blog/overview",
+              "blog/oak-network-protocol-launch",
+              "blog/security-audit-complete",
+              "blog/2026-roadmap-announcement"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "api": {
+    "playground": {
+      "display": "interactive"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/oak_network",
+      "github": "https://github.com/oak-network",
+      "discord": "https://discord.gg/srhtEpWBHx",
+      "linkedin": "https://www.linkedin.com/company/oaknetwork"
+    },
+    "links": [
+      {
+        "header": "Documentation",
+        "items": [
+          { "label": "Getting Started", "href": "/" },
+          { "label": "Core Concepts", "href": "/concepts/overview" },
+          { "label": "Payments SDK", "href": "/sdk/overview" },
+          { "label": "Contracts SDK", "href": "/contracts-sdk/overview" },
+          { "label": "Smart Contracts", "href": "/contracts/overview" }
+        ]
+      },
+      {
+        "header": "Integration",
+        "items": [
+          { "label": "Payments SDK", "href": "/sdk/overview" },
+          { "label": "Create Campaign", "href": "/guides/create-campaign" },
+          { "label": "Platform Integration", "href": "/guides/platform-integration" }
+        ]
+      },
+      {
+        "header": "Community",
+        "items": [
+          { "label": "Discord", "href": "https://discord.gg/srhtEpWBHx" },
+          { "label": "X", "href": "https://x.com/oak_network" },
+          { "label": "GitHub", "href": "https://github.com/oak-network" }
+        ]
+      },
+      {
+        "header": "Protocol",
+        "items": [
+          { "label": "Audit Reports", "href": "/security/audits" },
+          { "label": "Deployment Addresses", "href": "/contracts/deployment" },
+          { "label": "Open Source Philosophy", "href": "/concepts/open-source-philosophy" }
+        ]
+      }
+    ]
+  },
+  "seo": {
+    "indexing": "navigable",
+    "metatags": {
+      "keywords": "Oak Network, crowdfunding, Celo, blockchain, smart contracts, SDK, creator commerce, decentralized, payments",
+      "author": "Oak Network",
+      "og:description": "Decentralized crowdfunding and commerce infrastructure on Celo. SDKs, smart contracts, and integration guides.",
+      "og:image": "/images/oak-social-card.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:type": "website",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@oak_network",
+      "twitter:creator": "@oak_network",
+      "twitter:image": "/images/oak-social-card.png"
+    }
+  },
+  "redirects": [
+    { "source": "/docs/intro", "destination": "/", "permanent": true },
+    { "source": "/docs/roadmap", "destination": "/roadmap", "permanent": true },
+    { "source": "/docs/concepts/:slug*", "destination": "/concepts/:slug*", "permanent": true },
+    { "source": "/docs/guides/:slug*", "destination": "/guides/:slug*", "permanent": true },
+    { "source": "/docs/sdk/:slug*", "destination": "/sdk/:slug*", "permanent": true },
+    { "source": "/docs/contracts-sdk/:slug*", "destination": "/contracts-sdk/:slug*", "permanent": true },
+    { "source": "/docs/contracts/:slug*", "destination": "/contracts/:slug*", "permanent": true },
+    { "source": "/docs/security/README", "destination": "/security/overview", "permanent": true },
+    { "source": "/docs/security/:slug*", "destination": "/security/:slug*", "permanent": true },
+    { "source": "/docs/deployment/:slug*", "destination": "/operations/deployment", "permanent": true },
+    { "source": "/docs/operations/:slug*", "destination": "/operations/:slug*", "permanent": true },
+    { "source": "/docs/api/:slug*", "destination": "/contracts/overview", "permanent": true },
+    { "source": "/docs/api", "destination": "/contracts/overview", "permanent": true },
+    { "source": "/docs/payment-api/:slug*", "destination": "/api-reference", "permanent": true },
+    { "source": "/blog/:slug*", "destination": "/", "permanent": true },
+    { "source": "/blog", "destination": "/", "permanent": true },
+    { "source": "/docs/:slug*", "destination": "/:slug*", "permanent": true }
+  ]
+}
