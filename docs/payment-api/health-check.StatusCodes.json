@@ -1,1 +1,0 @@
-{"responses":{"200":{"description":"All systems healthy"},"503":{"description":"One or more systems unhealthy","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","example":"error"},"message":{"type":"string","example":"RabbitMQ is not available"}}}}}}}}

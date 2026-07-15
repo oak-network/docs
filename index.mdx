@@ -1,0 +1,143 @@
+---
+title: "Oak Network"
+description: "Decentralized crowdfunding and commerce infrastructure on Celo."
+mode: "custom"
+---
+
+<div className="oak-landing">
+
+{/* ----------------------------------------------------------------- Hero -- */}
+<section className="oak-hero">
+  <h1 className="oak-title">Oak Network</h1>
+  <p className="oak-subtitle">
+    We build the behind the scenes 'engine' that lets creators run their own
+    Kickstarter style campaigns, online shops, and preorders, with blockchain
+    quietly handling the money and trust in the background.
+  </p>
+  <div className="oak-cta-row">
+    <a className="oak-btn oak-btn-primary" href="/guides/create-campaign">Get started →</a>
+    <a className="oak-btn oak-btn-secondary" href="/concepts/overview">Explore the concepts</a>
+  </div>
+</section>
+
+{/* ------------------------------------------------------------- Trust bar -- */}
+<div className="oak-trust-bar">
+  <div className="oak-trust-group">
+    <span className="oak-trust-label">Backed by</span>
+    <span className="oak-trust-logos">
+      <img className="oak-trust-logo" src="/images/kickstarter.png" alt="Kickstarter" />
+      <img className="oak-trust-logo oak-logo-a16z" src="/images/a16z.png" alt="a16z crypto" />
+    </span>
+  </div>
+  <span className="oak-trust-divider" />
+  <div className="oak-trust-group">
+    <span className="oak-trust-label">Audited by</span>
+    <span className="oak-trust-logos">
+      <img className="oak-trust-logo" src="/images/open-zeppelin.png" alt="OpenZeppelin" />
+    </span>
+  </div>
+</div>
+
+{/* ------------------------------------------------------ Illustration cards -- */}
+{/* Icons are Mintlify's <Icon> (same Font Awesome set as the navbar tabs). */}
+<div className="oak-features">
+  <a className="oak-feature" href="/guides/create-campaign">
+    <span className="oak-feature-art"><Icon icon="rocket" size={90} iconType="thin" color="#FBA244" /></span>
+    <h3 className="oak-feature-title">Create your first campaign</h3>
+    <p className="oak-feature-desc">Get on-chain in minutes with a step-by-step guide.</p>
+  </a>
+  <a className="oak-feature" href="/concepts/overview">
+    <span className="oak-feature-art"><Icon icon="book" size={90} iconType="thin" color="#FBA244" /></span>
+    <h3 className="oak-feature-title">Core concepts</h3>
+    <p className="oak-feature-desc">How campaigns, platforms, and treasuries fit together.</p>
+  </a>
+  <a className="oak-feature" href="/sdk/overview">
+    <span className="oak-feature-art"><Icon icon="credit-card" size={90} iconType="thin" color="#FBA244" /></span>
+    <h3 className="oak-feature-title">Payments SDK</h3>
+    <p className="oak-feature-desc">Handle customers, payments, and payouts with the TypeScript SDK.</p>
+  </a>
+  <a className="oak-feature" href="/contracts-sdk/overview">
+    <span className="oak-feature-art"><Icon icon="cube" size={90} iconType="thin" color="#FBA244" /></span>
+    <h3 className="oak-feature-title">Contracts SDK</h3>
+    <p className="oak-feature-desc">Read and write Oak contracts from TypeScript, fully typed.</p>
+  </a>
+  <a className="oak-feature" href="/contracts/overview">
+    <span className="oak-feature-art"><Icon icon="file-contract" size={90} iconType="thin" color="#FBA244" /></span>
+    <h3 className="oak-feature-title">Smart contracts</h3>
+    <p className="oak-feature-desc">The on-chain reference for factories, treasuries, and access control.</p>
+  </a>
+  <a className="oak-feature" href="/security/overview">
+    <span className="oak-feature-art"><Icon icon="shield-halved" size={90} iconType="thin" color="#FBA244" /></span>
+    <h3 className="oak-feature-title">Security &amp; audits</h3>
+    <p className="oak-feature-desc">Audit reports, the security model, and the bug bounty program.</p>
+  </a>
+</div>
+
+{/* --------------------------------------------------------------- Why Oak -- */}
+<h2 className="oak-section-title">Why Oak Network</h2>
+
+<div className="oak-cards cols-3">
+  <div className="oak-card">
+    <span className="oak-card-ic"><Icon icon="globe" size={22} color="#FBA244" /></span>
+    <h3>Decentralized &amp; censorship-resistant</h3>
+    <p>Campaigns live on-chain, so no central authority can remove or alter them.</p>
+  </div>
+  <div className="oak-card">
+    <span className="oak-card-ic"><Icon icon="shield-halved" size={22} color="#FBA244" /></span>
+    <h3>Security first</h3>
+    <p>Audited by industry-leading security firms like Immunefi and OpenZeppelin to ensure the highest level of security.</p>
+  </div>
+  <div className="oak-card">
+    <span className="oak-card-ic"><Icon icon="layer-group" size={22} color="#FBA244" /></span>
+    <h3>Multi-platform</h3>
+    <p>Infrastructure you integrate into your existing product, not a monolithic app.</p>
+  </div>
+  <div className="oak-card">
+    <span className="oak-card-ic"><Icon icon="vault" size={22} color="#FBA244" /></span>
+    <h3>Flexible treasuries</h3>
+    <p>Choose All-or-Nothing, Keep-What's-Raised, or extend with your own model.</p>
+  </div>
+  <div className="oak-card">
+    <span className="oak-card-ic"><Icon icon="code" size={22} color="#FBA244" /></span>
+    <h3>Developer-friendly</h3>
+    <p>TypeScript SDKs, real-world examples, and integration guides to ship fast.</p>
+  </div>
+  <div className="oak-card">
+    <span className="oak-card-ic"><Icon icon="receipt" size={22} color="#FBA244" /></span>
+    <h3>Transparent fees</h3>
+    <p>A flat 1% protocol fee plus your own configurable platform fee. No surprises.</p>
+  </div>
+</div>
+
+{/* -------------------------------------------------- Developers / Platforms -- */}
+<h2 className="oak-section-title">Start building</h2>
+
+<div className="oak-cards cols-2">
+  <div className="oak-card">
+    <span className="oak-card-ic"><Icon icon="code" size={22} color="#FBA244" /></span>
+    <h3>For developers</h3>
+    <p>Integrate Oak with typed SDKs and audited contracts.</p>
+    <div className="oak-card-links">
+      <a href="/sdk/quickstart">Payments SDK quickstart →</a>
+      <a href="/contracts-sdk/overview">Contracts SDK →</a>
+      <a href="/contracts/overview">Smart contracts reference →</a>
+    </div>
+  </div>
+  <div className="oak-card">
+    <span className="oak-card-ic"><Icon icon="layer-group" size={22} color="#FBA244" /></span>
+    <h3>For platforms</h3>
+    <p>Add crowdfunding and commerce to your platform.</p>
+    <div className="oak-card-links">
+      <a href="/guides/platform-integration">Platform integration →</a>
+      <a href="/guides/platform-journey">The platform journey →</a>
+      <a href="/concepts/platforms">How platforms work →</a>
+    </div>
+  </div>
+</div>
+
+{/* ---------------------------------------------------------------- Closing -- */}
+<p className="oak-closing">
+  Ready to build? <a href="/guides/create-campaign">Get started</a> or <a href="https://discord.com/invite/srhtEpWBHx">join the community</a>.
+</p>
+
+</div>

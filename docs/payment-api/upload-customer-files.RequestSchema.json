@@ -1,1 +1,0 @@
-{"title":"Body","body":{"required":true,"content":{"multipart/form-data":{"schema":{"type":"object","properties":{"file":{"type":"string","format":"binary","description":"Document file (max 5MB)"},"file_type":{"type":"string","description":"Document type","enum":["SSN_BACK","SSN_FRONT","CPF_DOCUMENT","PASSPORT","ADDRESS_PROOF"]}}}}}}}

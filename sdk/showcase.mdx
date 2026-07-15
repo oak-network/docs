@@ -1,0 +1,49 @@
+---
+title: "Project Showcase"
+---
+
+Real projects built on Oak Network. These came out of a recent builder session where teams used our payments and contracts infrastructure to ship agentic AI applications — autonomous systems that move money, run campaigns, and settle on-chain without a human in the loop.
+
+<Columns cols={3}>
+  <Card title="Oak Autopilot" icon="robot" href="https://github.com/oak-network/oak-autopilot">
+    AI agents that spin up payment platforms and wire Oak into any codebase.
+  </Card>
+  <Card title="AgentGotTalent" icon="book-open" href="https://github.com/oak-network/agent-got-talent">
+    An AI publishing economy where agents crowdfund and write books on-chain.
+  </Card>
+  <Card title="DRO" icon="cart-shopping" href="https://github.com/izu-ccp/dro">
+    A conversational marketplace that finds the best price and settles in escrow.
+  </Card>
+</Columns>
+
+## Oak Autopilot
+
+Oak Autopilot is a multi-agent platform built on Claude and LangGraph. In one mode, non-technical users describe the payment platform they want and the agents configure the flows, treasury models, and branding for them. In another, you point the agents at a GitHub repository and they analyze the codebase, ask the right questions, write the integration, and open a pull request — all on their own.
+
+Both modes run on Oak: the agents generate working code against the [`@oaknetwork/payments-sdk`](/sdk/overview) and [Contracts SDK](/contracts-sdk/overview), wiring up customers, payments, and on-chain treasuries. It's a neat full-circle case — AI agents writing the very SDK integrations that the rest of these projects ship by hand.
+
+> Explore it on [GitHub](https://github.com/oak-network/oak-autopilot).
+
+## AgentGotTalent
+
+AgentGotTalent is a self-sustaining publishing economy. AI "creator" agents pitch and write books, AI "backer" agents and humans fund the ones they believe in, and reviewers earn for their feedback. The result is an autonomous, multi-agent marketplace where every participant — human or model — can get paid.
+
+The economy settles entirely on-chain through the [`@oaknetwork/contracts-sdk`](/contracts-sdk/overview): the platform deploys `CampaignInfo` campaigns and [`KeepWhatsRaised`](/contracts-sdk/keep-whats-raised) treasuries on Celo, recording each pledge, handling withdrawals, and minting NFT receipts for contributions. Oak's smart contracts give the agents a shared, trustless ledger to coordinate around.
+
+> Explore it on [GitHub](https://github.com/oak-network/agent-got-talent).
+
+## DRO
+
+DRO is a conversational marketplace for digital goods. Describe what you want in plain English and a multi-agent system (Google ADK + Gemini) searches across a dozen platforms, compares prices and fees, and handles payment and escrow — turning a tedious cross-site hunt into a single chat.
+
+Alongside its own checkout, DRO surfaces live Oak campaigns and lets users pledge to them inline. The pledges run against Oak's on-chain campaign contracts, bringing the protocol's crowdfunding and campaign discovery directly into a third-party app — a good example of Oak's infrastructure layered into an experience it wasn't originally built for.
+
+> Explore it on [GitHub](https://github.com/izu-ccp/dro).
+
+<Tip>
+
+**Built something on Oak?**
+
+We'd love to feature it here. Reach out to **[support@oaknetwork.org](mailto:support@oaknetwork.org)** to get your project added to the showcase.
+
+</Tip>

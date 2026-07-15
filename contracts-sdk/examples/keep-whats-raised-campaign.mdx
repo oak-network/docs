@@ -1,0 +1,359 @@
+---
+title: "Keep-What's-Raised Campaign"
+---
+
+> **Source:** Full executable TypeScript in `contract/src/examples/02-campaign-keep-whats-raised/`. This page summarizes the flow — read the source for complete per-step code.
+
+<Info>
+
+**Prerequisites**
+
+Your platform must be enlisted with the Keep-What's-Raised implementation registered and approved — see [Platform Enlistment](/contracts-sdk/examples/platform-enlistment).
+
+</Info>
+
+## The Story
+
+**TechForge** is a small team of developers building an open-source code review tool. They want to raise **\$10,000** to fund a working prototype, but they know that even partial funding would let them build a smaller version. Unlike Maya's All-or-Nothing campaign, TechForge wants the flexibility to **keep whatever they raise**, even if the full \$10,000 is not reached.
+
+TechForge chooses the **Keep-What's-Raised** funding model on **ArtFund**. This model offers several features the All-or-Nothing model does not:
+
+- **Partial withdrawals** — early access to raised funds mid-campaign (subject to platform approval and a configurable delay)
+- **Final withdrawal** — after the deadline, the creator sweeps the remaining balance with applicable fees
+- **Tips** — backers can include an optional tip on top of their pledge
+- **Configurable fee structure** — flat fees, percentage-based fees, and fee exemption thresholds
+- **Refund delays** — a configurable waiting period after the deadline before backers can claim refunds
+- **Updatable parameters** — extend the deadline or adjust the funding goal (before the config lock period)
+
+## Multi-token support
+
+Same model as All-or-Nothing: the campaign whitelists multiple ERC-20s per currency; each pledge names `pledgeToken`; `withdraw(token, amount)` and fee paths are per token.
+
+## Role Reference
+
+| Function | Who can call | Contract modifier |
+| --- | --- | --- |
+| `configureTreasury` | Platform Admin | `onlyPlatformAdmin` |
+| `approveWithdrawal` | Platform Admin | `onlyPlatformAdmin` |
+| `withdraw(token, amount)` | Platform Admin or Creator | `onlyPlatformAdminOrCampaignOwner` |
+| `claimFund` | Platform Admin | `onlyPlatformAdmin` |
+| `claimTip` | Platform Admin | `onlyPlatformAdmin` |
+| `disburseFees` | Anyone | (no role modifier) |
+| `addRewards` / `removeReward` | Creator | `onlyCampaignOwner` |
+| `pledgeForAReward` / `pledgeWithoutAReward` | Anyone (backer) | (no role modifier — time-gated) |
+| `setFeeAndPledge` / `setPaymentGatewayFee` | Platform Admin | `onlyPlatformAdmin` |
+| `claimRefund` | Anyone (NFT owner) | (no role modifier — time-gated) |
+| `updateDeadline` / `updateGoalAmount` | Platform Admin or Creator | `onlyPlatformAdminOrCampaignOwner` |
+| `cancelTreasury` | Platform Admin or Creator | `onlyPlatformAdminOrCampaignOwner` |
+
+## Steps
+
+### Step 1: Create Campaign
+
+TechForge creates a 60-day campaign with a \$10,000 goal through the CampaignInfoFactory.
+
+```typescript
+import { CAMPAIGN_INFO_FACTORY_EVENTS } from "@oaknetwork/contracts-sdk";
+
+const platformHash = keccak256(toHex("artfund"));
+const identifierHash = keccak256(toHex("techforge-devtool-2026"));
+const currency = toHex("USD", { size: 32 });
+const now = getCurrentTimestamp();
+
+const createTxHash = await factory.createCampaign({
+  creator: process.env.TECHFORGE_ADDRESS! as `0x${string}`,
+  identifierHash,
+  selectedPlatformHash: [platformHash],
+  campaignData: {
+    launchTime: now + 1800n,       // launches in 30 minutes
+    deadline: addDays(now, 60),    // 60-day campaign
+    goalAmount: 10_000_000_000n,   // $10,000
+    currency,
+  },
+  nftName: "TechForge Early Backers",
+  nftSymbol: "TFEB",
+  nftImageURI: "ipfs://QmAbc.../techforge.png",
+  contractURI: "ipfs://QmAbc.../metadata.json",
+});
+
+const createReceipt = await oak.waitForReceipt(createTxHash);
+```
+
+After the transaction is mined, the deployed `CampaignInfo` address can be discovered two ways. **Both are shown in the source file** — prefer Approach 1 when you have the receipt.
+
+**Approach 1 — Decode `CampaignCreated` from the receipt (recommended):** deterministic and works immediately, regardless of RPC indexing lag.
+
+```typescript
+let campaignInfoAddress: `0x${string}` | undefined;
+
+for (const log of createReceipt.logs) {
+  try {
+    const decoded = factory.events.decodeLog({
+      topics: log.topics as [`0x${string}`, ...`0x${string}`[]],
+      data: log.data as `0x${string}`,
+    });
+
+    if (decoded.eventName === CAMPAIGN_INFO_FACTORY_EVENTS.CampaignCreated) {
+      campaignInfoAddress = decoded.args?.campaignInfoAddress as `0x${string}`;
+      break;
+    }
+  } catch {
+    // Log belongs to a different contract — skip
+  }
+}
+
+console.log("CampaignInfo (from receipt):", campaignInfoAddress);
+```
+
+**Approach 2 — Look up via `identifierToCampaignInfo` (convenience):** handy when you only have the identifier and did not keep the receipt. On some RPC providers the mapping may briefly return the zero address right after the transaction, so prefer Approach 1 when the receipt is available.
+
+```typescript
+const lookedUp = await factory.identifierToCampaignInfo(identifierHash);
+console.log("CampaignInfo (from lookup):", lookedUp);
+```
+
+### Step 2: Deploy Treasury
+
+TechForge deploys a Keep-What's-Raised treasury linked to the campaign. Slot `1n` is the KWR implementation.
+
+```typescript
+import { TREASURY_FACTORY_EVENTS } from "@oaknetwork/contracts-sdk";
+
+const platformHash = keccak256(toHex("artfund"));
+const kwrImplementationId = 1n;
+
+const deployTxHash = await treasuryFactory.deploy(
+  platformHash,
+  campaignInfoAddress,
+  kwrImplementationId,
+);
+
+const deployReceipt = await oak.waitForReceipt(deployTxHash);
+
+// Decode the TreasuryDeployed event from the receipt
+let treasuryAddress: `0x${string}` | undefined;
+
+for (const log of deployReceipt.logs) {
+  try {
+    const decoded = treasuryFactory.events.decodeLog({
+      topics: log.topics as [`0x${string}`, ...`0x${string}`[]],
+      data: log.data as `0x${string}`,
+    });
+
+    if (decoded.eventName === TREASURY_FACTORY_EVENTS.TreasuryDeployed) {
+      treasuryAddress = decoded.args?.treasuryAddress as `0x${string}`;
+      break;
+    }
+  } catch {
+    // Log belongs to a different contract — skip
+  }
+}
+
+console.log("KWR treasury deployed at:", treasuryAddress);
+```
+
+### Step 3: Configure Treasury (Platform Admin)
+
+The Platform Admin configures withdrawal delays, refund policies, and fee structure. The creator cannot call this. This step uses `withdrawalDelay: 0n` so Step 6a and 6b can run back-to-back in the tutorial; in production, use a positive value.
+
+```typescript
+const config: KeepWhatsRaisedConfig = {
+  minimumWithdrawalForFeeExemption: 1_000_000_000n,  // $1,000 — withdrawals above this skip flat fee
+  withdrawalDelay: 0n,            // use 86400n (24h) in production
+  refundDelay: 259200n,           // 3-day delay after deadline before refunds
+  configLockPeriod: 604800n,      // config locked for 7 days before deadline
+  isColombianCreator: false,
+};
+
+const feeKeys: KeepWhatsRaisedFeeKeys = {
+  flatFeeKey: keccak256(toHex("flatWithdrawalFee")),
+  cumulativeFlatFeeKey: keccak256(toHex("cumulativeFlatFee")),
+  grossPercentageFeeKeys: [keccak256(toHex("grossFee"))],
+};
+
+const feeValues: KeepWhatsRaisedFeeValues = {
+  flatFeeValue: 5_000_000n,            // $5 per withdrawal
+  cumulativeFlatFeeValue: 50_000_000n,  // $50 cumulative max
+  grossPercentageFeeValues: [200n],     // 2%
+};
+
+await treasury.configureTreasury(config, campaignData, feeKeys, feeValues);
+```
+
+### Step 4: Manage Reward Tiers
+
+TechForge adds reward tiers. Tiers can also be removed with `removeReward`.
+
+```typescript
+const earlyBirdReward = keccak256(toHex("early-bird"));
+const proReward = keccak256(toHex("pro-license"));
+
+const addTxHash = await treasury.addRewards(
+  [earlyBirdReward, proReward],
+  [
+    { rewardValue: 50_000_000n, isRewardTier: true, itemId: [], itemValue: [], itemQuantity: [] },
+    { rewardValue: 200_000_000n, isRewardTier: true, itemId: [], itemValue: [], itemQuantity: [] },
+  ],
+);
+```
+
+### Step 5: Backer Pledges
+
+Three pledge options: `pledgeForAReward`, `pledgeWithoutAReward`, or (Platform Admin only) `setFeeAndPledge` which records a payment-gateway fee and the pledge atomically. Every pledge requires a unique `pledgeId` and supports an optional `tip`.
+
+```typescript
+const pledgeToken = process.env.USDC_TOKEN_ADDRESS! as `0x${string}`;
+const earlyBirdReward = keccak256(toHex("early-bird"));
+const pledgeId = keccak256(toHex("pledge-001"));
+
+// Pledge for a reward
+await treasury.pledgeForAReward(
+  pledgeId,
+  backerAddress,
+  pledgeToken,
+  0n,                 // no tip
+  [earlyBirdReward],
+);
+
+// Pledge without a reward
+await supporterTreasury.pledgeWithoutAReward(
+  keccak256(toHex("pledge-002")),
+  supporterAddress,
+  pledgeToken,
+  50_000_000n, // $50
+  0n,          // no tip
+);
+```
+
+### Step 6a: Approve Partial Withdrawal (Platform Admin)
+
+Before the creator can withdraw mid-campaign, the Platform Admin must approve once. The creator may then call `withdraw(token, amount)` after the configured `withdrawalDelay` has elapsed.
+
+```typescript
+const approvalTxHash = await platformTreasury.approveWithdrawal();
+await platformOak.waitForReceipt(approvalTxHash);
+// getWithdrawalApprovalStatus() returns true
+```
+
+### Step 6b: Execute Partial Withdrawal (Creator)
+
+With approval granted (and after any withdrawal delay), the creator withdraws a specific amount of an accepted ERC-20.
+
+```typescript
+const withdrawToken = process.env.USDC_TOKEN_ADDRESS! as `0x${string}`;
+const withdrawAmount = 2_000_000_000n; // $2,000
+
+const withdrawTxHash = await creatorTreasury.withdraw(withdrawToken, withdrawAmount);
+await creatorOak.waitForReceipt(withdrawTxHash);
+```
+
+### Step 6c: Final Withdrawal (Post-Deadline)
+
+After the deadline, the creator (or Platform Admin) sweeps the entire remaining balance of a specific token. The `amount` parameter is ignored; pass `0n`. Call `disburseFees()` first so protocol and platform fees are already transferred out.
+
+```typescript
+const withdrawToken = process.env.USDC_TOKEN_ADDRESS! as `0x${string}`;
+
+// The contract uses the full available balance — amount is ignored
+const finalWithdrawTxHash = await treasury.withdraw(withdrawToken, 0n);
+```
+
+### Step 7: Monitor Progress
+
+Anyone can read the campaign dashboard — raised amounts, available balance, fees, approval status, and state.
+
+```typescript
+const raisedAmount = await treasury.getRaisedAmount();
+const availableRaised = await treasury.getAvailableRaisedAmount();
+const lifetimeRaised = await treasury.getLifetimeRaisedAmount();
+const refundedAmount = await treasury.getRefundedAmount();
+const withdrawalApproved = await treasury.getWithdrawalApprovalStatus();
+const isPaused = await treasury.paused();
+const isCancelled = await treasury.cancelled();
+
+const flatFeeKey = keccak256(toHex("flatWithdrawalFee"));
+const flatFeeValue = await treasury.getFeeValue(flatFeeKey);
+
+const gatewayFee = await treasury.getPaymentGatewayFee(keccak256(toHex("pledge-001")));
+```
+
+### Step 8: Disburse Fees
+
+`disburseFees()` transfers accumulated protocol and platform fees to their recipients. Anyone can call it. Must be called **before** cancellation — `disburseFees` has a `whenNotCancelled` modifier.
+
+```typescript
+const feeTxHash = await treasury.disburseFees();
+await oak.waitForReceipt(feeTxHash);
+```
+
+### Step 9: Claim Residual Funds (Platform Admin)
+
+After the withdrawal delay has fully elapsed (`deadline + withdrawalDelay`), the Platform Admin can sweep any remaining balance of every accepted token to the platform admin's wallet. Only callable once.
+
+```typescript
+const claimTxHash = await treasury.claimFund();
+await platformOak.waitForReceipt(claimTxHash);
+```
+
+### Step 10: Claim Tips (Platform Admin)
+
+Tips included by backers on top of pledges are tracked separately and claimed by the Platform Admin (not the creator). Callable after the deadline or after cancellation. Only callable once.
+
+```typescript
+const tipTxHash = await treasury.claimTip();
+await platformOak.waitForReceipt(tipTxHash);
+```
+
+### Step 11: Claim Refund (Backer)
+
+After the deadline plus refund delay window, backers can reclaim their pledges. `claimRefund(tokenId)` burns the NFT and returns the pledged tokens (minus payment fees) to the NFT owner. Pledge NFTs live on the `CampaignInfo` contract, so approval must be done there.
+
+```typescript
+const tokenId = BigInt(process.env.BACKER_PLEDGE_TOKEN_ID!);
+
+// Approve on CampaignInfo (not the treasury)
+const approveTxHash = await campaign.approve(treasuryAddress, tokenId);
+await backerOak.waitForReceipt(approveTxHash);
+
+const refundTxHash = await treasury.claimRefund(tokenId);
+await backerOak.waitForReceipt(refundTxHash);
+```
+
+### Step 12: Update Campaign (Optional)
+
+Before the config lock period, the creator or Platform Admin can extend the deadline or adjust the goal.
+
+```typescript
+// Extend the deadline to 90 days
+const newDeadline = addDays(getCurrentTimestamp(), 90);
+await treasury.updateDeadline(newDeadline);
+
+// Lower the goal
+await treasury.updateGoalAmount(7_500_000_000n); // $7,500
+```
+
+### Step 13: Pause and Unpause (Optional)
+
+Platform Admin can freeze all treasury activity during an investigation.
+
+```typescript
+await treasury.pauseTreasury(keccak256(toHex("compliance-review")));
+// ... later ...
+await treasury.unpauseTreasury(keccak256(toHex("review-cleared")));
+```
+
+### Step 14: Cancel (Optional)
+
+Cancellation is permanent. Once cancelled, no new pledges or creator claims are possible, but backers can still refund.
+
+```typescript
+await treasury.cancelTreasury(keccak256(toHex("terms-violation")));
+```
+
+## Related
+
+- [CampaignInfoFactory](/contracts-sdk/campaign-info-factory)
+- [CampaignInfo](/contracts-sdk/campaign-info)
+- [Keep-What's-Raised Treasury](/contracts-sdk/keep-whats-raised)
+- [TreasuryFactory](/contracts-sdk/treasury-factory)
+- [Error Handling](/contracts-sdk/examples/error-handling)

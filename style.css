@@ -1,0 +1,336 @@
+/*
+ * Oak Network — custom CSS (kept minimal; everything else is Mintlify default).
+ * 1. Fonts: Fragment Mono for code; Inter Tight for headings (body stays Inter).
+ * 2. Top navigation: neutral divider + opaque background so the docs.json gradient
+ *    hue stays below the tab bar (like bridge.xyz) instead of bleeding over the tabs.
+ * 3. Typography: Inter Tight for headings only + force heading weight 500.
+ */
+
+/* 1. Fonts ----------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap');
+
+code,
+pre,
+kbd,
+samp,
+pre code,
+code span,
+pre span {
+  font-family: 'Fragment Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+}
+
+/* 2. Top navigation -------------------------------------------------------- */
+/* Neutral divider under the top navigation (incl. the tabs), matching Mintlify's
+   own border tokens: warm grey in light mode, faint white in dark mode.
+   (No sidebar border — Mintlify doesn't use one.)
+
+   The background.decoration (docs.json, "grid") is rendered as a full-page layer
+   that sits *behind* the navbar. By default the navbar is transparent, so the
+   decoration bleeds up over the tabs. Painting the navbar with the
+   page-background token makes it opaque, masking the decoration above the
+   content area — so it starts right at the tab line, exactly like bridge.xyz. */
+#navbar {
+  border-bottom: 1px solid #e7e5e4b3;
+  background-color: rgb(var(--background-light));
+}
+.dark #navbar {
+  border-bottom-color: #ffffff1a;
+  background-color: rgb(var(--background-dark));
+}
+
+/* 3. Typography ------------------------------------------------------------ */
+/* Inter Tight for headings only; body/regular text stays Mintlify's default Inter.
+   docs.json fonts.heading sets this, but Mintlify injects it as a CSS var at
+   config-load time (needs a dev-server restart), so assert the same var here to
+   apply on a plain style.css hot-reload too. This var feeds Mintlify's heading
+   font-family rule only; body keeps --font-inter and code keeps its mono var. */
+:root {
+  --font-family-headings-custom: 'Inter Tight', ui-sans-serif, system-ui, sans-serif !important;
+}
+
+/* Mintlify's prose styles hard-code heading weights (800/700/600), overriding
+   docs.json's fonts.heading.weight, so force 500 here. */
+#page-title,
+.prose :where(h1, h2, h3, h4, h5, h6) {
+  font-weight: 500 !important;
+}
+
+/* 4. Landing page (index.mdx, mode:"custom") ------------------------------- */
+/* The home page uses mode:"custom" — a full-bleed canvas with no sidebar, no
+   TOC, no prose wrapper, and no auto page-title. So we set our own max-width,
+   spacing, and heading styles here. Everything is scoped under .oak-landing so
+   none of it leaks into regular doc pages. Colors use the brand orange
+   (#FBA244, darker #E08A2B for light-mode text, brighter #FCA951 for dark) plus
+   neutral stone greys; every rule is theme-aware via the .dark prefix. */
+
+.oak-landing {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+
+/* Hero -------------------------------------------------------------------- */
+.oak-hero {
+  position: relative;
+  text-align: center;
+  padding: 96px 0 28px;
+  overflow: hidden;
+}
+/* The hero backdrop is the page-wide grid decoration (docs.json
+   background.decoration:"grid"); no local glow here. */
+.oak-hero > * { position: relative; z-index: 1; }
+
+.oak-title {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #1c1917;            /* strong, not washed out (light mode) */
+  max-width: 16ch;
+  margin: 0 auto 20px;
+}
+.dark .oak-title { color: #f8f7f5; }
+
+.oak-subtitle {
+  font-size: clamp(15px, 1.9vw, 17px);
+  line-height: 1.6;
+  color: #57534e;          /* stone-600 */
+  max-width: 600px;
+  margin: 0 auto 28px;
+}
+.dark .oak-subtitle { color: #a8a29e; }   /* stone-400 */
+
+/* CTA buttons — styled <a> anchors (Mintlify has no generic Button). */
+.oak-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.oak-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.oak-btn:focus-visible { outline: 2px solid #FBA244; outline-offset: 2px; }
+/* Primary always sits on orange, so dark text reads in both themes. */
+.oak-btn-primary {
+  background: #FBA244;
+  color: #1c1917 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.oak-btn-primary:hover {
+  background: #f6982f;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(251, 162, 68, 0.35);
+}
+.oak-btn-secondary {
+  background: transparent;
+  border: 1px solid #e7e5e4;
+  color: #292524 !important;
+}
+.dark .oak-btn-secondary { border-color: #ffffff26; color: #e7e5e4 !important; }
+.oak-btn-secondary:hover { border-color: #FBA244; transform: translateY(-1px); }
+
+/* Trust bar — sits directly under the hero (subtle, no bordered box) -------- */
+.oak-trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px 44px;
+  margin: 4px 0 72px;
+}
+/* Each group (Backed by / Audited by): label stacked above its logos. */
+.oak-trust-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.oak-trust-divider {
+  width: 1px;
+  align-self: stretch;
+  background: #e7e5e4;
+}
+.dark .oak-trust-divider { background: #ffffff1f; }
+.oak-trust-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #78716c;
+}
+
+/* Section titles (no prose wrapper in custom mode, so style them here). */
+.oak-section-title {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(24px, 3.4vw, 32px);
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin: 72px 0 28px;
+}
+
+/* Trust logos — transparent PNGs, no chip. They're dark-on-transparent, so we
+   invert them in dark mode to keep them legible against the dark background. */
+.oak-trust-logos {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+.oak-trust-logo {
+  height: 24px;
+  width: auto;
+  opacity: 0.7;
+  transition: opacity .15s ease;
+}
+/* a16z is a stacked two-line mark, so it needs more height to match the
+   single-line wordmarks' visual weight. */
+.oak-trust-logo.oak-logo-a16z { height: 40px; }
+.oak-trust-logo:hover { opacity: 1; }
+.dark .oak-trust-logo { filter: brightness(0) invert(1); opacity: 0.6; }
+.dark .oak-trust-logo:hover { opacity: 1; }
+
+/* Illustration feature cards (Mintlify-style: tinted dot-grid panel with a
+   glowing line glyph, title + description below) -------------------------- */
+.oak-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+  margin: 0 0 8px;
+}
+.oak-feature { display: block; text-decoration: none; color: inherit; }
+.oak-feature-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  border: 1px solid #e7e5e4;
+  border-radius: 16px;
+  background-color: #fbf6ef;
+  background-image:
+    linear-gradient(to right, rgba(224, 138, 43, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(224, 138, 43, 0.16) 1px, transparent 1px);
+  /* Zoomed-in square grid, centered so the leftover space splits evenly on each
+     side — the boundary lines sit a little inside the panel instead of landing
+     on the card border. */
+  background-size: 72px 72px;
+  background-position: center;
+  overflow: hidden;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.dark .oak-feature-art {
+  border-color: #ffffff14;
+  background-color: rgba(251, 162, 68, 0.05);
+  background-image:
+    linear-gradient(to right, rgba(252, 169, 81, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(252, 169, 81, 0.12) 1px, transparent 1px);
+}
+/* The glyph is rendered by Mintlify's <Icon> (svg or font, depending on set);
+   target both, add the glow, and let the icon's own size/color props lead. */
+.oak-feature-art :where(svg, i) {
+  width: 90px;
+  height: 90px;
+  font-size: 90px;
+  color: #FBA244;
+  filter: drop-shadow(0 0 14px rgba(251, 162, 68, 0.45));
+  transition: transform .2s ease;
+}
+.oak-feature:hover .oak-feature-art {
+  border-color: #FBA24488;
+  box-shadow: 0 10px 30px rgba(251, 162, 68, 0.12);
+}
+.oak-feature:hover .oak-feature-art :where(svg, i) { transform: scale(1.08); }
+.oak-feature-title {
+  margin: 16px 0 4px;
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+.oak-feature-desc { margin: 0; font-size: 14px; line-height: 1.55; color: #57534e; }
+.dark .oak-feature-desc { color: #a8a29e; }
+
+/* Secondary cards (Why Oak / Start building): clean cards with the same orange
+   hover-border animation as the feature panels (no grid texture here). ------ */
+.oak-cards { display: grid; gap: 16px; }
+.oak-cards.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.oak-cards.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.oak-card {
+  border: 1px solid #e7e5e4;
+  border-radius: 14px;
+  padding: 20px;
+  background-color: #ffffff;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.dark .oak-card { border-color: #ffffff14; background-color: #141416; }
+.oak-card:hover {
+  border-color: #FBA24488;
+  box-shadow: 0 10px 30px rgba(251, 162, 68, 0.12);
+}
+.oak-card-ic { display: block; margin-bottom: 12px; line-height: 0; color: #FBA244; }
+.oak-card-ic :where(svg, i) { width: 22px; height: 22px; font-size: 22px; }
+.oak-card h3 {
+  margin: 0 0 6px;
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+.oak-card p { margin: 0; font-size: 14px; line-height: 1.55; color: #57534e; }
+.dark .oak-card p { color: #a8a29e; }
+
+/* Link lists inside the "Start building" cards ---------------------------- */
+.oak-card-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+}
+/* Plain text links: strip Mintlify's full-width link underline/border and keep
+   each anchor only as wide as its text (no stretched flex item). */
+.oak-card-links a {
+  width: fit-content;
+  font-size: 14px;
+  font-weight: 500;
+  color: #E08A2B !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+.dark .oak-card-links a { color: #FCA951 !important; }
+.oak-card-links a:hover { text-decoration: underline !important; }
+
+/* Closing line ------------------------------------------------------------ */
+.oak-closing {
+  text-align: center;
+  margin: 40px 0 0;
+  font-size: 15px;
+  color: #78716c;
+}
+.oak-closing a { color: #E08A2B; font-weight: 500; text-decoration: none; }
+.dark .oak-closing a { color: #FCA951; }
+.oak-closing a:hover { text-decoration: underline; }
+
+/* Responsive -------------------------------------------------------------- */
+@media (max-width: 980px) {
+  .oak-features { grid-template-columns: repeat(2, 1fr); }
+  .oak-cards.cols-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .oak-hero { padding: 64px 0 24px; }
+  .oak-trust-logos { gap: 20px; }
+  .oak-trust-divider { display: none; }
+  .oak-features { grid-template-columns: 1fr; }
+  .oak-cards.cols-3, .oak-cards.cols-2 { grid-template-columns: 1fr; }
+  .oak-section-title { margin: 56px 0 24px; }
+}

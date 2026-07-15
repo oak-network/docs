@@ -1,0 +1,133 @@
+name: Sync Payment API spec from Crowdsplit
+
+# Pulls the CrowdSplit OpenAPI spec from oak-network/crowdsplit, bundles it,
+# fixes the known $ref issues, writes it to api-specs/v1/crowdsplits.yaml,
+# validates the Mintlify build, and opens a PR. Mintlify redeploys when the PR
+# is merged.
+#
+# How to run:
+#   - Manually: Actions tab -> "Sync Payment API spec from Crowdsplit" -> Run workflow.
+#   - Automatically: a repository_dispatch of type `crowdsplit-spec-updated`
+#     (e.g. sent by Crowdsplit CI when openapi/** changes on main).
+#
+# Requires the CROWDSPLIT_RO_TOKEN secret: read access (contents) to the
+# private oak-network/crowdsplit repo.
+
+on:
+  workflow_dispatch:
+    inputs:
+      crowdsplit_ref:
+        description: "Crowdsplit git ref to pull the spec from (branch, tag, or SHA)"
+        required: false
+        default: "main"
+  repository_dispatch:
+    types: [crowdsplit-spec-updated]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-payment-api-v1
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      CROWDSPLIT_REF: ${{ github.event.inputs.crowdsplit_ref || github.event.client_payload.ref || 'main' }}
+      # Pinned to v1: exactly one API contract version exists today
+      # (SUPPORTED_VERSIONS = ['v1']). The step below bundles the COMPLETE spec,
+      # which is a correct v1 contract only while every documented path is v1.
+      # A second version needs a version-specific source strategy first.
+      API_VERSION: v1
+    steps:
+      - name: Checkout docs repo
+        uses: actions/checkout@v4
+
+      - name: Checkout Crowdsplit (read-only)
+        uses: actions/checkout@v4
+        with:
+          repository: oak-network/crowdsplit
+          ref: ${{ env.CROWDSPLIT_REF }}
+          token: ${{ secrets.CROWDSPLIT_RO_TOKEN }}
+          path: .crowdsplit-src
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Bundle OpenAPI spec (redocly, pinned to Crowdsplit's version)
+        working-directory: .crowdsplit-src
+        run: |
+          npx -y @redocly/cli@1.34.11 bundle openapi/openapi.yaml \
+            -o "$RUNNER_TEMP/openapi.bundled.yaml" --force
+
+      - name: Fix known $ref issues in the bundle
+        run: |
+          python3 - "$RUNNER_TEMP/openapi.bundled.yaml" <<'PY'
+          import re, sys
+          path = sys.argv[1]
+          with open(path) as f:
+              content = f.read()
+          # Re-point external-file $refs that redocly leaves unresolved to the
+          # in-document components, mirroring Crowdsplit's own bundling fix-up.
+          replacements = [
+              ('../components/schemas.yaml#/schemas/PaymentMethodResponse', "'#/components/schemas/PaymentMethodResponse'"),
+              ('../components/schemas.yaml#/schemas/ApiErrorResponse', "'#/components/schemas/ApiErrorResponse'"),
+              ('../components/responses.yaml#/responses/UnauthorizedError', "'#/components/responses/UnauthorizedError'"),
+              ('../components/responses.yaml#/responses/ForbiddenError', "'#/components/responses/ForbiddenError'"),
+              ('../components/responses.yaml#/responses/NotFoundError', "'#/components/responses/NotFoundError'"),
+              ('../components/responses.yaml#/responses/ValidationError', "'#/components/responses/ValidationError'"),
+          ]
+          for old, new in replacements:
+              content = content.replace(old, new)
+          # Drop the unresolved path ref for pix.yaml (file does not exist in source).
+          content = re.sub(r'\s*/api/v1/pix/paid:\s*\$ref: \./paths/pix\.yaml#[^\n]+\n', '\n', content)
+          with open(path, 'w') as f:
+              f.write(content)
+          # Fail loudly if any external-file $refs remain — those break Mintlify rendering.
+          leftover = [l for l in content.splitlines()
+                      if '.yaml#/' in l and ('../' in l or './paths/' in l or './components/' in l)]
+          if leftover:
+              print('ERROR: unresolved external $refs remain after fix-up:')
+              for l in leftover[:20]:
+                  print('  ' + l.strip())
+              sys.exit(1)
+          print('ref fix-up OK; no external-file $refs remain')
+          PY
+
+      - name: Write spec into docs repo
+        run: |
+          mkdir -p "api-specs/${API_VERSION}"
+          cp "$RUNNER_TEMP/openapi.bundled.yaml" "api-specs/${API_VERSION}/crowdsplits.yaml"
+
+      - name: Remove Crowdsplit checkout (keep it out of the docs build)
+        run: rm -rf .crowdsplit-src
+
+      - name: Validate docs build
+        # Pinned for reproducibility (bump deliberately); mint@latest would let
+        # an upstream CLI release change validation behavior without warning.
+        run: npx -y mint@4.2.635 validate
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          add-paths: api-specs/${{ env.API_VERSION }}/crowdsplits.yaml
+          branch: chore/sync-payment-api-${{ env.API_VERSION }}
+          base: main
+          commit-message: "chore(api): sync Payment API ${{ env.API_VERSION }} spec from crowdsplit@${{ env.CROWDSPLIT_REF }}"
+          title: "chore(api): sync Payment API ${{ env.API_VERSION }} spec"
+          body: |
+            Automated sync of the CrowdSplit OpenAPI spec into `api-specs/${{ env.API_VERSION }}/crowdsplits.yaml`.
+
+            - **Source:** `oak-network/crowdsplit` @ `${{ env.CROWDSPLIT_REF }}`
+            - **Pipeline:** `redocly bundle` → `$ref` fix-up → `mint validate`
+
+            Review the diff before merging — in particular the `servers:` block and any
+            breaking changes. Mintlify redeploys automatically on merge.
+          labels: |
+            automated
+            documentation

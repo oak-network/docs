@@ -1,0 +1,76 @@
+---
+title: "Payments SDK"
+sidebarTitle: "Overview"
+---
+
+The `@oaknetwork/payments-sdk` package is a TypeScript SDK that wraps the Oak Network payment API — handling authentication, retries, and type safety so you can focus on building your integration.
+
+<Tip>
+
+**Get your API credentials**
+
+To start building with the SDK, you need a **Client ID** and **Client Secret**. Reach out to **[support@oaknetwork.org](mailto:support@oaknetwork.org)** to get your sandbox credentials and start integrating today.
+
+</Tip>
+
+## Highlights
+
+- **Initialize a client** for sandbox or production: `createOakClient({ environment: 'sandbox', ... })`
+- **Standalone service factories** — import only what you need: `createCustomerService(client)`, `createPaymentService(client)`, etc.
+- **Type-safe results** on every call: every method returns `Result<T, OakError>` — no uncaught exceptions
+- **Built-in retry** with exponential backoff, jitter, and `Retry-After` header support
+- **Webhook signature verification** built in: `verifyWebhookSignature()` and `parseWebhookPayload()`
+- **Two environments** out of the box: `sandbox` and `production`, plus `customUrl` for self-hosted setups
+
+## Quick example
+
+```typescript
+import { createOakClient, createCustomerService } from '@oaknetwork/payments-sdk';
+
+const client = createOakClient({
+  environment: 'sandbox',
+  clientId: process.env.CLIENT_ID!,
+  clientSecret: process.env.CLIENT_SECRET!,
+});
+
+const customers = createCustomerService(client);
+
+const result = await customers.list();
+
+if (result.ok) {
+  console.log(result.value.data);
+} else {
+  console.error(result.error.message);
+}
+```
+
+> See the full walkthrough in the [Quickstart](/sdk/quickstart) guide.
+
+## Services
+
+The SDK ships 16 service modules. Import the factory function for each service you need.
+
+| Service | Factory | What it does |
+|---|---|---|
+| [`CustomerService`](/sdk/customers) | `createCustomerService(client)` | Create, get, list, update, sync, check balances, upload/get files, populate platform |
+| [`PaymentService`](/sdk/payments) | `createPaymentService(client)` | Create, confirm, cancel, capture payments; sandbox test helpers |
+| [`PaymentMethodService`](/sdk/payment-methods) | `createPaymentMethodService(client)` | Add, list, get, update, delete payment methods |
+| [`WebhookService`](/sdk/webhooks) | `createWebhookService(client)` | Register, manage, and monitor webhooks |
+| [`TransactionService`](/sdk/transactions) | `createTransactionService(client)` | List, get, and settle transactions |
+| [`TransferService`](/sdk/transfers) | `createTransferService(client)` | Create provider transfers and send webhooks |
+| [`PlanService`](/sdk/plans) | `createPlanService(client)` | CRUD subscription plans with active/expired filters |
+| [`RefundService`](/sdk/refunds) | `createRefundService(client)` | Refund a payment |
+| [`BuyService`](/sdk/buy-and-sell) | `createBuyService(client)` | Crypto on-ramp via Bridge or BRLA |
+| [`SellService`](/sdk/buy-and-sell) | `createSellService(client)` | Crypto off-ramp via Avenia |
+| [`SubscriptionService`](/sdk/subscriptions) | `createSubscriptionService(client)` | Subscribe, cancel, list, get, and pay subscriptions |
+| [`DisputeService`](/sdk/disputes) | `createDisputeService(client)` | List, update evidence, submit, and close disputes |
+| [`PayoutService`](/sdk/payouts) | `createPayoutService(client)` | Create payouts |
+| [`FileService`](/sdk/files) | `createFileService(client)` | Upload, list, get, and delete files |
+| [`TaxService`](/sdk/taxes) | `createTaxService(client)` | Calculate taxes |
+| [`ProviderService`](/sdk/providers) | `createProviderService(client)` | Fetch provider schemas, submit registrations, and check registration status |
+
+## Next up
+
+- [Installation](/sdk/installation) — install the package and configure credentials
+- [Quickstart](/sdk/quickstart) — your first working integration in under 5 minutes
+- [Error Handling](/sdk/error-handling) — understand the `Result<T>` pattern and error types
