@@ -18,8 +18,7 @@
   },
   "logo": {
     "light": "/logo/logo-light.svg",
-    "dark": "/logo/logo.svg",
-    "href": "https://oaknetwork.org"
+    "dark": "/logo/logo.svg"
   },
   "favicon": "/favicon.ico",
   "contextual": {
