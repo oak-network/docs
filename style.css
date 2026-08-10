@@ -180,8 +180,9 @@ pre span {
   margin: 72px 0 28px;
 }
 
-/* Trust logos — transparent PNGs, no chip. They're dark-on-transparent, so we
-   invert them in dark mode to keep them legible against the dark background. */
+/* Trust logos — shown in full brand colour. Third-party marks ship in differing
+   polarities, so each carries an "ink" modifier below describing what it is
+   drawn in; that, not a blanket filter, decides how it survives both themes. */
 .oak-trust-logos {
   display: inline-flex;
   flex-wrap: wrap;
@@ -192,15 +193,106 @@ pre span {
 .oak-trust-logo {
   height: 24px;
   width: auto;
-  opacity: 0.7;
+  opacity: 0.9;
   transition: opacity .15s ease;
 }
-/* a16z is a stacked two-line mark, so it needs more height to match the
-   single-line wordmarks' visual weight. */
-.oak-trust-logo.oak-logo-a16z { height: 40px; }
 .oak-trust-logo:hover { opacity: 1; }
-.dark .oak-trust-logo { filter: brightness(0) invert(1); opacity: 0.6; }
-.dark .oak-trust-logo:hover { opacity: 1; }
+
+/* Optical sizing — equal visual mass, not equal pixel height. Ratios:
+   kickstarter 8.6:1, a16z 3.7:1 (stacked two-line), oz 6.6:1, immunefi 4.6:1,
+   peckshield 4.6:1. */
+.oak-logo-kickstarter { height: 24px; }
+.oak-logo-a16z        { height: 40px; }
+.oak-logo-oz          { height: 25px; }
+.oak-logo-immunefi    { height: 28px; }
+.oak-logo-peckshield  { height: 28px; }
+
+/* ---- Ink polarity modifiers, shared by the trust bar and the partner strip --
+   Every third-party mark falls into one of four cases. Getting this wrong is
+   how a logo silently disappears in one theme, so it is declared per logo
+   rather than inferred.
+
+   (default)          full colour, legible on both backgrounds (Kickstarter,
+                      Kibidango, MiniPay/Catarse/Vaki/OZ/Immunefi via paired
+                      light+dark files)
+   .oak-ink-dark      monochrome dark ink — invert on dark (a16z, Onset)
+   .oak-ink-white     monochrome white ink — invert on light (Karma)
+   .oak-ink-white-only  white ink but NOT monochrome, and the vendor publishes
+                      no dark-background version. Inverting would corrupt the
+                      accent hues (PeckShield's cyan shield, Relay Funder's
+                      green/purple/teal symbol), so light mode flattens them to
+                      a silhouette — letterforms stay exact, colour is lost.
+                      Swap in a proper light lockup if the partners supply one. */
+.oak-ink-dark              { filter: none; }
+.dark .oak-ink-dark        { filter: invert(1); }
+.oak-ink-white             { filter: invert(1); }
+.dark .oak-ink-white       { filter: none; }
+.oak-ink-white-only        { filter: brightness(0); }
+.dark .oak-ink-white-only  { filter: none; }
+
+/* Paired per-theme lockups. Only one of each pair renders, so both may keep
+   their alt text — display:none drops the hidden one from the a11y tree. */
+.oak-only-dark { display: none; }
+.dark .oak-only-light { display: none; }
+.dark .oak-only-dark { display: inline-block; }
+
+/* Partner strip — reuses the trust bar's label/divider language, but sits
+   lower on the page so it doesn't compete with the hero. Unlike the trust bar
+   these are third-party marks with clashing palettes (Catarse's multicolour
+   swirl, Kibidango's coral, Vaki's green), so they're greyscaled at rest to
+   read as one coherent row and regain their colour on hover. -------------- */
+/* Groups stack vertically: with five active partners the two rows side by side
+   overflow the 1032px content column and wrap raggedly. */
+.oak-partners {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  margin: 0 0 8px;
+}
+.oak-partners .oak-trust-divider { display: none; }
+.oak-partner-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.oak-partner-logos {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 44px;
+}
+.oak-partner { display: inline-flex; align-items: center; line-height: 0; }
+
+/* Full brand colour. Polarity is handled by the shared .oak-ink-* modifiers
+   defined with the trust bar above. */
+.oak-partner-logo {
+  width: auto;
+  opacity: 0.92;
+  transition: opacity .18s ease;
+}
+.oak-partner:hover .oak-partner-logo { opacity: 1; }
+
+/* Optical sizing: matching raw pixel height would let the wide, thin marks
+   dominate and the compact ones vanish, so each is tuned to equal visual mass
+   (same reasoning as the a16z rule above). Ratios: onset 5.5:1, karma 5.2:1,
+   kibidango 4.0:1, relayfunder 3.9:1, catarse 3.6:1, vaki 1.6:1, and MiniPay a
+   square 1:1 stacked lockup — which is why it carries by far the most height. */
+.oak-mark-onset       { height: 28px; }
+.oak-mark-karma       { height: 30px; }
+.oak-mark-kibidango   { height: 36px; }
+.oak-mark-relayfunder { height: 36px; }
+.oak-mark-catarse     { height: 38px; }
+.oak-mark-vaki        { height: 46px; }
+/* MiniPay only publishes a stacked icon-over-wordmark lockup (1.2:1), and their
+   brand rules forbid using the icon detached from the wordmark. Equal visual
+   mass would put it near 65px, which would tower over the row, so it is capped
+   here as a deliberate compromise. Their press-kit files also ship with a solid
+   background plate; that rect is stripped and the viewBox tightened to the
+   artwork so it sits on transparent like every other mark. */
+.oak-mark-minipay     { height: 52px; }
 
 /* Illustration feature cards (Mintlify-style: tinted dot-grid panel with a
    glowing line glyph, title + description below) -------------------------- */
@@ -328,8 +420,9 @@ pre span {
 }
 @media (max-width: 768px) {
   .oak-hero { padding: 64px 0 24px; }
-  .oak-trust-logos { gap: 20px; }
+  .oak-trust-logos, .oak-partner-logos { gap: 20px; }
   .oak-trust-divider { display: none; }
+  .oak-partners { gap: 28px; }
   .oak-features { grid-template-columns: 1fr; }
   .oak-cards.cols-3, .oak-cards.cols-2 { grid-template-columns: 1fr; }
   .oak-section-title { margin: 56px 0 24px; }

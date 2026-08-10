@@ -25,15 +25,19 @@ mode: "custom"
   <div className="oak-trust-group">
     <span className="oak-trust-label">Backed by</span>
     <span className="oak-trust-logos">
-      <img className="oak-trust-logo" src="/images/kickstarter.png" alt="Kickstarter" />
-      <img className="oak-trust-logo oak-logo-a16z" src="/images/a16z.png" alt="a16z crypto" />
+      <img className="oak-trust-logo oak-logo-kickstarter" src="/images/kickstarter.png" alt="Kickstarter" />
+      <img className="oak-trust-logo oak-logo-a16z oak-ink-dark" src="/images/a16z.png" alt="a16z crypto" />
     </span>
   </div>
   <span className="oak-trust-divider" />
   <div className="oak-trust-group">
     <span className="oak-trust-label">Audited by</span>
     <span className="oak-trust-logos">
-      <img className="oak-trust-logo" src="/images/open-zeppelin.png" alt="OpenZeppelin" />
+      <img className="oak-trust-logo oak-logo-oz oak-only-light" src="/images/open-zeppelin.svg" alt="OpenZeppelin" />
+      <img className="oak-trust-logo oak-logo-oz oak-only-dark" src="/images/open-zeppelin-dark.svg" alt="OpenZeppelin" />
+      <img className="oak-trust-logo oak-logo-immunefi oak-only-light" src="/images/immunefi.svg" alt="Immunefi" />
+      <img className="oak-trust-logo oak-logo-immunefi oak-only-dark" src="/images/immunefi-dark.svg" alt="Immunefi" />
+      <img className="oak-trust-logo oak-logo-peckshield oak-ink-white-only" src="/images/peckshield.png" alt="PeckShield" />
     </span>
   </div>
 </div>
@@ -71,6 +75,53 @@ mode: "custom"
     <h3 className="oak-feature-title">Security &amp; audits</h3>
     <p className="oak-feature-desc">Audit reports, the security model, and the bug bounty program.</p>
   </a>
+</div>
+
+{/* -------------------------------------------------------------- Partners -- */}
+{/* Kickstarter is deliberately absent here — it already appears in the hero
+    trust bar under "Backed by", and repeating the same mark on one screen
+    reads as a rendering bug. */}
+<h2 className="oak-section-title">Powering platforms worldwide</h2>
+
+{/* Catarse and Vaki carry near-black wordmarks, so each needs its own light and
+    dark lockup — a single asset would vanish in one theme. Only one of each
+    pair is ever displayed; display:none keeps the other out of the a11y tree.
+    Kibidango's coral reads on both backgrounds, and Karma is handled in CSS. */}
+<div className="oak-partners">
+  <div className="oak-partner-group">
+    <span className="oak-trust-label">Active partners</span>
+    <span className="oak-partner-logos">
+      <a className="oak-partner" href="https://kibidango.com" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-kibidango" src="/images/partners/kibidango.png" alt="Kibidango" />
+      </a>
+      <a className="oak-partner" href="https://minipay.to" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-minipay oak-only-light" src="/images/partners/minipay.svg" alt="MiniPay" />
+        <img className="oak-partner-logo oak-mark-minipay oak-only-dark" src="/images/partners/minipay-dark.svg" alt="MiniPay" />
+      </a>
+      <a className="oak-partner" href="https://www.relayfunder.com" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-relayfunder oak-ink-white-only" src="/images/partners/relayfunder.png" alt="Relay Funder" />
+      </a>
+      <a className="oak-partner" href="https://onset.health" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-onset oak-ink-dark" src="/images/partners/onset.svg" alt="Onset" />
+      </a>
+      <a className="oak-partner" href="https://www.karmaautomotive.com" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-karma oak-ink-white" src="/images/partners/karma.png" alt="Karma Automotive" />
+      </a>
+    </span>
+  </div>
+  <div className="oak-partner-group">
+    <span className="oak-trust-label">Past partners</span>
+    <span className="oak-partner-logos">
+      <a className="oak-partner" href="https://www.catarse.me" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-catarse oak-only-light" src="/images/partners/catarse.svg" alt="Catarse" />
+        <img className="oak-partner-logo oak-mark-catarse oak-only-dark" src="/images/partners/catarse-dark.svg" alt="Catarse" />
+      </a>
+      <a className="oak-partner" href="https://vaki.co" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-vaki oak-only-light" src="/images/partners/vaki.svg" alt="Vaki" />
+        <img className="oak-partner-logo oak-mark-vaki oak-only-dark" src="/images/partners/vaki-dark.svg" alt="Vaki" />
+      </a>
+    </span>
+  </div>
 </div>
 
 {/* --------------------------------------------------------------- Why Oak -- */}
