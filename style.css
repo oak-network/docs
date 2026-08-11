@@ -190,13 +190,17 @@ pre span {
   justify-content: center;
   gap: 36px;
 }
+/* Same anchor treatment as .oak-partner so the two rows behave identically:
+   flex-shrink off, since width:auto images have no intrinsic floor as
+   shrinkable flex items. */
+.oak-trust-link { display: inline-flex; align-items: center; line-height: 0; flex: 0 0 auto; }
 .oak-trust-logo {
   height: 24px;
   width: auto;
   opacity: 0.9;
   transition: opacity .15s ease;
 }
-.oak-trust-logo:hover { opacity: 1; }
+.oak-trust-link:hover .oak-trust-logo { opacity: 1; }
 
 /* Optical sizing — equal visual mass, not equal pixel height. Ratios:
    kickstarter 8.6:1, a16z 3.7:1 (stacked two-line), oz 6.6:1, immunefi 4.6:1,
