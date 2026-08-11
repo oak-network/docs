@@ -215,20 +215,25 @@ pre span {
    (default)          full colour, legible on both backgrounds (Kickstarter,
                       Kibidango, MiniPay/Catarse/Vaki/OZ/Immunefi via paired
                       light+dark files)
-   .oak-ink-dark      monochrome dark ink — invert on dark (a16z, Onset)
+   .oak-ink-dark      monochrome dark ink — invert on dark (a16z, Onset, Bridge,
+                      Ramp)
    .oak-ink-white     monochrome white ink — invert on light (Karma)
-   .oak-ink-white-only  white ink but NOT monochrome, and the vendor publishes
-                      no dark-background version. Inverting would corrupt the
-                      accent hues (PeckShield's cyan shield, Relay Funder's
-                      green/purple/teal symbol), so light mode flattens them to
-                      a silhouette — letterforms stay exact, colour is lost.
-                      Swap in a proper light lockup if the partners supply one. */
+   .oak-ink-white-tint  white ink WITH colour accents, and the vendor publishes
+                      no dark-background version (PeckShield's cyan shield,
+                      Relay Funder's tri-colour symbol, Rippling's gradient).
+                      A plain invert() would flip those hues to their
+                      complements — cyan would come out orange — so it is paired
+                      with hue-rotate(180deg), which rotates them back. Net
+                      effect: lightness flips so the mark reads on white, while
+                      the accent hues survive. Not a pixel-exact reproduction of
+                      an official light lockup, so prefer a real one if a
+                      partner supplies it. */
 .oak-ink-dark              { filter: none; }
 .dark .oak-ink-dark        { filter: invert(1); }
 .oak-ink-white             { filter: invert(1); }
 .dark .oak-ink-white       { filter: none; }
-.oak-ink-white-only        { filter: brightness(0); }
-.dark .oak-ink-white-only  { filter: none; }
+.oak-ink-white-tint        { filter: invert(1) hue-rotate(180deg); }
+.dark .oak-ink-white-tint  { filter: none; }
 
 /* Paired per-theme lockups. Only one of each pair renders, so both may keep
    their alt text — display:none drops the hidden one from the a11y tree. */
@@ -257,14 +262,19 @@ pre span {
   align-items: center;
   gap: 14px;
 }
+/* Thirteen marks wrap to several rows, so row-gap is set independently of
+   column-gap to keep the wall from looking striped. */
 .oak-partner-logos {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 44px;
+  gap: 30px 42px;
+  max-width: 940px;
 }
-.oak-partner { display: inline-flex; align-items: center; line-height: 0; }
+/* flex-shrink must be off: the images are width:auto with a fixed height, so as
+   shrinkable flex items in a max-width wrapping row they collapse to zero. */
+.oak-partner { display: inline-flex; align-items: center; line-height: 0; flex: 0 0 auto; }
 
 /* Full brand colour. Polarity is handled by the shared .oak-ink-* modifiers
    defined with the trust bar above. */
@@ -280,12 +290,20 @@ pre span {
    (same reasoning as the a16z rule above). Ratios: onset 5.5:1, karma 5.2:1,
    kibidango 4.0:1, relayfunder 3.9:1, catarse 3.6:1, vaki 1.6:1, and MiniPay a
    square 1:1 stacked lockup — which is why it carries by far the most height. */
-.oak-mark-onset       { height: 28px; }
-.oak-mark-karma       { height: 30px; }
-.oak-mark-kibidango   { height: 36px; }
-.oak-mark-relayfunder { height: 36px; }
-.oak-mark-catarse     { height: 38px; }
-.oak-mark-vaki        { height: 46px; }
+.oak-mark-rippling    { height: 24px; }  /* 7.8:1 */
+.oak-mark-bridge      { height: 26px; }  /* 6.5:1 */
+.oak-mark-onset       { height: 28px; }  /* 5.5:1 */
+.oak-mark-fireblocks  { height: 28px; }  /* 5.9:1 */
+.oak-mark-karma       { height: 30px; }  /* 5.2:1 */
+.oak-mark-celo        { height: 32px; }  /* 4.4:1 */
+.oak-mark-privy       { height: 32px; }  /* 4.5:1 */
+.oak-mark-ramp        { height: 34px; }  /* 3.8:1 */
+.oak-mark-kibidango   { height: 36px; }  /* 4.0:1 */
+.oak-mark-relayfunder { height: 36px; }  /* 3.9:1 */
+.oak-mark-catarse     { height: 38px; }  /* 3.6:1 */
+.oak-mark-stripe      { height: 38px; }  /* 2.4:1 */
+.oak-mark-bill        { height: 42px; }  /* 1.5:1 */
+.oak-mark-vaki        { height: 46px; }  /* 1.6:1 */
 /* MiniPay only publishes a stacked icon-over-wordmark lockup (1.2:1), and their
    brand rules forbid using the icon detached from the wordmark. Equal visual
    mass would put it near 65px, which would tower over the row, so it is capped

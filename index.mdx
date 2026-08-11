@@ -37,7 +37,7 @@ mode: "custom"
       <img className="oak-trust-logo oak-logo-oz oak-only-dark" src="/images/open-zeppelin-dark.svg" alt="OpenZeppelin" />
       <img className="oak-trust-logo oak-logo-immunefi oak-only-light" src="/images/immunefi.svg" alt="Immunefi" />
       <img className="oak-trust-logo oak-logo-immunefi oak-only-dark" src="/images/immunefi-dark.svg" alt="Immunefi" />
-      <img className="oak-trust-logo oak-logo-peckshield oak-ink-white-only" src="/images/peckshield.png" alt="PeckShield" />
+      <img className="oak-trust-logo oak-logo-peckshield oak-ink-white-tint" src="/images/peckshield.png" alt="PeckShield" />
     </span>
   </div>
 </div>
@@ -80,16 +80,19 @@ mode: "custom"
 {/* -------------------------------------------------------------- Partners -- */}
 {/* Kickstarter is deliberately absent here — it already appears in the hero
     trust bar under "Backed by", and repeating the same mark on one screen
-    reads as a rendering bug. */}
-<h2 className="oak-section-title">Powering platforms worldwide</h2>
+    reads as a rendering bug.
 
-{/* Catarse and Vaki carry near-black wordmarks, so each needs its own light and
-    dark lockup — a single asset would vanish in one theme. Only one of each
-    pair is ever displayed; display:none keeps the other out of the a11y tree.
-    Kibidango's coral reads on both backgrounds, and Karma is handled in CSS. */}
+    One flat list, so the heading carries the label and the group has no
+    caption of its own. Note this row deliberately mixes platforms that build
+    on Oak (Kibidango, Catarse, Vaki, Relay Funder, OnSet, Karma) with the
+    infrastructure Oak builds on (Stripe, Bridge, Fireblocks, Ramp). */}
+<h2 className="oak-section-title">Partners</h2>
+
+{/* Per-logo polarity is declared via the shared .oak-ink-* / .oak-only-* classes
+    defined in style.css — a single blanket filter makes some of these vanish in
+    one theme. */}
 <div className="oak-partners">
   <div className="oak-partner-group">
-    <span className="oak-trust-label">Active partners</span>
     <span className="oak-partner-logos">
       <a className="oak-partner" href="https://kibidango.com" target="_blank" rel="noopener noreferrer">
         <img className="oak-partner-logo oak-mark-kibidango" src="/images/partners/kibidango.png" alt="Kibidango" />
@@ -99,7 +102,7 @@ mode: "custom"
         <img className="oak-partner-logo oak-mark-minipay oak-only-dark" src="/images/partners/minipay-dark.svg" alt="MiniPay" />
       </a>
       <a className="oak-partner" href="https://www.relayfunder.com" target="_blank" rel="noopener noreferrer">
-        <img className="oak-partner-logo oak-mark-relayfunder oak-ink-white-only" src="/images/partners/relayfunder.png" alt="Relay Funder" />
+        <img className="oak-partner-logo oak-mark-relayfunder oak-ink-white-tint" src="/images/partners/relayfunder.png" alt="Relay Funder" />
       </a>
       <a className="oak-partner" href="https://onset.health" target="_blank" rel="noopener noreferrer">
         <img className="oak-partner-logo oak-mark-onset oak-ink-dark" src="/images/partners/onset.svg" alt="Onset" />
@@ -107,11 +110,6 @@ mode: "custom"
       <a className="oak-partner" href="https://www.karmaautomotive.com" target="_blank" rel="noopener noreferrer">
         <img className="oak-partner-logo oak-mark-karma oak-ink-white" src="/images/partners/karma.png" alt="Karma Automotive" />
       </a>
-    </span>
-  </div>
-  <div className="oak-partner-group">
-    <span className="oak-trust-label">Past partners</span>
-    <span className="oak-partner-logos">
       <a className="oak-partner" href="https://www.catarse.me" target="_blank" rel="noopener noreferrer">
         <img className="oak-partner-logo oak-mark-catarse oak-only-light" src="/images/partners/catarse.svg" alt="Catarse" />
         <img className="oak-partner-logo oak-mark-catarse oak-only-dark" src="/images/partners/catarse-dark.svg" alt="Catarse" />
@@ -119,6 +117,33 @@ mode: "custom"
       <a className="oak-partner" href="https://vaki.co" target="_blank" rel="noopener noreferrer">
         <img className="oak-partner-logo oak-mark-vaki oak-only-light" src="/images/partners/vaki.svg" alt="Vaki" />
         <img className="oak-partner-logo oak-mark-vaki oak-only-dark" src="/images/partners/vaki-dark.svg" alt="Vaki" />
+      </a>
+      <a className="oak-partner" href="https://celo.org" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-celo oak-only-light" src="/images/partners/celo.svg" alt="Celo" />
+        <img className="oak-partner-logo oak-mark-celo oak-only-dark" src="/images/partners/celo-dark.svg" alt="Celo" />
+      </a>
+      <a className="oak-partner" href="https://www.privy.io" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-privy oak-only-light" src="/images/partners/privy.png" alt="Privy" />
+        <img className="oak-partner-logo oak-mark-privy oak-only-dark" src="/images/partners/privy-dark.png" alt="Privy" />
+      </a>
+      <a className="oak-partner" href="https://stripe.com" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-stripe" src="/images/partners/stripe.svg" alt="Stripe" />
+      </a>
+      <a className="oak-partner" href="https://www.bridge.xyz" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-bridge oak-ink-dark" src="/images/partners/bridge.svg" alt="Bridge" />
+      </a>
+      <a className="oak-partner" href="https://www.fireblocks.com" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-fireblocks oak-only-light" src="/images/partners/fireblocks.svg" alt="Fireblocks" />
+        <img className="oak-partner-logo oak-mark-fireblocks oak-only-dark" src="/images/partners/fireblocks-dark.svg" alt="Fireblocks" />
+      </a>
+      <a className="oak-partner" href="https://ramp.com" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-ramp oak-ink-dark" src="/images/partners/ramp.svg" alt="Ramp" />
+      </a>
+      <a className="oak-partner" href="https://www.bill.com" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-bill" src="/images/partners/bill.svg" alt="BILL" />
+      </a>
+      <a className="oak-partner" href="https://www.rippling.com" target="_blank" rel="noopener noreferrer">
+        <img className="oak-partner-logo oak-mark-rippling oak-ink-white" src="/images/partners/rippling.svg" alt="Rippling" />
       </a>
     </span>
   </div>
