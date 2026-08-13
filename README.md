@@ -222,7 +222,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Documentation**: [docs.oaknetwork.org](https://docs.oaknetwork.org)
+- **Documentation**: [oaknetwork.org](https://oaknetwork.org)
 - **Discord**: [Join our community](https://discord.com/invite/srhtEpWBHx)
 - **GitHub Issues**: [Report issues](https://github.com/oak-network/docs/issues)
 - **Email**: docs@oaknetwork.org
