@@ -3,6 +3,8 @@
  * 1. Fonts: Fragment Mono for code; Inter Tight for headings (body stays Inter).
  * 2. Top navigation: neutral divider + opaque background so the docs.json gradient
  *    hue stays below the tab bar (like bridge.xyz) instead of bleeding over the tabs.
+ * 2b. Top navigation on mobile: de-duplicate the hamburger drawer, which now
+ *    lists every section via docs.json navigation.global.anchors.
  * 3. Typography: Inter Tight for headings only + force heading weight 500.
  */
 
@@ -37,6 +39,54 @@ pre span {
 .dark #navbar {
   border-bottom-color: #ffffff1a;
   background-color: rgb(var(--background-dark));
+}
+
+/* 2b. Top navigation on mobile --------------------------------------------- */
+/* Below Mintlify's `lg` breakpoint (1024px) the tab bar is hidden (`hidden
+   lg:flex`) and the tabs collapse into a dropdown in the hamburger drawer that
+   is labelled with only the *active* tab — so the drawer opened onto a lone
+   "Home" you had to tap to get anywhere.
+
+   The fix is in docs.json, not here: navigation.global.anchors mirrors the tabs,
+   and Mintlify renders anchors through its native <Anchors> component — a plain
+   expanded list, nothing to tap. global.anchors is the one anchor form that
+   coexists with tabs (top-level `anchors` and `tabs` are mutually exclusive),
+   so the desktop tab bar is untouched. All that's left is removing the two
+   duplicates that mirroring creates. */
+@media (max-width: 1023.98px) {
+  /* Mintlify only ever sets --scroll-mt in an `lg:` variant on <html>, so on
+     mobile it is unset and `scroll-margin-top: var(--scroll-mt)` collapses to
+     0 — in-page heading anchors land underneath the fixed navbar. The mobile
+     navbar is a 64px logo row plus a 56px breadcrumb row; add air on top. */
+  :root { --scroll-mt: 8.5rem; }
+
+  /* Duplicate 1: the drawer's tab switcher, now that the anchor list directly
+     above it names every section. Mintlify gives the trigger no stable class,
+     so match on structure — the switcher is the only child of that wrapper
+     with its own intermediate div, whereas the version and language selectors
+     share the wrapper and put their trigger directly in it. Hence
+     `> div > div:has()` rather than a descendant match on the button alone. */
+  #mobile-nav #navigation-items > div > div:has(> button[aria-haspopup="menu"]) {
+    display: none;
+  }
+  /* Drop the wrapper's 24px bottom margin only when the switcher was its sole
+     child, so a version selector (API Reference) keeps its spacing. */
+  #mobile-nav #navigation-items > div:has(> div > button[aria-haspopup="menu"]):not(:has(> :nth-child(2))) {
+    margin-bottom: 0;
+  }
+}
+
+/* Duplicate 2: on desktop the anchors restate the tab bar down the side, so
+   they are wanted in the mobile drawer only. Mintlify's <Anchors> renders a
+   bare `ul.list-none` — the container gets no stable class, only the links
+   themselves get `nav-anchor` — so identify the list by what it contains.
+   Scoped to #sidebar, which is the desktop list; the drawer's copy lives in
+   #mobile-nav and must survive. */
+@media (min-width: 1024px) {
+  #sidebar #navigation-items > ul:has(> li > a.nav-anchor) { display: none; }
+  /* With the anchors present every group is spaced as a follower, so the first
+     one would keep that top margin once the list above it is hidden. */
+  #sidebar #navigation-items > ul:has(> li > a.nav-anchor) + div { margin-top: 0; }
 }
 
 /* 3. Typography ------------------------------------------------------------ */

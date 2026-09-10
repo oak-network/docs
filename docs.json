@@ -34,17 +34,23 @@
     }
   },
   "navigation": {
+    "global": {
+      "anchors": [
+        { "anchor": "Home", "icon": "house", "href": "/" },
+        { "anchor": "Documentation", "icon": "book-open", "href": "/concepts/overview" },
+        { "anchor": "Smart Contracts", "icon": "file-contract", "href": "/contracts/overview" },
+        { "anchor": "Contracts SDK", "icon": "cube", "href": "/contracts-sdk/overview" },
+        { "anchor": "Payments SDK", "icon": "credit-card", "href": "/sdk/overview" },
+        { "anchor": "API Reference", "icon": "code", "href": "/api-reference/auth/user-sign-up" },
+        { "anchor": "Blog", "icon": "newspaper", "href": "/blog/overview" }
+      ]
+    },
     "tabs": [
       {
         "tab": "Home",
         "icon": "house",
-        "groups": [
-          {
-            "group": "Home",
-            "pages": [
-              "index"
-            ]
-          }
+        "pages": [
+          "index"
         ]
       },
       {
