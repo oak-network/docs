@@ -208,8 +208,7 @@ When adding new features:
 
 Instead:
 1. Email security@oaknetwork.org
-2. Use our [bug bounty program](https://hackerone.com/oaknetwork)
-3. Follow responsible disclosure practices
+2. Follow responsible disclosure practices
 
 ## 🎨 Code Style
 

@@ -82,7 +82,6 @@
             "pages": [
               "security/overview",
               "security/audits",
-              "security/bug-bounty",
               "security/best-practices",
               "security/checklist"
             ]
@@ -357,6 +356,7 @@
     { "source": "/docs/contracts/:slug*", "destination": "/contracts/:slug*", "permanent": true },
     { "source": "/docs/security/README", "destination": "/security/overview", "permanent": true },
     { "source": "/docs/security/:slug*", "destination": "/security/:slug*", "permanent": true },
+    { "source": "/security/bug-bounty", "destination": "/security/overview", "permanent": true },
     { "source": "/docs/deployment/:slug*", "destination": "/operations/deployment", "permanent": true },
     { "source": "/docs/operations/:slug*", "destination": "/operations/:slug*", "permanent": true },
     { "source": "/docs/api/:slug*", "destination": "/contracts/overview", "permanent": true },
